@@ -10,8 +10,8 @@ import {
 } from "@/data/blogData";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import BlogSidebar from "@/components/ui/BlogSidebar";
-import ShareButtons from "@/components/ui/ShareButtons";
+import BlogSidebar from "@/modules/Blog/components/BlogSidebar";
+import ShareButtons from "@/core/ui/ShareButtons";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));

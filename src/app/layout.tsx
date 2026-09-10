@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import TopBar from "@/components/layout/TopBar";
-import NavBar from "@/components/layout/NavBar";
-import Footer from "@/components/layout/Footer";
-import Preloader from "@/components/ui/Preloader";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import GlobalCTA from "@/components/layout/GlobalCTA";
-import ScheduleVisitModal from "@/components/ui/ScheduleVisitModal";
+import TopBar from "@/core/ui/layout/TopBar";
+import NavBar from "@/core/ui/layout/NavBar";
+import Footer from "@/core/ui/layout/Footer";
+import Preloader from "@/core/ui/Preloader";
+import WhatsAppButton from "@/core/ui/WhatsAppButton";
+import GlobalCTA from "@/core/ui/layout/GlobalCTA";
+import ScheduleVisitModal from "@/core/ui/ScheduleVisitModal";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -52,3 +52,4 @@ export default function RootLayout({
     </html>
   );
 }
+

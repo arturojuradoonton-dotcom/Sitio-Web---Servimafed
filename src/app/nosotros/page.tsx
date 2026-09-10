@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Award, Briefcase, Users, ShieldCheck, CheckCircle2, Activity, Target } from 'lucide-react';
-import Timeline from '@/components/ui/Timeline';
-import BrandSlider from '@/components/ui/BrandSlider';
+import Timeline from '@/core/ui/Timeline';
+import BrandSlider from '@/core/ui/BrandSlider';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -236,3 +236,4 @@ export default function NosotrosPage() {
     </main>
   );
 }
+

@@ -1,7 +1,7 @@
-import HeroSlider from '@/components/ui/HeroSlider';
-import BrandSlider from '@/components/ui/BrandSlider';
-import { HomeNews } from '@/components/ui/HomeNews';
-import HomeFAQ from '@/components/ui/HomeFAQ';
+import HeroSlider from '@/modules/Home/components/HeroSlider';
+import BrandSlider from '@/core/ui/BrandSlider';
+import { HomeNews } from '@/modules/Home/components/HomeNews';
+import HomeFAQ from '@/modules/Home/components/HomeFAQ';
 import { Plus, PenTool, ShieldCheck, Truck, Users, Award, Handshake, Timer } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -268,3 +268,4 @@ export default function Home() {
     </main>
   );
 }
+
