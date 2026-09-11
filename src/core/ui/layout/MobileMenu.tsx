@@ -257,15 +257,25 @@ export default function MobileMenu() {
             </div>
           </div>
 
-          <a
-            href="https://axentra-erp-v1.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full border border-gray-300 text-gray-700 hover:text-primary hover:border-primary transition-colors py-3 rounded-md mt-2"
-          >
-            <User className="w-5 h-5" strokeWidth={1.5} />
-            <span className="text-xs font-bold uppercase tracking-widest">Inicio de sesión</span>
-          </a>
+          <div className="flex flex-col gap-2 mt-2">
+            <a
+              href="https://portal.servimafed.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full border border-gray-300 bg-white text-gray-800 hover:text-primary hover:border-primary transition-colors py-2.5 rounded-md"
+            >
+              <User className="w-4 h-4" strokeWidth={2} />
+              <span className="text-xs font-bold uppercase tracking-widest">Portal Cliente</span>
+            </a>
+            <a
+              href="https://app.servimafed.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full border border-transparent bg-dark text-white hover:bg-primary hover:text-dark transition-colors py-2.5 rounded-md"
+            >
+              <span className="text-xs font-bold uppercase tracking-widest">Intranet (ERP)</span>
+            </a>
+          </div>
         </div>
       </div>
     </>

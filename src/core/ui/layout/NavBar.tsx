@@ -162,16 +162,34 @@ export default function NavBar() {
             <Search className="cursor-pointer text-gray-700 hover:text-primary transition-colors w-5 h-5" />
           </button>
           
-          {/* User Login Link */}
-          <a 
-            href="https://axentra-erp-v1.vercel.app/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 text-gray-700 hover:text-primary transition-colors cursor-pointer group"
-          >
-            <User className="w-5 h-5" strokeWidth={1.5} />
-            <span className="text-sm font-medium">Inicio de sesión</span>
-          </a>
+          {/* User Login Dropdown */}
+          <div className="hidden md:flex relative group h-full items-center">
+            <button className="flex items-center gap-2 text-gray-700 group-hover:text-primary transition-colors cursor-pointer outline-none py-4">
+              <User className="w-5 h-5" strokeWidth={1.5} />
+              <span className="text-sm font-medium">Inicio de sesión</span>
+              <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
+            </button>
+
+            {/* Dropdown Card */}
+            <div className="absolute top-full right-0 w-48 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-100 rounded-b-md opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50 overflow-hidden">
+              <a
+                href="https://portal.servimafed.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center px-4 py-3 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 border-b border-gray-50 transition-colors"
+              >
+                Portal Cliente
+              </a>
+              <a
+                href="https://app.servimafed.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center px-4 py-3 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors"
+              >
+                Intranet (ERP)
+              </a>
+            </div>
+          </div>
 
           {/* Mobile Menu Component */}
           <MobileMenu />
