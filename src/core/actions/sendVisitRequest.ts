@@ -75,11 +75,9 @@ export async function sendVisitRequest(formData: FormData) {
     `;
 
     // Send email via Resend
-    // Nota: El correo destino por defecto es ventas@servimafed.com,
-    // pero si el dominio no está verificado en Resend solo permitirá enviar al correo registrado en Resend.
-    // Usaremos onboarding@resend.dev como from por defecto si no hay dominio verificado.
+    // Dado que el dominio servimafed.com está verificado, usamos ese dominio en el 'from'
     const { data, error } = await resend.emails.send({
-      from: "SERVIMAFED Web <onboarding@resend.dev>",
+      from: "SERVIMAFED Web <web@servimafed.com>",
       to: ["ventas@servimafed.com"],
       subject: `Nueva Solicitud de Visita Técnica - ${fullName}`,
       html: htmlContent,
