@@ -45,7 +45,7 @@ export default function TopBar() {
           </div>
           <div className="flex items-center gap-2">
             <Phone className="text-primary w-4 h-4" />
-            <span className="font-medium text-white">+51 977 600 893</span>
+            <span className="font-medium text-white">+51 993 667 182</span>
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="text-primary w-4 h-4" />

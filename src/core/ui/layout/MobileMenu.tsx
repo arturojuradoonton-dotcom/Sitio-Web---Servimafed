@@ -240,8 +240,8 @@ export default function MobileMenu() {
           <div className="space-y-3">
             <div className="flex items-center gap-3 text-gray-500">
               <Phone className="w-4 h-4 text-primary shrink-0" />
-              <span className="text-xs font-light">+51 977 600 893</span>
-              <a href="https://wa.me/51977600893?text=Hola,%20necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" className="ml-auto text-primary hover:scale-110 transition-transform">
+              <span className="text-xs font-light">+51 993 667 182</span>
+              <a href="https://wa.me/51993667182?text=Hola,%20necesito%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" className="ml-auto text-primary hover:scale-110 transition-transform">
                 <svg viewBox="0 0 32 32" fill="currentColor" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.004 2.003c-7.721 0-13.993 6.272-13.993 13.993 0 2.467.655 4.876 1.898 6.993L2 30l7.207-1.89A13.94 13.94 0 0 0 16.004 30c7.721 0 13.993-6.272 13.993-13.993S23.725 2.003 16.004 2.003zm0 25.586a11.57 11.57 0 0 1-5.898-1.617l-.423-.251-4.384 1.15 1.17-4.275-.276-.439a11.56 11.56 0 0 1-1.773-6.161c0-6.393 5.2-11.593 11.593-11.593S27.6 9.603 27.6 15.996 22.397 27.589 16.004 27.589zm6.353-8.676c-.348-.174-2.061-1.017-2.381-1.133-.32-.116-.553-.174-.786.174-.233.348-.902 1.133-1.106 1.366-.204.233-.407.261-.755.087-.348-.174-1.47-.542-2.8-1.727-1.034-.922-1.733-2.061-1.936-2.41-.204-.348-.022-.536.153-.709.157-.157.348-.407.522-.611.174-.204.232-.348.348-.58.116-.233.058-.436-.029-.611-.087-.174-.786-1.895-1.077-2.595-.284-.68-.572-.588-.786-.599l-.67-.011c-.233 0-.611.087-.931.436-.32.348-1.22 1.192-1.22 2.907s1.249 3.372 1.423 3.604c.174.233 2.458 3.752 5.955 5.262.832.36 1.482.575 1.99.736.836.266 1.597.228 2.198.138.67-.1 2.061-.843 2.351-1.657.29-.814.29-1.512.204-1.657-.087-.145-.32-.232-.669-.407z" />
                 </svg>

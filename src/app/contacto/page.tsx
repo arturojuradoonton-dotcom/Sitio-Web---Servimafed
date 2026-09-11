@@ -97,7 +97,7 @@ export default function ContactoPage() {
                     <div>
                       <h4 className="font-medium text-sm mb-1 text-primary uppercase tracking-widest">Central de Emergencias</h4>
                       <p className="text-gray-400 font-light leading-relaxed text-sm">
-                        Línea Directa: +51 977 600 893
+                        Línea Directa: +51 993 667 182
                       </p>
                     </div>
                   </div>

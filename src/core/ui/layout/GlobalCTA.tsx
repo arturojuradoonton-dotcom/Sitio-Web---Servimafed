@@ -66,7 +66,7 @@ export default function GlobalCTA() {
 
             {/* Secondary Action Button - Direct Call */}
             <a
-              href="tel:+51977600893"
+              href="tel:+51993667182"
               className="bg-transparent border border-gray-300 hover:border-dark text-dark font-bold px-8 py-4 uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
             >
               <Phone className="w-4 h-4 text-primary" />

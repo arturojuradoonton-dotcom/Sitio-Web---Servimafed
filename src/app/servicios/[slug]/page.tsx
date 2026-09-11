@@ -159,7 +159,7 @@ export default async function ServicioDetalle({ params }: { params: Promise<{ sl
               <Phone className="w-10 h-10 text-primary" strokeWidth={1.5} />
               <div>
                 <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">Ventas y Soporte</h4>
-                <a href="tel:+51977600893" className="text-xl font-bold text-dark hover:text-primary transition-colors">+51 977 600 893</a>
+                <a href="tel:+51993667182" className="text-xl font-bold text-dark hover:text-primary transition-colors">+51 993 667 182</a>
               </div>
             </div>
           </div>
