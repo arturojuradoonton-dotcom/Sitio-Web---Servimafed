@@ -16,10 +16,13 @@ import {
   Paperclip
 } from 'lucide-react';
 
+import { sendVisitRequest } from '@/core/actions/sendVisitRequest';
+
 export default function ScheduleVisitModal() {
   const { isOpen, close } = useSchedulerStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Form states
   const [fullName, setFullName] = useState('');
@@ -50,6 +53,7 @@ export default function ScheduleVisitModal() {
         setComments('');
         setErrors({});
         setIsSuccess(false);
+        setSubmitError(null);
       }, 300);
       return () => clearTimeout(timer);
     }
@@ -75,26 +79,53 @@ export default function ScheduleVisitModal() {
     if (!serviceType) tempErrors.serviceType = 'Obligatorio';
     if (!preferredDate) tempErrors.preferredDate = 'Obligatorio';
     
+    // File size validation (5MB max)
+    if (file && file.size > 5 * 1024 * 1024) {
+      tempErrors.file = 'El archivo no debe exceder 5MB';
+    }
+
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     if (!validate()) return;
 
     setIsSubmitting(true);
     
-    // Simulate API request
-    setTimeout(() => {
+    try {
+      const formData = new FormData();
+      formData.append('fullName', fullName);
+      formData.append('phone', phone);
+      formData.append('email', email);
+      formData.append('equipment', equipment);
+      formData.append('year', year);
+      formData.append('serviceType', serviceType);
+      formData.append('preferredDate', preferredDate);
+      formData.append('preferredTime', preferredTime);
+      formData.append('comments', comments);
+      if (file) {
+        formData.append('file', file);
+      }
+
+      const response = await sendVisitRequest(formData);
+
+      if (response.success) {
+        setIsSuccess(true);
+        // Auto close after 2.5 seconds
+        setTimeout(() => {
+          close();
+        }, 2500);
+      } else {
+        setSubmitError(response.error || 'Ocurrió un error al enviar la solicitud.');
+      }
+    } catch (error) {
+      setSubmitError('Error de red. Por favor, inténtelo de nuevo.');
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      // Auto close after 2.5 seconds
-      setTimeout(() => {
-        close();
-      }, 2500);
-    }, 1500);
+    }
   };
 
   return (
@@ -291,6 +322,7 @@ export default function ScheduleVisitModal() {
                         {file ? file.name : 'Ninguno...'}
                       </span>
                     </div>
+                    {errors.file && <p className="text-red-500 text-[10px] mt-1 font-medium">{errors.file}</p>}
                   </div>
                 </div>
               </div>
@@ -306,6 +338,12 @@ export default function ScheduleVisitModal() {
                   className="w-full bg-gray-50 border border-gray-200 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 p-4 text-sm text-dark font-light focus:outline-none transition-all rounded-sm resize-none placeholder-gray-400"
                 />
               </div>
+
+              {submitError && (
+                <div className="bg-red-50 border border-red-200 text-red-600 text-xs px-4 py-3 rounded-sm flex items-center justify-center">
+                  {submitError}
+                </div>
+              )}
 
               {/* Footer (Button exactly as requested visually positioned, but styled to standard) */}
               <div className="flex flex-col sm:flex-row items-center gap-6 pt-4 border-t border-gray-100">
