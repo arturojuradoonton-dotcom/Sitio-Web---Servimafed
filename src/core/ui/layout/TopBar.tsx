@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Clock, Phone, MapPin, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
-import { useSchedulerStore } from '@/store/useSchedulerStore';
+import { useSchedulerStore } from '@/modules/Scheduling/store/useSchedulerStore';
 
 export default function TopBar() {
   const [isExpanded, setIsExpanded] = useState(false);

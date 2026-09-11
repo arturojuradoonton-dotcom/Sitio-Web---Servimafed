@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
-import { useSchedulerStore } from '@/store/useSchedulerStore';
+import { useSchedulerStore } from '@/modules/Scheduling/store/useSchedulerStore';
 import { Calendar, Phone } from 'lucide-react';
 import Image from 'next/image';
 

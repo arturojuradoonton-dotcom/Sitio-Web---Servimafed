@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useSchedulerStore } from '@/store/useSchedulerStore';
+import { useSchedulerStore } from '@/modules/Scheduling/store/useSchedulerStore';
 import { 
   X, 
   Calendar, 
