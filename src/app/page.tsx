@@ -1,11 +1,13 @@
 import HeroSlider from '@/modules/Home/components/HeroSlider';
-import BrandSlider from '@/core/ui/BrandSlider';
+import dynamic from 'next/dynamic';
 import { HomeNews } from '@/modules/Home/components/HomeNews';
-import HomeFAQ from '@/modules/Home/components/HomeFAQ';
 import { Plus, PenTool, ShieldCheck, Truck, Users, Award, Handshake, Timer } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+
+const BrandSlider = dynamic(() => import('@/core/ui/BrandSlider'));
+const HomeFAQ = dynamic(() => import('@/modules/Home/components/HomeFAQ'));
 
 export const metadata: Metadata = {
   title: 'Inicio',
