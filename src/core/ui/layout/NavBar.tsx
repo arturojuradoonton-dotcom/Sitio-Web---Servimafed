@@ -53,14 +53,14 @@ export default function NavBar() {
         <Link 
           href="/" 
           onClick={closeMenu} 
-          className="relative h-12 w-48 md:h-15 md:w-64 lg:h-16 lg:w-72 block shrink-0"
+          className="relative h-10 w-44 md:h-12 md:w-56 block shrink-0"
         >
           <Image 
             src="/images/Logo-horizontal.png" 
             alt="SERVIMAFED Logo" 
             fill
             priority
-            sizes="(max-width: 768px) 192px, 288px"
+            sizes="(max-width: 768px) 176px, 224px"
             className="object-contain object-left"
           />
         </Link>
