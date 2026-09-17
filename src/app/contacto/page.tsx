@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Send, Calendar } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import type { Metadata } from 'next';
+import { ContactForm } from '@/modules/Contact';
 
 export const metadata: Metadata = {
-  title: 'Contacto',
-  description: 'Contacte a Servimafed para cotizaciones de mantenimiento de maquinaria pesada, inspecciones en campo y soporte técnico 24/7.',
+  title: 'Contacto Corporativo',
+  description: 'Comuníquese con Servimafed para cotizaciones de mantenimiento de maquinaria pesada, overhaul de motores y soporte técnico 24/7 en minería y construcción.',
 };
 
 export default function ContactoPage() {
@@ -36,39 +37,8 @@ export default function ContactoPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-2xl font-light text-dark mb-2 uppercase tracking-tight">Envíanos una <span className="font-bold text-primary">Solicitud</span></h2>
-              <div className="w-12 h-1 bg-primary mb-8"></div>
-              <p className="text-gray-500 font-light mb-10 leading-relaxed">
-                Si requiere una cotización para mantenimiento de flota, inspecciones estructurales o servicios de emergencia, complete el siguiente formulario.
-              </p>
-              
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Razón Social / Nombre *</label>
-                    <input type="text" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="Empresa S.A.C." required />
-                  </div>
-                  <div>
-                    <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Teléfono de Contacto *</label>
-                    <input type="tel" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="Ej. +51 987 654 321" required />
-                  </div>
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Correo Corporativo</label>
-                  <input type="email" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="contacto@empresa.com" />
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Requerimiento Técnico *</label>
-                  <textarea rows={5} className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm resize-none" placeholder="Especifique tipo de maquinaria y horas de operación..." required></textarea>
-                </div>
-                <button type="button" className="bg-primary text-dark font-medium px-8 py-4 uppercase tracking-widest hover:bg-dark hover:text-white transition-all shadow-sm w-full md:w-auto mt-2 flex items-center justify-center gap-2">
-                  <Send className="w-4 h-4" />
-                  Enviar Solicitud
-                </button>
-              </form>
-            </div>
+            {/* Interactive Contact Form */}
+            <ContactForm />
 
             {/* Contact Information & Map */}
             <div>
