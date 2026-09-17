@@ -60,25 +60,55 @@ export default function Footer() {
             <div className="hidden lg:block w-px h-10 bg-dark/20 mx-4"></div>
 
             {/* Redes Sociales */}
-            <div className="flex items-center gap-4 shrink-0">
+            <div className="flex items-center gap-3 shrink-0">
               {/* Facebook */}
-              <a href="#" className="bg-dark text-primary p-1.5 rounded-sm hover:bg-white hover:text-dark transition-colors">
+              <a 
+                href="https://www.facebook.com/servimafedsac" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Síguenos en Facebook"
+                className="bg-dark text-primary p-2 rounded-sm hover:bg-white hover:text-dark transition-colors"
+              >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
               </a>
               {/* Instagram */}
-              <a href="#" className="bg-dark text-primary p-1.5 rounded-sm hover:bg-white hover:text-dark transition-colors">
+              <a 
+                href="https://www.instagram.com/servimafedsac/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Síguenos en Instagram"
+                className="bg-dark text-primary p-2 rounded-sm hover:bg-white hover:text-dark transition-colors"
+              >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
               {/* LinkedIn */}
-              <a href="#" className="bg-dark text-primary p-1.5 rounded-sm hover:bg-white hover:text-dark transition-colors">
+              <a 
+                href="https://www.linkedin.com/company/servimafed-s-a-c/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Conéctate en LinkedIn"
+                className="bg-dark text-primary p-2 rounded-sm hover:bg-white hover:text-dark transition-colors"
+              >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               </a>
               {/* YouTube */}
-              <a href="#" className="bg-dark text-primary p-1.5 rounded-sm hover:bg-white hover:text-dark transition-colors">
+              <a 
+                href="https://www.youtube.com/@servimafed" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Suscríbete en YouTube"
+                className="bg-dark text-primary p-2 rounded-sm hover:bg-white hover:text-dark transition-colors"
+              >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M21.582 6.186c-.23-.86-.908-1.538-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418c-.86.23-1.538.908-1.768 1.768C2 7.746 2 12 2 12s0 4.254.418 5.814c.23.86.908 1.538 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418c.86-.23 1.538-.908 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
               </a>
               {/* TikTok */}
-              <a href="#" className="bg-dark text-primary p-1.5 rounded-sm hover:bg-white hover:text-dark transition-colors">
+              <a 
+                href="https://www.tiktok.com/@servimafedsac" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Síguenos en TikTok"
+                className="bg-dark text-primary p-2 rounded-sm hover:bg-white hover:text-dark transition-colors"
+              >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
                 </svg>
@@ -95,13 +125,13 @@ export default function Footer() {
             
             {/* Columna 1: Marca */}
             <div>
-              <div className="relative h-12 w-48 mb-6">
+              <div className="relative h-10 w-44 md:h-12 md:w-56 mb-6">
                 <Image 
-                  src="/images/logo-blanco.png" 
+                  src="/images/Logo-horizontal--Variante.png" 
                   alt="SERVIMAFED Logo" 
                   fill
                   loading="lazy"
-                  sizes="192px"
+                  sizes="(max-width: 768px) 176px, 224px"
                   className="object-contain object-left"
                 />
               </div>

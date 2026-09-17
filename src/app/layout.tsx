@@ -84,6 +84,13 @@ const schemaJsonLd = {
       },
       telephone: '+51993667182',
       email: 'ventas@servimafed.com',
+      sameAs: [
+        'https://www.facebook.com/servimafedsac',
+        'https://www.instagram.com/servimafedsac/',
+        'https://www.linkedin.com/company/servimafed-s-a-c/',
+        'https://www.youtube.com/@servimafed',
+        'https://www.tiktok.com/@servimafedsac',
+      ],
       contactPoint: [
         {
           '@type': 'ContactPoint',
