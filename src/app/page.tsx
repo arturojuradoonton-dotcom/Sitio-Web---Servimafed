@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     absolute: 'Servimafed | Mantenimiento de Maquinaria Pesada y Minería en Perú',
   },
   description: 'Servimafed: especialistas en overhaul de motores, diagnóstico avanzado, mantenimiento de flota y repuestos OEM para maquinaria pesada en minería y construcción en Perú.',
+  alternates: {
+    canonical: 'https://www.servimafed.com',
+  },
 };
 
 export default function Home() {
