@@ -17,17 +17,24 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Servimafed | Mantenimiento de Maquinaria Pesada',
+    default: 'Servimafed | Mantenimiento de Maquinaria Pesada en Perú',
     template: '%s | Servimafed',
   },
   description: 'Especialistas en mantenimiento integral, reparación de componentes y suministro de repuestos para maquinaria pesada. Servicio 24/7 para minería y construcción en Perú.',
   keywords: ['maquinaria pesada', 'mantenimiento industrial', 'repuestos CAT', 'Komatsu', 'Volvo', 'minería', 'Perú', 'Servimafed'],
   authors: [{ name: 'Servimafed' }],
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon.ico' },
+    ],
+    apple: '/icon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'es_PE',
     siteName: 'Servimafed',
-    title: 'Servimafed | Mantenimiento de Maquinaria Pesada',
+    title: 'Servimafed | Mantenimiento de Maquinaria Pesada en Perú',
     description: 'Especialistas en mantenimiento integral, reparación de componentes y suministro de repuestos para maquinaria pesada.',
   },
 };

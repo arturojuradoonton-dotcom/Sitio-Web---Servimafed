@@ -67,13 +67,13 @@ export default function MobileMenu() {
       >
         {/* Header with Logo and Close Button */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-          <Link href="/" onClick={() => setIsOpen(false)} className="relative h-8 w-32">
+          <Link href="/" onClick={() => setIsOpen(false)} className="relative h-9 w-40">
             <Image 
               src="/images/Logo-horizontal.png" 
               alt="SERVIMAFED Logo" 
               fill
               loading="lazy"
-              sizes="128px"
+              sizes="160px"
               className="object-contain object-left"
             />
           </Link>

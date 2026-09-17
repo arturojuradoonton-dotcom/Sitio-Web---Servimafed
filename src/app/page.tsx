@@ -10,8 +10,10 @@ const BrandSlider = dynamic(() => import('@/core/ui/BrandSlider'));
 const HomeFAQ = dynamic(() => import('@/modules/Home/components/HomeFAQ'));
 
 export const metadata: Metadata = {
-  title: 'Inicio',
-  description: 'Servimafed: soluciones integrales de mantenimiento preventivo, correctivo y suministro de repuestos para maquinaria pesada en minería y construcción.',
+  title: {
+    absolute: 'Servimafed | Mantenimiento de Maquinaria Pesada y Minería en Perú',
+  },
+  description: 'Servimafed: especialistas en overhaul de motores, diagnóstico avanzado, mantenimiento de flota y repuestos OEM para maquinaria pesada en minería y construcción en Perú.',
 };
 
 export default function Home() {
