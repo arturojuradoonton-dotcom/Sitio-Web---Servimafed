@@ -69,7 +69,7 @@ export default function MobileMenu() {
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
           <Link href="/" onClick={() => setIsOpen(false)} className="relative h-8 w-32">
             <Image 
-              src="/images/logo.png" 
+              src="/images/Logo-horizontal.png" 
               alt="SERVIMAFED Logo" 
               fill
               loading="lazy"

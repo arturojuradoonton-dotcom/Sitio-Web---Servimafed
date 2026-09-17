@@ -52,7 +52,7 @@ export default function NavBar() {
         {/* Logo */}
         <Link href="/" onClick={closeMenu} className="relative h-10 w-40 md:h-16 md:w-64 block py-1 md:py-2 shrink-0">
           <Image 
-            src="/images/logo.png" 
+            src="/images/Logo-horizontal.png" 
             alt="SERVIMAFED Logo" 
             fill
             priority
