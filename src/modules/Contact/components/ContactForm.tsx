@@ -132,7 +132,7 @@ export function ContactForm() {
           </div>
 
           {/* Quick WhatsApp Action */}
-          <div className="bg-dark text-white p-5 rounded-sm mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="bg-secondary text-white p-5 rounded-sm mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-l-4 border-primary">
             <div className="text-center sm:text-left">
               <p className="text-xs font-medium uppercase tracking-widest text-primary">¿Atención Crítica o Emergencia?</p>
               <p className="text-xs text-gray-300 font-light">Comuníquese en 1 clic con la guardia técnica 24/7</p>

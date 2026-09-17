@@ -2,13 +2,15 @@
 
 @theme {
   --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-dark: var(--dark);
   --font-sans: var(--font-roboto), system-ui, sans-serif;
 }
 
 :root {
-  --primary: #FFC400; /* Amarillo cálido extraído del logo de SERVIMAFED */
-  --dark: #0A1128; /* Azul marino profundo extraído del texto del logo */
+  --primary: #FCB326; /* Amarillo Corporativo Servimafed */
+  --secondary: #1D3961; /* Azul Marino Industrial Servimafed */
+  --dark: #0B0F19; /* Negro Carbón Industrial */
   --background: #f8fafc; /* bg-slate-50 for a clean industrial base */
   --foreground: #1e293b; /* text-slate-800 */
 }

@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Especialistas en overhaul de motores, diagnóstico avanzado y repuestos OEM para maquinaria pesada en minería y construcción en Perú.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#0f172a',
-    theme_color: '#f59e0b',
+    background_color: '#0B0F19',
+    theme_color: '#FCB326',
     icons: [
       {
         src: '/favicon-48x48.png',

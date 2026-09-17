@@ -48,11 +48,11 @@ export default function LibroReclamacionesPage() {
                   <label className="block font-medium text-gray-700 mb-3 text-xs uppercase tracking-widest">Tipo de Solicitud *</label>
                   <div className="flex gap-6">
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="tipo" value="reclamo" className="accent-[#FFC400] w-4 h-4" defaultChecked />
+                      <input type="radio" name="tipo" value="reclamo" className="accent-[#FCB326] w-4 h-4" defaultChecked />
                       <span className="text-sm text-gray-700">Reclamo</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="tipo" value="queja" className="accent-[#FFC400] w-4 h-4" />
+                      <input type="radio" name="tipo" value="queja" className="accent-[#FCB326] w-4 h-4" />
                       <span className="text-sm text-gray-700">Queja</span>
                     </label>
                   </div>

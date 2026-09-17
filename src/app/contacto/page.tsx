@@ -45,7 +45,7 @@ export default function ContactoPage() {
               <h2 className="text-2xl font-light text-dark mb-2 uppercase tracking-tight">Directorio <span className="font-bold text-primary">Técnico</span></h2>
               <div className="w-12 h-1 bg-primary mb-10"></div>
               
-              <div className="bg-dark text-white p-10 rounded-sm shadow-xl mb-10 relative overflow-hidden">
+              <div className="bg-secondary text-white p-10 rounded-sm shadow-xl mb-10 relative overflow-hidden border-t-4 border-primary">
                 <div className="space-y-8 relative z-10">
                   <div className="flex items-start gap-5">
                     <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center text-primary shrink-0">
