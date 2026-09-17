@@ -61,6 +61,16 @@ export default function Footer() {
 
             {/* Redes Sociales */}
             <div className="flex items-center gap-3 shrink-0">
+              {/* LinkedIn */}
+              <a 
+                href="https://www.linkedin.com/company/servimafed-s-a-c/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Conéctate en LinkedIn"
+                className="bg-dark text-primary p-2 rounded-sm hover:bg-white hover:text-dark transition-colors"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
               {/* Facebook */}
               <a 
                 href="https://www.facebook.com/servimafedsac" 
@@ -80,16 +90,6 @@ export default function Footer() {
                 className="bg-dark text-primary p-2 rounded-sm hover:bg-white hover:text-dark transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              </a>
-              {/* LinkedIn */}
-              <a 
-                href="https://www.linkedin.com/company/servimafed-s-a-c/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                aria-label="Conéctate en LinkedIn"
-                className="bg-dark text-primary p-2 rounded-sm hover:bg-white hover:text-dark transition-colors"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               </a>
               {/* YouTube */}
               <a 
