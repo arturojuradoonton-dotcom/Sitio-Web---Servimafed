@@ -73,7 +73,7 @@ ${requirement}
       console.error("Resend API Error:", error);
       return { 
         success: false, 
-        error: "No se pudo enviar el correo en este momento. Por favor intente más tarde o escríbanos por WhatsApp." 
+        error: "No se pudo enviar el correo en este momento. Por favor intente más tarde o contáctenos vía telefónica." 
       };
     }
 

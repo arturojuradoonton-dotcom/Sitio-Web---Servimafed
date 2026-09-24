@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Loader2, MessageSquare, AlertCircle, RefreshCw } from 'lucide-react';
+import { Send, Loader2, AlertCircle } from 'lucide-react';
 import { sendContactRequest } from '@/core/actions/sendContactRequest';
-import { FormSuccessState } from '@/core/ui/FormSuccessState';
+import { FormSuccessModal } from '@/core/ui/FormSuccessModal';
 import type { ContactFormData, ContactFormErrors } from '../types/contact.types';
 
 export function ContactForm() {
@@ -85,24 +85,11 @@ export function ContactForm() {
         setErrorMessage(result.error || 'Ocurrió un error al enviar la solicitud.');
       }
     } catch {
-      setErrorMessage('Error de conexión. Verifique su internet o contáctenos por WhatsApp.');
+      setErrorMessage('Error de conexión. Por favor verifique su conexión a internet o intente nuevamente.');
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const handleReset = () => {
-    setIsSuccess(false);
-    setErrorMessage(null);
-    setErrors({});
-  };
-
-  // Pre-generate WhatsApp urgent message
-  const urgentWhatsAppUrl = lastSubmitted
-    ? `https://wa.me/51993667182?text=${encodeURIComponent(
-        `Hola Servimafed, soy ${lastSubmitted.companyName}. Acabo de enviar una solicitud por la web respecto a: "${lastSubmitted.requirement}". Mi teléfono es ${lastSubmitted.phone}. ¿Podrían confirmarme la cotización?`
-      )}`
-    : 'https://wa.me/51993667182?text=Hola%20Servimafed,%20deseo%20cotizar%20un%20servicio%20técnico%20urgente';
 
   return (
     <div className="w-full">
@@ -111,65 +98,26 @@ export function ContactForm() {
       </h2>
       <div className="w-12 h-1 bg-primary mb-8"></div>
 
-      {isSuccess && lastSubmitted ? (
-        /* Success State Card */
-        <FormSuccessState 
-          title="¡Solicitud Recibida con Éxito!"
-          description={
-            <p>
-              Estimado/a <strong className="text-slate-800">{lastSubmitted.companyName}</strong>, hemos registrado su requerimiento técnico.
-              Nuestro equipo comercial y de soporte técnico se comunicará al teléfono <strong className="text-slate-800">{lastSubmitted.phone}</strong> en un plazo estimado de <span className="text-primary font-bold">2 a 4 horas laborables</span>.
+      <p className="text-gray-500 font-light mb-8 leading-relaxed text-sm">
+        Si requiere una cotización para mantenimiento de flota, inspecciones estructurales o repuestos OEM, complete el siguiente formulario oficial.
+      </p>
+
+      {errorMessage && (
+        <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-xs flex items-start gap-3 rounded-sm">
+          <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-red-600" />
+          <div className="space-y-1">
+            <p className="font-semibold">{errorMessage}</p>
+            <p className="text-slate-600">
+              Si el problema persiste, puede comunicarse directamente a nuestra central telefónica al{' '}
+              <a href="tel:+51993667182" className="underline font-bold text-red-800">
+                +51 993 667 182
+              </a>.
             </p>
-          }
-          details={
-            <>
-              <p><strong>Requerimiento registrado:</strong></p>
-              <p className="italic text-slate-700 font-light">&ldquo;{lastSubmitted.requirement}&rdquo;</p>
-            </>
-          }
-          actions={
-            <div className="bg-secondary text-white p-5 rounded-sm flex flex-col sm:flex-row items-center justify-between gap-4 border-l-4 border-primary">
-              <div className="text-center sm:text-left">
-                <p className="text-xs font-medium uppercase tracking-widest text-primary">¿Atención Crítica o Emergencia?</p>
-                <p className="text-xs text-gray-300 font-light">Comuníquese en 1 clic con la guardia técnica 24/7</p>
-              </div>
-              <a
-                href={urgentWhatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-sm transition-colors shrink-0 shadow-sm"
-              >
-                <MessageSquare className="w-4 h-4" />
-                Notificar por WhatsApp
-              </a>
-            </div>
-          }
-          onReset={handleReset}
-          resetLabel="Enviar otra consulta"
-        />
-      ) : (
-        /* Form State */
-        <>
-          <p className="text-gray-500 font-light mb-8 leading-relaxed text-sm">
-            Si requiere una cotización para mantenimiento de flota, inspecciones estructurales o repuestos OEM, complete el siguiente formulario oficial.
-          </p>
+          </div>
+        </div>
+      )}
 
-          {errorMessage && (
-            <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-xs flex items-start gap-3 rounded-sm">
-              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-red-600" />
-              <div className="space-y-1">
-                <p className="font-semibold">{errorMessage}</p>
-                <p className="text-slate-600">
-                  Si el problema persiste, puede comunicarse directamente vía WhatsApp al{' '}
-                  <a href="https://wa.me/51993667182" className="underline font-bold text-red-800">
-                    +51 993 667 182
-                  </a>.
-                </p>
-              </div>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+      <form onSubmit={handleSubmit} className="space-y-6" noValidate>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">
@@ -270,8 +218,27 @@ export function ContactForm() {
               )}
             </button>
           </form>
-        </>
-      )}
+
+      <FormSuccessModal
+        isOpen={isSuccess}
+        onClose={() => setIsSuccess(false)}
+        title="¡Solicitud Recibida con Éxito!"
+        description={
+          <>
+            Estimado/a <strong className="text-dark">{lastSubmitted?.companyName || 'cliente'}</strong>, hemos registrado su requerimiento.
+            Nuestro equipo comercial y de soporte técnico se comunicará al teléfono <strong className="text-dark">{lastSubmitted?.phone}</strong> en un plazo estimado de <span className="text-primary font-bold">2 a 4 horas laborables</span>.
+          </>
+        }
+        details={
+          lastSubmitted?.requirement ? (
+            <>
+              <p className="font-bold text-gray-700">Requerimiento registrado:</p>
+              <p className="italic text-gray-600 font-light">&ldquo;{lastSubmitted.requirement}&rdquo;</p>
+            </>
+          ) : undefined
+        }
+        closeButtonText="Entendido"
+      />
     </div>
   );
 }

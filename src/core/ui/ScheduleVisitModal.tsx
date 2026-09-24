@@ -9,7 +9,6 @@ import {
   Phone, 
   Mail, 
   Wrench, 
-  CheckCircle2, 
   Loader2,
   Truck,
   Clock,
@@ -17,7 +16,7 @@ import {
 } from 'lucide-react';
 
 import { sendVisitRequest } from '@/core/actions/sendVisitRequest';
-import { FormSuccessState } from '@/core/ui/FormSuccessState';
+import { FormSuccessModal } from '@/core/ui/FormSuccessModal';
 
 export default function ScheduleVisitModal() {
   const { isOpen, close } = useSchedulerStore();
@@ -115,10 +114,6 @@ export default function ScheduleVisitModal() {
 
       if (response.success) {
         setIsSuccess(true);
-        // Auto close after 2.5 seconds
-        setTimeout(() => {
-          close();
-        }, 2500);
       } else {
         setSubmitError(response.error || 'Ocurrió un error al enviar la solicitud.');
       }
@@ -128,6 +123,21 @@ export default function ScheduleVisitModal() {
       setIsSubmitting(false);
     }
   };
+
+  if (isSuccess) {
+    return (
+      <FormSuccessModal
+        isOpen={true}
+        onClose={() => {
+          setIsSuccess(false);
+          close();
+        }}
+        title="¡Visita Técnica Agendada!"
+        description="Su cita técnica ha sido registrada con éxito. Un ingeniero especialista se comunicará a la brevedad para coordinar la inspección de sus equipos."
+        closeButtonText="Entendido"
+      />
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -157,16 +167,7 @@ export default function ScheduleVisitModal() {
 
         {/* Content Body */}
         <div className="p-6 overflow-y-auto flex-1">
-          {isSuccess ? (
-            <div className="py-8">
-              <FormSuccessState 
-                title="¡Solicitud Registrada!"
-                description="Su cita ha sido agendada con éxito. Un ingeniero se comunicará con usted a la brevedad para confirmar los detalles."
-                className="border-none shadow-none bg-transparent"
-              />
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
               <p className="text-xs text-gray-500 font-light leading-relaxed mb-2">
                 Complete el formulario a continuación para programar una inspección o mantenimiento de sus equipos.
               </p>
@@ -365,7 +366,6 @@ export default function ScheduleVisitModal() {
                 </p>
               </div>
             </form>
-          )}
         </div>
       </div>
     </div>

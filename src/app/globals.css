@@ -40,6 +40,3 @@ body {
   width: max-content;
 }
 
-body.mobile-menu-open #whatsapp-floating-button {
-  display: none !important;
-}

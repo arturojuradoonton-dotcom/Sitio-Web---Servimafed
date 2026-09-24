@@ -5,7 +5,6 @@ import TopBar from "@/core/ui/layout/TopBar";
 import NavBar from "@/core/ui/layout/NavBar";
 import Footer from "@/core/ui/layout/Footer";
 import Preloader from "@/core/ui/Preloader";
-import WhatsAppButton from "@/core/ui/WhatsAppButton";
 import GlobalCTA from "@/core/ui/layout/GlobalCTA";
 import ScheduleVisitModal from "@/core/ui/ScheduleVisitModal";
 
@@ -174,7 +173,6 @@ export default function RootLayout({
         <TopBar />
         <NavBar />
         {children}
-        <WhatsAppButton />
         <GlobalCTA />
         <ScheduleVisitModal />
         <Footer />

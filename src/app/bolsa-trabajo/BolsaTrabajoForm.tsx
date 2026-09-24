@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { Send, AlertCircle } from "lucide-react";
 import { sendJobApplication } from "@/core/actions/sendJobApplication";
-import { FormSuccessState } from "@/core/ui/FormSuccessState";
+import { FormSuccessModal } from "@/core/ui/FormSuccessModal";
 
 export default function BolsaTrabajoForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -26,21 +26,6 @@ export default function BolsaTrabajoForm() {
       setErrorMsg(result.error || "Error al enviar la postulación.");
     }
   };
-
-  if (status === "success") {
-    return (
-      <FormSuccessState 
-        title="¡Postulación Enviada!"
-        description={
-          <p>
-            Hemos recibido tus datos y tu CV correctamente. Nuestro equipo de Recursos Humanos revisará tu perfil y se pondrá en contacto contigo si hay una oportunidad que se ajuste a ti.
-          </p>
-        }
-        onReset={() => setStatus("idle")}
-        resetLabel="Enviar otra postulación"
-      />
-    );
-  }
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
@@ -99,6 +84,14 @@ export default function BolsaTrabajoForm() {
         )}
         {status === "loading" ? "Enviando..." : "Enviar Postulación"}
       </button>
+
+      <FormSuccessModal
+        isOpen={status === "success"}
+        onClose={() => setStatus("idle")}
+        title="¡Postulación Enviada con Éxito!"
+        description="Hemos recibido sus datos y su currículum vitae correctamente. Nuestro equipo de Recursos Humanos revisará su perfil y se pondrá en contacto si hay una vacante disponible."
+        closeButtonText="Entendido"
+      />
     </form>
   );
 }
