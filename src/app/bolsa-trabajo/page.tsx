@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Send, Briefcase, Users, Award, TrendingUp } from 'lucide-react';
+import { Briefcase, Users, Award, TrendingUp } from 'lucide-react';
 import type { Metadata } from 'next';
+import BolsaTrabajoForm from './BolsaTrabajoForm';
 
 export const metadata: Metadata = {
   title: 'Bolsa de Trabajo',
@@ -46,48 +47,7 @@ export default function BolsaTrabajoPage() {
                 Si eres un profesional apasionado por la maquinaria pesada y buscas crecer en una empresa líder del sector, completa el siguiente formulario.
               </p>
 
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Nombre Completo *</label>
-                    <input type="text" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="Juan Pérez García" required />
-                  </div>
-                  <div>
-                    <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Teléfono *</label>
-                    <input type="tel" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="+51 987 654 321" required />
-                  </div>
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Correo Electrónico *</label>
-                  <input type="email" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="correo@ejemplo.com" required />
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Área de Interés *</label>
-                  <select className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" required>
-                    <option value="">Seleccione un área</option>
-                    <option value="mecanica">Mecánica de Maquinaria Pesada</option>
-                    <option value="soldadura">Soldadura y Mecanizado</option>
-                    <option value="electronica">Electrónica y Diagnóstico</option>
-                    <option value="logistica">Logística y Repuestos</option>
-                    <option value="ingenieria">Ingeniería de Proyectos</option>
-                    <option value="administracion">Administración y Finanzas</option>
-                    <option value="otro">Otro</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Mensaje / Experiencia</label>
-                  <textarea rows={4} className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm resize-none" placeholder="Cuéntenos brevemente su experiencia profesional..." />
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Adjuntar CV (PDF)</label>
-                  <input type="file" accept=".pdf,.doc,.docx" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm file:mr-4 file:py-1 file:px-4 file:border-0 file:text-xs file:font-bold file:bg-primary file:text-dark file:uppercase file:tracking-widest file:cursor-pointer" />
-                </div>
-
-                <button type="submit" className="bg-primary text-dark font-medium px-8 py-4 uppercase tracking-widest hover:bg-dark hover:text-white transition-all shadow-sm w-full md:w-auto mt-2 flex items-center justify-center gap-2">
-                  <Send className="w-4 h-4" />
-                  Enviar Postulación
-                </button>
-              </form>
+              <BolsaTrabajoForm />
             </div>
 
             {/* Company Culture */}
