@@ -83,7 +83,7 @@ export default function BolsaTrabajoPage() {
                   <input type="file" accept=".pdf,.doc,.docx" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm file:mr-4 file:py-1 file:px-4 file:border-0 file:text-xs file:font-bold file:bg-primary file:text-dark file:uppercase file:tracking-widest file:cursor-pointer" />
                 </div>
 
-                <button type="button" className="bg-primary text-dark font-medium px-8 py-4 uppercase tracking-widest hover:bg-dark hover:text-white transition-all shadow-sm w-full md:w-auto mt-2 flex items-center justify-center gap-2">
+                <button type="submit" className="bg-primary text-dark font-medium px-8 py-4 uppercase tracking-widest hover:bg-dark hover:text-white transition-all shadow-sm w-full md:w-auto mt-2 flex items-center justify-center gap-2">
                   <Send className="w-4 h-4" />
                   Enviar Postulación
                 </button>
