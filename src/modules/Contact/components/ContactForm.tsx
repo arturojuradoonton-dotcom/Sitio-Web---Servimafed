@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, Loader2, MessageSquare, AlertCircle, RefreshCw } from 'lucide-react';
 import { sendContactRequest } from '@/core/actions/sendContactRequest';
+import { FormSuccessState } from '@/core/ui/FormSuccessState';
 import type { ContactFormData, ContactFormErrors } from '../types/contact.types';
 
 export function ContactForm() {
@@ -112,53 +113,40 @@ export function ContactForm() {
 
       {isSuccess && lastSubmitted ? (
         /* Success State Card */
-        <div className="bg-slate-50 border border-slate-200 rounded-sm p-8 shadow-sm transition-all animate-fadeIn">
-          <div className="text-center mb-6">
-            <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-200">
-              <CheckCircle2 className="w-8 h-8 text-emerald-600" />
-            </div>
-            <h3 className="text-xl font-bold text-dark uppercase tracking-tight mb-2">
-              ¡Solicitud Recibida con Éxito!
-            </h3>
-            <p className="text-slate-600 text-sm font-light leading-relaxed max-w-lg mx-auto">
+        <FormSuccessState 
+          title="¡Solicitud Recibida con Éxito!"
+          description={
+            <p>
               Estimado/a <strong className="text-slate-800">{lastSubmitted.companyName}</strong>, hemos registrado su requerimiento técnico.
               Nuestro equipo comercial y de soporte técnico se comunicará al teléfono <strong className="text-slate-800">{lastSubmitted.phone}</strong> en un plazo estimado de <span className="text-primary font-bold">2 a 4 horas laborables</span>.
             </p>
-          </div>
-
-          <div className="bg-white border border-slate-200 p-4 rounded-sm text-xs text-slate-500 mb-6 space-y-1">
-            <p><strong>Requerimiento registrado:</strong></p>
-            <p className="italic text-slate-700 font-light">&ldquo;{lastSubmitted.requirement}&rdquo;</p>
-          </div>
-
-          {/* Quick WhatsApp Action */}
-          <div className="bg-secondary text-white p-5 rounded-sm mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-l-4 border-primary">
-            <div className="text-center sm:text-left">
-              <p className="text-xs font-medium uppercase tracking-widest text-primary">¿Atención Crítica o Emergencia?</p>
-              <p className="text-xs text-gray-300 font-light">Comuníquese en 1 clic con la guardia técnica 24/7</p>
+          }
+          details={
+            <>
+              <p><strong>Requerimiento registrado:</strong></p>
+              <p className="italic text-slate-700 font-light">&ldquo;{lastSubmitted.requirement}&rdquo;</p>
+            </>
+          }
+          actions={
+            <div className="bg-secondary text-white p-5 rounded-sm flex flex-col sm:flex-row items-center justify-between gap-4 border-l-4 border-primary">
+              <div className="text-center sm:text-left">
+                <p className="text-xs font-medium uppercase tracking-widest text-primary">¿Atención Crítica o Emergencia?</p>
+                <p className="text-xs text-gray-300 font-light">Comuníquese en 1 clic con la guardia técnica 24/7</p>
+              </div>
+              <a
+                href={urgentWhatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-sm transition-colors shrink-0 shadow-sm"
+              >
+                <MessageSquare className="w-4 h-4" />
+                Notificar por WhatsApp
+              </a>
             </div>
-            <a
-              href={urgentWhatsAppUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-sm transition-colors shrink-0 shadow-sm"
-            >
-              <MessageSquare className="w-4 h-4" />
-              Notificar por WhatsApp
-            </a>
-          </div>
-
-          <div className="text-center">
-            <button
-              type="button"
-              onClick={handleReset}
-              className="inline-flex items-center gap-2 text-xs font-bold text-dark hover:text-primary uppercase tracking-widest transition-colors py-2 px-4"
-            >
-              <RefreshCw className="w-3.5 h-3.5" />
-              Enviar otra consulta
-            </button>
-          </div>
-        </div>
+          }
+          onReset={handleReset}
+          resetLabel="Enviar otra consulta"
+        />
       ) : (
         /* Form State */
         <>

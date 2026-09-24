@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Send, AlertCircle } from "lucide-react";
 import { sendJobApplication } from "@/core/actions/sendJobApplication";
+import { FormSuccessState } from "@/core/ui/FormSuccessState";
 
 export default function BolsaTrabajoForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -28,20 +29,16 @@ export default function BolsaTrabajoForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-green-50 border border-green-200 text-green-800 rounded p-8 flex flex-col items-center justify-center text-center">
-        <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
-        <h3 className="text-xl font-bold uppercase tracking-tight mb-2">¡Postulación Enviada!</h3>
-        <p className="font-light text-sm mb-6 max-w-sm">
-          Hemos recibido tus datos y tu CV correctamente. Nuestro equipo de Recursos Humanos revisará tu perfil y se pondrá en contacto contigo si hay una oportunidad que se ajuste a ti.
-        </p>
-        <button
-          type="button"
-          onClick={() => setStatus("idle")}
-          className="bg-green-600 text-white px-6 py-2 uppercase tracking-widest text-xs font-bold hover:bg-green-700 transition-colors"
-        >
-          Enviar otra postulación
-        </button>
-      </div>
+      <FormSuccessState 
+        title="¡Postulación Enviada!"
+        description={
+          <p>
+            Hemos recibido tus datos y tu CV correctamente. Nuestro equipo de Recursos Humanos revisará tu perfil y se pondrá en contacto contigo si hay una oportunidad que se ajuste a ti.
+          </p>
+        }
+        onReset={() => setStatus("idle")}
+        resetLabel="Enviar otra postulación"
+      />
     );
   }
 

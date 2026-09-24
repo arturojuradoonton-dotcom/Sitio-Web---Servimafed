@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 
 import { sendVisitRequest } from '@/core/actions/sendVisitRequest';
+import { FormSuccessState } from '@/core/ui/FormSuccessState';
 
 export default function ScheduleVisitModal() {
   const { isOpen, close } = useSchedulerStore();
@@ -157,14 +158,12 @@ export default function ScheduleVisitModal() {
         {/* Content Body */}
         <div className="p-6 overflow-y-auto flex-1">
           {isSuccess ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 animate-bounce">
-                <CheckCircle2 className="w-10 h-10" />
-              </div>
-              <h4 className="text-xl font-bold uppercase tracking-wider text-dark mb-3">¡Solicitud Registrada!</h4>
-              <p className="text-gray-500 font-light text-sm max-w-sm mx-auto leading-relaxed">
-                Su cita ha sido agendada con éxito. Un ingeniero se comunicará con usted a la brevedad para confirmar los detalles.
-              </p>
+            <div className="py-8">
+              <FormSuccessState 
+                title="¡Solicitud Registrada!"
+                description="Su cita ha sido agendada con éxito. Un ingeniero se comunicará con usted a la brevedad para confirmar los detalles."
+                className="border-none shadow-none bg-transparent"
+              />
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
