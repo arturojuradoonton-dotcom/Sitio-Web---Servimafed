@@ -53,7 +53,7 @@ export async function sendClaimRequest(formData: FormData) {
     });
 
     const tipoLabel = tipo === "queja" ? "QUEJA" : "RECLAMO";
-    const companyEmail = process.env.RECLAMOS_EMAIL || "ventas@servimafed.com";
+    const companyEmail = process.env.RECLAMOS_EMAIL || "reclamos@servimafed.com";
 
     // 1. Plantilla para la Empresa (SERVIMAFED)
     const emailToCompanyHtml = `
