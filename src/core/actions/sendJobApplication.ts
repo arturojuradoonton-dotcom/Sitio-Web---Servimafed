@@ -74,7 +74,7 @@ ${mensaje || "Sin mensaje adicional"}
       from: "SERVIMAFED RRHH <web@servimafed.com>",
       to: ["ventas@servimafed.com"],
       replyTo: correo,
-      subject: \`📄 Nueva Postulación: \${nombre} - \${area}\`,
+      subject: `📄 Nueva Postulación: ${nombre} - ${area}`,
       html: emailHtml,
       attachments
     });
