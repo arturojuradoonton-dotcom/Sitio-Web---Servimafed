@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { Plus, Minus, FileText, Download } from 'lucide-react';
+import BrochureModal from './BrochureModal';
+import { FormSuccessModal } from '@/core/ui/FormSuccessModal';
 
 const faqs = [
   {
@@ -24,6 +26,12 @@ const faqs = [
 
 export default function HomeFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0); // El primero abierto por defecto
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+  const [successLead, setSuccessLead] = useState<{
+    nombre: string;
+    empresa: string;
+    correo: string;
+  } | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -56,14 +64,13 @@ export default function HomeFAQ() {
                 <p className="text-gray-400 font-light text-sm mb-6 leading-relaxed">
                   Descarga nuestro brochure técnico y conoce a detalle todas nuestras certificaciones, infraestructura y capacidad operativa en formato PDF.
                 </p>
-                <a 
-                  href="/brochure-servimafed.pdf" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest hover:text-white transition-colors"
+                <button 
+                  type="button"
+                  onClick={() => setIsBrochureModalOpen(true)}
+                  className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest hover:text-white transition-colors cursor-pointer"
                 >
                   Descargar PDF <Download className="w-4 h-4" />
-                </a>
+                </button>
               </div>
               {/* Decoración de fondo */}
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors duration-500"></div>
@@ -117,6 +124,38 @@ export default function HomeFAQ() {
 
         </div>
       </div>
+
+      {/* Modal de Captura de Prospecto para Brochure */}
+      <BrochureModal
+        isOpen={isBrochureModalOpen}
+        onClose={() => setIsBrochureModalOpen(false)}
+        onSuccess={(data) => setSuccessLead(data)}
+      />
+
+      {/* Modal de Éxito Estandarizado */}
+      <FormSuccessModal
+        isOpen={Boolean(successLead)}
+        onClose={() => setSuccessLead(null)}
+        title="¡Brochure Descargado con Éxito!"
+        description={
+          <>
+            Estimado/a <strong className="text-dark">{successLead?.nombre}</strong> ({successLead?.empresa}), la descarga de nuestro dossier técnico ha iniciado en su navegador.
+          </>
+        }
+        details={
+          successLead ? (
+            <div className="space-y-1 text-left">
+              <p>
+                <strong>Destino de respaldo:</strong> {successLead.correo}
+              </p>
+              <p>
+                <strong>Documento:</strong> Brochure Técnico Corporativo SERVIMAFED (PDF)
+              </p>
+            </div>
+          ) : undefined
+        }
+        closeButtonText="Entendido"
+      />
     </section>
   );
 }
