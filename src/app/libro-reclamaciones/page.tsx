@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Send, AlertTriangle, Building2 } from 'lucide-react';
+import { AlertTriangle, Building2 } from 'lucide-react';
 import type { Metadata } from 'next';
+import LibroReclamacionesForm from './LibroReclamacionesForm';
 
 export const metadata: Metadata = {
   title: 'Libro de Reclamaciones',
@@ -42,64 +43,7 @@ export default function LibroReclamacionesPage() {
                 </p>
               </div>
 
-              <form className="space-y-6">
-                {/* Tipo */}
-                <div>
-                  <label className="block font-medium text-gray-700 mb-3 text-xs uppercase tracking-widest">Tipo de Solicitud *</label>
-                  <div className="flex gap-6">
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="tipo" value="reclamo" className="accent-[#FCB326] w-4 h-4" defaultChecked />
-                      <span className="text-sm text-gray-700">Reclamo</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="tipo" value="queja" className="accent-[#FCB326] w-4 h-4" />
-                      <span className="text-sm text-gray-700">Queja</span>
-                    </label>
-                  </div>
-                  <p className="text-[11px] text-gray-400 mt-2 font-light"><strong>Reclamo:</strong> disconformidad con el servicio brindado. <strong>Queja:</strong> malestar respecto a la atención al público.</p>
-                </div>
-
-                {/* Datos Personales */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Nombre Completo *</label>
-                    <input type="text" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="Juan Pérez García" required />
-                  </div>
-                  <div>
-                    <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">DNI / RUC *</label>
-                    <input type="text" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="12345678" required />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Teléfono *</label>
-                    <input type="tel" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="+51 987 654 321" required />
-                  </div>
-                  <div>
-                    <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Correo Electrónico</label>
-                    <input type="email" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="correo@ejemplo.com" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Dirección</label>
-                  <input type="text" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm" placeholder="Av. Principal 123, Lima" />
-                </div>
-
-                {/* Detalle */}
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Detalle de la Reclamación *</label>
-                  <textarea rows={5} className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm resize-none" placeholder="Describa detalladamente el motivo de su reclamación..." required />
-                </div>
-                <div>
-                  <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Pedido del Consumidor *</label>
-                  <textarea rows={3} className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm resize-none" placeholder="Indique qué solución espera recibir..." required />
-                </div>
-
-                <button type="button" className="bg-primary text-dark font-medium px-8 py-4 uppercase tracking-widest hover:bg-dark hover:text-white transition-all shadow-sm w-full md:w-auto mt-2 flex items-center justify-center gap-2">
-                  <Send className="w-4 h-4" />
-                  Enviar Reclamación
-                </button>
-              </form>
+              <LibroReclamacionesForm />
             </div>
 
             {/* Sidebar */}
@@ -114,19 +58,19 @@ export default function LibroReclamacionesPage() {
                   </div>
                   <div>
                     <span className="block text-gray-500 text-[10px] uppercase tracking-widest mb-1">RUC</span>
-                    <span className="text-gray-200 font-light">20XXXXXXXXX</span>
+                    <span className="text-gray-200 font-bold text-primary">20600567668</span>
                   </div>
                   <div>
                     <span className="block text-gray-500 text-[10px] uppercase tracking-widest mb-1">Dirección</span>
-                    <span className="text-gray-200 font-light">Mz. C Lote 12A, Sector Sumac Pacha - Lurin - Lima</span>
+                    <span className="text-gray-200 font-light">Mz. C Lote 12A, Sector Sumac Pacha - Lurín - Lima</span>
                   </div>
                 </div>
               </div>
 
               <div className="bg-gray-50 border border-gray-200 p-8 rounded-sm">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-dark mb-4">Plazo de Respuesta</h4>
+                <h4 className="text-xs font-bold uppercase tracking-widest text-dark mb-4">Plazo de Respuesta Legal</h4>
                 <p className="text-gray-500 font-light text-xs leading-relaxed">
-                  El proveedor deberá dar respuesta al reclamo o queja en un plazo no mayor a treinta (30) días calendario, pudiendo extenderse por un plazo similar de ser necesario.
+                  De conformidad con la Ley N° 31435 (modificatoria del Código de Protección y Defensa del Consumidor), el proveedor deberá dar respuesta formal al reclamo o queja en un plazo no mayor a quince (15) días hábiles improrrogables a través del correo electrónico consignado.
                 </p>
               </div>
             </div>
