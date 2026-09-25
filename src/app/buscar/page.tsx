@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Search, ArrowRight, FileQuestion } from 'lucide-react';
 import { serviciosData } from '@/data/serviciosData';
 import { repuestosData } from '@/data/repuestosData';
+import { blogPosts } from '@/data/blogData';
 import { Suspense } from 'react';
 
 interface SearchResult {
@@ -15,9 +16,21 @@ interface SearchResult {
   category: string;
 }
 
+/**
+ * Normalizes a string for accent-insensitive comparison.
+ * Removes diacritics (tildes, accents) and converts to lowercase.
+ */
+function normalize(text: string): string {
+  return text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
 function buildSearchIndex(): SearchResult[] {
   const results: SearchResult[] = [];
 
+  // ── Servicios ──
   Object.entries(serviciosData).forEach(([slug, data]) => {
     results.push({
       title: data.title,
@@ -35,6 +48,7 @@ function buildSearchIndex(): SearchResult[] {
     });
   });
 
+  // ── Repuestos ──
   Object.entries(repuestosData).forEach(([slug, data]) => {
     results.push({
       title: data.title,
@@ -52,6 +66,52 @@ function buildSearchIndex(): SearchResult[] {
     });
   });
 
+  // ── Blog ──
+  blogPosts.forEach((post) => {
+    results.push({
+      title: post.title,
+      description: post.excerpt,
+      href: `/blog/${post.slug}`,
+      category: `Blog · ${post.category}`,
+    });
+  });
+
+  // ── Páginas estáticas ──
+  const staticPages: SearchResult[] = [
+    {
+      title: 'Nosotros',
+      description: 'Conoce la historia, misión, visión y valores de SERVIMAFED S.A.C. como socio estratégico en minería y construcción.',
+      href: '/nosotros',
+      category: 'Página',
+    },
+    {
+      title: 'Contáctanos',
+      description: 'Solicita una cotización, agenda una visita técnica o comunícate con nuestro equipo comercial.',
+      href: '/contacto',
+      category: 'Página',
+    },
+    {
+      title: 'Bolsa de Trabajo',
+      description: 'Únete al equipo de SERVIMAFED. Oportunidades laborales en mantenimiento, soldadura y maquinaria pesada.',
+      href: '/bolsa-trabajo',
+      category: 'Página',
+    },
+    {
+      title: 'Libro de Reclamaciones',
+      description: 'Presenta tu reclamo o queja conforme a la Ley 31435. Respuesta garantizada en 15 días hábiles.',
+      href: '/libro-reclamaciones',
+      category: 'Página',
+    },
+    {
+      title: 'Blog',
+      description: 'Artículos técnicos sobre mantenimiento predictivo, maquinaria pesada, minería y tecnología industrial.',
+      href: '/blog',
+      category: 'Página',
+    },
+  ];
+
+  results.push(...staticPages);
+
   return results;
 }
 
@@ -62,16 +122,16 @@ function SearchResults() {
 
   const results = query.trim().length > 0
     ? searchIndex.filter((item) => {
-        const q = query.toLowerCase();
+        const q = normalize(query);
         return (
-          item.title.toLowerCase().includes(q) ||
-          item.description.toLowerCase().includes(q) ||
-          item.category.toLowerCase().includes(q)
+          normalize(item.title).includes(q) ||
+          normalize(item.description).includes(q) ||
+          normalize(item.category).includes(q)
         );
       })
     : [];
 
-  // Deduplicate by href
+  // Deduplicate by href + title
   const uniqueResults = results.reduce<SearchResult[]>((acc, item) => {
     if (!acc.some((r) => r.href === item.href && r.title === item.title)) {
       acc.push(item);
@@ -89,7 +149,7 @@ function SearchResults() {
             name="q"
             type="text"
             defaultValue={query}
-            placeholder="Buscar servicios, repuestos, componentes..."
+            placeholder="Buscar servicios, repuestos, blog, componentes..."
             className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-base pl-14 pr-6 py-5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-light rounded-sm"
             autoFocus
           />
@@ -101,7 +161,7 @@ function SearchResults() {
         <div className="text-center py-12">
           <Search className="w-16 h-16 text-gray-200 mx-auto mb-6" />
           <h2 className="text-xl font-light text-gray-400 mb-2">Ingrese un término de búsqueda</h2>
-          <p className="text-gray-400 font-light text-sm">Busque por tipo de servicio, repuesto, componente o marca.</p>
+          <p className="text-gray-400 font-light text-sm">Busque por tipo de servicio, repuesto, componente, artículo del blog o marca.</p>
         </div>
       ) : uniqueResults.length === 0 ? (
         <div className="text-center py-12">
@@ -114,6 +174,9 @@ function SearchResults() {
             </Link>
             <Link href="/repuestos" className="text-primary font-bold text-xs uppercase tracking-widest hover:text-dark transition-colors flex items-center gap-2">
               Ver Repuestos <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/blog" className="text-primary font-bold text-xs uppercase tracking-widest hover:text-dark transition-colors flex items-center gap-2">
+              Ver Blog <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

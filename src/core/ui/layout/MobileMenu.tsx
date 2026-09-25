@@ -4,13 +4,14 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown, Phone, Mail, MapPin, User } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { serviciosDropdown as servicios, repuestosDropdown as repuestos } from '@/data/navigationData';
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
 
   const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(path));
 
@@ -94,7 +95,8 @@ export default function MobileMenu() {
               e.preventDefault();
               const input = e.currentTarget.elements.namedItem('q') as HTMLInputElement;
               if (input.value.trim()) {
-                window.location.href = `/buscar?q=${encodeURIComponent(input.value.trim())}`;
+                router.push(`/buscar?q=${encodeURIComponent(input.value.trim())}`);
+                setIsOpen(false);
               }
             }}
           >

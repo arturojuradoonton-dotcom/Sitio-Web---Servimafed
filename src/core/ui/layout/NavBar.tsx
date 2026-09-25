@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Search, User, ChevronDown, ArrowRight, X } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import { serviciosDropdown, repuestosDropdown } from '@/data/navigationData';
@@ -13,14 +13,32 @@ export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeDropdown, setActiveDropdown] = useState<'servicios' | 'repuestos' | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
+  const searchOverlayRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(path));
 
+  const closeSearch = useCallback(() => {
+    setIsSearchOpen(false);
+    setSearchQuery('');
+  }, []);
+
+  // Close search on Escape key
+  useEffect(() => {
+    if (!isSearchOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeSearch();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isSearchOpen, closeSearch]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/buscar?q=${encodeURIComponent(searchQuery)}`;
+      router.push(`/buscar?q=${encodeURIComponent(searchQuery)}`);
+      closeSearch();
     }
   };
 
@@ -32,18 +50,19 @@ export default function NavBar() {
         
         {/* Search Overlay */}
         {isSearchOpen && (
-          <div className="absolute inset-0 bg-white z-[60] flex items-center">
+          <div ref={searchOverlayRef} className="absolute inset-0 bg-white z-[60] flex items-center">
             <form onSubmit={handleSearch} className="w-full flex items-center gap-4 bg-gray-50 px-6 py-4 rounded-sm border border-gray-100">
               <Search className="text-gray-400 w-5 h-5 shrink-0" />
               <input 
+                ref={searchInputRef}
                 autoFocus
                 type="text" 
-                placeholder="Buscar servicios, repuestos..." 
+                placeholder="Buscar servicios, repuestos, blog..." 
                 className="w-full text-sm outline-none text-gray-800 placeholder-gray-400 bg-transparent"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button type="button" onClick={() => setIsSearchOpen(false)} className="text-gray-400 hover:text-dark shrink-0 transition-colors">
+              <button type="button" onClick={closeSearch} className="text-gray-400 hover:text-dark shrink-0 transition-colors">
                 <X className="w-5 h-5" />
               </button>
             </form>
