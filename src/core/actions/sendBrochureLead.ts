@@ -73,17 +73,24 @@ export async function sendBrochureLead(formData: FormData) {
           <tr>
             <td style="padding: 0;">
               
-              <!-- HEADER CON LOGO -->
-              <div style="background-color: #0B0F19; padding: 36px 24px 28px 24px; text-align: center; border-bottom: 4px solid #FCB326;">
+              <!-- HEADER CON LOGO VERTICAL -->
+              <div style="background-color: #0B0F19; padding: 28px 24px; text-align: center; border-bottom: 4px solid #FCB326;">
                 <img 
-                  src="https://www.servimafed.com/images/Logo-horizontal--Variante.png" 
+                  src="https://www.servimafed.com/images/logo-vertical-blanco.png" 
                   alt="SERVIMAFED S.A.C." 
-                  width="220" 
-                  style="display: block; margin: 0 auto 12px auto; max-width: 220px; height: auto;"
+                  width="180" 
+                  style="display: block; margin: 0 auto; max-width: 180px; height: auto;"
                 />
-                <p style="margin: 0; color: #94a3b8; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">
-                  Soluciones de Ingeniería para Minería &amp; Construcción
-                </p>
+              </div>
+
+              <!-- IMAGEN HERO DEBAJO DE LA LÍNEA AMARILLA -->
+              <div style="line-height: 0; font-size: 0; background-color: #0B0F19;">
+                <img 
+                  src="https://www.servimafed.com/images/email-brochure-banner.jpg" 
+                  alt="Operaciones y Mantenimiento de Maquinaria Pesada - SERVIMAFED" 
+                  width="620" 
+                  style="display: block; width: 100%; max-width: 620px; height: auto; border: 0;"
+                />
               </div>
 
               <!-- SALUDO PERSONALIZADO -->
