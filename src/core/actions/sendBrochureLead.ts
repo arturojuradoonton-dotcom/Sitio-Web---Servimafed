@@ -83,39 +83,56 @@ export async function sendBrochureLead(formData: FormData) {
               <!-- CONTENEDOR PRINCIPAL BLANCO -->
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 580px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08); border: 1px solid #e2e8f0;">
                 
-                <!-- 1. CABECERA CON LOGO (NAVY OSCURO) -->
+                <!-- 1. CABECERA CON LOGO A LA IZQUIERDA Y COLOR AZUL CORPORATIVO #1d3961 -->
                 <tr>
-                  <td align="center" style="background-color: #111c30; padding: 22px 20px; border-bottom: 3px solid #FCB326;">
+                  <td align="left" style="background-color: #1d3961; padding: 18px 28px;">
                     <a href="https://www.servimafed.com" target="_blank" style="text-decoration: none; display: inline-block;">
                       <img 
                         src="https://www.servimafed.com/images/logo-vertical-blanco.png" 
                         alt="SERVIMAFED S.A.C." 
-                        width="170" 
-                        style="display: block; max-width: 170px; height: auto; border: 0;"
+                        width="125" 
+                        style="display: block; max-width: 125px; height: auto; border: 0;"
                       />
                     </a>
                   </td>
                 </tr>
 
-                <!-- 2. HERO BANNER CON BADGE "¡Tu Brochure está Listo!" -->
+                <!-- 2. HERO BANNER CON IMAGEN ANTERIOR RECORTADA Y BADGE FLOTANTE (HTML) -->
                 <tr>
-                  <td style="padding: 0; line-height: 0; font-size: 0; background-color: #0b1322;">
-                    <img 
-                      src="https://www.servimafed.com/images/email-brochure-banner-v2.jpg" 
-                      alt="¡Tu Brochure está Listo! - SERVIMAFED" 
-                      width="580" 
-                      style="display: block; width: 100%; max-width: 580px; height: auto; border: 0;"
-                    />
+                  <td style="padding: 0; background-color: #1d3961; line-height: 0;">
+                    <!--[if gte mso 9]>
+                    <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:580px;height:260px;">
+                    <v:fill type="frame" src="https://www.servimafed.com/images/email-brochure-banner.jpg" color="#1d3961" />
+                    <v:textbox inset="0,0,0,0">
+                    <![endif]-->
+                    <table width="100%" height="260" cellpadding="0" cellspacing="0" border="0" background="https://www.servimafed.com/images/email-brochure-banner.jpg" style="width: 100%; max-width: 580px; height: 260px; background-image: url('https://www.servimafed.com/images/email-brochure-banner.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #1d3961;">
+                      <tr>
+                        <td align="left" valign="top" style="padding: 22px 28px;">
+                          <!-- BADGE AMARILLO CORPORATIVO (ELEMENTO HTML) -->
+                          <table cellpadding="0" cellspacing="0" border="0" style="background-color: #FCB326; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); border-collapse: separate;">
+                            <tr>
+                              <td style="padding: 11px 18px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 15px; font-weight: 800; color: #111c30; line-height: 1.25; border-radius: 8px; text-align: left; letter-spacing: -0.2px;">
+                                ¡Tu Brochure<br/>está Listo!
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    <!--[if gte mso 9]>
+                    </v:textbox>
+                    </v:rect>
+                    <![endif]-->
                   </td>
                 </tr>
 
                 <!-- 3. CUERPO DEL CORREO -->
                 <tr>
-                  <td style="padding: 34px 32px 20px 32px; background-color: #ffffff;">
+                  <td style="padding: 32px 28px 20px 28px; background-color: #ffffff;">
                     
-                    <!-- SALUDO PERSONALIZADO -->
-                    <h1 style="margin: 0 0 14px 0; font-size: 21px; font-weight: 800; color: #0f172a; line-height: 1.3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
-                      Hola ${empresa ? `${empresa},` : `${nombre},`}
+                    <!-- SALUDO PERSONALIZADO: Hola [Nombre] de la empresa [Empresa], -->
+                    <h1 style="margin: 0 0 14px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+                      ${empresa ? `Hola ${nombre} de la empresa ${empresa},` : `Hola ${nombre},`}
                     </h1>
                     
                     <p style="margin: 0 0 24px 0; font-size: 13.5px; line-height: 1.65; color: #475569;">
@@ -276,7 +293,7 @@ export async function sendBrochureLead(formData: FormData) {
 
                 <!-- LÍNEA AZUL DE REMATE -->
                 <tr>
-                  <td style="background-color: #111c30; height: 3px; font-size: 0; line-height: 0;">&nbsp;</td>
+                  <td style="background-color: #1d3961; height: 3px; font-size: 0; line-height: 0;">&nbsp;</td>
                 </tr>
 
                 <!-- 7. FOOTER INSTITUCIONAL -->
