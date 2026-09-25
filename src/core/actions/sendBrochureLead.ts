@@ -235,34 +235,49 @@ export async function sendBrochureLead(formData: FormData) {
                     </div>
 
                     <!-- 5. ALGUNOS SERVICIOS -->
-                    <div style="border-top: 1px solid #e2e8f0; padding-top: 18px; margin-bottom: 22px;">
-                      <p style="margin: 0 0 12px 0; font-size: 11.5px; text-transform: uppercase; letter-spacing: 1px; color: #0f172a; font-weight: 700;">
+                    <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-bottom: 22px;">
+                      <p style="margin: 0 0 14px 0; font-size: 14.5px; color: #0f172a; font-weight: 700; line-height: 1.3;">
                         Algunos servicios:
                       </p>
-                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12.5px; color: #334155; line-height: 1.8;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12.5px; color: #334155; line-height: 1.6;">
                         <tr>
-                          <td style="padding: 3px 0;">
-                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Gestión de Flota</strong>
+                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                            &bull;
+                          </td>
+                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
+                            <strong>Gestión y control de flotas</strong>, orientado a optimizar la disponibilidad, operación y mantenimiento de los equipos.
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding: 3px 0;">
-                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Mantenimiento</strong>
+                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                            &bull;
+                          </td>
+                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
+                            <strong>Mantenimiento preventivo y correctivo</strong> para conservar el rendimiento y prolongar la vida útil de los equipos.
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding: 3px 0;">
-                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Evaluación y Diagnóstico</strong>
+                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                            &bull;
+                          </td>
+                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
+                            <strong>Inspección, evaluación y diagnóstico técnico</strong> para identificar fallas y determinar las acciones correctivas.
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding: 3px 0;">
-                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Mecanizado y Soldadura</strong>
+                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                            &bull;
+                          </td>
+                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
+                            <strong>Mecanizado, fabricación, reparación y soldadura</strong> de componentes y estructuras para maquinaria.
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding: 3px 0;">
-                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Suministro de Repuestos</strong>
+                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                            &bull;
+                          </td>
+                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
+                            <strong>Suministro de repuestos y componentes</strong> para atender las necesidades de mantenimiento y reparación.
                           </td>
                         </tr>
                       </table>
