@@ -108,56 +108,71 @@ export async function sendBrochureLead(formData: FormData) {
                 <div style="border-top: 1px solid #e2e8f0; margin: 16px 0;"></div>
               </div>
 
-              <!-- TRUST BADGES -->
-              <div style="padding: 0 32px 8px 32px;">
+              <!-- CREDENCIALES CON DIVISORES VERTICALES (DISEÑO IMAGEN 1) -->
+              <div style="padding: 0 28px 12px 28px;">
                 <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                   <tr>
-                    <td width="25%" style="text-align: center; padding: 10px 4px;">
+                    <td width="25%" style="text-align: center; padding: 12px 4px; border-right: 1px solid #e2e8f0;">
                       <div style="font-size: 22px; margin-bottom: 4px;">&#9881;&#65039;</div>
                       <div style="font-size: 11px; font-weight: bold; color: #0B0F19; text-transform: uppercase; letter-spacing: 0.5px;">+10 Años</div>
-                      <div style="font-size: 10px; color: #64748b;">de Experiencia</div>
+                      <div style="font-size: 10px; color: #64748b; margin-top: 2px;">de Experiencia</div>
                     </td>
-                    <td width="25%" style="text-align: center; padding: 10px 4px;">
+                    <td width="25%" style="text-align: center; padding: 12px 4px; border-right: 1px solid #e2e8f0;">
                       <div style="font-size: 22px; margin-bottom: 4px;">&#9935;&#65039;</div>
                       <div style="font-size: 11px; font-weight: bold; color: #0B0F19; text-transform: uppercase; letter-spacing: 0.5px;">Minería</div>
-                      <div style="font-size: 10px; color: #64748b;">y Construcción</div>
+                      <div style="font-size: 10px; color: #64748b; margin-top: 2px;">y Construcción</div>
                     </td>
-                    <td width="25%" style="text-align: center; padding: 10px 4px;">
+                    <td width="25%" style="text-align: center; padding: 12px 4px; border-right: 1px solid #e2e8f0;">
                       <div style="font-size: 22px; margin-bottom: 4px;">&#127477;&#127466;</div>
                       <div style="font-size: 11px; font-weight: bold; color: #0B0F19; text-transform: uppercase; letter-spacing: 0.5px;">Cobertura</div>
-                      <div style="font-size: 10px; color: #64748b;">Nacional</div>
+                      <div style="font-size: 10px; color: #64748b; margin-top: 2px;">Nacional</div>
                     </td>
-                    <td width="25%" style="text-align: center; padding: 10px 4px;">
+                    <td width="25%" style="text-align: center; padding: 12px 4px;">
                       <div style="font-size: 22px; margin-bottom: 4px;">&#9989;</div>
                       <div style="font-size: 11px; font-weight: bold; color: #0B0F19; text-transform: uppercase; letter-spacing: 0.5px;">Estándares</div>
-                      <div style="font-size: 10px; color: #64748b;">OEM &amp; ISO</div>
+                      <div style="font-size: 10px; color: #64748b; margin-top: 2px;">OEM &amp; ISO</div>
                     </td>
                   </tr>
                 </table>
               </div>
 
-              <!-- CTA PRINCIPAL — DESCARGA DE BROCHURE -->
-              <div style="padding: 12px 32px 0 32px;">
-                <div style="background-color: #0B0F19; border-radius: 6px; padding: 32px 24px; text-align: center; border-left: 4px solid #FCB326; border-right: 4px solid #FCB326;">
-                  <p style="margin: 0 0 6px 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #FCB326; font-weight: bold;">
+              <!-- TEXTO DESCRIPTIVO CENTRAL -->
+              <div style="padding: 8px 36px 20px 36px; text-align: center;">
+                <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #475569;">
+                  Incluye catálogo de servicios, infraestructura de taller en Lurín, capacidades en soldadura, maestranza y estándares técnicos.
+                </p>
+              </div>
+
+              <!-- CARD FLOTANTE SUAVE (DISEÑO SEGÚN IMAGEN 1) -->
+              <div style="padding: 0 32px;">
+                <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px 24px; text-align: center;">
+                  <img 
+                    src="https://www.servimafed.com/images/pdf-icon.png" 
+                    alt="Brochure PDF" 
+                    width="44" 
+                    style="display: block; margin: 0 auto 12px auto; max-width: 44px; height: auto;"
+                  />
+                  <p style="margin: 0 0 4px 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #d97706; font-weight: bold;">
                     Documento Oficial Listo para Consulta
                   </p>
-                  <p style="margin: 0 0 22px 0; font-size: 14px; color: #ffffff; font-weight: 500;">
+                  <p style="margin: 0 0 18px 0; font-size: 15px; color: #0B0F19; font-weight: 700; line-height: 1.4;">
                     Brochure Corporativo &amp; Dossier Técnico 2026
                   </p>
                   <div>
                     <a 
                       href="https://www.servimafed.com/documento/brochure-servimafed.pdf" 
                       target="_blank"
-                      style="background-color: #FCB326; color: #0B0F19; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; padding: 16px 36px; text-decoration: none; border-radius: 4px; display: inline-block; box-shadow: 0 4px 14px rgba(252, 179, 38, 0.4);"
+                      style="background-color: #FCB326; color: #0B0F19; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; padding: 14px 34px; text-decoration: none; border-radius: 6px; display: inline-block; box-shadow: 0 2px 8px rgba(252, 179, 38, 0.35);"
                     >
-                      &#128229; Descargar Brochure (PDF)
+                      Descargar Brochure (PDF)
                     </a>
                   </div>
-                  <p style="margin: 18px 0 0 0; font-size: 11px; color: #94a3b8; line-height: 1.5;">
-                    Incluye catálogo de servicios, infraestructura de taller en Lurín,<br/>capacidades en soldadura, maestranza y estándares técnicos.
-                  </p>
                 </div>
+              </div>
+
+              <!-- LÍNEA AMARILLA DE REMATE INFERIOR (ESTILO IMAGEN 1) -->
+              <div style="padding: 24px 32px 0 32px;">
+                <div style="border-top: 2px solid #FCB326; width: 100%;"></div>
               </div>
 
               <!-- SERVICIOS DESTACADOS -->
