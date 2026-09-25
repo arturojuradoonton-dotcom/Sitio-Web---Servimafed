@@ -139,53 +139,62 @@ export async function sendBrochureLead(formData: FormData) {
                       Es un placer saludarle de parte de <strong>SERVIMAFED S.A.C.</strong> De acuerdo a su solicitud, le hacemos entrega de nuestro <strong>Dossier Corporativo &amp; Brochure Técnico 2026</strong> para su evaluación comercial y operativa.
                     </p>
 
-                    <!-- GUÍA DE 3 PASOS (ESTRUCTURA IDÉNTICA A LA IMAGEN 1) -->
+                    <!-- ¿SABÍAS QUE EN SERVIMAFED? - MÉTRICAS Y FORTALEZAS -->
                     <div style="text-align: center; margin-top: 10px; margin-bottom: 22px;">
                       <p style="margin: 0 0 18px 0; font-size: 14.5px; font-weight: 700; color: #0f172a; text-transform: none; letter-spacing: 0.2px;">
-                        Sigue los siguientes pasos:
+                        ¿Sabías que en SERVIMAFED?
                       </p>
 
                       <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; margin: 0 auto;">
                         <tr>
-                          <!-- PASO 1 -->
+                          <!-- COLUMNA 1: 24/7 SOPORTE EN CAMPO -->
                           <td width="33.33%" align="center" style="vertical-align: top; padding: 10px 8px; border-right: 1px solid #e2e8f0;">
                             <img 
-                              src="https://www.servimafed.com/images/step1-download.png" 
-                              alt="Descarga Brochure" 
-                              width="42" 
-                              height="42" 
-                              style="display: block; margin: 0 auto 10px auto; width: 42px; height: 42px;"
+                              src="https://www.servimafed.com/images/metric-soporte.png" 
+                              alt="24/7 Soporte en Campo" 
+                              width="38" 
+                              height="38" 
+                              style="display: block; margin: 0 auto 8px auto; width: 38px; height: 38px; object-fit: contain;"
                             />
-                            <p style="margin: 0; font-size: 11.5px; font-weight: 600; color: #1e293b; line-height: 1.4;">
-                              Descarga y/o visualiza<br/>el brochure
+                            <p style="margin: 0 0 2px 0; font-size: 17px; font-weight: 800; color: #0f172a; line-height: 1.2;">
+                              24/7
+                            </p>
+                            <p style="margin: 0; font-size: 10px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
+                              Soporte en Campo
                             </p>
                           </td>
 
-                          <!-- PASO 2 -->
+                          <!-- COLUMNA 2: 500+ EQUIPOS ATENDIDOS -->
                           <td width="33.33%" align="center" style="vertical-align: top; padding: 10px 8px; border-right: 1px solid #e2e8f0;">
                             <img 
-                              src="https://www.servimafed.com/images/step2-evaluate.png" 
-                              alt="Evalúa capacidades" 
+                              src="https://www.servimafed.com/images/metric-equipos.png" 
+                              alt="500+ Equipos Atendidos" 
                               width="42" 
-                              height="42" 
-                              style="display: block; margin: 0 auto 10px auto; width: 42px; height: 42px;"
+                              height="38" 
+                              style="display: block; margin: 0 auto 8px auto; width: 42px; height: 38px; object-fit: contain;"
                             />
-                            <p style="margin: 0; font-size: 11.5px; font-weight: 600; color: #1e293b; line-height: 1.4;">
-                              Evalúa nuestras<br/>capacidades y taller
+                            <p style="margin: 0 0 2px 0; font-size: 17px; font-weight: 800; color: #0f172a; line-height: 1.2;">
+                              500+
+                            </p>
+                            <p style="margin: 0; font-size: 10px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
+                              Equipos Atendidos
                             </p>
                           </td>
 
-                          <!-- PASO 3 -->
+                          <!-- COLUMNA 3: ISO ESTÁNDARES GLOBALES -->
                           <td width="33.33%" align="center" style="vertical-align: top; padding: 10px 8px;">
                             <img 
-                              src="https://www.servimafed.com/images/step3-confirm.png" 
-                              alt="Coordina atención" 
-                              width="42" 
-                              height="42" 
-                              style="display: block; margin: 0 auto 10px auto; width: 42px; height: 42px;"
+                              src="https://www.servimafed.com/images/metric-iso.png" 
+                              alt="ISO Estándares Globales" 
+                              width="34" 
+                              height="38" 
+                              style="display: block; margin: 0 auto 8px auto; width: 34px; height: 38px; object-fit: contain;"
                             />
-                            <p style="margin: 0; font-size: 11.5px; font-weight: 600; color: #1e293b; line-height: 1.4;">
-                              Solicita cotización<br/>o visita técnica
+                            <p style="margin: 0 0 2px 0; font-size: 17px; font-weight: 800; color: #0f172a; line-height: 1.2;">
+                              ISO
+                            </p>
+                            <p style="margin: 0; font-size: 10px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
+                              Estándares Globales
                             </p>
                           </td>
                         </tr>
@@ -225,25 +234,35 @@ export async function sendBrochureLead(formData: FormData) {
                       </table>
                     </div>
 
-                    <!-- 5. RESUMEN DE PRESENTACIÓN CORPORATIVA -->
+                    <!-- 5. ALGUNOS SERVICIOS -->
                     <div style="border-top: 1px solid #e2e8f0; padding-top: 18px; margin-bottom: 22px;">
-                      <p style="margin: 0 0 10px 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #0f172a; font-weight: 700;">
-                        Nuestras especialidades clave:
+                      <p style="margin: 0 0 12px 0; font-size: 11.5px; text-transform: uppercase; letter-spacing: 1px; color: #0f172a; font-weight: 700;">
+                        Algunos servicios:
                       </p>
-                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12px; color: #475569; line-height: 1.7;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12.5px; color: #334155; line-height: 1.8;">
                         <tr>
-                          <td style="padding: 2px 0;">
-                            <span style="color: #FCB326; font-weight: bold; margin-right: 6px;">&#9654;</span> <strong>Overhaul y Reconstrucción:</strong> Motores, mandos finales, transmisiones y cilindros.
+                          <td style="padding: 3px 0;">
+                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Gestión de Flota</strong>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding: 2px 0;">
-                            <span style="color: #FCB326; font-weight: bold; margin-right: 6px;">&#9654;</span> <strong>Soldadura &amp; Barrenado:</strong> Recuperación estructural en taller Lurín y en campo.
+                          <td style="padding: 3px 0;">
+                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Mantenimiento</strong>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding: 2px 0;">
-                            <span style="color: #FCB326; font-weight: bold; margin-right: 6px;">&#9654;</span> <strong>Suministro de Repuestos:</strong> Componentes OEM y alternativos de alta durabilidad.
+                          <td style="padding: 3px 0;">
+                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Evaluación y Diagnóstico</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 3px 0;">
+                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Mecanizado y Soldadura</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 3px 0;">
+                            <span style="color: #FCB326; font-weight: bold; margin-right: 8px;">&#9654;</span> <strong>Suministro de Repuestos</strong>
                           </td>
                         </tr>
                       </table>
