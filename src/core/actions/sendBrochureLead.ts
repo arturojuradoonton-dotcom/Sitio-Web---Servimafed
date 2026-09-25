@@ -207,77 +207,81 @@ export async function sendBrochureLead(formData: FormData) {
                     </p>
 
                     <!-- 4. CARD DESTACADA FLOTANTE (LLAMADA A LA ACCIÓN PRINCIPAL) -->
-                    <div style="background-color: #f1f5f9; border-radius: 12px; padding: 26px 20px; text-align: center; margin: 0 0 24px 0; border: 1px solid #e2e8f0;">
-                      <img 
-                        src="https://www.servimafed.com/images/pdf-icon.png" 
-                        alt="Brochure PDF" 
-                        width="38" 
-                        style="display: block; margin: 0 auto 12px auto; max-width: 38px; height: auto;"
-                      />
-                      <p style="margin: 0 0 16px 0; font-size: 14.5px; font-weight: 700; color: #0f172a; line-height: 1.4;">
-                        ¿Deseas revisar el detalle completo<br/>y descargar tu brochure?
-                      </p>
-                      
-                      <!-- BOTÓN DORADO / AMARILLO VIBRANTE BULLETPROOF -->
-                      <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
-                        <tr>
-                          <td align="center" style="background-color: #FCB326; border-radius: 6px; box-shadow: 0 2px 8px rgba(252, 179, 38, 0.4);">
-                            <a 
-                              href="https://www.servimafed.com/documento/brochure-servimafed.pdf" 
-                              target="_blank"
-                              style="display: inline-block; padding: 13px 36px; font-size: 13px; font-weight: 800; color: #0f172a; text-decoration: none; text-transform: uppercase; letter-spacing: 0.8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;"
-                            >
-                              Ingresa aquí
-                            </a>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="max-width: 420px; width: 100%; margin: 0 auto 28px auto; background-color: #f8fafc; border-radius: 18px; border: 1px solid #edf2f7; box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);">
+                      <tr>
+                        <td align="center" style="padding: 24px 20px;">
+                          <img 
+                            src="https://www.servimafed.com/images/pdf-icon.png" 
+                            alt="Brochure PDF" 
+                            width="34" 
+                            style="display: block; margin: 0 auto 12px auto; max-width: 34px; height: auto;"
+                          />
+                          <p style="margin: 0 0 14px 0; font-size: 14px; font-weight: 700; color: #0f172a; line-height: 1.45; text-align: center;">
+                            ¿Deseas revisar el detalle completo<br/>y descargar tu brochure?
+                          </p>
+                          
+                          <!-- BOTÓN DORADO ESTILIZADO BULLETPROOF -->
+                          <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                            <tr>
+                              <td align="center" style="background-color: #FCB326; border-radius: 6px; box-shadow: 0 2px 6px rgba(252, 179, 38, 0.35);">
+                                <a 
+                                  href="https://www.servimafed.com/documento/brochure-servimafed.pdf" 
+                                  target="_blank"
+                                  style="display: inline-block; padding: 9px 28px; font-size: 13px; font-weight: 700; color: #0f172a; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; letter-spacing: 0.2px;"
+                                >
+                                  Ingresa aquí
+                                </a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
 
-                    <!-- 5. ALGUNOS SERVICIOS -->
-                    <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-bottom: 22px;">
-                      <p style="margin: 0 0 14px 0; font-size: 14.5px; color: #0f172a; font-weight: 700; line-height: 1.3;">
+                    <!-- 5. ALGUNOS SERVICIOS (ESTRUCTURA IDÉNTICA A LA IMAGEN DE REFERENCIA) -->
+                    <div style="background-color: #f8fafc; border-radius: 14px; padding: 22px 24px; margin: 0 0 24px 0; border: 1px solid #edf2f7;">
+                      <p style="margin: 0 0 14px 0; font-size: 15px; color: #1d3961; font-weight: 700; line-height: 1.3;">
                         Algunos servicios:
                       </p>
-                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12.5px; color: #334155; line-height: 1.6;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12.5px; color: #475569; line-height: 1.65;">
                         <tr>
-                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                          <td valign="top" style="padding: 4px 10px 7px 0; color: #64748b; font-size: 13px; line-height: 1.5; width: 12px;">
                             &bull;
                           </td>
-                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
-                            <strong>Gestión y control de flotas</strong>, orientado a optimizar la disponibilidad, operación y mantenimiento de los equipos.
+                          <td valign="top" style="padding: 4px 0 7px 0; font-size: 12.5px; color: #475569; line-height: 1.65; font-weight: 400;">
+                            Gestión y control de flotas, orientado a optimizar la disponibilidad, operación y mantenimiento de los equipos.
                           </td>
                         </tr>
                         <tr>
-                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                          <td valign="top" style="padding: 4px 10px 7px 0; color: #64748b; font-size: 13px; line-height: 1.5; width: 12px;">
                             &bull;
                           </td>
-                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
-                            <strong>Mantenimiento preventivo y correctivo</strong> para conservar el rendimiento y prolongar la vida útil de los equipos.
+                          <td valign="top" style="padding: 4px 0 7px 0; font-size: 12.5px; color: #475569; line-height: 1.65; font-weight: 400;">
+                            Mantenimiento preventivo y correctivo para conservar el rendimiento y prolongar la vida útil de los equipos.
                           </td>
                         </tr>
                         <tr>
-                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                          <td valign="top" style="padding: 4px 10px 7px 0; color: #64748b; font-size: 13px; line-height: 1.5; width: 12px;">
                             &bull;
                           </td>
-                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
-                            <strong>Inspección, evaluación y diagnóstico técnico</strong> para identificar fallas y determinar las acciones correctivas.
+                          <td valign="top" style="padding: 4px 0 7px 0; font-size: 12.5px; color: #475569; line-height: 1.65; font-weight: 400;">
+                            Inspección, evaluación y diagnóstico técnico para identificar fallas y determinar las acciones correctivas.
                           </td>
                         </tr>
                         <tr>
-                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                          <td valign="top" style="padding: 4px 10px 7px 0; color: #64748b; font-size: 13px; line-height: 1.5; width: 12px;">
                             &bull;
                           </td>
-                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
-                            <strong>Mecanizado, fabricación, reparación y soldadura</strong> de componentes y estructuras para maquinaria.
+                          <td valign="top" style="padding: 4px 0 7px 0; font-size: 12.5px; color: #475569; line-height: 1.65; font-weight: 400;">
+                            Mecanizado, fabricación, reparación y soldadura de componentes y estructuras para maquinaria.
                           </td>
                         </tr>
                         <tr>
-                          <td valign="top" style="padding: 3px 8px 5px 0; color: #475569; font-size: 14px; line-height: 1.5; width: 14px;">
+                          <td valign="top" style="padding: 4px 10px 7px 0; color: #64748b; font-size: 13px; line-height: 1.5; width: 12px;">
                             &bull;
                           </td>
-                          <td valign="top" style="padding: 3px 0 5px 0; font-size: 12.5px; color: #334155; line-height: 1.6;">
-                            <strong>Suministro de repuestos y componentes</strong> para atender las necesidades de mantenimiento y reparación.
+                          <td valign="top" style="padding: 4px 0 7px 0; font-size: 12.5px; color: #475569; line-height: 1.65; font-weight: 400;">
+                            Suministro de repuestos y componentes para atender las necesidades de mantenimiento y reparación.
                           </td>
                         </tr>
                       </table>
