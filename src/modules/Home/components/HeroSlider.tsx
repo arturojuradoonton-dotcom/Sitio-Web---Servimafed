@@ -21,51 +21,51 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    category: "Ingeniería & Soporte Técnico",
-    title: "Overhaul y Reconstrucción de",
-    highlight: "Motores Pesados",
-    description: "Especialistas en overhaul integral de motores diésel de alta potencia, calibración de sistemas de inyección y pruebas de banco bajo estándares OEM.",
-    ctaText: "+ Información",
-    ctaLink: "/servicios/reparacion-componentes",
-    image: "/images/9.jpg",
-    alt: "Sistema de inyección diésel y motor de maquinaria pesada Servimafed",
-    overlayClass: "bg-gradient-to-t from-dark/95 via-dark/70 to-dark/45"
+    category: "Rendimiento Industrial",
+    title: "Kit de",
+    highlight: "Mantenimiento",
+    description: "Encuentra la mejor opción en repuestos para mantenimientos preventivos, correctivos de tu maquinaria pesada y equipos industriales.",
+    ctaText: "+ INFORMACIÓN",
+    ctaLink: "/repuestos/mantenimiento",
+    image: "/images/13.jpg",
+    alt: "Kits de mantenimiento y repuestos originales",
+    overlayClass: "bg-gradient-to-t from-dark/45 via-transparent to-transparent"
   },
   {
     id: 2,
-    category: "Disponibilidad Mecánica 24/7",
-    title: "Mantenimiento Integral de",
-    highlight: "Maquinaria Pesada",
-    description: "Soporte técnico integral en campo y taller para flotas de minería y construcción. Maximizamos el tiempo operativo y la confiabilidad de sus equipos.",
-    ctaText: "Nuestros Servicios",
-    ctaLink: "/servicios",
-    image: "/images/40.jpg",
-    alt: "Excavadora Volvo en operación de minería y movimiento de tierras",
-    overlayClass: "bg-gradient-to-t from-dark/95 via-dark/70 to-dark/50"
+    category: "Suministro y Logística",
+    title: "Repuestos",
+    highlight: "Originales y Alternativos",
+    description: "Amplio stock permanente de componentes de alta rotación, elementos de desgaste y filtración certificada para evitar paradas no programadas.",
+    ctaText: "+ INFORMACIÓN",
+    ctaLink: "/repuestos",
+    image: "/images/55.jpg",
+    alt: "Filtros y lubricantes originales y alternativos Caterpillar",
+    overlayClass: "bg-gradient-to-t from-dark/25 via-transparent to-transparent"
   },
   {
     id: 3,
-    category: "Suministro & Logística de Precisión",
-    title: "Repuestos Originales y",
-    highlight: "Filtración CAT",
-    description: "Inventario permanente de filtros de aceite, combustible, lubricantes certificados y componentes de alto rendimiento para garantizar cero paradas imprevistas.",
-    ctaText: "Catálogo de Repuestos",
-    ctaLink: "/repuestos",
-    image: "/images/55.jpg",
-    alt: "Filtros y lubricantes originales Caterpillar",
-    overlayClass: "bg-gradient-to-t from-dark/95 via-dark/70 to-dark/45"
+    category: "Disponibilidad Operativa 24/7",
+    title: "Gestión y Control de",
+    highlight: "Flota",
+    description: "Planificación por horómetro, confiabilidad electromecánica y soporte técnico en campo para maximizar el rendimiento en obra y minería.",
+    ctaText: "+ INFORMACIÓN",
+    ctaLink: "/servicios/gestion-flota",
+    image: "/images/40.jpg",
+    alt: "Excavadora pesada en operación de movimiento de tierras y minería",
+    overlayClass: "bg-gradient-to-t from-dark/30 via-transparent to-transparent"
   },
   {
     id: 4,
-    category: "Línea Volvo Genuine Parts & Fluidos",
-    title: "Kits de Mantenimiento y",
-    highlight: "Lubricantes Certificados",
-    description: "Filtros hidráulicos, aceites para motor VDS y fluidos de alta especificación para proteger la vida útil y eficiencia de sus sistemas motrices e hidráulicos.",
-    ctaText: "Consultar Disponibilidad",
-    ctaLink: "/contacto",
-    image: "/images/13.jpg",
-    alt: "Línea de filtros y lubricantes originales Volvo",
-    overlayClass: "bg-gradient-to-t from-dark/95 via-dark/80 to-dark/60"
+    category: "SOPORTE TÉCNICO",
+    title: "Mantenimiento",
+    highlight: "Preventivo y Correctivo",
+    description: "Diagnóstico computarizado, análisis SOS de fluidos, calibración de inyección y overhaul integral bajo estándares de fabricante.",
+    ctaText: "+ INFORMACIÓN",
+    ctaLink: "/servicios/mantenimiento-preventivo",
+    image: "/images/9.jpg",
+    alt: "Sistema de inyección diésel y mantenimiento de motores pesados",
+    overlayClass: "bg-gradient-to-t from-dark/30 via-transparent to-transparent"
   }
 ];
 
@@ -125,7 +125,7 @@ export default function HeroSlider() {
               isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
           >
-            {/* Imagen de Fondo en Alta Definición (1920x1080 nativo) */}
+            {/* Imagen de Fondo en Alta Definición (2400x1350 nativo) */}
             <Image
               src={slide.image}
               alt={slide.alt}
@@ -136,9 +136,9 @@ export default function HeroSlider() {
               className="object-cover object-center"
             />
 
-            {/* Capa de Degradado para Contraste y Legibilidad */}
+            {/* Capa de Transparencia Suave: Mantiene las imágenes claras y vivas */}
             <div className={`absolute inset-0 ${slide.overlayClass}`} aria-hidden="true" />
-            <div className="absolute inset-0 bg-dark/25" aria-hidden="true" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(11,15,25,0.35)_0%,_transparent_75%)] pointer-events-none" aria-hidden="true" />
 
             {/* Contenido Centrado del Slide */}
             <div className="absolute inset-0 flex items-center justify-center z-20">
@@ -147,7 +147,7 @@ export default function HeroSlider() {
                   
                   {/* Categoría / Subtítulo */}
                   <p 
-                    className={`text-primary font-semibold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4 transition-all duration-700 delay-100 ${
+                    className={`text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] transition-all duration-700 delay-100 ${
                       isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                     }`}
                   >
@@ -156,17 +156,17 @@ export default function HeroSlider() {
 
                   {/* Título Principal */}
                   <h1 
-                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6 transition-all duration-700 delay-200 ${
+                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)] transition-all duration-700 delay-200 ${
                       isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                     }`}
                   >
-                    <span className="block font-light text-gray-100">{slide.title}</span>
-                    <span className="text-primary block font-black">{slide.highlight}</span>
+                    <span className="block font-light text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">{slide.title}</span>
+                    <span className="text-primary block font-black drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">{slide.highlight}</span>
                   </h1>
 
                   {/* Descripción */}
                   <p 
-                    className={`text-sm sm:text-base md:text-lg font-light text-gray-200 max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10 transition-all duration-700 delay-300 ${
+                    className={`text-sm sm:text-base md:text-lg font-normal text-white max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] transition-all duration-700 delay-300 ${
                       isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                     }`}
                   >
@@ -181,7 +181,7 @@ export default function HeroSlider() {
                   >
                     <Link 
                       href={slide.ctaLink} 
-                      className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold px-8 md:px-10 py-3 md:py-4 text-xs md:text-sm uppercase tracking-widest transition-all duration-300 inline-block shadow-lg"
+                      className="bg-dark/60 backdrop-blur-sm border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold px-8 md:px-10 py-3 md:py-4 text-xs md:text-sm uppercase tracking-widest transition-all duration-300 inline-block shadow-[0_4px_20px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(252,179,38,0.5)] cursor-pointer"
                     >
                       {slide.ctaText}
                     </Link>
