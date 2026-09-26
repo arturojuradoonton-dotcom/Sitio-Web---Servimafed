@@ -7,6 +7,18 @@
   --font-sans: var(--font-roboto), system-ui, sans-serif;
 }
 
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1280px;
+}
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1280px;
+}
+
 :root {
   --primary: #FCB326; /* Amarillo Corporativo Servimafed */
   --secondary: #1D3961; /* Azul Marino Industrial Servimafed */

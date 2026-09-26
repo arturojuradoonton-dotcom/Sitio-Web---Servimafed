@@ -11,7 +11,7 @@ export default function TopBar() {
 
   return (
     <div className="bg-dark text-gray-300 text-xs md:text-sm font-sans font-light">
-      <div className="flex flex-col md:flex-row justify-between items-stretch">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-stretch">
         
         {/* Mobile Header: Info Toggle + CTA */}
         <div className="md:hidden flex justify-between items-stretch bg-dark w-full">

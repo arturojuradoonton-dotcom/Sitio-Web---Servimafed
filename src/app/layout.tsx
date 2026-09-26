@@ -7,6 +7,7 @@ import Footer from "@/core/ui/layout/Footer";
 import Preloader from "@/core/ui/Preloader";
 import GlobalCTA from "@/core/ui/layout/GlobalCTA";
 import ScheduleVisitModal from "@/core/ui/ScheduleVisitModal";
+import WhatsAppButton from "@/core/ui/WhatsAppButton";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -176,6 +177,7 @@ export default function RootLayout({
         <GlobalCTA />
         <ScheduleVisitModal />
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );
