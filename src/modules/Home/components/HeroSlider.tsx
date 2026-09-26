@@ -125,16 +125,15 @@ export default function HeroSlider() {
               isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
           >
-            {/* Imagen de Fondo */}
+            {/* Imagen de Fondo en Alta Definición (1920x1080 nativo) */}
             <Image
               src={slide.image}
               alt={slide.alt}
               fill
               priority={index === 0}
+              unoptimized={true}
               sizes="100vw"
-              className={`object-cover object-center transition-transform duration-[7000ms] ease-out ${
-                isActive ? 'scale-105' : 'scale-100'
-              }`}
+              className="object-cover object-center"
             />
 
             {/* Capa de Degradado para Contraste y Legibilidad */}
