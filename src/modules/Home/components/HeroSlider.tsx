@@ -31,7 +31,7 @@ const slides: Slide[] = [
     ctaLink: "/repuestos/mantenimiento",
     image: "/images/13.jpg",
     alt: "Kits de mantenimiento y repuestos originales",
-    overlayClass: "bg-gradient-to-t from-dark/75 via-dark/35 to-transparent md:bg-gradient-to-r md:from-dark/70 md:via-dark/30 md:to-transparent"
+    overlayClass: "bg-gradient-to-t from-dark/90 via-dark/60 to-transparent md:bg-gradient-to-r md:from-dark/95 md:via-dark/70 md:via-35% md:to-transparent"
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ const slides: Slide[] = [
     ctaLink: "/repuestos",
     image: "/images/55.jpg",
     alt: "Filtros y lubricantes originales y alternativos Caterpillar",
-    overlayClass: "bg-gradient-to-t from-dark/75 via-dark/35 to-transparent md:bg-gradient-to-l md:from-dark/65 md:via-dark/25 md:to-transparent"
+    overlayClass: "bg-gradient-to-t from-dark/90 via-dark/60 to-transparent md:bg-gradient-to-l md:from-dark/90 md:via-dark/65 md:via-35% md:to-transparent"
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ const slides: Slide[] = [
     ctaLink: "/servicios/gestion-flota",
     image: "/images/40.jpg",
     alt: "Excavadora pesada en operación de movimiento de tierras y minería",
-    overlayClass: "bg-gradient-to-t from-dark/75 via-dark/35 to-transparent md:bg-gradient-to-r md:from-dark/70 md:via-dark/30 md:to-transparent"
+    overlayClass: "bg-gradient-to-t from-dark/90 via-dark/60 to-transparent md:bg-gradient-to-r md:from-dark/95 md:via-dark/70 md:via-35% md:to-transparent"
   },
   {
     id: 4,
@@ -70,7 +70,7 @@ const slides: Slide[] = [
     ctaLink: "/servicios/mantenimiento-preventivo",
     image: "/images/9.jpg",
     alt: "Sistema de inyección diésel y mantenimiento de motores pesados",
-    overlayClass: "bg-gradient-to-t from-dark/75 via-dark/35 to-transparent md:bg-gradient-to-l md:from-dark/70 md:via-dark/30 md:to-transparent"
+    overlayClass: "bg-gradient-to-t from-dark/90 via-dark/60 to-transparent md:bg-gradient-to-l md:from-dark/90 md:via-dark/65 md:via-35% md:to-transparent"
   }
 ];
 
@@ -144,11 +144,11 @@ export default function HeroSlider() {
             {/* Capa de Transparencia con Degradado Horizontal para PC */}
             <div className={`absolute inset-0 ${slide.overlayClass}`} aria-hidden="true" />
 
-            {/* Contenido Alineado del Slide (Izquierda o Derecha) */}
+            {/* Contenido Alineado al Extremo de la Maquetación (Izquierda o Derecha) */}
             <div className="absolute inset-0 flex items-center z-20">
-              <div className="container mx-auto px-6 sm:px-12 md:px-20 lg:px-24">
+              <div className="container mx-auto px-6">
                 <div 
-                  className={`max-w-2xl ${
+                  className={`max-w-xl ${
                     slide.align === 'right' 
                       ? 'ml-auto text-right flex flex-col items-end' 
                       : 'mr-auto text-left flex flex-col items-start'
@@ -157,7 +157,7 @@ export default function HeroSlider() {
                   
                   {/* Categoría / Subtítulo */}
                   <p 
-                    className={`text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] transition-all duration-700 delay-100 ${
+                    className={`text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4 transition-all duration-700 delay-100 ${
                       isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                     }`}
                   >
@@ -166,17 +166,17 @@ export default function HeroSlider() {
 
                   {/* Título Principal */}
                   <h1 
-                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)] transition-all duration-700 delay-200 ${
+                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6 transition-all duration-700 delay-200 ${
                       isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                     }`}
                   >
-                    <span className="block font-light text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">{slide.title}</span>
-                    <span className="text-primary block font-black drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">{slide.highlight}</span>
+                    <span className="block font-light text-white">{slide.title}</span>
+                    <span className="text-primary block font-black">{slide.highlight}</span>
                   </h1>
 
                   {/* Descripción */}
                   <p 
-                    className={`text-sm sm:text-base md:text-lg font-normal text-white leading-relaxed mb-8 md:mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] transition-all duration-700 delay-300 ${
+                    className={`text-sm sm:text-base md:text-lg font-light text-white/90 leading-relaxed mb-8 md:mb-10 transition-all duration-700 delay-300 ${
                       isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                     }`}
                   >
@@ -191,7 +191,7 @@ export default function HeroSlider() {
                   >
                     <Link 
                       href={slide.ctaLink} 
-                      className="bg-dark/60 backdrop-blur-sm border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold px-8 md:px-10 py-3 md:py-4 text-xs md:text-sm uppercase tracking-widest transition-all duration-300 inline-block shadow-[0_4px_20px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(252,179,38,0.5)] cursor-pointer"
+                      className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold px-8 md:px-10 py-3 md:py-4 text-xs md:text-sm uppercase tracking-widest transition-all duration-300 inline-block shadow-md hover:shadow-lg cursor-pointer"
                     >
                       {slide.ctaText}
                     </Link>
