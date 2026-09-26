@@ -43,10 +43,13 @@ export default function TopBar() {
             <span className="hidden lg:inline">Lunes a viernes 8:00 - 5:30 y sábado 8:00 - 1:00</span>
             <span className="lg:hidden">Lun-Vie 8-5:30 | Sáb 8-1</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Phone className="text-primary w-4 h-4" />
-            <span className="font-medium text-white">+51 993 667 182</span>
-          </div>
+          <a 
+            href="tel:+51993667182" 
+            className="flex items-center gap-2 hover:text-white transition-colors"
+          >
+            <Phone className="text-primary w-4 h-4 shrink-0" />
+            <span>+51 993 667 182</span>
+          </a>
           <div className="flex items-center gap-2">
             <MapPin className="text-primary w-4 h-4" />
             <span>Mz. C Lote 12A, Sector Sumac Pacha - Lurin - Lima</span>
