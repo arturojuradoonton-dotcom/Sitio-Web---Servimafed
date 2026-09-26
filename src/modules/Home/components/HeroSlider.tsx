@@ -27,7 +27,7 @@ const slides: Slide[] = [
     description: "Especialistas en overhaul integral de motores diésel de alta potencia, calibración de sistemas de inyección y pruebas de banco bajo estándares OEM.",
     ctaText: "+ Información",
     ctaLink: "/servicios/reparacion-componentes",
-    image: "/images/inicio/hero-motor-diesel.jpg",
+    image: "/images/9.jpg",
     alt: "Sistema de inyección diésel y motor de maquinaria pesada Servimafed",
     overlayClass: "bg-gradient-to-t from-dark/95 via-dark/70 to-dark/45"
   },
@@ -39,7 +39,7 @@ const slides: Slide[] = [
     description: "Soporte técnico integral en campo y taller para flotas de minería y construcción. Maximizamos el tiempo operativo y la confiabilidad de sus equipos.",
     ctaText: "Nuestros Servicios",
     ctaLink: "/servicios",
-    image: "/images/inicio/hero-slide-excavadora.jpg",
+    image: "/images/40.jpg",
     alt: "Excavadora Volvo en operación de minería y movimiento de tierras",
     overlayClass: "bg-gradient-to-t from-dark/95 via-dark/70 to-dark/50"
   },
@@ -51,7 +51,7 @@ const slides: Slide[] = [
     description: "Inventario permanente de filtros de aceite, combustible, lubricantes certificados y componentes de alto rendimiento para garantizar cero paradas imprevistas.",
     ctaText: "Catálogo de Repuestos",
     ctaLink: "/repuestos",
-    image: "/images/inicio/hero-slide-repuestos-cat.jpg",
+    image: "/images/55.jpg",
     alt: "Filtros y lubricantes originales Caterpillar",
     overlayClass: "bg-gradient-to-t from-dark/95 via-dark/70 to-dark/45"
   },
@@ -63,7 +63,7 @@ const slides: Slide[] = [
     description: "Filtros hidráulicos, aceites para motor VDS y fluidos de alta especificación para proteger la vida útil y eficiencia de sus sistemas motrices e hidráulicos.",
     ctaText: "Consultar Disponibilidad",
     ctaLink: "/contacto",
-    image: "/images/inicio/hero-slide-repuestos-volvo.jpg",
+    image: "/images/13.jpg",
     alt: "Línea de filtros y lubricantes originales Volvo",
     overlayClass: "bg-gradient-to-t from-dark/95 via-dark/80 to-dark/60"
   }
