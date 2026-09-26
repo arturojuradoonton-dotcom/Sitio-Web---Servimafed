@@ -26,10 +26,10 @@ export default function Preloader() {
         fading ? 'opacity-0' : 'opacity-100'
       }`}
     >
-      <div className="relative w-32 h-32 md:w-48 md:h-48">
+      <div className="relative w-20 h-20 md:w-24 md:h-24">
         {/* Usamos unoptimized={true} para que Next.js no congele la animación del GIF */}
         <Image 
-          src="/images/loader.gif.gif" 
+          src="/images/loader-yellow.gif" 
           alt="Cargando Servimafed..." 
           fill
           unoptimized={true}
