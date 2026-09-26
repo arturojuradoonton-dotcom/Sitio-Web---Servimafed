@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Slide {
   id: number;
+  align: 'left' | 'right';
   category: string;
   title: string;
   highlight: string;
@@ -21,6 +22,7 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
+    align: 'left',
     category: "Rendimiento Industrial",
     title: "Kit de",
     highlight: "Mantenimiento",
@@ -29,10 +31,11 @@ const slides: Slide[] = [
     ctaLink: "/repuestos/mantenimiento",
     image: "/images/13.jpg",
     alt: "Kits de mantenimiento y repuestos originales",
-    overlayClass: "bg-gradient-to-t from-dark/45 via-transparent to-transparent"
+    overlayClass: "bg-gradient-to-t from-dark/75 via-dark/35 to-transparent md:bg-gradient-to-r md:from-dark/70 md:via-dark/30 md:to-transparent"
   },
   {
     id: 2,
+    align: 'right',
     category: "Suministro y Logística",
     title: "Repuestos",
     highlight: "Originales y Alternativos",
@@ -41,10 +44,11 @@ const slides: Slide[] = [
     ctaLink: "/repuestos",
     image: "/images/55.jpg",
     alt: "Filtros y lubricantes originales y alternativos Caterpillar",
-    overlayClass: "bg-gradient-to-t from-dark/25 via-transparent to-transparent"
+    overlayClass: "bg-gradient-to-t from-dark/75 via-dark/35 to-transparent md:bg-gradient-to-l md:from-dark/65 md:via-dark/25 md:to-transparent"
   },
   {
     id: 3,
+    align: 'left',
     category: "Disponibilidad Operativa 24/7",
     title: "Gestión y Control de",
     highlight: "Flota",
@@ -53,10 +57,11 @@ const slides: Slide[] = [
     ctaLink: "/servicios/gestion-flota",
     image: "/images/40.jpg",
     alt: "Excavadora pesada en operación de movimiento de tierras y minería",
-    overlayClass: "bg-gradient-to-t from-dark/30 via-transparent to-transparent"
+    overlayClass: "bg-gradient-to-t from-dark/75 via-dark/35 to-transparent md:bg-gradient-to-r md:from-dark/70 md:via-dark/30 md:to-transparent"
   },
   {
     id: 4,
+    align: 'right',
     category: "SOPORTE TÉCNICO",
     title: "Mantenimiento",
     highlight: "Preventivo y Correctivo",
@@ -65,7 +70,7 @@ const slides: Slide[] = [
     ctaLink: "/servicios/mantenimiento-preventivo",
     image: "/images/9.jpg",
     alt: "Sistema de inyección diésel y mantenimiento de motores pesados",
-    overlayClass: "bg-gradient-to-t from-dark/30 via-transparent to-transparent"
+    overlayClass: "bg-gradient-to-t from-dark/75 via-dark/35 to-transparent md:bg-gradient-to-l md:from-dark/70 md:via-dark/30 md:to-transparent"
   }
 ];
 
@@ -136,14 +141,19 @@ export default function HeroSlider() {
               className="object-cover object-center"
             />
 
-            {/* Capa de Transparencia Suave: Mantiene las imágenes claras y vivas */}
+            {/* Capa de Transparencia con Degradado Horizontal para PC */}
             <div className={`absolute inset-0 ${slide.overlayClass}`} aria-hidden="true" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(11,15,25,0.35)_0%,_transparent_75%)] pointer-events-none" aria-hidden="true" />
 
-            {/* Contenido Centrado del Slide */}
-            <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div className="container mx-auto px-6">
-                <div className="max-w-4xl mx-auto text-center">
+            {/* Contenido Alineado del Slide (Izquierda o Derecha) */}
+            <div className="absolute inset-0 flex items-center z-20">
+              <div className="container mx-auto px-6 sm:px-12 md:px-20 lg:px-24">
+                <div 
+                  className={`max-w-2xl ${
+                    slide.align === 'right' 
+                      ? 'ml-auto text-right flex flex-col items-end' 
+                      : 'mr-auto text-left flex flex-col items-start'
+                  }`}
+                >
                   
                   {/* Categoría / Subtítulo */}
                   <p 
@@ -166,7 +176,7 @@ export default function HeroSlider() {
 
                   {/* Descripción */}
                   <p 
-                    className={`text-sm sm:text-base md:text-lg font-normal text-white max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] transition-all duration-700 delay-300 ${
+                    className={`text-sm sm:text-base md:text-lg font-normal text-white leading-relaxed mb-8 md:mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] transition-all duration-700 delay-300 ${
                       isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                     }`}
                   >
