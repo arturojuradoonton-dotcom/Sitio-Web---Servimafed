@@ -80,8 +80,8 @@ export async function sendBrochureLead(formData: FormData) {
           <tr>
             <td align="center">
               
-              <!-- CONTENEDOR PRINCIPAL BLANCO (AMPLIADO A 700PX - SIN FONDOS GRISES) -->
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 700px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0;">
+              <!-- CONTENEDOR PRINCIPAL BLANCO (AMPLIADO A 700PX - SIN BORDE EXTERIOR) -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 700px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden;">
                 
                 <!-- 1. CABECERA CON LOGO A LA IZQUIERDA Y COLOR AZUL CORPORATIVO #1d3961 -->
                 <tr>
@@ -206,29 +206,29 @@ export async function sendBrochureLead(formData: FormData) {
                       Contamos con infraestructura propia en Lurín, personal homologado y cobertura nacional para atender sus necesidades mecánicas en mina y proyecto.
                     </p>
 
-                    <!-- 4. CARD DESTACADA FLOTANTE (LLAMADA A LA ACCIÓN PRINCIPAL - SIN FONDO GRIS) -->
-                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="max-width: 500px; width: 100%; margin: 0 auto 30px auto; border-radius: 16px; border: 1px solid #e2e8f0; background-color: #ffffff;">
+                    <!-- 4. CARD DESTACADA FLOTANTE (CON RELLENO GRIS SUAVE Y PADDING REDUCIDO) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="max-width: 500px; width: 100%; margin: 0 auto 30px auto; border-radius: 14px; border: 1px solid #e2e8f0; background-color: #f8fafc;">
                       <tr>
-                        <td align="center" style="padding: 26px 24px;">
+                        <td align="center" style="padding: 18px 20px;">
                           <img 
                             src="https://www.servimafed.com/images/icon-brochure-download.png" 
                             alt="Brochure PDF" 
                             width="40" 
                             height="40" 
-                            style="display: block; margin: 0 auto 12px auto; width: 40px; height: 40px; object-fit: contain;"
+                            style="display: block; margin: 0 auto 10px auto; width: 40px; height: 40px; object-fit: contain;"
                           />
-                          <p style="margin: 0 0 16px 0; font-size: 14.5px; font-weight: 700; color: #0f172a; line-height: 1.45; text-align: center;">
+                          <p style="margin: 0 0 14px 0; font-size: 14.5px; font-weight: 700; color: #0f172a; line-height: 1.45; text-align: center;">
                             ¿Deseas revisar el detalle completo<br/>y descargar tu brochure?
                           </p>
                           
-                          <!-- BOTÓN DORADO ESTILIZADO BULLETPROOF -->
+                          <!-- BOTÓN DORADO ESTILIZADO BULLETPROOF (PADDING REDUCIDO) -->
                           <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
                             <tr>
                               <td align="center" style="background-color: #FCB326; border-radius: 6px; box-shadow: 0 2px 6px rgba(252, 179, 38, 0.35);">
                                 <a 
                                   href="https://www.servimafed.com/documento/brochure-servimafed.pdf" 
                                   target="_blank"
-                                  style="display: inline-block; padding: 10px 30px; font-size: 13.5px; font-weight: 700; color: #0f172a; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; letter-spacing: 0.2px;"
+                                  style="display: inline-block; padding: 7px 22px; font-size: 13px; font-weight: 700; color: #0f172a; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; letter-spacing: 0.2px;"
                                 >
                                   Ingresa aquí
                                 </a>
@@ -239,73 +239,96 @@ export async function sendBrochureLead(formData: FormData) {
                       </tr>
                     </table>
 
-                    <!-- 5. ALGUNOS SERVICIOS (CON ICONO TRABAJADOR Y SIN FONDO GRIS) -->
-                    <div style="border-top: 1px solid #e2e8f0; padding-top: 26px; margin-bottom: 26px;">
-                      <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 14px;">
-                        <tr>
-                          <td valign="middle" style="padding-right: 12px;">
-                            <img 
-                              src="https://www.servimafed.com/images/icon-trabajador.png" 
-                              alt="Servicios" 
-                              width="30" 
-                              height="30" 
-                              style="display: block; width: 30px; height: 30px; object-fit: contain;"
-                            />
-                          </td>
-                          <td valign="middle" style="font-size: 16px; color: #1d3961; font-weight: 700; line-height: 1.2;">
-                            Algunos servicios:
-                          </td>
-                        </tr>
-                      </table>
-                      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 13px; color: #475569; line-height: 1.65;">
-                        <tr>
-                          <td valign="top" style="padding: 5px 12px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
-                            &bull;
-                          </td>
-                          <td valign="top" style="padding: 5px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
-                            Gestión y control de flotas, orientado a optimizar la disponibilidad, operación y mantenimiento de los equipos.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td valign="top" style="padding: 5px 12px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
-                            &bull;
-                          </td>
-                          <td valign="top" style="padding: 5px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
-                            Mantenimiento preventivo y correctivo para conservar el rendimiento y prolongar la vida útil de los equipos.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td valign="top" style="padding: 5px 12px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
-                            &bull;
-                          </td>
-                          <td valign="top" style="padding: 5px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
-                            Inspección, evaluación y diagnóstico técnico para identificar fallas y determinar las acciones correctivas.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td valign="top" style="padding: 5px 12px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
-                            &bull;
-                          </td>
-                          <td valign="top" style="padding: 5px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
-                            Mecanizado, fabricación, reparación y soldadura de componentes y estructuras para maquinaria.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td valign="top" style="padding: 5px 12px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
-                            &bull;
-                          </td>
-                          <td valign="top" style="padding: 5px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
-                            Suministro de repuestos y componentes para atender las necesidades de mantenimiento y reparación.
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
+                    <!-- 5. ALGUNOS SERVICIOS (TODO EL ANCHO DEL CUERPO, RELLENO GRIS SUAVE, ICONO GRANDE 44PX Y SANGRÍA) -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; margin-bottom: 10px;">
+                      <tr>
+                        <td style="padding: 22px 24px;">
+                          <!-- TÍTULO CON ICONO DEL TRABAJADOR AGRANDADO (44PX) -->
+                          <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 16px;">
+                            <tr>
+                              <td valign="middle" style="padding-right: 12px;">
+                                <img 
+                                  src="https://www.servimafed.com/images/icon-trabajador.png" 
+                                  alt="Servicios" 
+                                  width="44" 
+                                  height="44" 
+                                  style="display: block; width: 44px; height: 44px; object-fit: contain;"
+                                />
+                              </td>
+                              <td valign="middle" style="font-size: 17px; color: #1d3961; font-weight: 700; line-height: 1.2;">
+                                Algunos servicios:
+                              </td>
+                            </tr>
+                          </table>
+                          
+                          <!-- LISTA DE LOS 5 PUNTOS CON SANGRÍA INTERIOR HACIA LA DERECHA -->
+                          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td style="padding-left: 24px;">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 13px; color: #475569; line-height: 1.65;">
+                                  <tr>
+                                    <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
+                                      &bull;
+                                    </td>
+                                    <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
+                                      Gestión y control de flotas, orientado a optimizar la disponibilidad, operación y mantenimiento de los equipos.
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
+                                      &bull;
+                                    </td>
+                                    <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
+                                      Mantenimiento preventivo y correctivo para conservar el rendimiento y prolongar la vida útil de los equipos.
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
+                                      &bull;
+                                    </td>
+                                    <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
+                                      Inspección, evaluación y diagnóstico técnico para identificar fallas y determinar las acciones correctivas.
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
+                                      &bull;
+                                    </td>
+                                    <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
+                                      Mecanizado, fabricación, reparación y soldadura de componentes y estructuras para maquinaria.
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">
+                                      &bull;
+                                    </td>
+                                    <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; font-weight: 400;">
+                                      Suministro de repuestos y componentes para atender las necesidades de mantenimiento y reparación.
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
 
-                    <!-- LÍNEA AMARILLA DIVISORIA -->
-                    <div style="border-top: 2px solid #FCB326; margin: 26px 0 22px 0;"></div>
+                        </td>
+                      </tr>
+                    </table>
 
-                    <!-- 6. PÍLDORA CENTRO DE CONTACTO (SIN FONDO GRIS) -->
-                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #e2e8f0; border-radius: 50px; padding: 8px 24px; margin: 0 auto 20px auto; background-color: #ffffff;">
+                  </td>
+                </tr>
+
+                <!-- LÍNEA AMARILLA A TODO LO ANCHO DE LA MAQUETACIÓN -->
+                <tr>
+                  <td style="background-color: #FCB326; height: 3px; font-size: 0; line-height: 0; padding: 0;">&nbsp;</td>
+                </tr>
+
+                <!-- 6. CUERPO INFERIOR: CENTRO DE CONTACTO -->
+                <tr>
+                  <td style="padding: 28px 36px 24px 36px; background-color: #ffffff;">
+
+                    <!-- PÍLDORA CENTRO DE CONTACTO -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #e2e8f0; border-radius: 50px; padding: 8px 24px; margin: 0 auto 22px auto; background-color: #ffffff;">
                       <tr>
                         <td style="vertical-align: middle; padding-right: 12px;">
                           <img 
@@ -322,18 +345,20 @@ export async function sendBrochureLead(formData: FormData) {
                       </tr>
                     </table>
 
-                    <!-- DOS COLUMNAS DE CONTACTO CON DIVISOR VERTICAL -->
+                    <!-- DOS COLUMNAS DE CONTACTO: TELÉFONO A LA DERECHA, EMAIL A LA IZQUIERDA (SEPARADOS DEL DIVISOR CENTRAL) -->
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 8px;">
                       <tr>
-                        <td width="50%" align="center" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 12px;">
-                          <p style="margin: 0; font-size: 12.5px; font-weight: 700; color: #0f172a;">Teléfono</p>
-                          <p style="margin: 3px 0 0 0; font-size: 12.5px;">
+                        <!-- COLUMNA IZQUIERDA: TELÉFONO ALINEADO A LA DERECHA, CON SEPARACIÓN HACIA LA LÍNEA -->
+                        <td width="50%" align="right" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 32px 6px 12px; text-align: right;">
+                          <p style="margin: 0; font-size: 13px; font-weight: 700; color: #0f172a;">Teléfono</p>
+                          <p style="margin: 3px 0 0 0; font-size: 13px;">
                             <a href="tel:+51993667182" style="color: #475569; text-decoration: none; font-weight: 600;">993667182</a>
                           </p>
                         </td>
-                        <td width="50%" align="center" style="vertical-align: middle; padding: 6px 12px;">
-                          <p style="margin: 0; font-size: 12.5px; font-weight: 700; color: #0f172a;">Email</p>
-                          <p style="margin: 3px 0 0 0; font-size: 12.5px;">
+                        <!-- COLUMNA DERECHA: EMAIL ALINEADO A LA IZQUIERDA, CON SEPARACIÓN HACIA LA LÍNEA -->
+                        <td width="50%" align="left" style="vertical-align: middle; padding: 6px 12px 6px 32px; text-align: left;">
+                          <p style="margin: 0; font-size: 13px; font-weight: 700; color: #0f172a;">Email</p>
+                          <p style="margin: 3px 0 0 0; font-size: 13px;">
                             <a href="mailto:ventas@servimafed.com" style="color: #475569; text-decoration: none; font-weight: 600;">ventas@servimafed.com</a>
                           </p>
                         </td>
