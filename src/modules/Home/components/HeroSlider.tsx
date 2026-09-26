@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const typeWords = [
@@ -11,10 +12,7 @@ const typeWords = [
 ];
 
 export default function HeroSlider() {
-  const [mountVideo, setMountVideo] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
   
   // Typewriter State
   const [text, setText] = useState('');
@@ -23,7 +21,6 @@ export default function HeroSlider() {
 
   useEffect(() => {
     setIsLoaded(true);
-    setMountVideo(true);
   }, []);
 
   // Lógica del Typewriter Effect - Difuminación en lugar de borrado
@@ -50,42 +47,23 @@ export default function HeroSlider() {
     return () => clearTimeout(timeout);
   }, [text, isFadingOut, wordIndex]);
 
-  useEffect(() => {
-    if (mountVideo && videoRef.current) {
-      const videoElement = videoRef.current;
-      const playVideo = async () => {
-        try {
-          videoElement.muted = true;
-          await videoElement.play();
-          setVideoReady(true);
-        } catch (error) {
-          console.warn("Autoplay bloqueado:", error);
-          setVideoReady(false);
-        }
-      };
-      playVideo();
-    }
-  }, [mountVideo]);
-
   return (
-    <div className="relative overflow-hidden min-h-[500px] md:min-h-[750px] bg-dark">
-      {/* Video de Fondo Global */}
-      {mountVideo && (
-        <video
-          ref={videoRef}
-          src="/videos/hero-machinery-new.mp4"
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out pointer-events-none ${
-            videoReady ? 'opacity-90 z-0' : 'opacity-0 z-0'
-          }`}
+    <div className="relative overflow-hidden min-h-[500px] md:min-h-[750px] bg-dark flex items-center">
+      {/* 1. Imagen de Fondo en Alta Definición */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/inicio/hero-motor-diesel.jpg"
+          alt="Sistema de inyección diésel y motor de maquinaria pesada Servimafed"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center scale-[1.01]"
         />
-      )}
+      </div>
 
-      {/* Degradado Suave (Permite ver el video claramente) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-transparent z-10 pointer-events-none"></div>
+      {/* 2. Degradado Técnico para Máxima Legibilidad y Contraste */}
+      <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/65 to-dark/45 z-10 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-dark/25 z-10 pointer-events-none"></div>
       
       {/* Contenido del Slide - Estructura original pero centrada */}
       <div className="absolute inset-0 w-full h-full flex items-center z-20">
