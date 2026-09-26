@@ -26,7 +26,7 @@ export default function Preloader() {
         fading ? 'opacity-0' : 'opacity-100'
       }`}
     >
-      <div className="relative w-20 h-20 md:w-24 md:h-24">
+      <div className="relative w-[100px] h-[100px] md:w-[120px] md:h-[120px]">
         {/* Usamos unoptimized={true} para que Next.js no congele la animación del GIF */}
         <Image 
           src="/images/loader-yellow.gif" 
