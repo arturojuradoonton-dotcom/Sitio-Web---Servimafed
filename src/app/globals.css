@@ -52,3 +52,12 @@ body {
   width: max-content;
 }
 
+/* Ocultar botón flotante de WhatsApp cuando el menú móvil está abierto */
+body.mobile-menu-open #whatsapp-floating-button {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transform: translateY(20px) scale(0.75) !important;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s !important;
+}
+

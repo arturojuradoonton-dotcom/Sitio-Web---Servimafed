@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Search, User, ChevronDown, ArrowRight, X } from 'lucide-react';
+import { Search, User, ChevronDown, ArrowRight, X, Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import { serviciosDropdown, repuestosDropdown } from '@/data/navigationData';
 
@@ -12,12 +12,48 @@ export default function NavBar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeDropdown, setActiveDropdown] = useState<'servicios' | 'repuestos' | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const searchOverlayRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const [navBottom, setNavBottom] = useState(72);
 
   const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(path));
+
+  // Function to calculate exact physical bottom edge of navbar on screen
+  const updateNavBottom = useCallback(() => {
+    if (navRef.current) {
+      const rect = navRef.current.getBoundingClientRect();
+      setNavBottom(Math.max(0, Math.round(rect.bottom)));
+    }
+  }, []);
+
+  // Close menus on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsUserMenuOpen(false);
+  }, [pathname]);
+
+  // Recalculate navbar bottom on resize and scroll
+  useEffect(() => {
+    updateNavBottom();
+    window.addEventListener('resize', updateNavBottom);
+    window.addEventListener('scroll', updateNavBottom, { passive: true });
+    return () => {
+      window.removeEventListener('resize', updateNavBottom);
+      window.removeEventListener('scroll', updateNavBottom);
+    };
+  }, [updateNavBottom]);
+
+  // When mobile menu state changes, update immediately
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      updateNavBottom();
+    }
+  }, [isMobileMenuOpen, updateNavBottom]);
 
   const closeSearch = useCallback(() => {
     setIsSearchOpen(false);
@@ -42,10 +78,13 @@ export default function NavBar() {
     }
   };
 
-  const closeMenu = () => setActiveDropdown(null);
+  const closeMenu = () => {
+    setActiveDropdown(null);
+    setIsMobileMenuOpen(false);
+  };
 
   return (
-    <nav className="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100 font-sans">
+    <nav ref={navRef} className="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100 font-sans">
       <div className="container mx-auto px-6 flex justify-between items-center relative">
         
         {/* Search Overlay */}
@@ -180,12 +219,12 @@ export default function NavBar() {
         </ul>
 
         {/* Search, User Login & Mobile Menu */}
-        <div className="flex items-center gap-6 py-4">
+        <div className="flex items-center gap-1 sm:gap-2 md:gap-6 py-4">
           <button onClick={() => setIsSearchOpen(true)} className="hidden md:flex items-center justify-center outline-none">
             <Search className="cursor-pointer text-gray-700 hover:text-primary transition-colors w-5 h-5" />
           </button>
           
-          {/* User Login Dropdown */}
+          {/* Desktop User Login Dropdown */}
           <div className="hidden md:flex relative group h-full items-center">
             <button className="flex items-center gap-2 text-gray-700 group-hover:text-primary transition-colors cursor-pointer outline-none py-4">
               <User className="w-5 h-5" strokeWidth={1.5} />
@@ -214,10 +253,84 @@ export default function NavBar() {
             </div>
           </div>
 
-          {/* Mobile Menu Component */}
-          <MobileMenu />
+          {/* Mobile User Login Trigger & Dropdown */}
+          <div className="relative md:hidden">
+            <button
+              onClick={() => {
+                setIsUserMenuOpen((prev) => !prev);
+                setIsMobileMenuOpen(false);
+              }}
+              className={`cursor-pointer w-10 h-10 flex items-center justify-center rounded-full transition-colors ${
+                isUserMenuOpen ? 'text-primary bg-primary/10' : 'text-dark hover:text-primary hover:bg-gray-100'
+              }`}
+              aria-label="Acceso a portales de usuario"
+            >
+              <User className="w-5 h-5" strokeWidth={1.75} />
+            </button>
+
+            {isUserMenuOpen && (
+              <>
+                <div
+                  className="fixed inset-0 z-[9992] bg-transparent"
+                  onClick={() => setIsUserMenuOpen(false)}
+                />
+                <div className="absolute top-full right-0 mt-2 w-52 bg-white shadow-[0_12px_36px_rgba(0,0,0,0.15)] border border-gray-100 rounded-lg p-2 z-[9993] animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="px-3 py-2 border-b border-gray-100 mb-1">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">
+                      Acceso a Portales
+                    </span>
+                  </div>
+                  <a
+                    href="https://portal.servimafed.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-gray-800 hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                  >
+                    <User className="w-4 h-4 text-primary shrink-0" strokeWidth={2} />
+                    <span>Portal Cliente</span>
+                  </a>
+                  <a
+                    href="https://app.servimafed.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-gray-800 hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                  >
+                    <div className="w-4 h-4 rounded bg-dark text-white flex items-center justify-center text-[9px] font-bold shrink-0">
+                      E
+                    </div>
+                    <span>Intranet (ERP)</span>
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Mobile Menu Hamburger / Close Toggle Trigger */}
+          <button
+            onClick={() => {
+              setIsMobileMenuOpen((prev) => !prev);
+              setIsUserMenuOpen(false);
+            }}
+            className="lg:hidden cursor-pointer w-10 h-10 flex items-center justify-center hover:text-primary transition-colors text-dark"
+            aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6 text-dark" />
+            ) : (
+              <Menu className="w-6 h-6 text-dark" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Full-width Mobile Menu Dropdown */}
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        topOffset={navBottom}
+      />
     </nav>
   );
 }

@@ -8,10 +8,23 @@ const WHATSAPP_MESSAGE = "Hola, necesito información sobre sus servicios de man
 export default function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 2500);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const checkMenu = () => {
+      setIsMenuOpen(document.body.classList.contains('mobile-menu-open'));
+    };
+
+    checkMenu();
+    const observer = new MutationObserver(checkMenu);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
   }, []);
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
@@ -19,8 +32,10 @@ export default function WhatsAppButton() {
   return (
     <div
       id="whatsapp-floating-button"
-      className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[90] transition-all duration-700 ease-out ${
-        isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-75'
+      className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[90] transition-all duration-300 ease-out ${
+        isVisible && !isMenuOpen
+          ? 'translate-y-0 opacity-100 scale-100 pointer-events-auto visible'
+          : 'translate-y-8 opacity-0 scale-75 pointer-events-none invisible'
       }`}
     >
       {/* Tooltip (Desktop only) */}

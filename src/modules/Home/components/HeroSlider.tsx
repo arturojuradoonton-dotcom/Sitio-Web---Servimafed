@@ -50,8 +50,8 @@ const slides: Slide[] = [
     id: 3,
     align: 'left',
     category: "Disponibilidad Operativa 24/7",
-    title: "Gestión y Control de",
-    highlight: "Flota",
+    title: "Gestión y Control",
+    highlight: "de Flota",
     description: "Planificación por horómetro, confiabilidad electromecánica y soporte técnico en campo para maximizar el rendimiento en obra y minería.",
     ctaText: "+ INFORMACIÓN",
     ctaLink: "/servicios/gestion-flota",
@@ -115,7 +115,7 @@ export default function HeroSlider() {
   }, [nextSlide, prevSlide]);
 
   return (
-    <div 
+    <div
       className="relative overflow-hidden min-h-[520px] md:min-h-[660px] lg:min-h-[720px] flex items-center bg-dark select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -126,9 +126,8 @@ export default function HeroSlider() {
         return (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
           >
             {/* Imagen de Fondo en Alta Definición (2400x1350 nativo) */}
             <Image
@@ -147,50 +146,45 @@ export default function HeroSlider() {
             {/* Contenido Alineado al Extremo de la Maquetación (Izquierda o Derecha) */}
             <div className="absolute inset-0 flex items-center z-20">
               <div className="container mx-auto px-6">
-                <div 
-                  className={`max-w-xl ${
-                    slide.align === 'right' 
-                      ? 'ml-auto text-right flex flex-col items-end' 
+                <div
+                  className={`max-w-xl ${slide.align === 'right'
+                      ? 'ml-auto text-right flex flex-col items-end'
                       : 'mr-auto text-left flex flex-col items-start'
-                  }`}
-                >
-                  
-                  {/* Categoría / Subtítulo */}
-                  <p 
-                    className={`text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4 transition-all duration-700 delay-100 ${
-                      isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                     }`}
+                >
+
+                  {/* Categoría / Subtítulo */}
+                  <p
+                    className={`text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4 transition-all duration-700 delay-100 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                      }`}
                   >
                     {slide.category}
                   </p>
 
                   {/* Título Principal */}
-                  <h1 
-                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6 transition-all duration-700 delay-200 ${
-                      isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                    }`}
+                  <h1
+                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6 transition-all duration-700 delay-200 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                      }`}
                   >
                     <span className="block font-light text-white">{slide.title}</span>
                     <span className="text-primary block font-black">{slide.highlight}</span>
                   </h1>
 
                   {/* Descripción */}
-                  <p 
-                    className={`text-sm sm:text-base md:text-lg font-light text-white/90 leading-relaxed mb-8 md:mb-10 transition-all duration-700 delay-300 ${
-                      isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                    }`}
+                  <p
+                    className={`text-sm sm:text-base md:text-lg font-light text-white/90 leading-relaxed mb-8 md:mb-10 transition-all duration-700 delay-300 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                      }`}
                   >
                     {slide.description}
                   </p>
 
                   {/* Botón de Acción */}
-                  <div 
-                    className={`transition-all duration-700 delay-400 ${
-                      isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                    }`}
+                  <div
+                    className={`transition-all duration-700 delay-400 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+                      }`}
                   >
-                    <Link 
-                      href={slide.ctaLink} 
+                    <Link
+                      href={slide.ctaLink}
                       className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold px-8 md:px-10 py-3 md:py-4 text-xs md:text-sm uppercase tracking-widest transition-all duration-300 inline-block shadow-md hover:shadow-lg cursor-pointer"
                     >
                       {slide.ctaText}
@@ -229,11 +223,10 @@ export default function HeroSlider() {
             key={i}
             onClick={() => goToSlide(i)}
             aria-label={`Ir al slide ${i + 1}`}
-            className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
-              current === i 
-                ? 'w-8 bg-primary shadow-[0_0_10px_rgba(252,179,38,0.6)]' 
+            className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${current === i
+                ? 'w-8 bg-primary shadow-[0_0_10px_rgba(252,179,38,0.6)]'
                 : 'w-2 bg-white/40 hover:bg-white/70'
-            }`}
+              }`}
           />
         ))}
       </div>

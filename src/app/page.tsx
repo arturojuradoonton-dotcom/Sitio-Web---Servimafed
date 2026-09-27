@@ -26,42 +26,42 @@ export default function Home() {
       desc: "Planes de mantenimiento por horómetro, control de disponibilidad mecánica y confiabilidad para maximizar el tiempo medio entre fallas y reducir los tiempos de reparación de su flota.",
       img: "/images/inicio/bento-gestion-flota.jpg.jpg",
       href: "/servicios/gestion-flota",
-      gridClass: "md:col-span-2 lg:col-span-2"
+      gridClass: "col-span-2 lg:col-span-2"
     },
     { 
       title: "Mantenimiento Preventivo", 
       desc: "Servicios programados por horómetro, análisis de fluidos SOS y reemplazo de filtros OEM.",
       img: "/images/inicio/bento-mantenimiento.jpg.jpg",
       href: "/servicios/mantenimiento-preventivo",
-      gridClass: "md:col-span-1 lg:col-span-1"
+      gridClass: "col-span-1 lg:col-span-1"
     },
     { 
       title: "Suministro de Repuestos", 
       desc: "Inventario en tiempo real de componentes, herramientas de desgaste, filtros y lubricantes para mantener su flota operativa.",
       img: "/images/inicio/bento-repuestos.jpg.jpg",
       href: "/repuestos",
-      gridClass: "md:col-span-1 lg:col-span-1"
+      gridClass: "col-span-1 lg:col-span-1"
     },
     { 
       title: "Evaluación y Diagnóstico", 
       desc: "Escaneo electrónico multimarca, interpretación de códigos de falla y diagnóstico termográfico en campo.",
       img: "/images/inicio/bento-evaluacion-diagnostico.jpg.jpg",
       href: "/servicios/evaluacion-diagnostico",
-      gridClass: "md:col-span-1 lg:col-span-1"
+      gridClass: "col-span-1 lg:col-span-1"
     },
     { 
       title: "Mecanizado y Soldadura", 
       desc: "Reforzamiento estructural pesado, recuperación de alojamientos (line boring) y fabricación bajo plano.",
       img: "/images/inicio/bento-mecanizado-soldadura.jpg.jpg",
       href: "/servicios/mecanizado-soldadura",
-      gridClass: "md:col-span-1 lg:col-span-1"
+      gridClass: "col-span-1 lg:col-span-1"
     },
     { 
       title: "Reparación de Componentes", 
       desc: "Overhaul integral de motores diésel de alta potencia, transmisiones powershift y bancos de válvulas bajo estrictos estándares OEM.",
       img: "/images/inicio/bento-reparacion-componente.jpg.jpg",
       href: "/servicios/reparacion-componentes",
-      gridClass: "md:col-span-2 lg:col-span-2"
+      gridClass: "col-span-2 lg:col-span-2"
     }
   ];
 
@@ -157,13 +157,13 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Grid Asimétrico (Bento Layout) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+          {/* Grid Asimétrico (Bento Layout Inteligente: 2 col en móvil, 4 en escritorio) */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
             {solucionesBento.map((solucion, i) => (
               <Link 
                 key={i} 
                 href={solucion.href} 
-                className={`group relative h-[380px] overflow-hidden bg-dark block ${solucion.gridClass}`}
+                className={`group relative h-[210px] sm:h-[250px] md:h-[300px] lg:h-[315px] overflow-hidden bg-dark block ${solucion.gridClass}`}
               >
                 {/* Imagen de Fondo */}
                 <Image 
@@ -174,21 +174,21 @@ export default function Home() {
                 />
                 
                 {/* Degradado para Legibilidad */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-dark/5 to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-dark/25 via-transparent to-transparent opacity-40 group-hover:opacity-70 transition-opacity duration-500"></div>
                 
-                {/* Banda Oscura Animada (Slider hacia arriba) */}
-                <div className="absolute bottom-0 left-0 right-0 bg-dark/60 backdrop-blur-md transform translate-y-[calc(100%-72px)] group-hover:translate-y-0 transition-all duration-500 ease-in-out z-10 border-t-2 border-transparent group-hover:border-primary group-hover:bg-dark/80">
+                {/* Banda Deslizante Ultra Translúcida (Cristal Fino) */}
+                <div className="absolute bottom-0 left-0 right-0 bg-black/15 backdrop-blur-[3px] transform translate-y-[calc(100%-52px)] md:translate-y-[calc(100%-66px)] group-hover:translate-y-0 transition-all duration-500 ease-in-out z-10 border-t border-white/20 group-hover:border-primary group-hover:bg-dark/70">
                   {/* Encabezado (Siempre Visible) */}
-                  <div className="flex justify-between items-center h-[72px] px-8">
-                     <h3 className="font-bold text-sm md:text-base tracking-wide text-white drop-shadow-sm">
+                  <div className="flex justify-between items-center h-[52px] md:h-[66px] px-3.5 sm:px-5 md:px-7">
+                     <h3 className="font-medium text-[11px] sm:text-xs md:text-sm tracking-wider uppercase text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] line-clamp-2 pr-1">
                         {solucion.title}
                      </h3>
-                     <Plus className="w-6 h-6 text-white group-hover:text-primary transition-all duration-500 transform group-hover:rotate-90 shrink-0 ml-4" />
+                     <Plus className="w-4 h-4 md:w-5 md:h-5 text-white/90 group-hover:text-primary transition-all duration-500 transform group-hover:rotate-90 shrink-0 ml-2" />
                   </div>
                   
                   {/* Descripción Expandible */}
-                  <div className="px-8 pb-8 pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
-                     <p className="text-sm font-light text-gray-300 leading-relaxed">
+                  <div className="px-3.5 sm:px-5 md:px-7 pb-4 md:pb-6 pt-1 md:pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
+                     <p className="text-xs md:text-sm font-light text-gray-200 leading-relaxed line-clamp-3 md:line-clamp-4">
                         {solucion.desc}
                      </p>
                   </div>
@@ -203,13 +203,13 @@ export default function Home() {
       <HomeNews />
 
       {/* 3. Indicadores de Confianza */}
-      <section className="bg-white py-20 border-y border-gray-100">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100 text-center">
+      <section className="bg-white py-10 sm:py-14 md:py-16 border-y border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-0 md:divide-x md:divide-gray-100 text-center">
             
             {/* Item 1 */}
-            <div className="p-4 flex flex-col items-center">
-              <div className="w-14 h-14 relative mb-5 opacity-90 hover:opacity-100 transition-opacity">
+            <div className="p-2 sm:p-4 flex flex-col items-center">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 relative mb-3 sm:mb-4 opacity-90 hover:opacity-100 transition-opacity">
                 <Image
                   src="/images/iconos/8.svg"
                   alt="Técnicos Certificados"
@@ -217,13 +217,13 @@ export default function Home() {
                   className="object-contain"
                 />
               </div>
-              <h4 className="text-3xl font-bold text-dark mb-1">+150</h4>
-              <p className="text-gray-500 font-light text-xs uppercase tracking-widest">Técnicos Certificados</p>
+              <h4 className="text-2xl sm:text-3xl font-bold text-dark mb-1">+150</h4>
+              <p className="text-gray-500 font-light text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest">Técnicos Certificados</p>
             </div>
             
             {/* Item 2 */}
-            <div className="p-4 flex flex-col items-center">
-              <div className="w-14 h-14 relative mb-5 opacity-90 hover:opacity-100 transition-opacity">
+            <div className="p-2 sm:p-4 flex flex-col items-center">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 relative mb-3 sm:mb-4 opacity-90 hover:opacity-100 transition-opacity">
                 <Image
                   src="/images/iconos/6.svg"
                   alt="Soporte en Campo"
@@ -231,13 +231,13 @@ export default function Home() {
                   className="object-contain"
                 />
               </div>
-              <h4 className="text-3xl font-bold text-dark mb-1">24/7</h4>
-              <p className="text-gray-500 font-light text-xs uppercase tracking-widest">Soporte en Campo</p>
+              <h4 className="text-2xl sm:text-3xl font-bold text-dark mb-1">24/7</h4>
+              <p className="text-gray-500 font-light text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest">Soporte en Campo</p>
             </div>
             
             {/* Item 3 */}
-            <div className="p-4 flex flex-col items-center">
-              <div className="w-14 h-14 relative mb-5 opacity-90 hover:opacity-100 transition-opacity">
+            <div className="p-2 sm:p-4 flex flex-col items-center">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 relative mb-3 sm:mb-4 opacity-90 hover:opacity-100 transition-opacity">
                 <Image
                   src="/images/iconos/5.svg"
                   alt="Equipos Atendidos"
@@ -245,13 +245,13 @@ export default function Home() {
                   className="object-contain"
                 />
               </div>
-              <h4 className="text-3xl font-bold text-dark mb-1">500+</h4>
-              <p className="text-gray-500 font-light text-xs uppercase tracking-widest">Equipos Atendidos</p>
+              <h4 className="text-2xl sm:text-3xl font-bold text-dark mb-1">500+</h4>
+              <p className="text-gray-500 font-light text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest">Equipos Atendidos</p>
             </div>
             
             {/* Item 4 */}
-            <div className="p-4 flex flex-col items-center">
-              <div className="w-14 h-14 relative mb-5 opacity-90 hover:opacity-100 transition-opacity">
+            <div className="p-2 sm:p-4 flex flex-col items-center">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 relative mb-3 sm:mb-4 opacity-90 hover:opacity-100 transition-opacity">
                 <Image
                   src="/images/iconos/4.svg"
                   alt="Estándares Globales"
@@ -259,8 +259,8 @@ export default function Home() {
                   className="object-contain"
                 />
               </div>
-              <h4 className="text-3xl font-bold text-dark mb-1">ISO</h4>
-              <p className="text-gray-500 font-light text-xs uppercase tracking-widest">Estándares Globales</p>
+              <h4 className="text-2xl sm:text-3xl font-bold text-dark mb-1">ISO</h4>
+              <p className="text-gray-500 font-light text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest">Estándares Globales</p>
             </div>
 
           </div>

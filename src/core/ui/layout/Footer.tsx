@@ -20,40 +20,45 @@ export default function Footer() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center justify-between py-4 text-dark gap-6">
             
-            {/* Enlaces de Cumplimiento */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 lg:gap-8 text-[11px] md:text-xs font-bold uppercase tracking-widest flex-1">
-              <Link href="/bolsa-trabajo" className="flex items-center gap-3 hover:opacity-70 transition-opacity">
-                <div className="relative w-7 h-7 shrink-0">
+            {/* Enlaces de Cumplimiento (2 columnas paralelas en móvil, fila completa en PC) */}
+            <div className="grid grid-cols-2 lg:flex lg:flex-row items-center gap-x-6 sm:gap-x-10 gap-y-4 lg:gap-8 text-[11px] md:text-xs font-bold uppercase tracking-wider w-full lg:w-auto max-w-sm sm:max-w-md lg:max-w-none mx-auto lg:mx-0 flex-1">
+              
+              {/* Columna 1 (Fila 1) */}
+              <Link href="/bolsa-trabajo" className="flex items-center gap-2.5 sm:gap-3 hover:opacity-75 transition-opacity">
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
                   <Image src="/images/iconos/bolsa de trabajo.svg" alt="Bolsa de Trabajo" fill className="object-contain" />
                 </div>
-                <span className="w-20 leading-tight">Bolsa de Trabajo</span>
+                <span className="leading-tight">Bolsa de Trabajo</span>
               </Link>
               
               <div className="hidden lg:block w-px h-8 bg-dark/20"></div>
 
-              <Link href="/comprobantes" className="flex items-center gap-3 hover:opacity-70 transition-opacity">
-                <div className="relative w-7 h-7 shrink-0">
+              {/* Columna 2 (Fila 1) */}
+              <Link href="/comprobantes" className="flex items-center gap-2.5 sm:gap-3 hover:opacity-75 transition-opacity">
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
                   <Image src="/images/iconos/comprobantes electronicos.svg" alt="Comprobantes Electrónicos" fill className="object-contain" />
                 </div>
-                <span className="w-28 leading-tight">Comprobantes Electrónicos</span>
+                <span className="leading-tight">Comprobantes Electrónicos</span>
               </Link>
 
               <div className="hidden lg:block w-px h-8 bg-dark/20"></div>
 
-              <Link href="/politicas" className="flex items-center gap-3 hover:opacity-70 transition-opacity">
-                <div className="relative w-7 h-7 shrink-0">
+              {/* Columna 1 (Fila 2) */}
+              <Link href="/politicas" className="flex items-center gap-2.5 sm:gap-3 hover:opacity-75 transition-opacity">
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
                   <Image src="/images/iconos/politica de privacidad.svg" alt="Política de Privacidad" fill className="object-contain" />
                 </div>
-                <span className="w-24 leading-tight">Política de Privacidad</span>
+                <span className="leading-tight">Política de Privacidad</span>
               </Link>
 
               <div className="hidden lg:block w-px h-8 bg-dark/20"></div>
 
-              <Link href="/libro-reclamaciones" className="flex items-center gap-3 hover:opacity-70 transition-opacity">
-                <div className="relative w-7 h-7 shrink-0">
+              {/* Columna 2 (Fila 2) */}
+              <Link href="/libro-reclamaciones" className="flex items-center gap-2.5 sm:gap-3 hover:opacity-75 transition-opacity">
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
                   <Image src="/images/iconos/libro de reclamaciones.svg" alt="Libro de Reclamaciones" fill className="object-contain" />
                 </div>
-                <span className="w-28 leading-tight">Libro de Reclamaciones</span>
+                <span className="leading-tight">Libro de Reclamaciones</span>
               </Link>
             </div>
 

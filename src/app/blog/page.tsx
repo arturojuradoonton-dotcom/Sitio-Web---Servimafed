@@ -116,22 +116,23 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <section className="relative py-24 bg-dark flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/fondos/hero-blog.jpg"
+            src="/images/Banners Cabeceras/hero-blog.jpg"
             alt="Blog y Noticias"
             fill
-            className="object-cover opacity-20 grayscale"
+            className="object-cover opacity-65"
             priority
           />
+          <div className="absolute inset-0 bg-dark/40" />
         </div>
         <div className="relative z-10 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight text-white drop-shadow-md">
             Blog y Noticias
           </h1>
-          <div className="flex items-center justify-center gap-3 font-light text-sm text-gray-400 uppercase tracking-widest">
+          <div className="flex items-center justify-center gap-3 font-light text-sm text-gray-200 uppercase tracking-widest drop-shadow-sm">
             <Link href="/" className="hover:text-primary transition-colors">
               Inicio
             </Link>
-            <span className="text-gray-600">/</span>
+            <span className="text-gray-400">/</span>
             <span className="text-primary">Blog</span>
           </div>
         </div>
