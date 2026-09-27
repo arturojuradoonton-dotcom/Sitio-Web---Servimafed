@@ -1,13 +1,13 @@
 "use client";
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Search, ArrowRight, FileQuestion } from 'lucide-react';
 import { serviciosData } from '@/data/serviciosData';
 import { repuestosData } from '@/data/repuestosData';
 import { blogPosts } from '@/data/blogData';
-import { Suspense } from 'react';
 
 interface SearchResult {
   title: string;
@@ -116,8 +116,27 @@ function buildSearchIndex(): SearchResult[] {
 }
 
 function SearchResults() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') ?? '';
+  const [prevQuery, setPrevQuery] = useState(query);
+  const [inputValue, setInputValue] = useState(query);
+
+  if (query !== prevQuery) {
+    setPrevQuery(query);
+    setInputValue(query);
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const trimmed = inputValue.trim();
+    if (trimmed) {
+      router.push(`/buscar?q=${encodeURIComponent(trimmed)}`);
+    } else {
+      router.push('/buscar');
+    }
+  };
+
   const searchIndex = buildSearchIndex();
 
   const results = query.trim().length > 0
@@ -143,12 +162,13 @@ function SearchResults() {
     <>
       {/* Search Form */}
       <div className="max-w-2xl mx-auto mb-16">
-        <form className="relative" action="/buscar" method="GET">
+        <form className="relative" onSubmit={handleSubmit}>
           <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
             name="q"
             type="text"
-            defaultValue={query}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
             placeholder="Buscar servicios, repuestos, blog, componentes..."
             className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-base pl-14 pr-6 py-5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-light rounded-sm"
             autoFocus

@@ -80,6 +80,7 @@ export function ContactForm() {
           phone: '',
           email: '',
           requirement: '',
+          website: '',
         });
       } else {
         setErrorMessage(result.error || 'Ocurrió un error al enviar la solicitud.');
@@ -118,7 +119,33 @@ export function ContactForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Honeypot anti-spam */}
+        <div
+          aria-hidden="true"
+          style={{
+            display: 'none',
+            opacity: 0,
+            position: 'absolute',
+            top: '-9999px',
+            left: '-9999px',
+            height: 0,
+            width: 0,
+            zIndex: -1,
+          }}
+        >
+          <label htmlFor="hp_contact_website">No completar este campo</label>
+          <input
+            id="hp_contact_website"
+            type="text"
+            name="website"
+            value={formData.website || ''}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">
                   Razón Social / Nombre <span className="text-red-500">*</span>

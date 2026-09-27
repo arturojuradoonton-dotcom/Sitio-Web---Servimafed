@@ -119,6 +119,30 @@ export default function BrochureModal({ isOpen, onClose, onSuccess }: BrochureMo
 
         {/* Form */}
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 text-left">
+          {/* Honeypot anti-spam */}
+          <div
+            aria-hidden="true"
+            style={{
+              display: 'none',
+              opacity: 0,
+              position: 'absolute',
+              top: '-9999px',
+              left: '-9999px',
+              height: 0,
+              width: 0,
+              zIndex: -1,
+            }}
+          >
+            <label htmlFor="hp_brochure_website">No completar este campo</label>
+            <input
+              id="hp_brochure_website"
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <div>
             <label className="block text-gray-700 text-[10px] font-bold uppercase tracking-widest mb-1">
               Nombre Completo <span className="text-red-500">*</span>

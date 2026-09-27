@@ -13,10 +13,15 @@ interface BrandSliderProps {
 const defaultLogoNumbers = Array.from({ length: 24 }, (_, i) => i + 1);
 
 export default function BrandSlider({
-  title = "Especialistas Multimarca en Equipos de Alto Rendimiento",
+  title = "Marcas Atendidas",
   logoNumbers = defaultLogoNumbers
 }: BrandSliderProps) {
   
+  const words = title.trim().split(/\s+/);
+  const splitIndex = words.length > 2 ? Math.ceil(words.length / 2) : 1;
+  const firstPart = words.slice(0, splitIndex).join(" ");
+  const lastPart = words.slice(splitIndex).join(" ");
+
   const brands = logoNumbers.map((num) => ({
     name: `Marca Especializada ${num}`,
     src: `/images/Web - Marcas/${num}.svg`
@@ -37,10 +42,10 @@ export default function BrandSlider({
       <div className="container mx-auto px-6 mb-12">
         <h2 className="text-3xl md:text-4xl font-light text-dark mb-4 uppercase tracking-tight relative pb-4 md:pb-0">
           <span className="relative inline-block md:pb-2">
-            Marcas
+            {firstPart}
             <span className="hidden md:block absolute bottom-0 left-0 w-[60%] h-[4px] bg-primary"></span>
           </span>{" "}
-          <span className="font-bold text-dark">Atendidas</span>
+          {lastPart && <span className="font-bold text-dark">{lastPart}</span>}
           <span className="block md:hidden absolute bottom-0 left-0 w-16 h-[4px] bg-primary"></span>
         </h2>
         <p className="text-gray-500 font-light text-sm md:text-base mt-2">
@@ -61,6 +66,7 @@ export default function BrandSlider({
                     src={brand.src} 
                     alt={brand.name} 
                     fill
+                    unoptimized
                     loading="lazy"
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                     className="object-contain"

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Search, ChevronRight, Calendar } from "lucide-react";
 import { blogPosts, blogCategories } from "@/data/blogData";
 import type { BlogPost } from "@/data/blogData";
@@ -13,6 +14,7 @@ interface BlogSidebarProps {
 }
 
 export default function BlogSidebar({ relatedPosts, archiveMonths }: BlogSidebarProps) {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   
   // Estados para el año y mes del calendario (Inicia en Mayo 2026 por las fechas de los artículos)
@@ -81,7 +83,7 @@ export default function BlogSidebar({ relatedPosts, archiveMonths }: BlogSidebar
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      window.location.href = `/blog?q=${encodeURIComponent(searchTerm.trim())}`;
+      router.push(`/blog?q=${encodeURIComponent(searchTerm.trim())}`);
     }
   };
 

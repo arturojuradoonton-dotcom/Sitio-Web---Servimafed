@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "update-bg-images.js",
+    "update-blog-images.js",
   ]),
 ]);
 

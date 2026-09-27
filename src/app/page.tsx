@@ -83,6 +83,7 @@ export default function Home() {
                     src="/images/iconos/3.svg"
                     alt="Calidad"
                     fill
+                    unoptimized
                     className="object-contain"
                   />
                 </div>
@@ -103,6 +104,7 @@ export default function Home() {
                     src="/images/iconos/1.svg"
                     alt="Confiabilidad"
                     fill
+                    unoptimized
                     className="object-contain"
                   />
                 </div>
@@ -123,6 +125,7 @@ export default function Home() {
                     src="/images/iconos/2.svg"
                     alt="Puntualidad"
                     fill
+                    unoptimized
                     className="object-contain"
                   />
                 </div>
@@ -214,6 +217,7 @@ export default function Home() {
                   src="/images/iconos/8.svg"
                   alt="Técnicos Certificados"
                   fill
+                  unoptimized
                   className="object-contain"
                 />
               </div>
@@ -228,6 +232,7 @@ export default function Home() {
                   src="/images/iconos/6.svg"
                   alt="Soporte en Campo"
                   fill
+                  unoptimized
                   className="object-contain"
                 />
               </div>
@@ -242,6 +247,7 @@ export default function Home() {
                   src="/images/iconos/5.svg"
                   alt="Equipos Atendidos"
                   fill
+                  unoptimized
                   className="object-contain"
                 />
               </div>
@@ -256,6 +262,7 @@ export default function Home() {
                   src="/images/iconos/4.svg"
                   alt="Estándares Globales"
                   fill
+                  unoptimized
                   className="object-contain"
                 />
               </div>

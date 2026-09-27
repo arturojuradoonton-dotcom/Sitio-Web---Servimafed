@@ -1,8 +1,7 @@
 "use server";
 
 import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { escapeHtml, isWithinLength, isHoneypotTriggered } from "@/core/lib/security";
 
 export interface ClaimRequestData {
   tipo: "reclamo" | "queja";
@@ -17,6 +16,18 @@ export interface ClaimRequestData {
 
 export async function sendClaimRequest(formData: FormData) {
   try {
+    const website = formData.get("website") as string;
+
+    // Honeypot anti-spam
+    if (isHoneypotTriggered(website)) {
+      return {
+        success: true,
+        claimCode: `LR-${new Date().getFullYear()}-0000`,
+        tipo: "RECLAMO",
+        correo: "registro@servimafed.com",
+      };
+    }
+
     const tipo = (formData.get("tipo") as string) || "reclamo";
     const nombre = (formData.get("nombre") as string)?.trim();
     const documento = (formData.get("documento") as string)?.trim();
@@ -31,6 +42,22 @@ export async function sendClaimRequest(formData: FormData) {
       return {
         success: false,
         error: "Por favor complete todos los campos obligatorios del formulario.",
+      };
+    }
+
+    // Validación de límites de longitud server-side
+    if (
+      !isWithinLength(nombre, 150) ||
+      !isWithinLength(documento, 30) ||
+      !isWithinLength(telefono, 30) ||
+      !isWithinLength(correo, 254) ||
+      !isWithinLength(direccion, 250) ||
+      !isWithinLength(detalle, 4000) ||
+      !isWithinLength(pedido, 2000)
+    ) {
+      return {
+        success: false,
+        error: "Uno o más campos exceden la longitud máxima permitida.",
       };
     }
 
@@ -54,6 +81,35 @@ export async function sendClaimRequest(formData: FormData) {
 
     const tipoLabel = tipo === "queja" ? "QUEJA" : "RECLAMO";
     const companyEmail = process.env.RECLAMOS_EMAIL || "reclamos@servimafed.com";
+
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      if (process.env.NODE_ENV === "development") {
+        console.warn("RESEND_API_KEY no configurada. Simulando registro de reclamación en desarrollo.");
+        return {
+          success: true,
+          claimCode,
+          tipo: tipoLabel,
+          correo,
+        };
+      }
+      return {
+        success: false,
+        error: "El servicio no está disponible temporalmente. Por favor intente más tarde.",
+      };
+    }
+
+    const resend = new Resend(apiKey);
+
+    // Sanitización y escape HTML de datos de usuario para el correo
+    const safeNombre = escapeHtml(nombre);
+    const safeDocumento = escapeHtml(documento);
+    const safeTelefono = escapeHtml(telefono);
+    const safeCorreo = escapeHtml(correo);
+    const safeDireccion = escapeHtml(direccion);
+    const safeDetalle = escapeHtml(detalle);
+    const safePedido = escapeHtml(pedido);
+    const cleanSubjectNombre = nombre.replace(/[\r\n]+/g, " ").trim().slice(0, 80);
 
     // 1. Plantilla para la Empresa (SERVIMAFED)
     const emailToCompanyHtml = `
@@ -83,25 +139,25 @@ export async function sendClaimRequest(formData: FormData) {
           <table style="width: 100%; font-size: 13px; line-height: 1.6; margin-bottom: 20px;">
             <tr><td style="width: 35%; color: #64748b;"><strong>Tipo de Solicitud:</strong></td><td><strong style="color: #d97706;">${tipoLabel}</strong></td></tr>
             <tr><td style="color: #64748b;"><strong>Fecha y Hora:</strong></td><td>${fechaHora}</td></tr>
-            <tr><td style="color: #64748b;"><strong>Nombre / Razón Social:</strong></td><td>${nombre}</td></tr>
-            <tr><td style="color: #64748b;"><strong>DNI / RUC:</strong></td><td>${documento}</td></tr>
-            <tr><td style="color: #64748b;"><strong>Teléfono:</strong></td><td>${telefono}</td></tr>
-            <tr><td style="color: #64748b;"><strong>Correo Electrónico:</strong></td><td><a href="mailto:${correo}" style="color: #1d4ed8;">${correo}</a></td></tr>
-            <tr><td style="color: #64748b;"><strong>Dirección:</strong></td><td>${direccion}</td></tr>
+            <tr><td style="color: #64748b;"><strong>Nombre / Razón Social:</strong></td><td>${safeNombre}</td></tr>
+            <tr><td style="color: #64748b;"><strong>DNI / RUC:</strong></td><td>${safeDocumento}</td></tr>
+            <tr><td style="color: #64748b;"><strong>Teléfono:</strong></td><td>${safeTelefono}</td></tr>
+            <tr><td style="color: #64748b;"><strong>Correo Electrónico:</strong></td><td><a href="mailto:${safeCorreo}" style="color: #1d4ed8;">${safeCorreo}</a></td></tr>
+            <tr><td style="color: #64748b;"><strong>Dirección:</strong></td><td>${safeDireccion}</td></tr>
           </table>
 
           <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; font-size: 14px; text-transform: uppercase; color: #0B0F19;">
             2. Detalle de la Reclamación (${tipoLabel})
           </h3>
           <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; margin-bottom: 20px;">
-            ${detalle}
+            ${safeDetalle}
           </div>
 
           <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; font-size: 14px; text-transform: uppercase; color: #0B0F19;">
             3. Pedido Concreto del Consumidor
           </h3>
           <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; font-size: 13px; line-height: 1.6; white-space: pre-wrap;">
-            ${pedido}
+            ${safePedido}
           </div>
         </div>
 
@@ -125,7 +181,7 @@ export async function sendClaimRequest(formData: FormData) {
 
         <div style="padding: 24px; background-color: #ffffff;">
           <p style="font-size: 14px; line-height: 1.5; margin-top: 0;">
-            Estimado/a <strong>${nombre}</strong>:
+            Estimado/a <strong>${safeNombre}</strong>:
           </p>
           <p style="font-size: 13px; line-height: 1.6; color: #475569;">
             Le confirmamos que hemos recibido su <strong>${tipoLabel}</strong> a través de nuestro Libro de Reclamaciones Virtual. A continuación, le hacemos entrega de su constancia oficial:
@@ -143,14 +199,14 @@ export async function sendClaimRequest(formData: FormData) {
             Detalle del ${tipoLabel} Registrado:
           </h3>
           <p style="font-size: 13px; line-height: 1.6; color: #334155; background-color: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; white-space: pre-wrap;">
-            ${detalle}
+            ${safeDetalle}
           </p>
 
           <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; font-size: 13px; text-transform: uppercase; color: #0B0F19;">
             Pedido del Consumidor:
           </h3>
           <p style="font-size: 13px; line-height: 1.6; color: #334155; background-color: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; white-space: pre-wrap;">
-            ${pedido}
+            ${safePedido}
           </p>
 
           <div style="background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 12px 16px; margin-top: 24px;">
@@ -174,7 +230,7 @@ export async function sendClaimRequest(formData: FormData) {
       from: "Libro de Reclamaciones <web@servimafed.com>",
       to: [companyEmail],
       replyTo: correo,
-      subject: `🚨 [LIBRO DE RECLAMACIONES] ${tipoLabel} N° ${claimCode} - ${nombre}`,
+      subject: `🚨 [LIBRO DE RECLAMACIONES] ${tipoLabel} N° ${claimCode} - ${cleanSubjectNombre}`,
       html: emailToCompanyHtml,
     });
 

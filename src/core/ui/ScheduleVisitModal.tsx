@@ -35,6 +35,7 @@ export default function ScheduleVisitModal() {
   const [preferredTime, setPreferredTime] = useState('');
   const [file, setFile] = useState<File | null>(null);
   const [comments, setComments] = useState('');
+  const [website, setWebsite] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Reset form states on close
@@ -51,6 +52,7 @@ export default function ScheduleVisitModal() {
         setPreferredTime('');
         setFile(null);
         setComments('');
+        setWebsite('');
         setErrors({});
         setIsSuccess(false);
         setSubmitError(null);
@@ -106,6 +108,7 @@ export default function ScheduleVisitModal() {
       formData.append('preferredDate', preferredDate);
       formData.append('preferredTime', preferredTime);
       formData.append('comments', comments);
+      formData.append('website', website);
       if (file) {
         formData.append('file', file);
       }
@@ -168,6 +171,32 @@ export default function ScheduleVisitModal() {
         {/* Content Body */}
         <div className="p-6 overflow-y-auto flex-1">
           <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot anti-spam */}
+              <div
+                aria-hidden="true"
+                style={{
+                  display: 'none',
+                  opacity: 0,
+                  position: 'absolute',
+                  top: '-9999px',
+                  left: '-9999px',
+                  height: 0,
+                  width: 0,
+                  zIndex: -1,
+                }}
+              >
+                <label htmlFor="hp_visit_website">No completar este campo</label>
+                <input
+                  id="hp_visit_website"
+                  type="text"
+                  name="website"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <p className="text-xs text-gray-500 font-light leading-relaxed mb-2">
                 Complete el formulario a continuación para programar una inspección o mantenimiento de sus equipos.
               </p>

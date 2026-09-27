@@ -8,14 +8,34 @@ import { FormSuccessModal } from "@/core/ui/FormSuccessModal";
 export default function BolsaTrabajoForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [fileError, setFileError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.size > 5 * 1024 * 1024) {
+      setFileError("El archivo seleccionado excede el tamaño máximo permitido de 5 MB. Por favor adjunte un documento más ligero.");
+    } else {
+      setFileError("");
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("loading");
-    setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
+    const cvFile = formData.get("cv") as File | null;
+    if (cvFile && cvFile.size > 5 * 1024 * 1024) {
+      setStatus("error");
+      setErrorMsg("El currículum vitae supera el límite máximo de 5 MB. Por favor seleccione un archivo más ligero.");
+      setFileError("El archivo excede el límite máximo de 5 MB.");
+      return;
+    }
+
+    setStatus("loading");
+    setErrorMsg("");
+    setFileError("");
+
     const result = await sendJobApplication(formData);
 
     if (result.success) {
@@ -29,6 +49,30 @@ export default function BolsaTrabajoForm() {
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+      {/* Honeypot anti-spam */}
+      <div
+        aria-hidden="true"
+        style={{
+          display: 'none',
+          opacity: 0,
+          position: 'absolute',
+          top: '-9999px',
+          left: '-9999px',
+          height: 0,
+          width: 0,
+          zIndex: -1,
+        }}
+      >
+        <label htmlFor="hp_job_website">No completar este campo</label>
+        <input
+          id="hp_job_website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       {status === "error" && (
         <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6 flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
@@ -68,8 +112,20 @@ export default function BolsaTrabajoForm() {
         <textarea name="mensaje" rows={4} className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm resize-none" placeholder="Cuéntenos brevemente su experiencia profesional..." />
       </div>
       <div>
-        <label className="block font-medium text-gray-700 mb-2 text-xs uppercase tracking-widest">Adjuntar CV (PDF)</label>
-        <input name="cv" type="file" accept=".pdf,.doc,.docx" className="w-full bg-gray-50 border border-gray-200 px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm file:mr-4 file:py-1 file:px-4 file:border-0 file:text-xs file:font-bold file:bg-primary file:text-dark file:uppercase file:tracking-widest file:cursor-pointer" />
+        <div className="flex justify-between items-center mb-2">
+          <label className="block font-medium text-gray-700 text-xs uppercase tracking-widest">Adjuntar CV (PDF, DOC, DOCX)</label>
+          <span className="text-[11px] text-gray-400 font-light">Máx. 5 MB</span>
+        </div>
+        <input 
+          name="cv" 
+          type="file" 
+          accept=".pdf,.doc,.docx" 
+          onChange={handleFileChange}
+          className={`w-full bg-gray-50 border ${fileError ? 'border-red-500' : 'border-gray-200'} px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-light text-sm file:mr-4 file:py-1 file:px-4 file:border-0 file:text-xs file:font-bold file:bg-primary file:text-dark file:uppercase file:tracking-widest file:cursor-pointer`} 
+        />
+        {fileError && (
+          <p className="text-red-500 text-xs mt-1.5 font-light">{fileError}</p>
+        )}
       </div>
 
       <button 

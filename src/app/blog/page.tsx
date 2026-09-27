@@ -11,6 +11,16 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Artículos técnicos, noticias y actualizaciones sobre mantenimiento de maquinaria pesada, componentes OEM, soldadura estructural y tecnología industrial.",
+  alternates: {
+    canonical: "https://www.servimafed.com/blog",
+  },
+  openGraph: {
+    title: "Blog | Servimafed",
+    description:
+      "Artículos técnicos, noticias y actualizaciones sobre mantenimiento de maquinaria pesada, componentes OEM, soldadura estructural y tecnología industrial.",
+    url: "https://www.servimafed.com/blog",
+    type: "website",
+  },
 };
 
 interface BlogPageProps {

@@ -32,6 +32,7 @@ export default function GlobalCTA() {
           alt="Cobertura Nacional" 
           width={800}
           height={800}
+          unoptimized
           className="object-contain w-[120%] lg:w-[60%] h-full mix-blend-multiply"
         />
       </div>

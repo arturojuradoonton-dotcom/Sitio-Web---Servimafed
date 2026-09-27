@@ -25,9 +25,34 @@ export async function generateMetadata({
   const resolvedParams = await params;
   const post = getBlogPostBySlug(resolvedParams.slug);
   if (!post) return { title: "Artículo no encontrado" };
+
+  const url = `https://www.servimafed.com/blog/${post.slug}`;
+  const ogImages = post.img
+    ? [
+        {
+          url: post.img,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ]
+    : undefined;
+
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${post.title} | Servimafed`,
+      description: post.excerpt,
+      url,
+      type: "article",
+      publishedTime: post.dateISO,
+      authors: [post.author || "Servimafed"],
+      images: ogImages,
+    },
   };
 }
 

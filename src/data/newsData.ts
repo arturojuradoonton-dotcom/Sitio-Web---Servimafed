@@ -1,4 +1,4 @@
-import { blogPosts } from "./blogData";
+import { blogPosts, type BlogPost } from "./blogData";
 
 export interface NewsPost {
   slug: string;
@@ -10,7 +10,7 @@ export interface NewsPost {
 }
 
 // Extracted from blog data for the News component
-export const newsPosts: NewsPost[] = blogPosts.map((post: any) => ({
+export const newsPosts: NewsPost[] = blogPosts.map((post: BlogPost): NewsPost => ({
   slug: post.slug,
   title: post.title,
   desc: post.excerpt,

@@ -1,11 +1,23 @@
 "use server";
 
 import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { escapeHtml, isWithinLength, isHoneypotTriggered } from "@/core/lib/security";
 
 export async function sendBrochureLead(formData: FormData) {
   try {
+    const website = formData.get("website") as string;
+
+    // Honeypot anti-spam: si un bot completa el campo, simular respuesta pero no llamar a Resend
+    if (isHoneypotTriggered(website)) {
+      return {
+        success: true,
+        downloadUrl: "/documento/brochure-servimafed.pdf",
+        nombre: "Visitante",
+        empresa: "Empresa",
+        correo: "correo@servimafed.com",
+      };
+    }
+
     const nombre = (formData.get("nombre") as string)?.trim();
     const empresa = (formData.get("empresa") as string)?.trim();
     const correo = (formData.get("correo") as string)?.trim();
@@ -18,6 +30,19 @@ export async function sendBrochureLead(formData: FormData) {
       };
     }
 
+    // Validación de límites de longitud server-side
+    if (
+      !isWithinLength(nombre, 150) ||
+      !isWithinLength(empresa, 200) ||
+      !isWithinLength(correo, 254) ||
+      !isWithinLength(telefono, 30)
+    ) {
+      return {
+        success: false,
+        error: "Uno o más campos exceden la longitud máxima permitida.",
+      };
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(correo)) {
       return {
@@ -26,6 +51,26 @@ export async function sendBrochureLead(formData: FormData) {
       };
     }
 
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      if (process.env.NODE_ENV === "development") {
+        console.warn("RESEND_API_KEY no configurada. Simulando entrega de brochure en desarrollo.");
+        return {
+          success: true,
+          downloadUrl: "/documento/brochure-servimafed.pdf",
+          nombre,
+          empresa,
+          correo,
+        };
+      }
+      return {
+        success: false,
+        error: "El servicio no está disponible temporalmente. Por favor intente más tarde.",
+      };
+    }
+
+    const resend = new Resend(apiKey);
+
     const fechaHora = new Date().toLocaleString("es-PE", {
       timeZone: "America/Lima",
       dateStyle: "long",
@@ -33,6 +78,14 @@ export async function sendBrochureLead(formData: FormData) {
     });
 
     const companyEmail = process.env.RECLAMOS_EMAIL ? "ventas@servimafed.com" : "ventas@servimafed.com";
+
+    // Sanitización y escape HTML de variables de usuario
+    const safeNombre = escapeHtml(nombre);
+    const safeEmpresa = escapeHtml(empresa);
+    const safeCorreo = escapeHtml(correo);
+    const safeTelefono = escapeHtml(telefono);
+    const cleanSubjectNombre = nombre.replace(/[\r\n]+/g, " ").trim().slice(0, 80);
+    const cleanSubjectEmpresa = empresa.replace(/[\r\n]+/g, " ").trim().slice(0, 80);
 
     // 1. Notificación al equipo comercial de SERVIMAFED
     const emailToCompanyHtml = `
@@ -49,10 +102,10 @@ export async function sendBrochureLead(formData: FormData) {
         <div style="padding: 24px; background-color: #ffffff;">
           <table style="width: 100%; font-size: 13px; line-height: 1.6; margin-bottom: 20px;">
             <tr><td style="width: 35%; color: #64748b;"><strong>Fecha y Hora:</strong></td><td>${fechaHora}</td></tr>
-            <tr><td style="color: #64748b;"><strong>Nombre Completo:</strong></td><td><strong>${nombre}</strong></td></tr>
-            <tr><td style="color: #64748b;"><strong>Empresa / Razón Social:</strong></td><td><strong>${empresa}</strong></td></tr>
-            <tr><td style="color: #64748b;"><strong>Correo Corporativo:</strong></td><td><a href="mailto:${correo}" style="color: #1d4ed8;">${correo}</a></td></tr>
-            <tr><td style="color: #64748b;"><strong>Teléfono:</strong></td><td>${telefono}</td></tr>
+            <tr><td style="color: #64748b;"><strong>Nombre Completo:</strong></td><td><strong>${safeNombre}</strong></td></tr>
+            <tr><td style="color: #64748b;"><strong>Empresa / Razón Social:</strong></td><td><strong>${safeEmpresa}</strong></td></tr>
+            <tr><td style="color: #64748b;"><strong>Correo Corporativo:</strong></td><td><a href="mailto:${safeCorreo}" style="color: #1d4ed8;">${safeCorreo}</a></td></tr>
+            <tr><td style="color: #64748b;"><strong>Teléfono:</strong></td><td>${safeTelefono}</td></tr>
           </table>
 
           <div style="background-color: #f8fafc; border-left: 4px solid #FCB326; padding: 12px 16px; margin-top: 10px; font-size: 12px; color: #334155;">
@@ -132,7 +185,7 @@ export async function sendBrochureLead(formData: FormData) {
                     
                     <!-- SALUDO PERSONALIZADO: Hola [Nombre] de la empresa [Empresa], -->
                     <h1 style="margin: 0 0 14px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
-                      ${empresa ? `Hola ${nombre} de la empresa ${empresa},` : `Hola ${nombre},`}
+                      ${safeEmpresa ? `Hola ${safeNombre} de la empresa ${safeEmpresa},` : `Hola ${safeNombre},`}
                     </h1>
                     
                     <p style="margin: 0 0 24px 0; font-size: 13.5px; line-height: 1.65; color: #475569;">
@@ -400,21 +453,37 @@ export async function sendBrochureLead(formData: FormData) {
     `;
 
     // Envío a ventas
-    await resend.emails.send({
+    const { error: companyError } = await resend.emails.send({
       from: "Web Servimafed <web@servimafed.com>",
       to: [companyEmail],
       replyTo: correo,
-      subject: `💼 [PROSPECTO BROCHURE] ${nombre} - ${empresa}`,
+      subject: `💼 [PROSPECTO BROCHURE] ${cleanSubjectNombre} - ${cleanSubjectEmpresa}`,
       html: emailToCompanyHtml,
     });
 
+    if (companyError) {
+      console.error("Error al notificar al equipo comercial:", companyError);
+      return {
+        success: false,
+        error: "No se pudo procesar la solicitud en este momento. Por favor intente nuevamente.",
+      };
+    }
+
     // Envío de cortesía al prospecto
-    await resend.emails.send({
+    const { error: customerError } = await resend.emails.send({
       from: "SERVIMAFED <web@servimafed.com>",
       to: [correo],
       subject: "¡Tu Brochure Corporativo está listo! - SERVIMAFED S.A.C.",
       html: emailToCustomerHtml,
     });
+
+    if (customerError) {
+      console.error("Error al enviar brochure al prospecto:", customerError);
+      return {
+        success: false,
+        error: "No se pudo procesar la entrega del brochure en este momento. Por favor intente nuevamente.",
+      };
+    }
 
     return {
       success: true,

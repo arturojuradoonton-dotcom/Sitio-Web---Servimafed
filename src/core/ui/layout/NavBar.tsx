@@ -14,11 +14,13 @@ export default function NavBar() {
   const [activeDropdown, setActiveDropdown] = useState<'servicios' | 'repuestos' | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isDesktopUserMenuOpen, setIsDesktopUserMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const searchOverlayRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const desktopUserMenuRef = useRef<HTMLDivElement>(null);
   const [navBottom, setNavBottom] = useState(72);
 
   const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(path));
@@ -31,11 +33,14 @@ export default function NavBar() {
     }
   }, []);
 
-  // Close menus on route change
-  useEffect(() => {
+  // Close menus on route change (adjusted during render to avoid cascading renders in React 19)
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setIsMobileMenuOpen(false);
     setIsUserMenuOpen(false);
-  }, [pathname]);
+    setIsDesktopUserMenuOpen(false);
+  }
 
   // Recalculate navbar bottom on resize and scroll
   useEffect(() => {
@@ -78,9 +83,24 @@ export default function NavBar() {
     }
   };
 
+  // Close desktop user menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        desktopUserMenuRef.current &&
+        !desktopUserMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsDesktopUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const closeMenu = () => {
     setActiveDropdown(null);
     setIsMobileMenuOpen(false);
+    setIsDesktopUserMenuOpen(false);
   };
 
   return (
@@ -225,19 +245,36 @@ export default function NavBar() {
           </button>
           
           {/* Desktop User Login Dropdown */}
-          <div className="hidden md:flex relative group h-full items-center">
-            <button className="flex items-center gap-2 text-gray-700 group-hover:text-primary transition-colors cursor-pointer outline-none py-4">
+          <div 
+            ref={desktopUserMenuRef}
+            className="hidden md:flex relative group h-full items-center"
+          >
+            <button 
+              type="button"
+              onClick={() => setIsDesktopUserMenuOpen((prev) => !prev)}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') setIsDesktopUserMenuOpen(false);
+              }}
+              aria-expanded={isDesktopUserMenuOpen}
+              aria-haspopup="true"
+              className="flex items-center gap-2 text-gray-700 group-hover:text-primary transition-colors cursor-pointer outline-none py-4"
+            >
               <User className="w-5 h-5" strokeWidth={1.5} />
               <span className="text-sm font-medium">Inicio de sesión</span>
-              <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
+              <ChevronDown className={`w-4 h-4 text-gray-400 group-hover:text-primary transition-transform duration-200 ${isDesktopUserMenuOpen ? 'rotate-180 text-primary' : ''}`} />
             </button>
 
             {/* Dropdown Card */}
-            <div className="absolute top-full right-0 w-48 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-100 rounded-b-md opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50 overflow-hidden">
+            <div className={`absolute top-full right-0 w-48 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-100 rounded-b-md transition-all duration-300 z-50 overflow-hidden ${
+              isDesktopUserMenuOpen
+                ? 'opacity-100 visible translate-y-0'
+                : 'opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0'
+            }`}>
               <a
                 href="https://portal.servimafed.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => setIsDesktopUserMenuOpen(false)}
                 className="flex items-center px-4 py-3 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 border-b border-gray-50 transition-colors"
               >
                 Portal Cliente
@@ -246,6 +283,7 @@ export default function NavBar() {
                 href="https://app.servimafed.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => setIsDesktopUserMenuOpen(false)}
                 className="flex items-center px-4 py-3 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors"
               >
                 Intranet (ERP)

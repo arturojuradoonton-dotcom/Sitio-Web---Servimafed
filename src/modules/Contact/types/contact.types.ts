@@ -3,6 +3,7 @@ export interface ContactFormData {
   phone: string;
   email: string;
   requirement: string;
+  website?: string;
 }
 
 export interface ContactFormErrors {

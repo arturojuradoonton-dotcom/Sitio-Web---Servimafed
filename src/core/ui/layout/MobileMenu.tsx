@@ -19,10 +19,12 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
 
   const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(path));
 
-  // Close submenus on route change
-  useEffect(() => {
+  // Close submenus on route change (adjusted during render to avoid cascading renders in React 19)
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setOpenSubmenu(null);
-  }, [pathname]);
+  }
 
   // Lock body scroll and handle WhatsApp float button visibility when menu is open
   useEffect(() => {

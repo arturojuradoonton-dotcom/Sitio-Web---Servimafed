@@ -15,7 +15,7 @@ export default function LibroReclamacionesPage() {
       {/* Page Header */}
       <section className="relative py-24 bg-dark flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/fondos/hero-libro-reclamaciones.jpg" alt="Libro de Reclamaciones" fill className="object-cover opacity-20 grayscale" />
+          <Image src="/images/fondos/hero-contacto.jpg" alt="Libro de Reclamaciones" fill className="object-cover opacity-20 grayscale" />
         </div>
         <div className="relative z-10 text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight text-white">Libro de Reclamaciones</h1>

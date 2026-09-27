@@ -44,6 +44,30 @@ export default function LibroReclamacionesForm() {
   return (
     <>
       <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+        {/* Honeypot anti-spam */}
+        <div
+          aria-hidden="true"
+          style={{
+            display: 'none',
+            opacity: 0,
+            position: 'absolute',
+            top: '-9999px',
+            left: '-9999px',
+            height: 0,
+            width: 0,
+            zIndex: -1,
+          }}
+        >
+          <label htmlFor="hp_claim_website">No completar este campo</label>
+          <input
+            id="hp_claim_website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
         {errorMessage && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6 flex items-start gap-3 rounded-sm">
             <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />

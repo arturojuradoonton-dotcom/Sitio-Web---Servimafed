@@ -26,7 +26,7 @@ export default function Footer() {
               {/* Columna 1 (Fila 1) */}
               <Link href="/bolsa-trabajo" className="flex items-center gap-2.5 sm:gap-3 hover:opacity-75 transition-opacity">
                 <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
-                  <Image src="/images/iconos/bolsa de trabajo.svg" alt="Bolsa de Trabajo" fill className="object-contain" />
+                  <Image src="/images/iconos/bolsa de trabajo.svg" alt="Bolsa de Trabajo" fill unoptimized className="object-contain" />
                 </div>
                 <span className="leading-tight">Bolsa de Trabajo</span>
               </Link>
@@ -36,7 +36,7 @@ export default function Footer() {
               {/* Columna 2 (Fila 1) */}
               <Link href="/comprobantes" className="flex items-center gap-2.5 sm:gap-3 hover:opacity-75 transition-opacity">
                 <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
-                  <Image src="/images/iconos/comprobantes electronicos.svg" alt="Comprobantes Electrónicos" fill className="object-contain" />
+                  <Image src="/images/iconos/comprobantes electronicos.svg" alt="Comprobantes Electrónicos" fill unoptimized className="object-contain" />
                 </div>
                 <span className="leading-tight">Comprobantes Electrónicos</span>
               </Link>
@@ -46,7 +46,7 @@ export default function Footer() {
               {/* Columna 1 (Fila 2) */}
               <Link href="/politicas" className="flex items-center gap-2.5 sm:gap-3 hover:opacity-75 transition-opacity">
                 <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
-                  <Image src="/images/iconos/politica de privacidad.svg" alt="Política de Privacidad" fill className="object-contain" />
+                  <Image src="/images/iconos/politica de privacidad.svg" alt="Política de Privacidad" fill unoptimized className="object-contain" />
                 </div>
                 <span className="leading-tight">Política de Privacidad</span>
               </Link>
@@ -56,7 +56,7 @@ export default function Footer() {
               {/* Columna 2 (Fila 2) */}
               <Link href="/libro-reclamaciones" className="flex items-center gap-2.5 sm:gap-3 hover:opacity-75 transition-opacity">
                 <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0">
-                  <Image src="/images/iconos/libro de reclamaciones.svg" alt="Libro de Reclamaciones" fill className="object-contain" />
+                  <Image src="/images/iconos/libro de reclamaciones.svg" alt="Libro de Reclamaciones" fill unoptimized className="object-contain" />
                 </div>
                 <span className="leading-tight">Libro de Reclamaciones</span>
               </Link>
@@ -171,11 +171,11 @@ export default function Footer() {
               <h3 className="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-2 border-primary pl-3">Repuestos</h3>
               <ul className="space-y-3">
                 {[
-                  { name: 'Accesorios', href: '/repuestos#accesorios' },
-                  { name: 'Componentes Mayores', href: '/repuestos#componentes' },
-                  { name: 'Elementos de Desgaste', href: '/repuestos#desgaste' },
-                  { name: 'Filtros y Lubricantes', href: '/repuestos#mantenimiento' },
-                  { name: 'Promociones', href: '/repuestos#promociones' },
+                  { name: 'Accesorios', href: '/repuestos/accesorios' },
+                  { name: 'Componentes Mayores', href: '/repuestos/componentes' },
+                  { name: 'Elementos de Desgaste', href: '/repuestos/elementos-desgaste' },
+                  { name: 'Filtros y Lubricantes', href: '/repuestos/mantenimiento' },
+                  { name: 'Catálogo Completo', href: '/repuestos' },
                 ].map((link, i) => (
                   <li key={i}>
                     <Link href={link.href} className="text-gray-400 hover:text-primary transition-colors text-sm font-light flex items-center gap-2 group">
