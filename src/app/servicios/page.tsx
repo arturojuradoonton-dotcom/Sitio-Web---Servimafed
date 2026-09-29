@@ -12,7 +12,7 @@ export default function ServiciosPage() {
   const servicios = [
     { 
       title: "Gestión de Flota", 
-      desc: "Implementación de telemetría y software para monitoreo continuo del rendimiento de los equipos pesados.",
+      desc: "Mantenimiento integral y control operativo bajo contrato para flotas de maquinaria, garantizando disponibilidad mecánica y atención técnica prioritaria.",
       img: "/images/menu-1.png",
       href: "/servicios/gestion-flota"
     },
@@ -72,7 +72,7 @@ export default function ServiciosPage() {
           <div className="max-w-3xl mx-auto text-center mb-20">
             <h2 className="text-3xl font-light text-dark mb-6 uppercase tracking-tight">Capacidad <span className="font-bold text-primary">Operativa</span></h2>
             <p className="text-gray-500 font-light text-lg leading-relaxed">
-              Contamos con infraestructura de clase mundial e ingenieros mecánicos certificados para garantizar la disponibilidad electromecánica de su flota.
+              Contamos con nuestro taller equipado en Lima y técnicos especializados para asegurar el mantenimiento oportuno y la disponibilidad mecánica de su maquinaria.
             </p>
           </div>
 

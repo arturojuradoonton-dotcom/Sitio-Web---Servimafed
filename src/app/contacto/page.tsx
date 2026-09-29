@@ -45,45 +45,49 @@ export default function ContactoPage() {
             {/* Contact Information & Map */}
             <div>
               <h2 className="text-2xl font-light text-dark mb-2 uppercase tracking-tight">Directorio <span className="font-bold text-primary">Técnico</span></h2>
-              <div className="w-12 h-1 bg-primary mb-10"></div>
+              <div className="w-12 h-1 bg-primary mb-8"></div>
               
-              <div className="bg-secondary text-white p-10 rounded-sm shadow-xl mb-10 relative overflow-hidden border-t-4 border-primary">
-                <div className="space-y-8 relative z-10">
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center text-primary shrink-0">
-                      <MapPin className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm mb-1 text-primary uppercase tracking-widest">Sede Operativa</h4>
-                      <p className="text-gray-400 font-light leading-relaxed text-sm">
-                        Mz. C Lote 12A, Sector Sumac Pacha<br />
-                        Lurin - Lima
-                      </p>
-                    </div>
+              <div className="space-y-7 mb-10">
+                <div className="flex items-start gap-5">
+                  <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center text-primary shrink-0">
+                    <MapPin className="w-5 h-5" />
                   </div>
-                  
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center text-primary shrink-0">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm mb-1 text-primary uppercase tracking-widest">Central de Emergencias</h4>
-                      <p className="text-gray-400 font-light leading-relaxed text-sm">
-                        Línea Directa: +51 993 667 182
-                      </p>
-                    </div>
+                  <div>
+                    <h4 className="font-bold text-xs mb-1 text-dark uppercase tracking-widest">Sede Operativa</h4>
+                    <p className="text-gray-600 font-light leading-relaxed text-sm">
+                      Mz. C Lote 12A, Sector Sumac Pacha<br />
+                      Lurin - Lima
+                    </p>
                   </div>
-                  
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center text-primary shrink-0">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm mb-1 text-primary uppercase tracking-widest">Comunicaciones</h4>
-                      <p className="text-gray-400 font-light leading-relaxed text-sm">
-                        Ventas: ventas@servimafed.com
-                      </p>
-                    </div>
+                </div>
+                
+                <div className="flex items-start gap-5">
+                  <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center text-primary shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-xs mb-1 text-dark uppercase tracking-widest">Central de Emergencias</h4>
+                    <p className="text-gray-600 font-light leading-relaxed text-sm">
+                      Línea Directa:{" "}
+                      <a href="tel:+51993667182" className="font-medium text-dark hover:text-primary transition-colors">
+                        +51 993 667 182
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-5">
+                  <div className="w-12 h-12 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center text-primary shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-xs mb-1 text-dark uppercase tracking-widest">Comunicaciones</h4>
+                    <p className="text-gray-600 font-light leading-relaxed text-sm">
+                      Ventas:{" "}
+                      <a href="mailto:ventas@servimafed.com" className="font-medium text-dark hover:text-primary transition-colors">
+                        ventas@servimafed.com
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>

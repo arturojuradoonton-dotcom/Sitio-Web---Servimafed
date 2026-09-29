@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 interface BrandSliderProps {
   title?: string;
+  subtitle?: string;
   logoNumbers?: number[];
 }
 
@@ -14,6 +15,7 @@ const defaultLogoNumbers = Array.from({ length: 24 }, (_, i) => i + 1);
 
 export default function BrandSlider({
   title = "Marcas Atendidas",
+  subtitle = "Trabajamos con las principales marcas y modelos de equipos pesados.",
   logoNumbers = defaultLogoNumbers
 }: BrandSliderProps) {
   
@@ -39,17 +41,14 @@ export default function BrandSlider({
 
   return (
     <section className="bg-white py-16 border-t border-b border-gray-100 overflow-hidden relative">
-      <div className="container mx-auto px-6 mb-12">
-        <h2 className="text-3xl md:text-4xl font-light text-dark mb-4 uppercase tracking-tight relative pb-4 md:pb-0">
-          <span className="relative inline-block md:pb-2">
-            {firstPart}
-            <span className="hidden md:block absolute bottom-0 left-0 w-[60%] h-[4px] bg-primary"></span>
-          </span>{" "}
-          {lastPart && <span className="font-bold text-dark">{lastPart}</span>}
-          <span className="block md:hidden absolute bottom-0 left-0 w-16 h-[4px] bg-primary"></span>
+      <div className="container mx-auto px-6 mb-10">
+        <h2 className="text-3xl md:text-4xl font-light text-dark uppercase tracking-tight">
+          {firstPart}{" "}
+          {lastPart && <span className="font-bold text-primary">{lastPart}</span>}
         </h2>
-        <p className="text-gray-500 font-light text-sm md:text-base mt-2">
-          Trabajamos con todas las marcas y modelos de equipos pesados.
+        <div className="w-12 h-1 bg-primary mt-3 mb-4" aria-hidden="true"></div>
+        <p className="text-gray-500 font-light text-sm md:text-base max-w-3xl">
+          {subtitle}
         </p>
       </div>
 

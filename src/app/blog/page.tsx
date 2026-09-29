@@ -23,6 +23,14 @@ export const metadata: Metadata = {
   },
 };
 
+function normalizeText(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
 interface BlogPageProps {
   searchParams: Promise<{
     q?: string;
@@ -35,7 +43,10 @@ interface BlogPageProps {
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const resolvedParams = await searchParams;
-  const q = resolvedParams.q?.toLowerCase() || "";
+  const rawQ = resolvedParams.q || "";
+  const normalizedQ = normalizeText(rawQ);
+  const searchTokens = normalizedQ.split(/\s+/).filter(Boolean);
+
   const category = resolvedParams.category || "";
   const archive = resolvedParams.archive || "";
   const tag = resolvedParams.tag || "";
@@ -43,18 +54,24 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   // Filter blog posts
   let filteredPosts = [...blogPosts];
 
-  if (q) {
-    filteredPosts = filteredPosts.filter(
-      (post) =>
-        post.title.toLowerCase().includes(q) ||
-        post.excerpt.toLowerCase().includes(q) ||
-        post.content.some((para) => para.toLowerCase().includes(q))
-    );
+  if (searchTokens.length > 0) {
+    filteredPosts = filteredPosts.filter((post) => {
+      const normalizedTitle = normalizeText(post.title);
+      const normalizedExcerpt = normalizeText(post.excerpt);
+      const normalizedTags = post.tags.map(normalizeText).join(" ");
+      const normalizedCategory = normalizeText(post.category);
+      const normalizedContent = post.content.map(normalizeText).join(" ");
+      const fullText = `${normalizedTitle} ${normalizedExcerpt} ${normalizedTags} ${normalizedCategory} ${normalizedContent}`;
+
+      // Check if all tokens match anywhere in the post text, tags or category
+      return searchTokens.every((token) => fullText.includes(token));
+    });
   }
 
   if (category) {
+    const normalizedCategory = normalizeText(category);
     filteredPosts = filteredPosts.filter(
-      (post) => post.category.toLowerCase() === category.toLowerCase()
+      (post) => normalizeText(post.category) === normalizedCategory
     );
   }
 
@@ -66,14 +83,15 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   }
 
   if (tag) {
+    const normalizedTag = normalizeText(tag);
     filteredPosts = filteredPosts.filter((post) =>
-      post.tags.some((t) => t.toLowerCase() === tag.toLowerCase())
+      post.tags.some((t) => normalizeText(t) === normalizedTag)
     );
   }
 
   // Get active filter label for display
   let activeFilterLabel = "";
-  if (q) activeFilterLabel = `Búsqueda: "${resolvedParams.q}"`;
+  if (rawQ) activeFilterLabel = `Búsqueda: "${rawQ}"`;
   else if (category) activeFilterLabel = `Categoría: ${category}`;
   else if (archive) {
     const [year, month] = archive.split("-");
@@ -112,7 +130,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   // Helper para preservar filtros activos en los enlaces de paginación
   const getPageUrl = (pageNum: number) => {
     const params = new URLSearchParams();
-    if (resolvedParams.q) params.set("q", resolvedParams.q);
+    if (rawQ) params.set("q", rawQ);
     if (category) params.set("category", category);
     if (archive) params.set("archive", archive);
     if (tag) params.set("tag", tag);
@@ -306,6 +324,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             <BlogSidebar
               relatedPosts={recentPosts}
               archiveMonths={archiveMonths}
+              currentQuery={rawQ}
             />
 
           </div>

@@ -150,10 +150,14 @@ export default async function RepuestoDetalle({ params }: { params: Promise<{ sl
             <div className="bg-dark p-10 text-white shadow-xl relative overflow-hidden group rounded-sm">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:scale-110 transition-transform duration-500" />
               <Package className="w-12 h-12 text-primary mb-8" strokeWidth={1} />
-              <h4 className="text-2xl font-light text-white mb-4 uppercase tracking-tight leading-tight">¿Necesita estos <span className="font-bold">repuestos?</span></h4>
-              <p className="text-gray-400 font-light text-sm mb-8 leading-relaxed">Consulte disponibilidad y precios. Nuestro equipo de logística puede despachar en 24 horas a cualquier punto del país.</p>
+              <h4 className="text-2xl font-light text-white mb-4 uppercase tracking-tight leading-tight">
+                {data.ctaTitle || "¿Necesita estos"} <span className="font-bold text-primary">{data.ctaHighlight || "repuestos?"}</span>
+              </h4>
+              <p className="text-gray-400 font-light text-sm mb-8 leading-relaxed">
+                {data.ctaDesc || "Consulte disponibilidad y precios. Nuestro equipo técnico le brindará una propuesta oportuna."}
+              </p>
               <Link href="/contacto" className="inline-block bg-primary text-dark font-bold text-xs px-8 py-5 uppercase tracking-widest hover:bg-white transition-colors w-full text-center">
-                Solicitar Cotización
+                {data.ctaButton || "Solicitar Cotización"}
               </Link>
             </div>
 

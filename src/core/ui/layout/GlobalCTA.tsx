@@ -43,7 +43,7 @@ export default function GlobalCTA() {
           {/* Text Section */}
           <div className="lg:col-span-8 space-y-6">
             <span className="text-primary font-bold text-xs uppercase tracking-[0.2em] block">
-              Soporte Técnico de Campo & Taller Autorizado
+              Soporte Técnico en Campo y Taller en Lima
             </span>
             <h2 className="text-3xl md:text-5xl font-light text-dark uppercase tracking-tight leading-tight">
               ¿Maquinaria detenida o <span className="font-bold text-primary">mantenimiento planificado?</span>

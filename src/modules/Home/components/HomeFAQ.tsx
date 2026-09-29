@@ -8,7 +8,7 @@ import { FormSuccessModal } from '@/core/ui/FormSuccessModal';
 const faqs = [
   {
     question: "¿Atienden emergencias mecánicas en campo o solo en taller?",
-    answer: "Contamos con unidades móviles equipadas para brindar soporte técnico, evaluación y diagnósticos directamente en campo (minas, obras y campamentos), además de nuestros talleres especializados para reparaciones mayores (overhaul) y mecanizado."
+    answer: "Contamos con unidades móviles equipadas para brindar soporte técnico, evaluación y diagnósticos directamente en campo (minas, obras y campamentos), además de nuestro taller en Lima para reparaciones mayores (overhaul) y mecanizado."
   },
   {
     question: "¿Qué marcas de maquinaria pesada atienden?",

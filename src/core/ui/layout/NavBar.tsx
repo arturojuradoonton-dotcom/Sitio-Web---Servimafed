@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Search, User, ChevronDown, ArrowRight, X, Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
+import LoginDrawer from './LoginDrawer';
 import { serviciosDropdown, repuestosDropdown } from '@/data/navigationData';
 
 export default function NavBar() {
@@ -13,14 +14,12 @@ export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeDropdown, setActiveDropdown] = useState<'servicios' | 'repuestos' | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isDesktopUserMenuOpen, setIsDesktopUserMenuOpen] = useState(false);
+  const [isLoginDrawerOpen, setIsLoginDrawerOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const searchOverlayRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const desktopUserMenuRef = useRef<HTMLDivElement>(null);
   const [navBottom, setNavBottom] = useState(72);
 
   const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(path));
@@ -38,8 +37,7 @@ export default function NavBar() {
   if (pathname !== prevPathname) {
     setPrevPathname(pathname);
     setIsMobileMenuOpen(false);
-    setIsUserMenuOpen(false);
-    setIsDesktopUserMenuOpen(false);
+    setIsLoginDrawerOpen(false);
   }
 
   // Recalculate navbar bottom on resize and scroll
@@ -83,24 +81,9 @@ export default function NavBar() {
     }
   };
 
-  // Close desktop user menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        desktopUserMenuRef.current &&
-        !desktopUserMenuRef.current.contains(event.target as Node)
-      ) {
-        setIsDesktopUserMenuOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   const closeMenu = () => {
     setActiveDropdown(null);
     setIsMobileMenuOpen(false);
-    setIsDesktopUserMenuOpen(false);
   };
 
   return (
@@ -244,112 +227,37 @@ export default function NavBar() {
             <Search className="cursor-pointer text-gray-700 hover:text-primary transition-colors w-5 h-5" />
           </button>
           
-          {/* Desktop User Login Dropdown */}
-          <div 
-            ref={desktopUserMenuRef}
-            className="hidden md:flex relative group h-full items-center"
-          >
+          {/* Desktop User Login Trigger (Slide-over Drawer) */}
+          <div className="hidden md:flex relative h-full items-center">
             <button 
               type="button"
-              onClick={() => setIsDesktopUserMenuOpen((prev) => !prev)}
-              onKeyDown={(e) => {
-                if (e.key === 'Escape') setIsDesktopUserMenuOpen(false);
-              }}
-              aria-expanded={isDesktopUserMenuOpen}
-              aria-haspopup="true"
-              className="flex items-center gap-2 text-gray-700 group-hover:text-primary transition-colors cursor-pointer outline-none py-4"
+              onClick={() => setIsLoginDrawerOpen(true)}
+              className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors cursor-pointer outline-none py-4 group"
             >
-              <User className="w-5 h-5" strokeWidth={1.5} />
+              <User className="w-5 h-5 text-gray-700 group-hover:text-primary transition-colors" strokeWidth={1.5} />
               <span className="text-sm font-medium">Inicio de sesión</span>
-              <ChevronDown className={`w-4 h-4 text-gray-400 group-hover:text-primary transition-transform duration-200 ${isDesktopUserMenuOpen ? 'rotate-180 text-primary' : ''}`} />
             </button>
-
-            {/* Dropdown Card */}
-            <div className={`absolute top-full right-0 w-48 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-100 rounded-b-md transition-all duration-300 z-50 overflow-hidden ${
-              isDesktopUserMenuOpen
-                ? 'opacity-100 visible translate-y-0'
-                : 'opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0'
-            }`}>
-              <a
-                href="https://portal.servimafed.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsDesktopUserMenuOpen(false)}
-                className="flex items-center px-4 py-3 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 border-b border-gray-50 transition-colors"
-              >
-                Portal Cliente
-              </a>
-              <a
-                href="https://app.servimafed.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsDesktopUserMenuOpen(false)}
-                className="flex items-center px-4 py-3 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors"
-              >
-                Intranet (ERP)
-              </a>
-            </div>
           </div>
 
-          {/* Mobile User Login Trigger & Dropdown */}
+          {/* Mobile User Login Trigger (Slide-over Drawer) */}
           <div className="relative md:hidden">
             <button
               onClick={() => {
-                setIsUserMenuOpen((prev) => !prev);
+                setIsLoginDrawerOpen(true);
                 setIsMobileMenuOpen(false);
               }}
-              className={`cursor-pointer w-10 h-10 flex items-center justify-center rounded-full transition-colors ${
-                isUserMenuOpen ? 'text-primary bg-primary/10' : 'text-dark hover:text-primary hover:bg-gray-100'
-              }`}
+              className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-full text-dark hover:text-primary hover:bg-gray-100 transition-colors"
               aria-label="Acceso a portales de usuario"
             >
               <User className="w-5 h-5" strokeWidth={1.75} />
             </button>
-
-            {isUserMenuOpen && (
-              <>
-                <div
-                  className="fixed inset-0 z-[9992] bg-transparent"
-                  onClick={() => setIsUserMenuOpen(false)}
-                />
-                <div className="absolute top-full right-0 mt-2 w-52 bg-white shadow-[0_12px_36px_rgba(0,0,0,0.15)] border border-gray-100 rounded-lg p-2 z-[9993] animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="px-3 py-2 border-b border-gray-100 mb-1">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">
-                      Acceso a Portales
-                    </span>
-                  </div>
-                  <a
-                    href="https://portal.servimafed.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-gray-800 hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
-                  >
-                    <User className="w-4 h-4 text-primary shrink-0" strokeWidth={2} />
-                    <span>Portal Cliente</span>
-                  </a>
-                  <a
-                    href="https://app.servimafed.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold text-gray-800 hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
-                  >
-                    <div className="w-4 h-4 rounded bg-dark text-white flex items-center justify-center text-[9px] font-bold shrink-0">
-                      E
-                    </div>
-                    <span>Intranet (ERP)</span>
-                  </a>
-                </div>
-              </>
-            )}
           </div>
 
           {/* Mobile Menu Hamburger / Close Toggle Trigger */}
           <button
             onClick={() => {
               setIsMobileMenuOpen((prev) => !prev);
-              setIsUserMenuOpen(false);
+              setIsLoginDrawerOpen(false);
             }}
             className="lg:hidden cursor-pointer w-10 h-10 flex items-center justify-center hover:text-primary transition-colors text-dark"
             aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
@@ -368,6 +276,12 @@ export default function NavBar() {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         topOffset={navBottom}
+      />
+
+      {/* Login Slide-over Drawer (Style CAT) */}
+      <LoginDrawer
+        isOpen={isLoginDrawerOpen}
+        onClose={() => setIsLoginDrawerOpen(false)}
       />
     </nav>
   );

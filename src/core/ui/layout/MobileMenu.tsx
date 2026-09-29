@@ -55,7 +55,7 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
       }`}
     >
       {/* 1. Search Bar */}
-      <div className="px-5 py-3.5 border-b border-gray-100 bg-gray-50/70">
+      <div className="px-5 pt-4 pb-2 bg-white">
         <form
           className="relative"
           onSubmit={(e) => {
@@ -93,10 +93,10 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
             <Link
               href="/"
               onClick={onClose}
-              className={`flex items-center px-5 py-3 text-sm font-medium transition-colors uppercase tracking-widest rounded-md ${
+              className={`flex items-center px-5 py-3 text-sm transition-colors uppercase tracking-widest ${
                 isActive('/')
-                  ? 'text-primary bg-primary/10 border-l-4 border-primary font-bold'
-                  : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                  ? 'text-primary font-bold'
+                  : 'text-gray-700 font-medium hover:text-primary'
               }`}
             >
               Inicio
@@ -108,10 +108,10 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
             <Link
               href="/nosotros"
               onClick={onClose}
-              className={`flex items-center px-5 py-3 text-sm font-medium transition-colors uppercase tracking-widest rounded-md ${
+              className={`flex items-center px-5 py-3 text-sm transition-colors uppercase tracking-widest ${
                 isActive('/nosotros')
-                  ? 'text-primary bg-primary/10 border-l-4 border-primary font-bold'
-                  : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                  ? 'text-primary font-bold'
+                  : 'text-gray-700 font-medium hover:text-primary'
               }`}
             >
               Nosotros
@@ -122,10 +122,10 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
           <li>
             <button
               onClick={() => toggleSubmenu('servicios')}
-              className={`flex items-center justify-between w-full px-5 py-3 text-sm font-medium transition-colors uppercase tracking-widest rounded-md ${
-                isActive('/servicios') || openSubmenu === 'servicios'
-                  ? 'text-primary bg-primary/10 border-l-4 border-primary font-bold'
-                  : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+              className={`flex items-center justify-between w-full px-5 py-3 text-sm transition-colors uppercase tracking-widest cursor-pointer ${
+                isActive('/servicios')
+                  ? 'text-primary font-bold'
+                  : 'text-gray-700 font-medium hover:text-primary'
               }`}
             >
               Servicios
@@ -140,11 +140,11 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
                 openSubmenu === 'servicios' ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-              <div className="bg-gray-50/80 rounded-md py-2 my-1 mx-2 border border-gray-100">
+              <div className="pl-6 pr-4 py-1 divide-y divide-gray-100">
                 <Link
                   href="/servicios"
                   onClick={onClose}
-                  className="flex items-center px-6 py-2.5 text-xs font-bold text-primary uppercase tracking-widest hover:bg-primary/10 transition-colors"
+                  className="flex items-center py-2.5 text-xs font-bold text-primary uppercase tracking-widest hover:text-dark transition-colors"
                 >
                   Ver Todos los Servicios →
                 </Link>
@@ -153,10 +153,14 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
                     key={idx}
                     href={item.href}
                     onClick={onClose}
-                    className="flex flex-col px-6 py-2.5 hover:bg-primary/5 transition-colors border-l-2 border-transparent hover:border-primary ml-4"
+                    className="flex flex-col py-3 hover:text-primary transition-colors group"
                   >
-                    <span className="text-xs font-semibold text-gray-800 uppercase tracking-wide">{item.name}</span>
-                    <span className="text-[11px] text-gray-500 font-light mt-0.5">{item.desc}</span>
+                    <span className="text-xs font-semibold text-gray-800 uppercase tracking-wide group-hover:text-primary transition-colors">
+                      {item.name}
+                    </span>
+                    <span className="text-[11px] text-gray-500 font-light mt-0.5 leading-normal">
+                      {item.desc}
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -167,10 +171,10 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
           <li>
             <button
               onClick={() => toggleSubmenu('repuestos')}
-              className={`flex items-center justify-between w-full px-5 py-3 text-sm font-medium transition-colors uppercase tracking-widest rounded-md ${
-                isActive('/repuestos') || openSubmenu === 'repuestos'
-                  ? 'text-primary bg-primary/10 border-l-4 border-primary font-bold'
-                  : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+              className={`flex items-center justify-between w-full px-5 py-3 text-sm transition-colors uppercase tracking-widest cursor-pointer ${
+                isActive('/repuestos')
+                  ? 'text-primary font-bold'
+                  : 'text-gray-700 font-medium hover:text-primary'
               }`}
             >
               Repuestos
@@ -185,11 +189,11 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
                 openSubmenu === 'repuestos' ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-              <div className="bg-gray-50/80 rounded-md py-2 my-1 mx-2 border border-gray-100">
+              <div className="pl-6 pr-4 py-1 divide-y divide-gray-100">
                 <Link
                   href="/repuestos"
                   onClick={onClose}
-                  className="flex items-center px-6 py-2.5 text-xs font-bold text-primary uppercase tracking-widest hover:bg-primary/10 transition-colors"
+                  className="flex items-center py-2.5 text-xs font-bold text-primary uppercase tracking-widest hover:text-dark transition-colors"
                 >
                   Ver Inventario de Repuestos →
                 </Link>
@@ -198,10 +202,14 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
                     key={idx}
                     href={item.href}
                     onClick={onClose}
-                    className="flex flex-col px-6 py-2.5 hover:bg-primary/5 transition-colors border-l-2 border-transparent hover:border-primary ml-4"
+                    className="flex flex-col py-3 hover:text-primary transition-colors group"
                   >
-                    <span className="text-xs font-semibold text-gray-800 uppercase tracking-wide">{item.name}</span>
-                    <span className="text-[11px] text-gray-500 font-light mt-0.5">{item.desc}</span>
+                    <span className="text-xs font-semibold text-gray-800 uppercase tracking-wide group-hover:text-primary transition-colors">
+                      {item.name}
+                    </span>
+                    <span className="text-[11px] text-gray-500 font-light mt-0.5 leading-normal">
+                      {item.desc}
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -213,10 +221,10 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
             <Link
               href="/blog"
               onClick={onClose}
-              className={`flex items-center px-5 py-3 text-sm font-medium transition-colors uppercase tracking-widest rounded-md ${
+              className={`flex items-center px-5 py-3 text-sm transition-colors uppercase tracking-widest ${
                 isActive('/blog')
-                  ? 'text-primary bg-primary/10 border-l-4 border-primary font-bold'
-                  : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                  ? 'text-primary font-bold'
+                  : 'text-gray-700 font-medium hover:text-primary'
               }`}
             >
               Blog
@@ -228,10 +236,10 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
             <Link
               href="/contacto"
               onClick={onClose}
-              className={`flex items-center px-5 py-3 text-sm font-medium transition-colors uppercase tracking-widest rounded-md ${
+              className={`flex items-center px-5 py-3 text-sm transition-colors uppercase tracking-widest ${
                 isActive('/contacto')
-                  ? 'text-primary bg-primary/10 border-l-4 border-primary font-bold'
-                  : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                  ? 'text-primary font-bold'
+                  : 'text-gray-700 font-medium hover:text-primary'
               }`}
             >
               Contáctanos
@@ -241,7 +249,8 @@ export default function MobileMenu({ isOpen, onClose, topOffset }: MobileMenuPro
       </nav>
 
       {/* 3. Footer Contacts */}
-      <div className="border-t border-gray-100 p-5 bg-gray-50/60 pb-8">
+      <div className="p-5 bg-white pb-8">
+        <div className="w-[calc(100%-1.5rem)] mx-auto border-t border-gray-100 mb-5" />
         <div className="space-y-2.5">
           <div className="flex items-center gap-3 text-gray-600">
             <Phone className="w-4 h-4 text-primary shrink-0" />

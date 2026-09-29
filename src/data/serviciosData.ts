@@ -1,21 +1,25 @@
 export const serviciosData = {
   "gestion-flota": {
     title: "Gestión de Flota",
-    subtitle: "Supervisión telemática integral y control operativo avanzado",
+    subtitle: "Mantenimiento integral y control operativo de maquinaria bajo contrato",
     heroImage: "/images/servicios/gestion-flota.jpg",
-    overview: "Maximice la rentabilidad de su Maquinaria Pesada con nuestras soluciones de monitoreo telemétrico de última generación. Transformamos datos en decisiones estratégicas: rastree ubicación GPS, supervise horómetros en tiempo real y anticípese con alertas críticas. Nuestra plataforma se integra fluidamente a su ERP, brindándole control total sobre sus activos industriales.",
+    overview: "Diseñado para contratistas y empresas que requieren delegar el cuidado técnico de sus equipos en manos especializadas. Mediante contratos de servicio adaptados a la cantidad de maquinaria de su operación, nos encargamos de la planificación de mantenimientos preventivos por horómetro, atención de emergencias correctivas y control de componentes, manteniendo su flota operativa y reduciendo paradas no planificadas. Todo respaldado con la trazabilidad digital de nuestra aplicación Axentra.",
     benefits: [
-      { title: "Reducción de Costos Operativos", desc: "Optimice el consumo de combustible mediante análisis de eficiencia térmica y minimice los tiempos de inactividad no planificados de su Maquinaria Pesada." },
-      { title: "Telemetría en Tiempo Real", desc: "Acceso ininterrumpido a parámetros críticos: presiones, temperaturas y códigos de falla electrónicos (DTC) desde cualquier plataforma digital." },
-      { title: "Mantenimiento Preventivo Predictivo", desc: "Reciba alertas predictivas para programar su Mantenimiento Preventivo antes de que ocurran fallas mecánicas severas, resguardando su inversión." },
-      { title: "Maximización de Producción", desc: "Supervise y reduzca tiempos muertos, analizando ciclos de carga reales para potenciar la eficiencia de sus operadores y equipos." }
+      { title: "Atención Técnica Prioritaria", desc: "Respuesta oportuna en nuestro taller en Lima y asistencia con unidades móviles en obra para los equipos bajo contrato." },
+      { title: "Planificación y Control por Horómetro", desc: "Programación estricta de cambios de aceite, filtros e inspecciones periódicas para prevenir desgastes prematuros." },
+      { title: "Trazabilidad Digital con Axentra", desc: "Reportes de servicio, órdenes de trabajo digitales e historial accesible para un control transparente de cada equipo." },
+      { title: "Costos Predecibles y Mayor Disponibilidad", desc: "Optimice el presupuesto de mantenimiento y reduzca drásticamente los costos derivados de fallas imprevistas." }
     ],
     features: [
-      "Centro de monitoreo telemétrico 24/7 con cobertura a nivel nacional",
-      "Reportes ejecutivos de eficiencia energética y consumo de combustible",
-      "Geocercas de seguridad automatizadas y rastreo satelital antirrobo",
-      "Integración API nativa con su módulo de Órdenes de Trabajo (OT) y ERP corporativo"
-    ]
+      "Contratos de servicio personalizados según la cantidad y tipo de maquinaria de su flota",
+      "Asignación de técnicos para inspecciones programadas y auxilio mecánico en campo",
+      "Gestión oportuna de repuestos críticos, filtros y lubricantes requeridos",
+      "Informes técnicos periódicos sobre el estado mecánico y vida útil de los componentes"
+    ],
+    ctaTitle: "¿Mantenimiento para su",
+    ctaHighlight: "Flota?",
+    ctaDesc: "Diseñamos un plan de servicio bajo contrato adaptado a la cantidad y tipo de maquinaria de su operación.",
+    ctaButton: "Solicitar Propuesta"
   },
   "mantenimiento-preventivo": {
     title: "Mantenimiento Preventivo",
@@ -33,31 +37,39 @@ export const serviciosData = {
       "Análisis espectrométrico y ferrografía de aceites de motor y transmisiones",
       "Calibración electrónica de precisión y ajuste de tolerancias mecánicas",
       "Emisión de Certificados de Operatividad bajo estándares para ingreso a gran minería"
-    ]
+    ],
+    ctaTitle: "¿Planificar",
+    ctaHighlight: "Mantenimiento?",
+    ctaDesc: "Agende el cambio de fluidos, filtros e inspecciones por horómetro para asegurar la continuidad de sus equipos.",
+    ctaButton: "Programar Mantenimiento"
   },
   "reparacion-componentes": {
     title: "Reparación de Componentes",
-    subtitle: "Overhaul certificado con precisión de fábrica",
+    subtitle: "Reacondicionamiento y overhaul técnico en nuestro taller en Lima",
     heroImage: "/images/servicios/reparacion-componentes.jpg.jpg",
-    overview: "Prolongue la vida útil de su Maquinaria Pesada mediante nuestro servicio de Overhaul integral. Nuestro centro de reparación avanzado cuenta con bahías de servicio especializadas y herramientas de precisión milimétrica para la reconstrucción total de componentes críticos, devolviéndoles su rendimiento original.",
+    overview: "Prolongue la vida útil de su maquinaria pesada mediante nuestro servicio de reparación y reacondicionamiento de componentes. En nuestro taller en Lima realizamos el desmontaje, evaluación técnica, recuperación de piezas y reemplazo de elementos de desgaste, devolviéndoles su operatividad y rendimiento confiable.",
     benefits: [
-      { title: "Optimización Financiera (CAPEX)", desc: "La reconstrucción certificada de un componente mayor representa un ahorro estratégico de hasta 60% frente a la adquisición de equipos nuevos." },
-      { title: "Garantía de Banco de Pruebas", desc: "Cada componente reconstruido supera protocolos exhaustivos en bancos de ensayo dinamométricos antes de su liberación técnica." },
-      { title: "Integridad OEM Garantizada", desc: "Empleamos kits de reparación originales para asegurar que las tolerancias y ajustes de fábrica se restablezcan a la perfección." },
-      { title: "Disponibilidad Inmediata (Reman)", desc: "Programa de intercambio de componentes remanufacturados para minimizar el tiempo de máquina inactiva (Downtime)." }
+      { title: "Optimización de Costos", desc: "La reconstrucción técnica de un componente mayor representa un ahorro estimado de entre 40% y 50% frente a la compra de un componente nuevo de fábrica." },
+      { title: "Control de Calidad y Ensayos Operativos", desc: "Verificación minuciosa de tolerancias dimensionales, torques de ajuste según manual del fabricante y pruebas de presión y estanqueidad antes de la entrega." },
+      { title: "Repuestos y Ajustes Confiables", desc: "Empleamos repuestos de calidad garantizada para asegurar que las tolerancias y especificaciones mecánicas se restablezcan a la perfección." },
+      { title: "Tiempos de Entrega Oportunos", desc: "Planificación ágil de la reparación para minimizar el tiempo de inactividad de su maquinaria y asegurar el pronto retorno a la operación." }
     ],
     features: [
-      "Overhaul especializado de motores diésel de alta potencia (Caterpillar, Cummins, Volvo)",
-      "Reconstrucción total de transmisiones powershift, hidrostáticas y planetarias",
+      "Overhaul especializado de motores diésel de maquinaria pesada (Caterpillar, Cummins, Volvo)",
+      "Reconstrucción y mantenimiento de transmisiones powershift, hidrostáticas y mandos finales",
       "Bruñido de cilindros y reparación integral de bombas y motores hidráulicos",
-      "Reacondicionamiento de convertidores de torque y reductores de mando final"
-    ]
+      "Reacondicionamiento de componentes con pruebas de estanqueidad y garantía documentada"
+    ],
+    ctaTitle: "¿Componente con",
+    ctaHighlight: "Fallas?",
+    ctaDesc: "Evaluamos y reconstruimos motores diésel, transmisiones, mandos finales y bombas hidráulicas en nuestro taller en Lima.",
+    ctaButton: "Cotizar Reparación"
   },
   "evaluacion-diagnostico": {
     title: "Evaluación y Diagnóstico",
     subtitle: "Detección electrónica avanzada e instrumentación multimarca",
     heroImage: "/images/servicios/evaluacion-diagnostico.jpg.jpg",
-    overview: "La complejidad electrónica de la Maquinaria Pesada actual exige diagnósticos exactos. Nuestro equipo de ingenieros mecatrónicos utiliza escáneres OEM de última generación para comunicarse con los Módulos de Control Electrónico (ECM), identificando la causa raíz de fallas complejas y evitando el reemplazo innecesario de piezas.",
+    overview: "La complejidad electrónica de la Maquinaria Pesada actual exige diagnósticos exactos. Nuestro equipo técnico utiliza herramientas y escáneres electrónicos multimarca para comunicarse con los Módulos de Control Electrónico (ECM), identificando la causa raíz de fallas complejas y evitando el reemplazo innecesario de piezas.",
     benefits: [
       { title: "Precisión Diagnóstica Milimétrica", desc: "Aislamiento exacto de fallas electrónicas intermitentes en arneses, sensores y válvulas proporcionales de alta complejidad." },
       { title: "Reducción del MTTR", desc: "Un diagnóstico asertivo en la primera intervención minimiza las horas-hombre invertidas y agiliza el retorno a la operación." },
@@ -69,7 +81,11 @@ export const serviciosData = {
       "Calibración de inyectores electrónicos (HEUI/MEUI) y módulos de control",
       "Pruebas dinámicas de flujo, presión y temperatura con caudalímetros de precisión",
       "Inspección boroscópica digital de componentes internos sin desarme previo"
-    ]
+    ],
+    ctaTitle: "¿Falla electrónica o",
+    ctaHighlight: "Mecánica?",
+    ctaDesc: "Escaneo electrónico multimarca e inspección técnica en taller o directamente en su frente de trabajo.",
+    ctaButton: "Solicitar Diagnóstico"
   },
   "mecanizado-soldadura": {
     title: "Mecanizado y Soldadura",
@@ -87,6 +103,10 @@ export const serviciosData = {
       "Diseño, fabricación y acorazado de cucharones, hojas topadoras y tolvas mineras",
       "Refuerzo estructural de plumas (Boom), brazos (Stick) y bastidores en H",
       "Mecanizado CNC de pasadores, bocinas y ejes a medida con aceros aleados"
-    ]
+    ],
+    ctaTitle: "¿Desgaste o daño",
+    ctaHighlight: "Estructural?",
+    ctaDesc: "Recuperación de tolerancias, mandrinado portátil (line boring) y soldadura especializada para baldes, tolvas y chasis.",
+    ctaButton: "Cotizar Mecanizado"
   }
 };

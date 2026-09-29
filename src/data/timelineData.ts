@@ -7,22 +7,22 @@ export interface TimelineMilestone {
 export const milestones: TimelineMilestone[] = [
   {
     year: "2015",
-    title: "Fundación y Taller de Torno",
-    desc: "SERVIMAFED se constituye formalmente en Lima con un taller especializado de soldadura, mecanizado de precisión y recuperación estructural para equipos de construcción locales."
+    title: "Inicio de Operaciones",
+    desc: "SERVIMAFED inicia actividades en Lima brindando servicios de mantenimiento mecánico, soldadura y reparación a contratistas y propietarios de maquinaria pesada."
   },
   {
-    year: "2018",
-    title: "Expansión e Inspección en Campo",
-    desc: "Adquirimos nuestras primeras unidades móviles de soporte técnico 24/7 y ampliamos el portafolio técnico a la reconstrucción mayor (overhaul) de transmisiones y motores de gran cilindrada."
+    year: "2019",
+    title: "Taller en Lima y Soporte en Campo",
+    desc: "Consolidamos nuestro taller en Lima e incorporamos atención técnica en obra, dando soporte preventivo y correctivo directo en las operaciones de nuestros clientes."
   },
   {
-    year: "2021",
-    title: "Contratos Mineros y Certificaciones",
-    desc: "Homologamos nuestros procesos bajo normas internacionales e ingresamos como contratista de soporte permanente en importantes operaciones mineras en el sur del país."
+    year: "2022",
+    title: "Desarrollo y Confianza Técnica",
+    desc: "Fortalecemos la atención técnica multimarca y la reparación de componentes, priorizando la cercanía, la honestidad en el diagnóstico y la calidad en cada servicio."
   },
   {
-    year: "2024",
-    title: "Digitalización & ERP Axentra",
-    desc: "Consolidamos el portal corporativo ERP Axentra, permitiendo a nuestros clientes corporativos visualizar reportes técnicos de campo, cotizaciones y estado de sus componentes en tiempo real."
+    year: "2025",
+    title: "Digitalización con Axentra",
+    desc: "A inicios de este año implementamos la aplicación Axentra, optimizando el registro de órdenes de trabajo, seguimiento de reparaciones y brindando mayor agilidad y transparencia a nuestros clientes."
   }
 ];

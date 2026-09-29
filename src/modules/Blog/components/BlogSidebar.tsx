@@ -1,21 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Search, ChevronRight, Calendar } from "lucide-react";
+import { Search, ChevronRight, Calendar, X } from "lucide-react";
 import { blogPosts, blogCategories } from "@/data/blogData";
 import type { BlogPost } from "@/data/blogData";
 
 interface BlogSidebarProps {
   relatedPosts: BlogPost[];
   archiveMonths: { label: string; yearMonth: string; count: number }[];
+  currentQuery?: string;
 }
 
-export default function BlogSidebar({ relatedPosts, archiveMonths }: BlogSidebarProps) {
+export default function BlogSidebar({
+  relatedPosts,
+  archiveMonths,
+  currentQuery = "",
+}: BlogSidebarProps) {
   const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(currentQuery);
+
+  useEffect(() => {
+    setSearchTerm(currentQuery);
+  }, [currentQuery]);
   
   // Estados para el año y mes del calendario (Inicia en Mayo 2026 por las fechas de los artículos)
   const [currentYear, setCurrentYear] = useState(2026);
@@ -82,9 +91,17 @@ export default function BlogSidebar({ relatedPosts, archiveMonths }: BlogSidebar
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchTerm.trim()) {
-      router.push(`/blog?q=${encodeURIComponent(searchTerm.trim())}`);
+    const trimmed = searchTerm.trim();
+    if (trimmed) {
+      router.push(`/blog?q=${encodeURIComponent(trimmed)}`);
+    } else {
+      router.push("/blog");
     }
+  };
+
+  const handleClear = () => {
+    setSearchTerm("");
+    router.push("/blog");
   };
 
   return (
@@ -100,8 +117,18 @@ export default function BlogSidebar({ relatedPosts, archiveMonths }: BlogSidebar
             placeholder="Buscar artículos..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white border border-gray-200 px-4 py-3 pr-12 text-sm font-light text-dark placeholder:text-gray-400 focus:outline-none focus:border-primary transition-colors"
+            className="w-full bg-white border border-gray-200 px-4 py-3 pr-20 text-sm font-light text-dark placeholder:text-gray-400 focus:outline-none focus:border-primary transition-colors"
           />
+          {searchTerm && (
+            <button
+              type="button"
+              onClick={handleClear}
+              aria-label="Limpiar búsqueda"
+              className="absolute right-10 top-0 h-full px-2 text-gray-300 hover:text-dark transition-colors cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
           <button
             type="submit"
             aria-label="Buscar"

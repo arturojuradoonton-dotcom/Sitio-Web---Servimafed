@@ -215,14 +215,14 @@ export default function Home() {
               <div className="w-11 h-11 sm:w-14 sm:h-14 relative mb-3 sm:mb-4 opacity-90 hover:opacity-100 transition-opacity">
                 <Image
                   src="/images/iconos/8.svg"
-                  alt="Técnicos Certificados"
+                  alt="Técnicos Especializados"
                   fill
                   unoptimized
                   className="object-contain"
                 />
               </div>
-              <h4 className="text-2xl sm:text-3xl font-bold text-dark mb-1">+150</h4>
-              <p className="text-gray-500 font-light text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest">Técnicos Certificados</p>
+              <h4 className="text-2xl sm:text-3xl font-bold text-dark mb-1">100%</h4>
+              <p className="text-gray-500 font-light text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest">Técnicos Especializados</p>
             </div>
             
             {/* Item 2 */}

@@ -6,7 +6,7 @@ export interface NavigationItem {
 }
 
 export const serviciosDropdown: NavigationItem[] = [
-  { name: "Gestión de Flota", href: "/servicios/gestion-flota", img: "/images/menu/servicio-gestion.jpg.jpg", desc: "Disponibilidad mecánica y confiabilidad" },
+  { name: "Gestión de Flota", href: "/servicios/gestion-flota", img: "/images/menu/servicio-gestion.jpg.jpg", desc: "Mantenimiento integral bajo contrato" },
   { name: "Mantenimiento Preventivo", href: "/servicios/mantenimiento-preventivo", img: "/images/menu/servicio-mantenimiento.jpg.jpg", desc: "Planes por horómetro" },
   { name: "Reparación de Componentes", href: "/servicios/reparacion-componentes", img: "/images/menu/servicio-reparacion.jpg.jpg", desc: "Overhaul de motores y bombas" },
   { name: "Mecanizado y Soldadura", href: "/servicios/mecanizado-soldadura", img: "/images/menu/servicio-soldadura.jpg.jpg", desc: "Reforzamiento estructural certificado" },

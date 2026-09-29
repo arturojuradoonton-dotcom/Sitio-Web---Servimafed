@@ -11,6 +11,10 @@ export interface RepuestoCategory {
   overview: string;
   items: RepuestoItem[];
   features: string[];
+  ctaTitle?: string;
+  ctaHighlight?: string;
+  ctaDesc?: string;
+  ctaButton?: string;
 }
 
 export const repuestosData: Record<string, RepuestoCategory> = {
@@ -30,13 +34,17 @@ export const repuestosData: Record<string, RepuestoCategory> = {
       "Cobertura de garantía de fábrica contra defectos de manufactura",
       "Ingeniería de aplicaciones para la selección del aditamento óptimo",
       "Soporte de instalación en campo y calibración de flujos hidráulicos"
-    ]
+    ],
+    ctaTitle: "¿Busca aditamentos o",
+    ctaHighlight: "Accesorios?",
+    ctaDesc: "Consulte compatibilidad técnica y cotización para martillos hidráulicos, acoples rápidos y herramientas para su maquinaria.",
+    ctaButton: "Cotizar Accesorios"
   },
   "componentes": {
     title: "Componentes Mayores",
     subtitle: "Sistemas de potencia: Motores, bombas, transmisiones y mandos finales",
     heroImage: "/images/repuestos/componentes.jpg.jpg",
-    overview: "Suministramos componentes mayores estratégicos, tanto nuevos como remanufacturados (Reman), certificados para soportar las exigencias continuas del sector industrial. Nuestro extenso stock de intercambio está diseñado para abatir los tiempos muertos, proporcionando soluciones de potencia 'Plug and Play' inmediatas para su Maquinaria Pesada.",
+    overview: "Suministramos componentes mayores estratégicos (motores diésel, bombas hidráulicas, transmisiones y mandos finales) bajo pedido y gestión logística ágil, asegurando compatibilidad técnica y calidad garantizada para su maquinaria pesada.",
     items: [
       { name: "Motores Diésel Industriales", desc: "Configuraciones completas y shortblocks certificados para rangos de potencia de 100 a 3500 HP.", img: "/images/repuestos/componentes/1.jpg" },
       { name: "Transmisiones Powershift", desc: "Trenes de potencia reconstruidos con tecnología planetaria y convertidores de alto torque.", img: "/images/repuestos/componentes/2.jpg" },
@@ -44,11 +52,15 @@ export const repuestosData: Record<string, RepuestoCategory> = {
       { name: "Mandos Finales", desc: "Conjuntos reductores planetarios de alta relación para equipos de tracción por orugas.", img: "/images/repuestos/componentes/4.jpg" }
     ],
     features: [
-      "Línea completa de repuestos OEM nuevos y componentes Reman de fábrica",
-      "Esquema logístico de intercambio (Core Exchange) para disponibilidad inmediata",
-      "Certificación de pruebas en banco de ensayo dinamométrico",
-      "Respaldo de garantía extendida de hasta 1000 horas operativas"
-    ]
+      "Línea completa de repuestos OEM nuevos y componentes de calidad garantizada",
+      "Gestión logística para atención oportuna según requerimiento",
+      "Control de calidad y pruebas de estanqueidad y funcionamiento",
+      "Respaldo de garantía documentada para su inversión"
+    ],
+    ctaTitle: "¿Requiere un",
+    ctaHighlight: "Componente?",
+    ctaDesc: "Consulte disponibilidad y tiempos de entrega para motores, bombas hidráulicas, transmisiones y mandos finales.",
+    ctaButton: "Cotizar Componentes"
   },
   "elementos-desgaste": {
     title: "Elementos de Desgaste",
@@ -66,7 +78,11 @@ export const repuestosData: Record<string, RepuestoCategory> = {
       "Ingeniería de corte térmico y conformado según requerimientos estructurales",
       "Aplicación de soldadura de recubrimiento duro (Hardfacing)",
       "Auditorías en campo (CTS) para medición de desgaste de carrilería"
-    ]
+    ],
+    ctaTitle: "¿Cuchillas, puntas o",
+    ctaHighlight: "Desgaste?",
+    ctaDesc: "Suministro de cuchillas, cantoneras, puntas, zapatas y planchas antidesgaste para proteger sus equipos en obra.",
+    ctaButton: "Cotizar Desgaste (GET)"
   },
   "mantenimiento": {
     title: "Repuestos de Mantenimiento",
@@ -84,6 +100,10 @@ export const repuestosData: Record<string, RepuestoCategory> = {
       "Cadena de suministro ágil para despachos urgentes a nivel nacional",
       "Consolidación de kits de mantenimiento por intervalos de horómetro (PM Kits)",
       "Alianzas corporativas y esquemas de consignación para flotas mayores"
-    ]
+    ],
+    ctaTitle: "¿Kits de filtros o",
+    ctaHighlight: "Lubricantes?",
+    ctaDesc: "Abastecimiento oportuno de filtros de aire, aceite, combustible y sellos hidráulicos para sus servicios programados.",
+    ctaButton: "Cotizar Repuestos"
   }
 };

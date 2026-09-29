@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Nosotros',
-  description: 'Conozca el perfil corporativo de Servimafed: más de 10 años de experiencia en mantenimiento de maquinaria pesada, 150+ técnicos certificados y estándares ISO.',
+  description: 'Conozca el perfil corporativo de Servimafed: experiencia en mantenimiento de maquinaria pesada, técnicos especializados y altos estándares de calidad.',
 };
 
 export default function NosotrosPage() {
@@ -65,17 +65,17 @@ export default function NosotrosPage() {
               <div className="w-12 h-1 bg-primary mb-8"></div>
               
               <p className="text-gray-500 font-light text-lg leading-relaxed mb-6">
-                Como contratista principal para mineras y constructoras, nos especializamos en mantener la operatividad de equipos de alto tonelaje. Nuestra infraestructura y red logística nos permiten responder a emergencias mecánicas a nivel nacional.
+                Nos especializamos en mantener la operatividad de equipos pesados y de alto tonelaje. Contamos con nuestro taller en Lima y unidades móviles preparadas para atender evaluaciones y requerimientos mecánicos directamente en sus operaciones.
               </p>
 
               <ul className="space-y-4 text-gray-700 font-medium text-sm tracking-wide mt-8">
                 <li className="flex items-center gap-4">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
-                  INGENIEROS DE CAMPO CERTIFICADOS (OEM)
+                  SOPORTE TÉCNICO EN CAMPO
                 </li>
                 <li className="flex items-center gap-4">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
-                  INFRAESTRUCTURA DE TALLER CLASE A
+                  TALLER EN LIMA
                 </li>
                 <li className="flex items-center gap-4">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
@@ -137,7 +137,7 @@ export default function NosotrosPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { number: "12M+", label: "Horas Máquina Recuperadas", src: "/images/iconos/13.svg" },
-              { number: "150", label: "Técnicos en Campo", src: "/images/iconos/7.svg" },
+              { number: "100%", label: "Personal Calificado", src: "/images/iconos/7.svg" },
               { number: "100%", label: "Cumplimiento HSE", src: "/images/iconos/15.svg" },
               { number: "ISO", label: "Certificación 9001:2015", src: "/images/iconos/14.svg" },
             ].map((stat, i) => {
@@ -181,58 +181,12 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* Leadership Team Section */}
-      <section className="py-24 bg-gray-50 border-t border-b border-gray-200">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-20">
-            <span className="text-primary font-bold text-xs uppercase tracking-[0.2em] block mb-3">Liderazgo Profesional</span>
-            <h2 className="text-3xl font-light text-dark uppercase tracking-tight">Equipo de <span className="font-bold text-primary">Dirección y Operaciones</span></h2>
-            <div className="w-12 h-1 bg-primary mx-auto mt-4"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              {
-                name: "Ing. Fernando Valencia",
-                role: "Director de Operaciones",
-                desc: "Ingeniero Mecánico Senior con más de 20 años en dirección de talleres de gran minería y certificación OEM por fabricantes líderes.",
-                img: "/images/nosotros/equipo-1.jpg"
-              },
-              {
-                name: "Dra. Patricia Alva",
-                role: "Gerente de Aseguramiento de Calidad",
-                desc: "Especialista en auditoría HSEQ y responsable de la implementación de sistemas integrados de seguridad laboral en proyectos mineros.",
-                img: "/images/nosotros/equipo-2.jpg"
-              },
-              {
-                name: "Ing. Ricardo Thorne",
-                role: "Jefe de Soporte Técnico en Campo",
-                desc: "Coordinador nacional del equipo de auxilio mecánico rápido y experto en diagnóstico de sistemas electrónicos ECM multimarca.",
-                img: "/images/nosotros/equipo-3.jpg"
-              }
-            ].map((leader, i) => (
-              <div key={i} className="bg-white border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col rounded-sm overflow-hidden">
-                <div className="relative h-64 w-full bg-[#f4f4f4] overflow-hidden">
-                  <Image 
-                    src={leader.img} 
-                    alt={leader.name} 
-                    fill 
-                    className="object-cover opacity-75 grayscale hover:scale-105 hover:opacity-100 transition-all duration-700"
-                  />
-                </div>
-                <div className="p-8">
-                  <h4 className="font-bold text-dark text-base uppercase tracking-wider mb-1">{leader.name}</h4>
-                  <span className="text-xs font-bold text-primary uppercase tracking-widest block mb-4">{leader.role}</span>
-                  <p className="text-gray-500 font-light text-sm leading-relaxed">{leader.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
       {/* Brand Partners Section (Logo Slider) */}
-      <BrandSlider title="Socios Tecnológicos y Marcas Especializadas" logoNumbers={[17, 16, 22, 9, 1, 5, 6, 8, 4, 11]} />
+      <BrandSlider 
+        title="Repuestos de Marcas Líderes" 
+        subtitle="Utilizamos repuestos, filtros y componentes de los principales fabricantes para garantizar la máxima durabilidad y rendimiento de su maquinaria."
+        logoNumbers={[17, 16, 22, 9, 1, 5, 6, 8, 4, 11]} 
+      />
 
 
     </main>

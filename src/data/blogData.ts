@@ -138,25 +138,24 @@ export const blogPosts: BlogPost[] = [
     category: "Tecnología",
     tags: ["Komatsu", "KOMTRAX", "Telemetría", "Gestión de flota"],
   },
-  // ── 2024 ──────────────────────────────────────────────
+  // ── 2025 ──────────────────────────────────────────────
   {
-    slug: "servimafed-lanza-plataforma-erp-axentra",
-    title: "SERVIMAFED Lanza su Plataforma de Gestión Digital ERP Axentra",
+    slug: "servimafed-implementa-aplicacion-axentra",
+    title: "SERVIMAFED Implementa la Aplicación de Gestión Técnica Axentra",
     excerpt:
-      "La nueva plataforma permite a nuestros clientes corporativos visualizar reportes técnicos, cotizaciones y estado de componentes en tiempo real.",
+      "La nueva aplicación permite optimizar la gestión operativa, reportes técnicos de servicio y seguimiento del mantenimiento de maquinaria.",
     content: [
-      "En línea con nuestra visión de digitalización de procesos, SERVIMAFED ha lanzado oficialmente ERP Axentra, una plataforma de gestión integral desarrollada específicamente para el sector de mantenimiento de maquinaria pesada. Esta herramienta representa un paso decisivo hacia la transparencia operativa y la eficiencia en la gestión de servicios técnicos.",
-      "ERP Axentra permite a nuestros clientes corporativos acceder a un portal donde pueden visualizar en tiempo real el estado de sus órdenes de trabajo, consultar el historial de mantenimiento de cada equipo, descargar reportes técnicos de campo, revisar cotizaciones pendientes y hacer seguimiento de la facturación.",
-      "El sistema integra los datos de análisis de aceite, registros fotográficos de inspecciones, mediciones de desgaste y reportes de diagnóstico electrónico en un único dashboard por equipo. Esto elimina la dependencia de correos electrónicos y documentos físicos, centralizando toda la información técnica en un formato accesible desde cualquier dispositivo.",
-      "Para nuestro equipo interno, Axentra optimiza la asignación de técnicos, el control de inventario de repuestos, la programación de mantenimientos preventivos y la generación de indicadores de gestión como disponibilidad mecánica, MTBF (tiempo medio entre fallas) y MTTR (tiempo medio de reparación).",
-      "La plataforma está disponible para todos nuestros clientes con contratos de mantenimiento activos y puede ser accedida desde cualquier navegador web o dispositivo móvil.",
+      "A inicios de este año, en SERVIMAFED dimos un paso clave hacia la modernización de nuestros servicios con la implementación de la aplicación Axentra, una herramienta orientada a optimizar el control operativo y la gestión técnica en el mantenimiento de maquinaria pesada.",
+      "La aplicación Axentra permite registrar y dar seguimiento en tiempo real a las órdenes de trabajo, documentar las inspecciones realizadas en campo y taller, y generar informes técnicos detallados con fotografías y mediciones para nuestros clientes.",
+      "Esta digitalización facilita una comunicación más fluida y transparente, eliminando demoras innecesarias y asegurando que cada intervención mecánica cuente con un historial documentado y accesible.",
+      "Con la adopción de Axentra, nuestro equipo técnico y de coordinación logra una respuesta más ágil, mejor control de los tiempos de servicio y un estándar de atención orientado a reducir el tiempo de parada de los equipos de nuestros clientes.",
     ],
     img: "/images/Noticias y Blog/Plataforma ERP Axentra.jpg",
-    date: "10 Oct, 2024",
-    dateISO: "2024-10-10",
+    date: "15 Ene, 2025",
+    dateISO: "2025-01-15",
     author: "Gerencia General",
     category: "Tecnología",
-    tags: ["ERP Axentra", "Digitalización", "Gestión", "Plataforma"],
+    tags: ["Axentra", "Digitalización", "Gestión", "Servicio Técnico"],
   },
   {
     slug: "comparativa-aceros-antidesgaste-hardox-creusabro",
