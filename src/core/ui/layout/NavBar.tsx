@@ -63,14 +63,33 @@ export default function NavBar() {
     setSearchQuery('');
   }, []);
 
-  // Close search on Escape key
+  // Auto-focus search input when opened
+  useEffect(() => {
+    if (isSearchOpen) {
+      searchInputRef.current?.focus();
+    }
+  }, [isSearchOpen]);
+
+  // Close search on Click Outside or Escape key
   useEffect(() => {
     if (!isSearchOpen) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (searchOverlayRef.current && e.target instanceof Node && !searchOverlayRef.current.contains(e.target)) {
+        closeSearch();
+      }
+    };
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeSearch();
     };
+
+    document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [isSearchOpen, closeSearch]);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -223,8 +242,13 @@ export default function NavBar() {
 
         {/* Search, User Login & Mobile Menu */}
         <div className="flex items-center gap-1 sm:gap-2 md:gap-6 py-4">
-          <button onClick={() => setIsSearchOpen(true)} className="hidden md:flex items-center justify-center outline-none">
-            <Search className="cursor-pointer text-gray-700 hover:text-primary transition-colors w-5 h-5" />
+          <button 
+            type="button"
+            onClick={() => setIsSearchOpen(true)} 
+            className="hidden md:flex items-center justify-center outline-none cursor-pointer"
+            aria-label="Abrir buscador"
+          >
+            <Search className="text-gray-700 hover:text-primary transition-colors w-5 h-5" />
           </button>
           
           {/* Desktop User Login Trigger (Slide-over Drawer) */}

@@ -130,8 +130,8 @@ export default async function RepuestoDetalle({ params }: { params: Promise<{ sl
                       href={`/repuestos/${itemSlug}`}
                       className={`flex items-center gap-4 px-6 py-5 text-xs uppercase tracking-wider font-bold transition-all duration-300 border-l-4 group ${
                         isActive
-                          ? "bg-gray-50 border-primary text-dark"
-                          : "bg-white border-transparent text-gray-500 hover:bg-gray-50/50 hover:text-dark hover:border-primary/50"
+                          ? "bg-gray-50 border-l-primary text-dark"
+                          : "bg-white border-l-transparent text-gray-500 hover:bg-gray-50/50 hover:text-dark hover:border-l-primary/50"
                       }`}
                     >
                       <IconComponent 

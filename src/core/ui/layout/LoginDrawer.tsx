@@ -83,10 +83,10 @@ export default function LoginDrawer({ isOpen, onClose }: LoginDrawerProps) {
               href="https://portal.servimafed.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-6 border-2 border-primary bg-transparent text-dark font-semibold text-xs tracking-wider text-center rounded-sm hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+              className="w-full py-3.5 px-6 border-2 border-primary bg-transparent text-dark font-semibold text-xs tracking-wider text-center rounded-sm hover:bg-primary transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
             >
               <span>Ingresar al Portal Cliente</span>
-              <ExternalLink className="w-4 h-4 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ExternalLink className="w-4 h-4 text-primary group-hover:text-dark transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <p className="text-gray-500 font-light text-xs leading-relaxed px-1">
               Consulta de órdenes de servicio, reportes técnicos y cotizaciones para clientes de Servimafed.
@@ -99,10 +99,10 @@ export default function LoginDrawer({ isOpen, onClose }: LoginDrawerProps) {
               href="https://app.servimafed.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-6 border-2 border-primary bg-transparent text-dark font-semibold text-xs tracking-wider text-center rounded-sm hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+              className="w-full py-3.5 px-6 border-2 border-primary bg-transparent text-dark font-semibold text-xs tracking-wider text-center rounded-sm hover:bg-primary transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
             >
               <span>Acceder a ERP Axentra</span>
-              <ExternalLink className="w-4 h-4 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ExternalLink className="w-4 h-4 text-primary group-hover:text-dark transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <p className="text-gray-500 font-light text-xs leading-relaxed px-1">
               Sistema de gestión operativa de taller, repuestos y control de mantenimiento de maquinaria.
