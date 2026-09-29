@@ -2,6 +2,15 @@
 
 import { Resend } from "resend";
 import { escapeHtml, isWithinLength, isHoneypotTriggered } from "@/core/lib/security";
+import {
+  renderMasterEmail,
+  renderMetricsSection,
+  renderBrochureDownloadCard,
+  renderSalesQuickActions,
+  renderDetailCard,
+  renderCalloutBox,
+  EMAIL_ASSETS,
+} from "@/core/lib/emailLayout";
 
 export interface ContactFormData {
   companyName: string;
@@ -56,6 +65,12 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
 
     const resend = new Resend(apiKey);
 
+    const fechaHora = new Date().toLocaleString("es-PE", {
+      timeZone: "America/Lima",
+      dateStyle: "long",
+      timeStyle: "short",
+    });
+
     // Sanitización y escape HTML de datos de usuario para el correo
     const safeCompanyName = escapeHtml(companyName.trim());
     const safePhone = escapeHtml(phone.trim());
@@ -64,51 +79,96 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
     const safeRequirement = escapeHtml(requirement.trim());
     const cleanSubjectCompany = companyName.replace(/[\r\n]+/g, " ").trim().slice(0, 100);
 
-    const emailHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1f2937; border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden;">
-        <div style="background-color: #0f172a; padding: 24px; text-align: center; border-bottom: 4px solid #f59e0b;">
-          <h2 style="color: #ffffff; margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">
-            Nueva Solicitud de Contacto Corporativo
-          </h2>
-          <p style="color: #94a3b8; font-size: 13px; margin: 6px 0 0 0;">Sitio Web Servimafed SAC</p>
-        </div>
+    // 1. Notificación interna para el equipo comercial de SERVIMAFED
+    const companyContentHtml = `
+      <h1 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
+        Nueva Solicitud de Contacto Corporativo
+      </h1>
+      <p style="margin: 0 0 20px 0; font-size: 13.5px; color: #64748b; line-height: 1.6;">
+        Un cliente potencial se ha comunicado a través del formulario de contacto de la web oficial.
+      </p>
 
-        <div style="padding: 24px;">
-          <h3 style="color: #0f172a; font-size: 16px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 0;">
-            Datos del Cliente
-          </h3>
-          <p style="margin: 8px 0;"><strong>Razón Social / Nombre:</strong> ${safeCompanyName}</p>
-          <p style="margin: 8px 0;"><strong>Teléfono de Contacto:</strong> <a href="tel:${safePhone}" style="color: #f59e0b; text-decoration: none; font-weight: bold;">${safePhone}</a></p>
-          <p style="margin: 8px 0;"><strong>Correo Electrónico:</strong> ${safeEmail ? `<a href="mailto:${safeEmail}">${safeEmail}</a>` : 'No proporcionado'}</p>
+      ${renderSalesQuickActions(phone, safeCompanyName, "su mensaje en el formulario web")}
 
-          <h3 style="color: #0f172a; font-size: 16px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 24px;">
-            Requerimiento Técnico
-          </h3>
-          <div style="background-color: #f8fafc; border-left: 4px solid #f59e0b; padding: 14px; margin-top: 8px; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">
-${safeRequirement}
-          </div>
-        </div>
+      ${renderDetailCard("Datos del Cliente", [
+        { label: "Fecha y Hora", value: fechaHora },
+        { label: "Razón Social / Nombre", value: safeCompanyName },
+        { label: "Teléfono de Contacto", value: safePhone, isLink: true, href: `tel:${phone.replace(/\D/g, "")}` },
+        { label: "Correo Electrónico", value: safeEmail || "No proporcionado", isLink: Boolean(cleanEmail), href: cleanEmail ? `mailto:${safeEmail}` : undefined },
+      ])}
 
-        <div style="background-color: #f1f5f9; padding: 14px; text-align: center; font-size: 12px; color: #64748b;">
-          Mensaje generado automáticamente desde el formulario de contacto de <a href="https://www.servimafed.com" style="color: #0f172a; font-weight: bold;">servimafed.com</a>
-        </div>
-      </div>
+      ${renderCalloutBox(
+        "Requerimiento Técnico / Consulta Comercial:",
+        safeRequirement,
+        "gold"
+      )}
     `;
 
-    const { error } = await resend.emails.send({
-      from: "SERVIMAFED Web <web@servimafed.com>",
-      to: ["ventas@servimafed.com"],
-      replyTo: cleanEmail ? cleanEmail : undefined,
-      subject: `🚨 Solicitud de Contacto - ${cleanSubjectCompany}`,
-      html: emailHtml,
+    const emailToCompanyHtml = renderMasterEmail({
+      pageTitle: `Contacto Corporativo - ${cleanSubjectCompany}`,
+      preheaderText: `Nuevo mensaje de ${safeCompanyName} (${safePhone}).`,
+      badgeHtml: "💼 CONTACTO CORPORATIVO",
+      contentHtml: companyContentHtml,
+      showContactCenter: false,
     });
 
-    if (error) {
-      console.error("Resend API Error:", error);
+    const { error: companyError } = await resend.emails.send({
+      from: "SERVIMAFED Web <web@servimafed.com>",
+      to: ["ventas@servimafed.com"],
+      replyTo: cleanEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail) ? cleanEmail : undefined,
+      subject: `🚨 Solicitud de Contacto - ${cleanSubjectCompany}`,
+      html: emailToCompanyHtml,
+    });
+
+    if (companyError) {
+      console.error("Resend API Error al enviar a ventas:", companyError);
       return { 
         success: false, 
         error: "No se pudo enviar el correo en este momento. Por favor intente más tarde o contáctenos vía telefónica." 
       };
+    }
+
+    // 2. Correo de cortesía y confirmación al cliente (si proporcionó correo válido)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (cleanEmail && emailRegex.test(cleanEmail)) {
+      const customerContentHtml = `
+        <h1 style="margin: 0 0 14px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+          Hola ${safeCompanyName},
+        </h1>
+        
+        <p style="margin: 0 0 20px 0; font-size: 13.5px; line-height: 1.65; color: #475569;">
+          Hemos recibido exitosamente su comunicación a través de nuestro canal corporativo. Un asesor comercial especializado se pondrá en contacto con usted a la brevedad posible para brindarle asesoría técnica y una cotización a la medida de su proyecto.
+        </p>
+
+        ${renderDetailCard("Resumen del Mensaje Recibido", [
+          { label: "Empresa / Nombre", value: safeCompanyName },
+          { label: "Teléfono Registrado", value: safePhone },
+          { label: "Fecha y Hora", value: fechaHora },
+        ])}
+
+        ${renderMetricsSection("¿Sabías que en SERVIMAFED?")}
+
+        ${renderBrochureDownloadCard("¿Deseas revisar nuestro catálogo y dossier de servicios?<br/>Descárgalo directamente aquí:")}
+      `;
+
+      const emailToCustomerHtml = renderMasterEmail({
+        pageTitle: "Hemos recibido tu mensaje - SERVIMAFED S.A.C.",
+        preheaderText: `Hola ${safeCompanyName}, hemos recibido tu mensaje en SERVIMAFED S.A.C.`,
+        badgeHtml: "¡Mensaje Recibido<br/>con Éxito!",
+        heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
+        contentHtml: customerContentHtml,
+        showContactCenter: true,
+      });
+
+      // Envío asíncrono no bloqueante al cliente
+      resend.emails.send({
+        from: "SERVIMAFED <web@servimafed.com>",
+        to: [cleanEmail],
+        subject: "¡Hemos recibido tu mensaje de contacto! - SERVIMAFED S.A.C.",
+        html: emailToCustomerHtml,
+      }).catch((err) => {
+        console.warn("Aviso: no se pudo enviar correo de confirmación de contacto al cliente:", err);
+      });
     }
 
     return { success: true };

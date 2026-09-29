@@ -9,6 +9,13 @@ import {
   isValidMagicBytes,
   ALLOWED_CV_EXTENSIONS,
 } from "@/core/lib/security";
+import {
+  renderMasterEmail,
+  renderSalesQuickActions,
+  renderDetailCard,
+  renderCalloutBox,
+  EMAIL_ASSETS,
+} from "@/core/lib/emailLayout";
 
 export interface JobApplicationResult {
   success: boolean;
@@ -60,8 +67,8 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
 
     // Validación server-side de archivo adjunto (CV)
     const attachments = [];
+    let attachedCvName = "";
     if (cvFile && cvFile.size > 0) {
-      // 1. Límite de tamaño: 5 MB
       if (cvFile.size > 5 * 1024 * 1024) {
         return {
           success: false,
@@ -69,7 +76,6 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
         };
       }
 
-      // 2. Validación de extensión permitida en servidor (.pdf, .doc, .docx)
       if (!isValidExtension(cvFile.name, ALLOWED_CV_EXTENSIONS)) {
         return {
           success: false,
@@ -77,7 +83,6 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
         };
       }
 
-      // 3. Inspección binaria de magic bytes (sin dependencias adicionales)
       const buffer = Buffer.from(await cvFile.arrayBuffer());
       if (!isValidMagicBytes(buffer, cvFile.name)) {
         return {
@@ -87,6 +92,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
       }
 
       const safeFilename = cvFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      attachedCvName = safeFilename;
       attachments.push({
         filename: safeFilename,
         content: buffer,
@@ -107,6 +113,12 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
 
     const resend = new Resend(apiKey);
 
+    const fechaHora = new Date().toLocaleString("es-PE", {
+      timeZone: "America/Lima",
+      dateStyle: "long",
+      timeStyle: "short",
+    });
+
     // Sanitización y escape HTML de datos de usuario para el correo
     const safeNombre = escapeHtml(nombre);
     const safeTelefono = escapeHtml(telefono);
@@ -116,54 +128,111 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
     const cleanSubjectNombre = nombre.replace(/[\r\n]+/g, " ").trim().slice(0, 80);
     const cleanSubjectArea = area.replace(/[\r\n]+/g, " ").trim().slice(0, 50);
 
-    const emailHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1f2937; border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden;">
-        <div style="background-color: #0f172a; padding: 24px; text-align: center; border-bottom: 4px solid #f59e0b;">
-          <h2 style="color: #ffffff; margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">
-            Nueva Postulación de Trabajo
-          </h2>
-          <p style="color: #94a3b8; font-size: 13px; margin: 6px 0 0 0;">Sitio Web Servimafed SAC</p>
-        </div>
+    // 1. Notificación interna para RRHH / Selección
+    const hrContentHtml = `
+      <h1 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
+        Nueva Postulación - Bolsa de Trabajo
+      </h1>
+      <p style="margin: 0 0 20px 0; font-size: 13.5px; color: #64748b; line-height: 1.6;">
+        Se ha recibido un nuevo currículum para el área de <strong>${safeArea}</strong> desde el portal de convocatorias.
+      </p>
 
-        <div style="padding: 24px;">
-          <h3 style="color: #0f172a; font-size: 16px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 0;">
-            Datos del Postulante
-          </h3>
-          <p style="margin: 8px 0;"><strong>Nombre Completo:</strong> ${safeNombre}</p>
-          <p style="margin: 8px 0;"><strong>Teléfono:</strong> <a href="tel:${safeTelefono}" style="color: #f59e0b; text-decoration: none; font-weight: bold;">${safeTelefono}</a></p>
-          <p style="margin: 8px 0;"><strong>Correo Electrónico:</strong> <a href="mailto:${safeCorreo}">${safeCorreo}</a></p>
-          <p style="margin: 8px 0;"><strong>Área de Interés:</strong> ${safeArea}</p>
+      ${renderSalesQuickActions(telefono, safeNombre, `tu postulación para el área de ${safeArea}`)}
 
-          <h3 style="color: #0f172a; font-size: 16px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 24px;">
-            Mensaje / Experiencia
-          </h3>
-          <div style="background-color: #f8fafc; border-left: 4px solid #f59e0b; padding: 14px; margin-top: 8px; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">
-${safeMensaje}
-          </div>
-        </div>
+      ${renderDetailCard("Datos del Postulante", [
+        { label: "Fecha y Hora", value: fechaHora },
+        { label: "Nombre Completo", value: safeNombre },
+        { label: "Teléfono", value: safeTelefono, isLink: true, href: `tel:${telefono.replace(/\D/g, "")}` },
+        { label: "Correo Electrónico", value: safeCorreo, isLink: true, href: `mailto:${safeCorreo}` },
+        { label: "Área de Interés", value: safeArea },
+        { label: "Currículum Vitae", value: attachedCvName || "No adjuntado" },
+      ])}
 
-        <div style="background-color: #f1f5f9; padding: 14px; text-align: center; font-size: 12px; color: #64748b;">
-          Mensaje generado automáticamente desde el formulario de Bolsa de Trabajo de <a href="https://www.servimafed.com" style="color: #0f172a; font-weight: bold;">servimafed.com</a>
-        </div>
-      </div>
+      ${renderCalloutBox(
+        "Mensaje / Resumen de Experiencia:",
+        safeMensaje,
+        "blue"
+      )}
+
+      ${attachedCvName ? `
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f1f5f9; border-radius: 6px; margin-bottom: 22px;">
+        <tr>
+          <td style="padding: 12px 16px; font-size: 13px; color: #475569;">
+            📎 <strong>Archivo de CV adjunto:</strong> ${attachedCvName} <em>(Descárguelo en la cabecera de este correo)</em>
+          </td>
+        </tr>
+      </table>` : ""}
     `;
 
-    const { error } = await resend.emails.send({
+    const emailToHrHtml = renderMasterEmail({
+      pageTitle: `Nueva Postulación: ${cleanSubjectNombre} - ${cleanSubjectArea}`,
+      preheaderText: `Postulación para ${safeArea}: ${safeNombre} (${safeTelefono}).`,
+      badgeHtml: "📄 NUEVA POSTULACIÓN",
+      contentHtml: hrContentHtml,
+      showContactCenter: false,
+      customFooterText: "SERVIMAFED S.A.C. | Departamento de Gestión del Talento Humano",
+    });
+
+    const { error: hrError } = await resend.emails.send({
       from: "SERVIMAFED RRHH <web@servimafed.com>",
       to: ["ventas@servimafed.com"],
       replyTo: correo,
       subject: `📄 Nueva Postulación: ${cleanSubjectNombre} - ${cleanSubjectArea}`,
-      html: emailHtml,
+      html: emailToHrHtml,
       attachments,
     });
 
-    if (error) {
-      console.error("Resend API Error:", error);
+    if (hrError) {
+      console.error("Resend API Error al notificar a RRHH:", hrError);
       return { 
         success: false, 
         error: "No se pudo enviar la postulación en este momento. Por favor intente más tarde." 
       };
     }
+
+    // 2. Correo de cortesía y confirmación al postulante
+    const candidateContentHtml = `
+      <h1 style="margin: 0 0 14px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+        Hola ${safeNombre},
+      </h1>
+      
+      <p style="margin: 0 0 20px 0; font-size: 13.5px; line-height: 1.65; color: #475569;">
+        Muchas gracias por tu interés en integrarte a <strong>SERVIMAFED S.A.C.</strong> Hemos recibido exitosamente tu postulación y currículum para el área de <strong>${safeArea}</strong>.
+      </p>
+
+      ${renderDetailCard("Datos Registrados de tu Postulación", [
+        { label: "Área de Postulación", value: safeArea },
+        { label: "Fecha y Hora de Registro", value: fechaHora },
+        { label: "Teléfono de Contacto", value: safeTelefono },
+        { label: "Correo Electrónico", value: safeCorreo },
+      ])}
+
+      ${renderCalloutBox(
+        "Proceso de Selección:",
+        "Nuestro equipo de Gestión del Talento Humano evaluará tu perfil y trayectoria profesional. En caso de contar con una posición que se adapte a tus competencias, nos pondremos en contacto contigo para coordinar una entrevista técnica y personal.",
+        "neutral"
+      )}
+    `;
+
+    const emailToCandidateHtml = renderMasterEmail({
+      pageTitle: "Hemos recibido tu postulación - SERVIMAFED S.A.C.",
+      preheaderText: `Hola ${safeNombre}, confirmamos la recepción de tu postulación para ${safeArea} en SERVIMAFED S.A.C.`,
+      badgeHtml: "¡Postulación<br/>Recibida!",
+      heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
+      contentHtml: candidateContentHtml,
+      showContactCenter: true,
+      customFooterText: "SERVIMAFED S.A.C. | Departamento de Gestión del Talento Humano",
+    });
+
+    // Envío asíncrono al postulante
+    resend.emails.send({
+      from: "SERVIMAFED RRHH <web@servimafed.com>",
+      to: [correo],
+      subject: "Hemos recibido tu postulación laboral - SERVIMAFED S.A.C.",
+      html: emailToCandidateHtml,
+    }).catch((err) => {
+      console.warn("Aviso: no se pudo enviar correo de confirmación al postulante:", err);
+    });
 
     return { success: true };
   } catch (error) {

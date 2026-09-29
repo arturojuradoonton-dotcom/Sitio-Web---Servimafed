@@ -2,6 +2,12 @@
 
 import { Resend } from "resend";
 import { escapeHtml, isWithinLength, isHoneypotTriggered } from "@/core/lib/security";
+import {
+  renderMasterEmail,
+  renderDetailCard,
+  renderCalloutBox,
+  BRAND,
+} from "@/core/lib/emailLayout";
 
 export interface ClaimRequestData {
   tipo: "reclamo" | "queja";
@@ -111,119 +117,85 @@ export async function sendClaimRequest(formData: FormData) {
     const safePedido = escapeHtml(pedido);
     const cleanSubjectNombre = nombre.replace(/[\r\n]+/g, " ").trim().slice(0, 80);
 
-    // 1. Plantilla para la Empresa (SERVIMAFED)
-    const emailToCompanyHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 650px; margin: 0 auto; color: #1e293b; border: 1px solid #e2e8f0; border-radius: 4px; overflow: hidden;">
-        <div style="background-color: #0B0F19; color: #FCB326; padding: 24px; text-align: center; border-bottom: 4px solid #FCB326;">
-          <h2 style="margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">
-            🚨 Libro de Reclamaciones Virtual
-          </h2>
-          <p style="margin: 6px 0 0 0; color: #ffffff; font-size: 13px;">
-            Registro Oficial N° <strong>${claimCode}</strong>
-          </p>
-        </div>
+    // 1. Plantilla para la Empresa (SERVIMAFED - Atención Legal)
+    const companyContentHtml = `
+      <h1 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
+        Libro de Reclamaciones Virtual - Registro N° ${claimCode}
+      </h1>
+      <p style="margin: 0 0 18px 0; font-size: 13.5px; color: #64748b; line-height: 1.6;">
+        Se ha recibido un nuevo registro en el Libro de Reclamaciones con valor legal vinculante.
+      </p>
 
-        <div style="padding: 24px; background-color: #ffffff;">
-          <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 16px; margin-bottom: 20px;">
-            <p style="margin: 0; font-size: 12px; color: #92400e; font-weight: bold;">
-              ATENCIÓN LEGAL OBLIGATORIA (INDECOPI):
-            </p>
-            <p style="margin: 4px 0 0 0; font-size: 12px; color: #78350f;">
-              Conforme a la Ley N° 31435, se cuenta con un plazo máximo de <strong>15 días hábiles improrrogables</strong> para emitir respuesta formal al usuario.
-            </p>
-          </div>
+      ${renderCalloutBox(
+        "ALERTA LEGAL OBLIGATORIA (INDECOPI - LEY N° 31435):",
+        "Conforme a la normativa vigente del Código de Protección y Defensa del Consumidor, se cuenta con un plazo legal perentorio de <strong>15 días hábiles improrrogables</strong> para dar respuesta formal y motivada al reclamante a través del correo registrado.",
+        "gold"
+      )}
 
-          <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; font-size: 14px; text-transform: uppercase; color: #0B0F19; margin-top: 0;">
-            1. Datos del Reclamante
-          </h3>
-          <table style="width: 100%; font-size: 13px; line-height: 1.6; margin-bottom: 20px;">
-            <tr><td style="width: 35%; color: #64748b;"><strong>Tipo de Solicitud:</strong></td><td><strong style="color: #d97706;">${tipoLabel}</strong></td></tr>
-            <tr><td style="color: #64748b;"><strong>Fecha y Hora:</strong></td><td>${fechaHora}</td></tr>
-            <tr><td style="color: #64748b;"><strong>Nombre / Razón Social:</strong></td><td>${safeNombre}</td></tr>
-            <tr><td style="color: #64748b;"><strong>DNI / RUC:</strong></td><td>${safeDocumento}</td></tr>
-            <tr><td style="color: #64748b;"><strong>Teléfono:</strong></td><td>${safeTelefono}</td></tr>
-            <tr><td style="color: #64748b;"><strong>Correo Electrónico:</strong></td><td><a href="mailto:${safeCorreo}" style="color: #1d4ed8;">${safeCorreo}</a></td></tr>
-            <tr><td style="color: #64748b;"><strong>Dirección:</strong></td><td>${safeDireccion}</td></tr>
-          </table>
+      ${renderDetailCard("Datos del Reclamante", [
+        { label: "Código de Registro", value: claimCode },
+        { label: "Tipo de Registro", value: tipoLabel },
+        { label: "Fecha y Hora", value: fechaHora },
+        { label: "Nombre / Razón Social", value: safeNombre },
+        { label: "DNI / RUC", value: safeDocumento },
+        { label: "Teléfono", value: safeTelefono, isLink: true, href: `tel:${telefono.replace(/\D/g, "")}` },
+        { label: "Correo Electrónico", value: safeCorreo, isLink: true, href: `mailto:${safeCorreo}` },
+        { label: "Dirección", value: safeDireccion },
+      ])}
 
-          <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; font-size: 14px; text-transform: uppercase; color: #0B0F19;">
-            2. Detalle de la Reclamación (${tipoLabel})
-          </h3>
-          <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; margin-bottom: 20px;">
-            ${safeDetalle}
-          </div>
+      ${renderCalloutBox(`Detalle de la Reclamación (${tipoLabel}):`, safeDetalle, "neutral")}
 
-          <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; font-size: 14px; text-transform: uppercase; color: #0B0F19;">
-            3. Pedido Concreto del Consumidor
-          </h3>
-          <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; font-size: 13px; line-height: 1.6; white-space: pre-wrap;">
-            ${safePedido}
-          </div>
-        </div>
-
-        <div style="background-color: #f1f5f9; padding: 16px; text-align: center; font-size: 11px; color: #64748b; border-top: 1px solid #e2e8f0;">
-          SERVIMAFED S.A.C. | RUC 20600567668 | Sistema de Libro de Reclamaciones Virtual
-        </div>
-      </div>
+      ${renderCalloutBox("Pedido Concreto del Consumidor:", safePedido, "blue")}
     `;
 
-    // 2. Plantilla para el Consumidor (Hoja Oficial de Reclamación)
-    const emailToCustomerHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 650px; margin: 0 auto; color: #1e293b; border: 1px solid #e2e8f0; border-radius: 4px; overflow: hidden;">
-        <div style="background-color: #0B0F19; color: #FCB326; padding: 24px; text-align: center; border-bottom: 4px solid #FCB326;">
-          <h2 style="margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">
-            SERVIMAFED S.A.C.
-          </h2>
-          <p style="margin: 4px 0 0 0; color: #ffffff; font-size: 13px;">
-            Hoja de Reclamación Virtual N° <strong>${claimCode}</strong>
-          </p>
-        </div>
+    const emailToCompanyHtml = renderMasterEmail({
+      pageTitle: `Libro de Reclamaciones - ${claimCode} - ${cleanSubjectNombre}`,
+      preheaderText: `Alerta legal INDECOPI: ${tipoLabel} N° ${claimCode} de ${safeNombre}.`,
+      badgeHtml: `⚖️ ${tipoLabel} REGISTRADO`,
+      contentHtml: companyContentHtml,
+      showContactCenter: false,
+      customFooterText: "SERVIMAFED S.A.C. | Sistema Automatizado de Libro de Reclamaciones Virtual",
+    });
 
-        <div style="padding: 24px; background-color: #ffffff;">
-          <p style="font-size: 14px; line-height: 1.5; margin-top: 0;">
-            Estimado/a <strong>${safeNombre}</strong>:
-          </p>
-          <p style="font-size: 13px; line-height: 1.6; color: #475569;">
-            Le confirmamos que hemos recibido su <strong>${tipoLabel}</strong> a través de nuestro Libro de Reclamaciones Virtual. A continuación, le hacemos entrega de su constancia oficial:
-          </p>
+    // 2. Plantilla para el Consumidor (Hoja Oficial de Reclamación con respaldo estandarizado)
+    const customerContentHtml = `
+      <h1 style="margin: 0 0 12px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+        Estimado/a ${safeNombre},
+      </h1>
+      
+      <p style="margin: 0 0 20px 0; font-size: 13.5px; line-height: 1.65; color: #475569;">
+        Le confirmamos que hemos recibido su <strong>${tipoLabel}</strong> a través de nuestro Libro de Reclamaciones Virtual. A continuación, le hacemos entrega de su constancia y hoja de registro oficial:
+      </p>
 
-          <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; margin: 16px 0; font-size: 12px; line-height: 1.6;">
-            <p style="margin: 0 0 6px 0;"><strong>Proveedor:</strong> SERVIMAFED S.A.C.</p>
-            <p style="margin: 0 0 6px 0;"><strong>RUC:</strong> 20600567668</p>
-            <p style="margin: 0 0 6px 0;"><strong>Dirección:</strong> Mz. C Lote 12A, Sector Sumac Pacha - Lurín - Lima</p>
-            <p style="margin: 0 0 6px 0;"><strong>Fecha y Hora de Registro:</strong> ${fechaHora}</p>
-            <p style="margin: 0;"><strong>N° de Hoja de Reclamación:</strong> <span style="color: #d97706; font-weight: bold;">${claimCode}</span></p>
-          </div>
+      ${renderDetailCard("Constancia Oficial del Proveedor", [
+        { label: "N° de Hoja de Reclamación", value: claimCode },
+        { label: "Tipo de Registro", value: tipoLabel },
+        { label: "Proveedor", value: "SERVIMAFED S.A.C." },
+        { label: "RUC", value: BRAND.RUC },
+        { label: "Dirección Legal", value: BRAND.ADDRESS },
+        { label: "Fecha y Hora de Registro", value: fechaHora },
+      ])}
 
-          <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; font-size: 13px; text-transform: uppercase; color: #0B0F19;">
-            Detalle del ${tipoLabel} Registrado:
-          </h3>
-          <p style="font-size: 13px; line-height: 1.6; color: #334155; background-color: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; white-space: pre-wrap;">
-            ${safeDetalle}
-          </p>
+      ${renderCalloutBox(`Detalle de su ${tipoLabel} Registrado:`, safeDetalle, "neutral")}
 
-          <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; font-size: 13px; text-transform: uppercase; color: #0B0F19;">
-            Pedido del Consumidor:
-          </h3>
-          <p style="font-size: 13px; line-height: 1.6; color: #334155; background-color: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; white-space: pre-wrap;">
-            ${safePedido}
-          </p>
+      ${renderCalloutBox("Su Pedido Concreto:", safePedido, "neutral")}
 
-          <div style="background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 12px 16px; margin-top: 24px;">
-            <p style="margin: 0; font-size: 12px; color: #065f46; font-weight: bold;">
-              Plazo de Respuesta Legal (Ley N° 31435 - INDECOPI):
-            </p>
-            <p style="margin: 4px 0 0 0; font-size: 12px; color: #047857; line-height: 1.5;">
-              SERVIMAFED S.A.C. dará respuesta formal a su reclamación en un plazo no mayor a quince (15) días hábiles improrrogables a través de este correo electrónico.
-            </p>
-          </div>
-        </div>
-
-        <div style="background-color: #f1f5f9; padding: 16px; text-align: center; font-size: 11px; color: #64748b; border-top: 1px solid #e2e8f0;">
-          Servimafed S.A.C. | Mantenimiento y Maquinaria Pesada | www.servimafed.com
-        </div>
-      </div>
+      ${renderCalloutBox(
+        "Plazo de Respuesta Legal (Ley N° 31435 - INDECOPI):",
+        "SERVIMAFED S.A.C. dará respuesta formal y motivada a su reclamación en un plazo no mayor a quince (15) días hábiles improrrogables a través de este correo electrónico.",
+        "green"
+      )}
     `;
+
+    const emailToCustomerHtml = renderMasterEmail({
+      pageTitle: `Hoja de Reclamación N° ${claimCode} - SERVIMAFED S.A.C.`,
+      preheaderText: `Constancia oficial de ${tipoLabel} N° ${claimCode} registrada ante SERVIMAFED S.A.C.`,
+      badgeHtml: `Hoja N°<br/>${claimCode}`,
+      contentHtml: customerContentHtml,
+      showContactCenter: true,
+      contactCenterEmail: BRAND.EMAIL_CLAIMS,
+      customFooterText: "SERVIMAFED S.A.C. | Libro de Reclamaciones Virtual conforme a las directivas de INDECOPI.",
+    });
 
     // 1. Envío a la empresa
     const sendCompany = await resend.emails.send({
@@ -251,7 +223,7 @@ export async function sendClaimRequest(formData: FormData) {
     });
 
     if (sendCustomer.error) {
-      console.warn("Advertencia: No se pudo enviar copia al cliente:", sendCustomer.error);
+      console.error("Error al enviar constancia al cliente:", sendCustomer.error);
     }
 
     return {
@@ -264,7 +236,7 @@ export async function sendClaimRequest(formData: FormData) {
     console.error("Server Action sendClaimRequest Error:", error);
     return {
       success: false,
-      error: "Ocurrió un error inesperado al procesar su reclamación.",
+      error: "Ocurrió un error inesperado al procesar la solicitud.",
     };
   }
 }
