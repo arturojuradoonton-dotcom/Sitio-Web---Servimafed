@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, User, Tag, ChevronRight } from "lucide-react";
+import { Calendar, User, Tag } from "lucide-react";
 import {
   blogPosts,
-  blogCategories,
   getBlogPostBySlug,
   getRelatedPosts,
   getArchiveMonths,

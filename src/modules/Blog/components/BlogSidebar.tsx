@@ -1,30 +1,31 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Search, ChevronRight, Calendar, X } from "lucide-react";
+import { Search, ChevronRight, X } from "lucide-react";
 import { blogPosts, blogCategories } from "@/data/blogData";
 import type { BlogPost } from "@/data/blogData";
 
 interface BlogSidebarProps {
   relatedPosts: BlogPost[];
-  archiveMonths: { label: string; yearMonth: string; count: number }[];
+  archiveMonths?: { label: string; yearMonth: string; count: number }[];
   currentQuery?: string;
 }
 
 export default function BlogSidebar({
   relatedPosts,
-  archiveMonths,
   currentQuery = "",
 }: BlogSidebarProps) {
   const router = useRouter();
+  const [prevQuery, setPrevQuery] = useState(currentQuery);
   const [searchTerm, setSearchTerm] = useState(currentQuery);
 
-  useEffect(() => {
+  if (currentQuery !== prevQuery) {
+    setPrevQuery(currentQuery);
     setSearchTerm(currentQuery);
-  }, [currentQuery]);
+  }
   
   // Estados para el año y mes del calendario (Inicia en Mayo 2026 por las fechas de los artículos)
   const [currentYear, setCurrentYear] = useState(2026);
