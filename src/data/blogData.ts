@@ -254,66 +254,6 @@ export const blogPosts: BlogPost[] = [
     category: "Industria",
     tags: ["Volvo", "Eléctrico", "Cargador", "Emisiones cero"],
   },
-  // ── 2021 ──────────────────────────────────────────────
-  {
-    slug: "servimafed-homologa-contratista-operaciones-mineras-sur",
-    title: "SERVIMAFED se Homologa como Contratista en Operaciones Mineras del Sur del Perú",
-    excerpt:
-      "La empresa completa el proceso de homologación bajo estándares internacionales para operar como contratista de soporte permanente en minería.",
-    content: [
-      "SERVIMAFED ha completado satisfactoriamente el proceso de homologación requerido para operar como empresa contratista de mantenimiento mecánico en importantes operaciones mineras del sur del Perú. Este logro representa un hito en la trayectoria de la empresa y valida años de inversión en capacitación, infraestructura y sistemas de gestión.",
-      "El proceso de homologación involucró la evaluación exhaustiva de múltiples dimensiones de la empresa: capacidad técnica y experiencia del personal, infraestructura de taller y equipamiento, sistemas de gestión de calidad y seguridad, solidez financiera, cumplimiento legal y laboral, y trazabilidad de procesos de reparación.",
-      "Los evaluadores verificaron en campo las competencias de nuestros soldadores certificados, la calibración de nuestros equipos de medición, los procedimientos de trabajo seguro para actividades de alto riesgo, y la implementación efectiva de nuestro plan de gestión ambiental. La auditoría documental revisó contratos anteriores, certificados de capacitación, registros de mantenimiento de equipos propios y estados financieros.",
-      "Como contratista homologado, SERVIMAFED ahora puede participar directamente en los procesos de licitación para servicios de mantenimiento mecánico, overhaul de componentes, soporte técnico en campo y suministro de repuestos dentro de las operaciones mineras, sin necesidad de subcontratar a través de terceros.",
-      "Este paso estratégico nos acerca a nuestra visión de consolidarnos como socio técnico de referencia para el sector minero peruano, ofreciendo servicios de ingeniería de mantenimiento con los más altos estándares de calidad, seguridad y responsabilidad ambiental.",
-    ],
-    img: "/images/blog/13.jpg",
-    date: "25 May, 2021",
-    dateISO: "2021-05-25",
-    author: "Gerencia General",
-    category: "Minería",
-    tags: ["Homologación", "Minería", "Contratista", "Certificación"],
-  },
-  // ── 2020 ──────────────────────────────────────────────
-  {
-    slug: "protocolos-mantenimiento-maquinaria-pesada-covid19",
-    title: "Protocolos de Mantenimiento de Maquinaria Pesada durante la Pandemia COVID-19",
-    excerpt:
-      "Adaptación de procedimientos de trabajo en campo y taller para garantizar la continuidad operativa con medidas de bioseguridad.",
-    content: [
-      "La pandemia de COVID-19 obligó al sector minero y de construcción a replantear completamente sus protocolos de operación y mantenimiento. Como empresa de servicios esenciales para la cadena productiva de la minería, SERVIMAFED implementó un plan integral de bioseguridad que permitió mantener la continuidad de nuestros servicios sin comprometer la salud de nuestro personal ni de nuestros clientes.",
-      "Los protocolos incluyeron la reorganización de turnos de trabajo para reducir la densidad de personal en taller, la implementación de puntos de desinfección en todas las áreas de trabajo, el uso obligatorio de EPP adicional (mascarillas N95, protectores faciales, guantes de nitrilo) y la desinfección sistemática de herramientas, equipos de diagnóstico y cabinas de maquinaria antes y después de cada intervención.",
-      "Para los servicios en campo, se establecieron protocolos de viaje que incluían pruebas de descarte previas al traslado, cuarentena en las instalaciones de la mina antes del ingreso a zona operativa, y monitoreo de síntomas durante toda la duración del servicio. Los reportes técnicos y documentación migraron a formato completamente digital para eliminar el intercambio de documentos físicos.",
-      "La experiencia de la pandemia aceleró la adopción de herramientas digitales en nuestras operaciones. El uso de videoconferencias para reuniones técnicas con clientes, la firma digital de órdenes de trabajo y la transmisión en tiempo real de datos de diagnóstico desde el campo se convirtieron en prácticas permanentes que mejoraron la eficiencia de nuestros procesos.",
-      "Hoy, muchas de las medidas implementadas durante la pandemia se mantienen como parte de nuestros estándares operativos, habiendo demostrado que no solo protegen la salud del personal sino que también mejoran la productividad y la calidad de nuestros servicios.",
-    ],
-    img: "/images/blog/14.jpg",
-    date: "12 Jun, 2020",
-    dateISO: "2020-06-12",
-    author: "Gerencia HSEQ",
-    category: "Normativa",
-    tags: ["COVID-19", "Bioseguridad", "Protocolos", "Continuidad operativa"],
-  },
-  // ── 2019 ──────────────────────────────────────────────
-  {
-    slug: "ampliacion-taller-nueva-area-mecanizado-precision",
-    title: "Ampliación del Taller: Nueva Área de Mecanizado de Precisión",
-    excerpt:
-      "SERVIMAFED inaugura nueva nave industrial con tornos CNC y fresadoras de gran capacidad para la recuperación de componentes de maquinaria pesada.",
-    content: [
-      "SERVIMAFED ha inaugurado una nueva área de mecanizado de precisión como parte de nuestro plan de expansión de infraestructura. La inversión incluye la construcción de una nave industrial de 400 m² equipada con maquinaria de última generación para la recuperación dimensional de componentes críticos de maquinaria pesada.",
-      "El nuevo taller incorpora un torno paralelo de 3 metros entre puntos con capacidad para piezas de hasta 2 toneladas, ideal para el mecanizado de ejes de transmisión, muñones de eje de mando final y bujes de gran diámetro. También se instaló una fresadora universal con mesa de trabajo de 1.5 x 0.5 metros para el maquinado de superficies de montaje, alojamientos de rodamientos y bases de motor.",
-      "Una de las capacidades más relevantes que aporta esta ampliación es el line boring (mandrinado en sitio), que permite la recuperación de alojamientos de pasadores en estructuras de excavadoras y cargadores sin necesidad de desmontar el componente completo. Este proceso reduce significativamente los tiempos de reparación y los costos de transporte de componentes de gran tamaño.",
-      "El área de mecanizado cuenta con un sistema de control de calidad dimensional que incluye micrómetros de exteriores e interiores calibrados, comparadores de carátula, rugosímetro superficial y un equipo de alineación láser para la verificación de concentricidad en ejes reconstruidos.",
-      "Con esta ampliación, SERVIMAFED refuerza su capacidad de ofrecer soluciones integrales de mantenimiento, desde el diagnóstico y desmontaje hasta la reconstrucción de componentes y reinstalación, reduciendo la dependencia de servicios subcontratados y los tiempos de entrega.",
-    ],
-    img: "/images/blog/15.jpg",
-    date: "20 Oct, 2019",
-    dateISO: "2019-10-20",
-    author: "Gerencia de Operaciones",
-    category: "Tecnología",
-    tags: ["Mecanizado", "Taller", "CNC", "Infraestructura"],
-  },
   // ── 2017 ──────────────────────────────────────────────
   {
     slug: "intervalos-mantenimiento-horometro-excavadoras-cat-320",
