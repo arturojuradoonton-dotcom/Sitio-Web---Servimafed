@@ -143,18 +143,18 @@ export default function HeroSlider() {
             {/* Capa de Transparencia con Degradado Horizontal para PC */}
             <div className={`absolute inset-0 ${slide.overlayClass}`} aria-hidden="true" />
 
-            {/* Contenido Alineado al Extremo en PC, Centrado en Móvil */}
-            <div className="absolute inset-0 flex items-center z-20">
+            {/* Contenido Alineado al Extremo en PC, Centrado y Elevado en Móvil */}
+            <div className="absolute inset-0 flex items-center z-20 pb-4 sm:pb-6 md:pb-0">
               <div className="container mx-auto px-6 sm:px-8">
                 <div
-                  className={`max-w-xl mx-auto md:mx-0 flex flex-col items-center text-center px-4 sm:px-6 md:px-0 ${slide.align === 'right'
+                  className={`max-w-xl mx-auto md:mx-0 flex flex-col items-center text-center px-4 sm:px-6 md:px-0 -translate-y-2 sm:-translate-y-3 md:translate-y-0 ${slide.align === 'right'
                       ? 'md:ml-auto md:text-right md:items-end'
                       : 'md:mr-auto md:text-left md:items-start'
                     }`}
                 >
 
                   {/* Categoría / Subtítulo */}
-                  <p className="text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-4 md:mb-5">
+                  <p className="text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-6 sm:mb-7 md:mb-5">
                     {slide.category}
                   </p>
 
