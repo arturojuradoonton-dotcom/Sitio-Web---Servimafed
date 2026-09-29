@@ -83,7 +83,7 @@ export default function LoginDrawer({ isOpen, onClose }: LoginDrawerProps) {
               href="https://portal.servimafed.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-6 border border-primary bg-transparent text-dark font-semibold text-xs tracking-wider text-center rounded-sm hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+              className="w-full py-3.5 px-6 border-2 border-primary bg-transparent text-dark font-semibold text-xs tracking-wider text-center rounded-sm hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
             >
               <span>Ingresar al Portal Cliente</span>
               <ExternalLink className="w-4 h-4 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -99,7 +99,7 @@ export default function LoginDrawer({ isOpen, onClose }: LoginDrawerProps) {
               href="https://app.servimafed.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-6 border border-primary bg-transparent text-dark font-semibold text-xs tracking-wider text-center rounded-sm hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+              className="w-full py-3.5 px-6 border-2 border-primary bg-transparent text-dark font-semibold text-xs tracking-wider text-center rounded-sm hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
             >
               <span>Acceder a ERP Axentra</span>
               <ExternalLink className="w-4 h-4 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
