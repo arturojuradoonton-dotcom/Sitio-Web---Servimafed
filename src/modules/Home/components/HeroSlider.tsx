@@ -154,35 +154,23 @@ export default function HeroSlider() {
                 >
 
                   {/* Categoría / Subtítulo */}
-                  <p
-                    className={`text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4 transition-all duration-700 delay-100 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                      }`}
-                  >
+                  <p className="text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4">
                     {slide.category}
                   </p>
 
                   {/* Título Principal */}
-                  <h1
-                    className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6 transition-all duration-700 delay-200 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                      }`}
-                  >
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6">
                     <span className="block font-light text-white">{slide.title}</span>
                     <span className="text-primary block font-black">{slide.highlight}</span>
                   </h1>
 
                   {/* Descripción */}
-                  <p
-                    className={`text-sm sm:text-base md:text-lg font-light text-white/90 leading-relaxed mb-8 md:mb-10 transition-all duration-700 delay-300 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                      }`}
-                  >
+                  <p className="text-sm sm:text-base md:text-lg font-light text-white/90 leading-relaxed mb-8 md:mb-10">
                     {slide.description}
                   </p>
 
                   {/* Botón de Acción */}
-                  <div
-                    className={`transition-all duration-700 delay-400 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                      }`}
-                  >
+                  <div>
                     <Link
                       href={slide.ctaLink}
                       className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold px-8 md:px-10 py-3 md:py-4 text-xs md:text-sm uppercase tracking-widest transition-all duration-300 inline-block shadow-md hover:shadow-lg cursor-pointer"
