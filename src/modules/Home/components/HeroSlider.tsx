@@ -116,7 +116,7 @@ export default function HeroSlider() {
 
   return (
     <div
-      className="relative overflow-hidden min-h-[520px] md:min-h-[660px] lg:min-h-[720px] flex items-center bg-dark select-none"
+      className="relative overflow-hidden min-h-[560px] sm:min-h-[600px] md:min-h-[660px] lg:min-h-[720px] flex items-center bg-dark select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -154,18 +154,18 @@ export default function HeroSlider() {
                 >
 
                   {/* Categoría / Subtítulo */}
-                  <p className="text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-3 md:mb-4">
+                  <p className="text-primary font-bold tracking-[0.3em] text-[11px] md:text-xs uppercase mb-4 md:mb-5">
                     {slide.category}
                   </p>
 
                   {/* Título Principal */}
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-tight mb-4 md:mb-6">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-black uppercase tracking-tight leading-[1.15] sm:leading-[1.2] mb-6 md:mb-8">
                     <span className="block font-light text-white">{slide.title}</span>
-                    <span className="text-primary block font-black">{slide.highlight}</span>
+                    <span className="text-primary block font-black mt-1 sm:mt-1.5">{slide.highlight}</span>
                   </h1>
 
                   {/* Descripción */}
-                  <p className="text-sm sm:text-base md:text-lg font-light text-white/90 leading-relaxed mb-8 md:mb-10">
+                  <p className="text-sm sm:text-base md:text-lg font-light text-white/90 leading-[1.7] sm:leading-relaxed mb-8 md:mb-10 max-w-lg md:max-w-xl">
                     {slide.description}
                   </p>
 
