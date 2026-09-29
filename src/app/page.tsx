@@ -173,6 +173,7 @@ export default function Home() {
                   src={solucion.img} 
                   alt={solucion.title} 
                   fill 
+                  sizes="(max-width: 1024px) 50vw, 25vw"
                   className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 ease-out" 
                 />
                 

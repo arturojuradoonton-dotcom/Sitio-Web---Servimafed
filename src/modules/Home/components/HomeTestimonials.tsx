@@ -75,6 +75,7 @@ export function HomeTestimonials() {
                 alt="Opiniones de los clientes - SERVIMAFED"
                 fill
                 priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-top transition-all duration-700 ease-in-out"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-transparent opacity-30 pointer-events-none" />

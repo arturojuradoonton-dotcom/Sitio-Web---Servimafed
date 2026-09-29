@@ -135,6 +135,7 @@ function NewsCard({ post, hiddenOnMobile = false }: NewsCardProps) {
             src={post.img}
             alt={`Imagen representativa de ${post.title}`}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover group-hover:scale-105 transition-transform duration-700"
           />
           <span className="absolute top-4 left-4 bg-dark text-primary font-bold text-[9px] uppercase tracking-widest px-3 py-1.5 border-l-2 border-primary">
