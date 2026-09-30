@@ -38,6 +38,7 @@ export const BRAND = {
   PHONE_TEL: "+51993667182",
   EMAIL_SALES: "ventas@servimafed.com",
   EMAIL_CLAIMS: "reclamos@servimafed.com",
+  EMAIL_HR: "talentohumano@servimafed.com",
   ADDRESS: "Mz. C Lote 12A, Sector Sumac Pacha - Lurín - Lima",
   RUC: "20600567668",
 };

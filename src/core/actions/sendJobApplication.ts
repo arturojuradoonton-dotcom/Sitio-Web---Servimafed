@@ -15,6 +15,7 @@ import {
   renderDetailCard,
   renderCalloutBox,
   EMAIL_ASSETS,
+  BRAND,
 } from "@/core/lib/emailLayout";
 
 export interface JobApplicationResult {
@@ -175,7 +176,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
 
     const { error: hrError } = await resend.emails.send({
       from: "SERVIMAFED RRHH <web@servimafed.com>",
-      to: ["ventas@servimafed.com"],
+      to: [BRAND.EMAIL_HR],
       replyTo: correo,
       subject: `📄 Nueva Postulación: ${cleanSubjectNombre} - ${cleanSubjectArea}`,
       html: emailToHrHtml,
@@ -230,6 +231,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
       heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
       contentHtml: candidateContentHtml,
       showContactCenter: true,
+      contactCenterEmail: BRAND.EMAIL_HR,
       customFooterText: "SERVIMAFED S.A.C. | Departamento de Gestión del Talento Humano",
     });
 
@@ -237,6 +239,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
     resend.emails.send({
       from: "SERVIMAFED RRHH <web@servimafed.com>",
       to: [correo],
+      replyTo: BRAND.EMAIL_HR,
       subject: "Hemos recibido tu postulación laboral - SERVIMAFED S.A.C.",
       html: emailToCandidateHtml,
     }).catch((err) => {
