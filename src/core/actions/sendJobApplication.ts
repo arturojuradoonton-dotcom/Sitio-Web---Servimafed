@@ -163,7 +163,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
       )}
 
       ${attachedCvName ? `
-      <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 6px; margin: 0 auto 22px auto;">
+      <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 6px; margin: 0 auto 6px auto;">
         <tr>
           <td class="callout-cell" style="padding: 12px 16px; font-size: 13px; color: #475569;">
             📎 <strong>Archivo de CV adjunto:</strong> ${attachedCvName} <em>(Descárguelo en los adjuntos de este correo)</em>

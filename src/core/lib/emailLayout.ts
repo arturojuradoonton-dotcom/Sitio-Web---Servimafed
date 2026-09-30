@@ -19,7 +19,8 @@ export const EMAIL_ASSETS = {
   HEADSET_ICON: "https://www.servimafed.com/images/headset-contact.png",
   WORKER_ICON: "https://www.servimafed.com/images/icon-trabajador.png",
   BROCHURE_ICON: "https://www.servimafed.com/images/icon-brochure-download.png",
-  WHATSAPP_ICON: "https://www.servimafed.com/images/icon-whatsapp-green.svg",
+  PHONE_ICON: "https://www.servimafed.com/images/icon-phone-gold.png",
+  WHATSAPP_ICON: "https://www.servimafed.com/images/icon-whatsapp-green.png",
   METRIC_SOPORTE: "https://www.servimafed.com/images/metric-soporte.png",
   METRIC_EQUIPOS: "https://www.servimafed.com/images/metric-equipos.png",
   METRIC_ISO: "https://www.servimafed.com/images/metric-iso.png",
@@ -830,7 +831,7 @@ export function renderInternalContactActions(
               </p>
               <p class="internal-contact-value" style="margin: 4px 0 0 0; font-size: 13.5px;">
                 <a href="${telUrl}" style="color: #0f172a; text-decoration: none; font-weight: 800;">
-                  📞 ${phone}
+                  <img src="${EMAIL_ASSETS.PHONE_ICON}" alt="Llamar" width="14" height="14" style="display: inline-block; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px; border: 0;" />${phone}
                 </a>
               </p>
             </td>

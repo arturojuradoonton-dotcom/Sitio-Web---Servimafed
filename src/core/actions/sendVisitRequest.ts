@@ -188,7 +188,7 @@ export async function sendVisitRequest(formData: FormData) {
       ) : ""}
 
       ${safeAttachmentName ? `
-      <table align="center" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 auto 20px auto;">
+      <table align="center" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 auto 6px auto;">
         <tr>
           <td class="callout-cell" style="padding: 12px 16px; font-size: 13px; color: #475569;">
             📎 <strong>Archivo adjunto por el cliente:</strong> ${safeAttachmentName} <em>(Descárguelo en los adjuntos de este correo)</em>
