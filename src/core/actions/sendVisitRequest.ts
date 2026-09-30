@@ -259,8 +259,8 @@ export async function sendVisitRequest(formData: FormData) {
             { label: "Teléfono de Contacto", value: safePhone },
           ],
           {
-            maxWidth: "520px",
-            centered: true,
+            maxWidth: "100%",
+            innerTableMaxWidth: "460px",
             hideDivider: true,
             hideRowBorders: true,
           }

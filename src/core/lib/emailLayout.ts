@@ -519,6 +519,7 @@ export interface DetailCardOptions {
   centered?: boolean;
   hideDivider?: boolean;
   hideRowBorders?: boolean;
+  innerTableMaxWidth?: string;
 }
 
 /**
@@ -534,6 +535,7 @@ export function renderDetailCard(
     centered = false,
     hideDivider = false,
     hideRowBorders = false,
+    innerTableMaxWidth,
   } = options;
 
   const rowBorderStyle = hideRowBorders ? "" : "border-bottom: 1px solid #f1f5f9;";
@@ -543,10 +545,10 @@ export function renderDetailCard(
     .map(
       (r) => `
       <tr>
-        <td width="38%" style="${rowPadding} color: #64748b; font-weight: 600; font-size: 13px; ${rowBorderStyle} vertical-align: top;">
+        <td width="42%" align="left" style="${rowPadding} color: #64748b; font-weight: 600; font-size: 13px; text-align: left; ${rowBorderStyle} vertical-align: top;">
           ${r.label}:
         </td>
-        <td width="62%" style="${rowPadding} color: #0f172a; font-weight: 700; font-size: 13.5px; ${rowBorderStyle} vertical-align: top;">
+        <td width="58%" align="left" style="${rowPadding} color: #0f172a; font-weight: 700; font-size: 13.5px; text-align: left; ${rowBorderStyle} vertical-align: top;">
           ${r.isLink && r.href ? `<a href="${r.href}" style="color: ${BRAND.NAVY}; text-decoration: none; font-weight: 700;">${r.value}</a>` : r.value}
         </td>
       </tr>`
@@ -556,19 +558,23 @@ export function renderDetailCard(
   const marginStyle = centered ? "margin: 0 auto 22px auto;" : "margin-bottom: 22px;";
   const alignAttr = centered ? `align="center"` : "";
   const headerBorder = hideDivider ? "" : `border-bottom: 2px solid ${BRAND.YELLOW};`;
+  const innerTableStyle = innerTableMaxWidth 
+    ? `max-width: ${innerTableMaxWidth}; width: 100%; margin: 0 auto;` 
+    : "width: 100%;";
+  const bodyCellPadding = innerTableMaxWidth ? "padding: 16px 20px 18px 20px;" : "padding: 12px 16px 14px 16px;";
 
   return `
   <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: ${maxWidth}; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; ${marginStyle} overflow: hidden;">
     <tr>
-      <td style="background-color: #f8fafc; padding: 12px 18px; ${headerBorder}">
-        <span style="font-size: 13px; font-weight: 800; color: ${BRAND.NAVY}; text-transform: uppercase; letter-spacing: 0.5px;">
+      <td align="left" style="background-color: #f8fafc; padding: 14px 22px; text-align: left; ${headerBorder}">
+        <span style="font-size: 13.5px; font-weight: 800; color: ${BRAND.NAVY}; text-transform: uppercase; letter-spacing: 0.5px;">
           ${title}
         </span>
       </td>
     </tr>
     <tr>
-      <td style="padding: 12px 16px 14px 16px;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <td align="center" style="${bodyCellPadding}">
+        <table align="center" cellpadding="0" cellspacing="0" border="0" style="${innerTableStyle}">
           ${rowsHtml}
         </table>
       </td>
