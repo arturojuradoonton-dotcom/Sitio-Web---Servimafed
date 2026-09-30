@@ -140,22 +140,50 @@ export async function sendVisitRequest(formData: FormData) {
       ? `🚨 Visita Técnica: ${cleanSubjectEquipment} - ${cleanSubjectName}`
       : `🚨 Nueva Solicitud de Visita Técnica - ${cleanSubjectName}`;
 
+    // Formateo de acciones inline para teléfono (Llamada y WhatsApp directos)
+    const cleanDigits = phone.replace(/\D/g, "");
+    const whatsappNumber = cleanDigits.length === 9 ? `51${cleanDigits}` : cleanDigits;
+    const waGreeting = encodeURIComponent(
+      `Hola ${fullName}, le saludamos del equipo técnico de SERVIMAFED S.A.C. Recibimos su solicitud de visita técnica para su equipo ${equipment}. ¿Podemos coordinar la inspección?`
+    );
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${waGreeting}`;
+    const telUrl = `tel:${cleanDigits}`;
+
+    const phoneValueWithIcons = `
+      <span style="font-size: 14px; font-weight: 700; color: #0f172a;">${safePhone}</span>
+      &nbsp;&nbsp;
+      <a href="${telUrl}" title="Llamar al cliente" style="display: inline-block; background-color: #FCB326; color: #0f172a; text-decoration: none; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; font-size: 12px; vertical-align: middle; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
+        📞
+      </a>
+      &nbsp;
+      <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" title="Chatear por WhatsApp" style="display: inline-block; background-color: #25D366; color: #ffffff; text-decoration: none; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; font-size: 12px; vertical-align: middle; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
+        💬
+      </a>
+    `.trim();
+
+    const hasRealComments = comments && comments !== "Sin comentarios adicionales" && comments.trim().length > 0;
+
     // 1. Correo interno para el equipo comercial / técnico
     const companyContentHtml = `
-      <h1 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
-        Requerimiento de Servicio &amp; Visita Técnica
-      </h1>
-      <p style="margin: 0 0 20px 0; font-size: 13.5px; color: #64748b; line-height: 1.6;">
-        Se ha registrado una solicitud de inspección técnica en campo a través del portal web.
-      </p>
-
-      ${renderSalesQuickActions(phone, safeFullName, `su requerimiento técnico para ${safeEquipment}`)}
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
+          Requerimiento de Servicio &amp; Visita Técnica
+        </h1>
+        <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+          Solicitud de inspección técnica en campo registrada desde la web oficial.
+        </p>
+      </div>
 
       ${renderDetailCard("Datos de Contacto del Cliente", [
         { label: "Nombre / Razón Social", value: safeFullName },
-        { label: "Teléfono", value: safePhone, isLink: true, href: `tel:${phone.replace(/\D/g, "")}` },
+        { label: "Teléfono", value: phoneValueWithIcons },
         { label: "Correo Electrónico", value: safeEmail, isLink: email !== "No proporcionado", href: `mailto:${safeEmail}` },
-      ])}
+      ], {
+        maxWidth: "520px",
+        centered: true,
+        hideDivider: true,
+        hideRowBorders: true,
+      })}
 
       ${renderDetailCard("Ficha del Equipo y Cita Solicitada", [
         { label: "Maquinaria / Equipo", value: safeEquipment },
@@ -163,16 +191,22 @@ export async function sendVisitRequest(formData: FormData) {
         { label: "Tipo de Servicio", value: safeServiceType },
         { label: "Fecha Sugerida", value: safePreferredDate },
         { label: "Horario Preferido", value: safePreferredTime },
-      ])}
+      ], {
+        maxWidth: "520px",
+        centered: true,
+        hideDivider: true,
+        hideRowBorders: true,
+      })}
 
-      ${renderCalloutBox(
+      ${hasRealComments ? renderCalloutBox(
         "Síntoma o Detalle Reportado por el Cliente:",
         safeComments,
-        "gold"
-      )}
+        "gold",
+        { maxWidth: "520px", centered: true }
+      ) : ""}
 
       ${safeAttachmentName ? `
-      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f1f5f9; border-radius: 6px; margin-bottom: 22px;">
+      <table align="center" cellpadding="0" cellspacing="0" border="0" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 auto 20px auto;">
         <tr>
           <td style="padding: 12px 16px; font-size: 13px; color: #475569;">
             📎 <strong>Archivo adjunto por el cliente:</strong> ${safeAttachmentName} <em>(Descárguelo en los adjuntos de este correo)</em>
@@ -184,7 +218,7 @@ export async function sendVisitRequest(formData: FormData) {
     const emailToCompanyHtml = renderMasterEmail({
       pageTitle: `Nueva Solicitud de Visita Técnica - ${cleanSubjectName}`,
       preheaderText: `Solicitud de visita para ${safeEquipment} de ${safeFullName}.`,
-      badgeHtml: "🚜 VISITA TÉCNICA · EN CAMPO",
+      badgeHtml: "NOTIFICACIÓN DE VISITA TÉCNICA",
       contentHtml: companyContentHtml,
       showContactCenter: false,
     });

@@ -110,11 +110,12 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
         <!-- CONTENEDOR PRINCIPAL BLANCO 700PX (SIN BORDE EXTERIOR) -->
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 700px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden;">
           
-          <!-- 1. CABECERA CON LOGO A LA IZQUIERDA -->
+          <!-- 1. CABECERA -->
           <tr>
-            <td align="left" style="background-color: ${BRAND.NAVY}; padding: 18px 36px;">
+            <td align="left" style="background-color: ${BRAND.NAVY}; padding: ${heroBannerUrl ? '18px 36px' : '14px 28px'};">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
+                  ${heroBannerUrl ? `
                   <td align="left" valign="middle">
                     <a href="https://www.servimafed.com" target="_blank" style="text-decoration: none; display: inline-block;">
                       <img 
@@ -125,18 +126,33 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                       />
                     </a>
                   </td>
-                  ${!heroBannerUrl ? `
-                  <td align="right" valign="middle">
-                    <!-- BADGE HEADER COMPACTO -->
-                    <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
+                  ` : `
+                  <!-- CABECERA SOBRIA DE NOTIFICACIÓN INTERNA -->
+                  <td align="left" valign="middle">
+                    <table cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td style="padding: 8px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 12px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
-                          ${badgeHtml}
+                        <td valign="middle" style="padding-right: 10px;">
+                          <img 
+                            src="https://www.servimafed.com/images/Isotipo-sin-fondo.png" 
+                            alt="S" 
+                            width="24" 
+                            height="24" 
+                            style="display: block; width: 24px; height: 24px; object-fit: contain;"
+                          />
+                        </td>
+                        <td valign="middle">
+                          <span style="font-size: 13px; font-weight: 800; color: #ffffff; letter-spacing: 0.8px; text-transform: uppercase;">
+                            SERVIMAFED
+                          </span>
+                          <span style="font-size: 12px; color: #64748b; margin: 0 6px;">&bull;</span>
+                          <span style="font-size: 11.5px; color: ${BRAND.YELLOW}; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;">
+                            ${badgeHtml}
+                          </span>
                         </td>
                       </tr>
                     </table>
                   </td>
-                  ` : ""}
+                  `}
                 </tr>
               </table>
             </td>
@@ -566,8 +582,10 @@ export function renderDetailCard(
 export function renderCalloutBox(
   title: string,
   content: string,
-  variant: "gold" | "green" | "blue" | "neutral" = "gold"
+  variant: "gold" | "green" | "blue" | "neutral" = "gold",
+  options: { maxWidth?: string; centered?: boolean } = {}
 ): string {
+  const { maxWidth = "100%", centered = false } = options;
   const config = {
     gold: { border: BRAND.YELLOW, bg: "#fffbeb", text: "#92400e", label: "#b45309" },
     green: { border: "#10b981", bg: "#ecfdf5", text: "#065f46", label: "#047857" },
@@ -575,8 +593,11 @@ export function renderCalloutBox(
     neutral: { border: "#94a3b8", bg: "#f8fafc", text: "#334155", label: "#475569" },
   }[variant];
 
+  const marginStyle = centered ? "margin: 0 auto 20px auto;" : "margin-bottom: 22px;";
+  const alignAttr = centered ? `align="center"` : "";
+
   return `
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: ${config.bg}; border-left: 4px solid ${config.border}; border-radius: 4px; margin-bottom: 22px;">
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: ${maxWidth}; width: 100%; background-color: ${config.bg}; border-left: 4px solid ${config.border}; border-radius: 4px; ${marginStyle}">
     <tr>
       <td style="padding: 14px 18px;">
         ${title ? `
