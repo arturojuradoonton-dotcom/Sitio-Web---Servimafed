@@ -7,7 +7,7 @@ import {
   renderMetricsSection,
   renderServicesSection,
   renderBrochureDownloadCard,
-  renderSalesQuickActions,
+  renderInternalContactActions,
   renderDetailCard,
   renderCalloutBox,
   EMAIL_ASSETS,
@@ -106,21 +106,29 @@ export async function sendBrochureLead(formData: FormData) {
         Un nuevo contacto corporativo ha solicitado el <strong>Dossier Técnico 2026</strong> desde la web oficial.
       </p>
 
-      ${telefono !== "No especificado" ? renderSalesQuickActions(telefono, safeNombre, "la descarga del Brochure Técnico 2026") : ""}
-
       ${renderDetailCard("Datos del Prospecto", [
         { label: "Fecha y Hora", value: fechaHora },
         { label: "Nombre Completo", value: safeNombre },
         { label: "Empresa / Razón Social", value: safeEmpresa },
         { label: "Correo Corporativo", value: safeCorreo, isLink: true, href: `mailto:${safeCorreo}` },
         { label: "Teléfono", value: safeTelefono, isLink: telefono !== "No especificado", href: `tel:${telefono.replace(/\D/g, "")}` },
-      ])}
+      ], {
+        maxWidth: "520px",
+        centered: true,
+        innerTableMaxWidth: "440px",
+        hideDivider: true,
+        hideRowBorders: true,
+      })}
 
       ${renderCalloutBox(
         "Acción Comercial Sugerida:",
         "El prospecto ya cuenta con el brochure digital en su bandeja de entrada. Contactarlo en los próximos minutos para calificar su necesidad operativa (flota, tipo de maquinaria o repuestos requeridos) multiplica las oportunidades de cotización.",
-        "gold"
+        "gold",
+        { maxWidth: "520px", centered: true }
       )}
+
+      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
+      ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "la descarga del Brochure Técnico 2026") : ""}
     `;
 
     const emailToCompanyHtml = renderMasterEmail({

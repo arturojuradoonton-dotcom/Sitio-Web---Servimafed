@@ -11,7 +11,7 @@ import {
 } from "@/core/lib/security";
 import {
   renderMasterEmail,
-  renderSalesQuickActions,
+  renderInternalContactActions,
   renderDetailCard,
   renderCalloutBox,
   EMAIL_ASSETS,
@@ -138,8 +138,6 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
         Se ha recibido un nuevo currículum para el área de <strong>${safeArea}</strong> desde el portal de convocatorias.
       </p>
 
-      ${renderSalesQuickActions(telefono, safeNombre, `tu postulación para el área de ${safeArea}`)}
-
       ${renderDetailCard("Datos del Postulante", [
         { label: "Fecha y Hora", value: fechaHora },
         { label: "Nombre Completo", value: safeNombre },
@@ -147,22 +145,32 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
         { label: "Correo Electrónico", value: safeCorreo, isLink: true, href: `mailto:${safeCorreo}` },
         { label: "Área de Interés", value: safeArea },
         { label: "Currículum Vitae", value: attachedCvName || "No adjuntado" },
-      ])}
+      ], {
+        maxWidth: "520px",
+        centered: true,
+        innerTableMaxWidth: "440px",
+        hideDivider: true,
+        hideRowBorders: true,
+      })}
 
       ${renderCalloutBox(
         "Mensaje / Resumen de Experiencia:",
         safeMensaje,
-        "blue"
+        "blue",
+        { maxWidth: "520px", centered: true }
       )}
 
       ${attachedCvName ? `
-      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f1f5f9; border-radius: 6px; margin-bottom: 22px;">
+      <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 6px; margin: 0 auto 22px auto;">
         <tr>
-          <td style="padding: 12px 16px; font-size: 13px; color: #475569;">
-            📎 <strong>Archivo de CV adjunto:</strong> ${attachedCvName} <em>(Descárguelo en la cabecera de este correo)</em>
+          <td class="callout-cell" style="padding: 12px 16px; font-size: 13px; color: #475569;">
+            📎 <strong>Archivo de CV adjunto:</strong> ${attachedCvName} <em>(Descárguelo en los adjuntos de este correo)</em>
           </td>
         </tr>
       </table>` : ""}
+
+      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
+      ${renderInternalContactActions(telefono, safeNombre, `su postulación para ${safeArea}`)}
     `;
 
     const emailToHrHtml = renderMasterEmail({

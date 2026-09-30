@@ -464,20 +464,26 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
           <tr>
             <td class="contact-center-cell" style="padding: 26px 36px 22px 36px; background-color: #ffffff;">
               
-              <!-- PÍLDORA CENTRO DE CONTACTO -->
-              <table align="center" cellpadding="0" cellspacing="0" border="0" class="contact-center-pill" style="border: 1px solid ${BRAND.BORDER}; border-radius: 50px; padding: 8px 24px; margin: 0 auto 20px auto; background-color: #ffffff;">
+              <!-- PÍLDORA CENTRO DE CONTACTO (DISEÑO CÁPSULA PRÉMIUM) -->
+              <table align="center" cellpadding="0" cellspacing="0" border="0" class="contact-center-pill" style="border-collapse: separate !important; border-radius: 50px; background-color: #f1f5f9; margin: 0 auto 20px auto;">
                 <tr>
-                  <td style="vertical-align: middle; padding-right: 12px;">
-                    <img 
-                      src="${EMAIL_ASSETS.HEADSET_ICON}" 
-                      alt="Contacto" 
-                      width="24" 
-                      height="24" 
-                      style="display: block; border-radius: 50%;"
-                    />
-                  </td>
-                  <td class="contact-center-pill-text" style="vertical-align: middle; font-size: 12.5px; color: #334155;">
-                    Estamos aquí para ayudarte a través de nuestro <strong>Centro de Contacto</strong>
+                  <td style="vertical-align: middle; padding: 4px 18px 4px 5px; border-radius: 50px; background-color: #f1f5f9;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate !important;">
+                      <tr>
+                        <td valign="middle" style="padding: 0; line-height: 0;">
+                          <img 
+                            src="${EMAIL_ASSETS.HEADSET_ICON}" 
+                            alt="Contacto" 
+                            width="30" 
+                            height="30" 
+                            style="display: block; width: 30px; height: 30px; border-radius: 50%; border: 0;"
+                          />
+                        </td>
+                        <td class="contact-center-pill-text" valign="middle" style="padding-left: 10px; font-size: 12.5px; color: #334155; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; white-space: nowrap;">
+                          Estamos aquí para ayudarte a través de nuestro <strong>Centro de Contacto</strong>
+                        </td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
               </table>
@@ -795,12 +801,20 @@ export function renderInternalContactActions(
   <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="internal-contact-table" style="max-width: 520px; width: 100%; margin: 26px auto 10px auto;">
     <tr>
       <td align="center">
-        <!-- PÍLDORA SUPERIOR -->
-        <table align="center" cellpadding="0" cellspacing="0" border="0" class="internal-contact-pill" style="border: 1px solid #e2e8f0; border-radius: 50px; padding: 7px 22px; margin: 0 auto 16px auto; background-color: #ffffff;">
+        <!-- PÍLDORA SUPERIOR (DISEÑO CÁPSULA PRÉMIUM) -->
+        <table align="center" cellpadding="0" cellspacing="0" border="0" class="internal-contact-pill" style="border-collapse: separate !important; border-radius: 50px; background-color: #f1f5f9; margin: 0 auto 16px auto;">
           <tr>
-            <td style="vertical-align: middle; padding-right: 8px; font-size: 14px; line-height: 1;">⚡</td>
-            <td class="internal-contact-pill-text" style="vertical-align: middle; font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.4px;">
-              Acciones de Contacto Rápido con el Cliente
+            <td style="vertical-align: middle; padding: 4px 18px 4px 5px; border-radius: 50px; background-color: #f1f5f9;">
+              <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate !important;">
+                <tr>
+                  <td valign="middle" align="center" style="width: 30px; height: 30px; background-color: #1d3961; border-radius: 50%; text-align: center; font-size: 14px; line-height: 30px; color: #ffffff;">
+                    ⚡
+                  </td>
+                  <td class="internal-contact-pill-text" valign="middle" style="padding-left: 10px; font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; white-space: nowrap;">
+                    Acciones de Contacto Rápido con el Cliente
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>

@@ -6,7 +6,7 @@ import {
   renderMasterEmail,
   renderMetricsSection,
   renderBrochureDownloadCard,
-  renderSalesQuickActions,
+  renderInternalContactActions,
   renderDetailCard,
   renderCalloutBox,
   EMAIL_ASSETS,
@@ -88,20 +88,28 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
         Un cliente potencial se ha comunicado a través del formulario de contacto de la web oficial.
       </p>
 
-      ${renderSalesQuickActions(phone, safeCompanyName, "su mensaje en el formulario web")}
-
       ${renderDetailCard("Datos del Cliente", [
         { label: "Fecha y Hora", value: fechaHora },
         { label: "Razón Social / Nombre", value: safeCompanyName },
         { label: "Teléfono de Contacto", value: safePhone, isLink: true, href: `tel:${phone.replace(/\D/g, "")}` },
         { label: "Correo Electrónico", value: safeEmail || "No proporcionado", isLink: Boolean(cleanEmail), href: cleanEmail ? `mailto:${safeEmail}` : undefined },
-      ])}
+      ], {
+        maxWidth: "520px",
+        centered: true,
+        innerTableMaxWidth: "440px",
+        hideDivider: true,
+        hideRowBorders: true,
+      })}
 
       ${renderCalloutBox(
         "Requerimiento Técnico / Consulta Comercial:",
         safeRequirement,
-        "gold"
+        "gold",
+        { maxWidth: "520px", centered: true }
       )}
+
+      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
+      ${renderInternalContactActions(phone, safeCompanyName, "su mensaje de contacto")}
     `;
 
     const emailToCompanyHtml = renderMasterEmail({
