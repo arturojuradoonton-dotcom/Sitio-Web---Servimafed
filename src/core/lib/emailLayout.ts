@@ -19,6 +19,7 @@ export const EMAIL_ASSETS = {
   HEADSET_ICON: "https://www.servimafed.com/images/headset-contact.png",
   WORKER_ICON: "https://www.servimafed.com/images/icon-trabajador.png",
   BROCHURE_ICON: "https://www.servimafed.com/images/icon-brochure-download.png",
+  WHATSAPP_ICON: "https://www.servimafed.com/images/icon-whatsapp-green.svg",
   METRIC_SOPORTE: "https://www.servimafed.com/images/metric-soporte.png",
   METRIC_EQUIPOS: "https://www.servimafed.com/images/metric-equipos.png",
   METRIC_ISO: "https://www.servimafed.com/images/metric-iso.png",
@@ -798,7 +799,7 @@ export function renderInternalContactActions(
   const telUrl = `tel:${cleanDigits}`;
 
   return `
-  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="internal-contact-table" style="max-width: 520px; width: 100%; margin: 26px auto 10px auto;">
+  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="internal-contact-table" style="max-width: 520px; width: 100%; margin: 36px auto 10px auto;">
     <tr>
       <td align="center">
         <!-- PÍLDORA SUPERIOR (DISEÑO CÁPSULA PRÉMIUM) -->
@@ -810,7 +811,7 @@ export function renderInternalContactActions(
                   <td valign="middle" align="center" style="width: 30px; height: 30px; background-color: #1d3961; border-radius: 50%; text-align: center; font-size: 14px; line-height: 30px; color: #ffffff;">
                     ⚡
                   </td>
-                  <td class="internal-contact-pill-text" valign="middle" style="padding-left: 10px; font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; white-space: nowrap;">
+                  <td class="internal-contact-pill-text" valign="middle" style="padding-left: 10px; font-size: 12px; font-weight: 700; color: #334155; letter-spacing: 0.3px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; white-space: nowrap;">
                     Acciones de Contacto Rápido con el Cliente
                   </td>
                 </tr>
@@ -824,7 +825,7 @@ export function renderInternalContactActions(
           <tr>
             <!-- COLUMNA IZQUIERDA: LLAMADA -->
             <td width="50%" align="right" class="internal-contact-left" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 28px 6px 12px; text-align: right;">
-              <p class="internal-contact-label" style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px;">
+              <p class="internal-contact-label" style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; letter-spacing: 0.3px;">
                 Llamar al Cliente
               </p>
               <p class="internal-contact-value" style="margin: 4px 0 0 0; font-size: 13.5px;">
@@ -835,12 +836,12 @@ export function renderInternalContactActions(
             </td>
             <!-- COLUMNA DERECHA: WHATSAPP -->
             <td width="50%" align="left" class="internal-contact-right" style="vertical-align: middle; padding: 6px 12px 6px 28px; text-align: left;">
-              <p class="internal-contact-label" style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px;">
+              <p class="internal-contact-label" style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; letter-spacing: 0.3px;">
                 WhatsApp Directo
               </p>
               <p class="internal-contact-value" style="margin: 4px 0 0 0; font-size: 13.5px;">
                 <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" style="color: #16a34a; text-decoration: none; font-weight: 800;">
-                  💬 Iniciar Chat
+                  <img src="${EMAIL_ASSETS.WHATSAPP_ICON}" alt="WhatsApp" width="14" height="14" style="display: inline-block; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px; border: 0;" />Iniciar Chat
                 </a>
               </p>
             </td>
