@@ -148,22 +148,24 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
             { label: "Fecha y Hora", value: fechaHora },
           ],
           {
-            maxWidth: "520px",
-            centered: true,
+            maxWidth: "100%",
+            innerTableMaxWidth: "460px",
             hideDivider: true,
             hideRowBorders: true,
           }
         )}
 
-        ${renderMetricsSection("¿Sabías que en SERVIMAFED?")}
+        ${renderMetricsSection("Conoce más sobre nuestro respaldo técnico")}
 
-        ${renderBrochureDownloadCard("¿Deseas revisar nuestro catálogo y dossier de servicios?<br/>Descárgalo directamente aquí:")}
+        ${renderBrochureDownloadCard("¿Deseas conocer más de nuestros servicios y flota?<br/>Descarga nuestro brochure oficial:")}
       `;
 
       const emailToCustomerHtml = renderMasterEmail({
         pageTitle: "Hemos recibido tu mensaje - SERVIMAFED S.A.C.",
-        preheaderText: `Hola ${safeCompanyName}, hemos recibido tu mensaje en SERVIMAFED S.A.C.`,
+        preheaderText: `Hola ${safeCompanyName}, confirmamos la recepción de tu mensaje en SERVIMAFED S.A.C.`,
         badgeHtml: "¡Mensaje Recibido<br/>con Éxito!",
+        badgePosition: "bottom-right",
+        badgeSize: "large",
         heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
         contentHtml: customerContentHtml,
         showContactCenter: true,
