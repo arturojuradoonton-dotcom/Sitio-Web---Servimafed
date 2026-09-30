@@ -45,6 +45,8 @@ export interface MasterEmailOptions {
   pageTitle: string;
   preheaderText?: string;
   badgeHtml: string;
+  badgePosition?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+  badgeSize?: "normal" | "large";
   heroBannerUrl?: string; // Si se omite, se usa cabecera compacta azul con logo
   contentHtml: string;
   showContactCenter?: boolean;
@@ -61,6 +63,8 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
     pageTitle,
     preheaderText = "",
     badgeHtml,
+    badgePosition = "top-left",
+    badgeSize = "normal",
     heroBannerUrl,
     contentHtml,
     showContactCenter = true,
@@ -72,6 +76,20 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
   const phoneTel = contactCenterPhone.startsWith("+") 
     ? contactCenterPhone 
     : `+51${contactCenterPhone.replace(/\D/g, "")}`;
+
+  // Determinación de posición del badge en el hero banner
+  const isBottom = badgePosition.startsWith("bottom");
+  const isRight = badgePosition.endsWith("right");
+  const heroAlign = isRight ? "right" : "left";
+  const heroValign = isBottom ? "bottom" : "top";
+  
+  // Tamaño del badge
+  const isLarge = badgeSize === "large";
+  const badgePadding = isLarge ? "15px 24px" : "12px 20px";
+  const badgeFontSize = isLarge ? "18px" : "16px";
+  const badgeShadow = isLarge 
+    ? "0 4px 14px rgba(0, 0, 0, 0.35)" 
+    : "0 4px 12px rgba(0, 0, 0, 0.25)";
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -135,11 +153,11 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
               <![endif]-->
               <table width="100%" height="315" cellpadding="0" cellspacing="0" border="0" background="${heroBannerUrl}" style="width: 100%; max-width: 700px; height: 315px; background-image: url('${heroBannerUrl}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: ${BRAND.NAVY};">
                 <tr>
-                  <td align="left" valign="top" style="padding: 26px 36px;">
+                  <td align="${heroAlign}" valign="${heroValign}" style="padding: 24px 34px;">
                     <!-- BADGE AMARILLO CORPORATIVO FLOTANTE -->
-                    <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); border-collapse: separate;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 8px; box-shadow: ${badgeShadow}; border-collapse: separate;">
                       <tr>
-                        <td style="padding: 12px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 16px; font-weight: 800; color: #111c30; line-height: 1.25; border-radius: 8px; text-align: left; letter-spacing: -0.2px;">
+                        <td style="padding: ${badgePadding}; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: ${badgeFontSize}; font-weight: 800; color: #111c30; line-height: 1.25; border-radius: 8px; text-align: left; letter-spacing: -0.2px;">
                           ${badgeHtml}
                         </td>
                       </tr>

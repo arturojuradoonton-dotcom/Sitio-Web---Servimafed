@@ -232,6 +232,8 @@ export async function sendVisitRequest(formData: FormData) {
         pageTitle: "Solicitud de Visita Técnica Registrada - SERVIMAFED S.A.C.",
         preheaderText: `Hola ${safeFullName}, confirmamos la recepción de tu solicitud de visita técnica para tu equipo ${safeEquipment}.`,
         badgeHtml: "¡Solicitud de Visita<br/>Registrada!",
+        badgePosition: "bottom-right",
+        badgeSize: "large",
         heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
         contentHtml: customerContentHtml,
         showContactCenter: true,
