@@ -140,11 +140,20 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
           Hemos recibido exitosamente su comunicación a través de nuestro canal corporativo. Un asesor comercial especializado se pondrá en contacto con usted a la brevedad posible para brindarle asesoría técnica y una cotización a la medida de su proyecto.
         </p>
 
-        ${renderDetailCard("Resumen del Mensaje Recibido", [
-          { label: "Empresa / Nombre", value: safeCompanyName },
-          { label: "Teléfono Registrado", value: safePhone },
-          { label: "Fecha y Hora", value: fechaHora },
-        ])}
+        ${renderDetailCard(
+          "Resumen del Mensaje Recibido",
+          [
+            { label: "Empresa / Nombre", value: safeCompanyName },
+            { label: "Teléfono Registrado", value: safePhone },
+            { label: "Fecha y Hora", value: fechaHora },
+          ],
+          {
+            maxWidth: "520px",
+            centered: true,
+            hideDivider: true,
+            hideRowBorders: true,
+          }
+        )}
 
         ${renderMetricsSection("¿Sabías que en SERVIMAFED?")}
 

@@ -215,13 +215,22 @@ export async function sendVisitRequest(formData: FormData) {
           Hemos recibido exitosamente su solicitud de <strong>Visita Técnica e Inspección</strong>. Nuestro departamento técnico y comercial se encuentra revisando los datos para comunicarse con usted a la brevedad y coordinar los detalles operativos.
         </p>
 
-        ${renderDetailCard("Resumen del Servicio Solicitado", [
-          { label: "Maquinaria / Equipo", value: safeEquipment },
-          { label: "Tipo de Servicio", value: safeServiceType },
-          { label: "Fecha Sugerida", value: safePreferredDate },
-          { label: "Horario Preferido", value: safePreferredTime },
-          { label: "Teléfono de Contacto", value: safePhone },
-        ])}
+        ${renderDetailCard(
+          "Resumen del Servicio Solicitado",
+          [
+            { label: "Maquinaria / Equipo", value: safeEquipment },
+            { label: "Tipo de Servicio", value: safeServiceType },
+            { label: "Fecha Sugerida", value: safePreferredDate },
+            { label: "Horario Preferido", value: safePreferredTime },
+            { label: "Teléfono de Contacto", value: safePhone },
+          ],
+          {
+            maxWidth: "520px",
+            centered: true,
+            hideDivider: true,
+            hideRowBorders: true,
+          }
+        )}
 
         ${renderMetricsSection("Conoce más sobre nuestro respaldo técnico")}
 

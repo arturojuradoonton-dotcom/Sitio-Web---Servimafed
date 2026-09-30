@@ -200,12 +200,21 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
         Muchas gracias por tu interés en integrarte a <strong>SERVIMAFED S.A.C.</strong> Hemos recibido exitosamente tu postulación y currículum para el área de <strong>${safeArea}</strong>.
       </p>
 
-      ${renderDetailCard("Datos Registrados de tu Postulación", [
-        { label: "Área de Postulación", value: safeArea },
-        { label: "Fecha y Hora de Registro", value: fechaHora },
-        { label: "Teléfono de Contacto", value: safeTelefono },
-        { label: "Correo Electrónico", value: safeCorreo },
-      ])}
+      ${renderDetailCard(
+        "Datos Registrados de tu Postulación",
+        [
+          { label: "Área de Postulación", value: safeArea },
+          { label: "Fecha y Hora de Registro", value: fechaHora },
+          { label: "Teléfono de Contacto", value: safeTelefono },
+          { label: "Correo Electrónico", value: safeCorreo },
+        ],
+        {
+          maxWidth: "520px",
+          centered: true,
+          hideDivider: true,
+          hideRowBorders: true,
+        }
+      )}
 
       ${renderCalloutBox(
         "Proceso de Selección:",

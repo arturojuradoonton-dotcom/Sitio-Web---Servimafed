@@ -107,8 +107,8 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
   <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; padding: 24px 10px;">
     <tr>
       <td align="center">
-        <!-- CONTENEDOR PRINCIPAL BLANCO 700PX -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 700px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid ${BRAND.BORDER};">
+        <!-- CONTENEDOR PRINCIPAL BLANCO 700PX (SIN BORDE EXTERIOR) -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 700px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden;">
           
           <!-- 1. CABECERA CON LOGO A LA IZQUIERDA -->
           <tr>
@@ -498,35 +498,60 @@ export function renderSalesQuickActions(phone: string, clientName: string, conte
   </table>`;
 }
 
+export interface DetailCardOptions {
+  maxWidth?: string;
+  centered?: boolean;
+  hideDivider?: boolean;
+  hideRowBorders?: boolean;
+}
+
 /**
  * Renderiza una tarjeta de detalles con tabla clave-valor estructurada.
  */
-export function renderDetailCard(title: string, rows: Array<{ label: string; value: string; isLink?: boolean; href?: string }>): string {
+export function renderDetailCard(
+  title: string,
+  rows: Array<{ label: string; value: string; isLink?: boolean; href?: string }>,
+  options: DetailCardOptions = {}
+): string {
+  const {
+    maxWidth = "100%",
+    centered = false,
+    hideDivider = false,
+    hideRowBorders = false,
+  } = options;
+
+  const rowBorderStyle = hideRowBorders ? "" : "border-bottom: 1px solid #f1f5f9;";
+  const rowPadding = hideRowBorders ? "padding: 6px 10px;" : "padding: 7px 10px;";
+
   const rowsHtml = rows
     .map(
       (r) => `
       <tr>
-        <td width="35%" style="padding: 7px 10px; color: #64748b; font-weight: 600; font-size: 13px; border-bottom: 1px solid #f1f5f9; vertical-align: top;">
+        <td width="38%" style="${rowPadding} color: #64748b; font-weight: 600; font-size: 13px; ${rowBorderStyle} vertical-align: top;">
           ${r.label}:
         </td>
-        <td width="65%" style="padding: 7px 10px; color: #0f172a; font-weight: 700; font-size: 13.5px; border-bottom: 1px solid #f1f5f9; vertical-align: top;">
+        <td width="62%" style="${rowPadding} color: #0f172a; font-weight: 700; font-size: 13.5px; ${rowBorderStyle} vertical-align: top;">
           ${r.isLink && r.href ? `<a href="${r.href}" style="color: ${BRAND.NAVY}; text-decoration: none; font-weight: 700;">${r.value}</a>` : r.value}
         </td>
       </tr>`
     )
     .join("");
 
+  const marginStyle = centered ? "margin: 0 auto 22px auto;" : "margin-bottom: 22px;";
+  const alignAttr = centered ? `align="center"` : "";
+  const headerBorder = hideDivider ? "" : `border-bottom: 2px solid ${BRAND.YELLOW};`;
+
   return `
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 22px; overflow: hidden;">
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: ${maxWidth}; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; ${marginStyle} overflow: hidden;">
     <tr>
-      <td style="background-color: #f8fafc; padding: 12px 18px; border-bottom: 2px solid ${BRAND.YELLOW};">
+      <td style="background-color: #f8fafc; padding: 12px 18px; ${headerBorder}">
         <span style="font-size: 13px; font-weight: 800; color: ${BRAND.NAVY}; text-transform: uppercase; letter-spacing: 0.5px;">
           ${title}
         </span>
       </td>
     </tr>
     <tr>
-      <td style="padding: 12px 14px;">
+      <td style="padding: 12px 16px 14px 16px;">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           ${rowsHtml}
         </table>
