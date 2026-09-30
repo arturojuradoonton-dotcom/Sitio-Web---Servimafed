@@ -1,14 +1,15 @@
 /**
  * Sistema Estandarizado de Plantillas de Correo Corporativo - SERVIMAFED S.A.C.
  * 
- * Basado en la arquitectura visual del Brochure Master (sendBrochureLead.ts):
- * - Contenedor centrado max-width: 700px, 100% compatible con clientes de correo (tablas + CSS inline).
+ * Basado en la arquitectura visual corporativa con compatibilidad responsive avanzada:
+ * - Contenedor centrado max-width: 700px, 100% fluido en dispositivos móviles (< 600px).
+ * - Hero banner panorámico adaptativo con proporción armónica en celular (~170px de alto).
  * - Cabecera azul corporativo (#1d3961) con logotipo oficial vertical blanco.
- * - Badge flotante dorado (#FCB326) de alta visibilidad.
- * - Tipografía de sistema limpia y moderna.
+ * - Badge flotante dorado (#FCB326) con tipografía y espaciado proporcional en móviles.
+ * - Tipografía limpia, márgenes seguros (14px en móvil) y tablas clave-valor balanceadas.
  * - Tarjetas interiores suaves (#f8fafc) con bordes nítidos (#e2e8f0).
  * - Línea de división amarilla (#FCB326, 3px) y remate azul (#1d3961, 3px).
- * - Bloque de Centro de Contacto con píldora, ícono de diadema y dos columnas (teléfono / email).
+ * - Bloque de Centro de Contacto y Acciones Rápidas con adaptación compacta para smartphones.
  * - Pie de página legal e institucional completo (Lurín - Lima, RUC 20600567668, copyright 2026).
  */
 
@@ -57,6 +58,7 @@ export interface MasterEmailOptions {
 
 /**
  * Renderiza el envoltorio maestro (HTML base completo) para correos de cliente y notificaciones internas.
+ * Incluye normalización completa y media queries responsivas para celulares.
  */
 export function renderMasterEmail(options: MasterEmailOptions): string {
   const {
@@ -92,11 +94,266 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
     : "0 4px 12px rgba(0, 0, 0, 0.25)";
 
   return `<!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
   <title>${pageTitle}</title>
+  <!--[if mso]>
+  <style type="text/css">
+    body, table, td, span, a, p { font-family: Arial, Helvetica, sans-serif !important; }
+  </style>
+  <![endif]-->
+  <style type="text/css">
+    /* Resets básicos de clientes de correo */
+    html, body {
+      margin: 0 auto !important;
+      padding: 0 !important;
+      height: 100% !important;
+      width: 100% !important;
+      background-color: #ffffff;
+    }
+    * {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+    table, td {
+      mso-table-lspace: 0pt !important;
+      mso-table-rspace: 0pt !important;
+    }
+    table {
+      border-spacing: 0 !important;
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+      margin: 0 auto !important;
+    }
+    img {
+      -ms-interpolation-mode: bicubic;
+      border: 0;
+      outline: none;
+      text-decoration: none;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    /* REGLAS RESPONSIVAS PARA SMARTPHONES Y PANTALLAS PEQUEÑAS (<= 600px) */
+    @media only screen and (max-width: 600px) {
+      .outer-wrapper {
+        padding: 8px 4px !important;
+      }
+      .email-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 6px !important;
+      }
+      
+      /* Cabecera */
+      .header-cell {
+        padding: 14px 16px !important;
+      }
+      .header-logo {
+        max-width: 105px !important;
+        width: 105px !important;
+        height: auto !important;
+      }
+      .header-title-text {
+        font-size: 13px !important;
+        letter-spacing: 0.5px !important;
+      }
+      .header-badge-td {
+        padding: 5px 10px !important;
+        font-size: 10px !important;
+      }
+
+      /* Hero Banner en Celulares: Altura proporcionada ~170px para mantener estética panorámica */
+      .hero-banner-table {
+        height: 170px !important;
+        min-height: 170px !important;
+      }
+      .hero-banner-cell {
+        padding: 12px 14px !important;
+      }
+      .hero-badge-table {
+        border-radius: 6px !important;
+      }
+      .hero-badge-td {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+        line-height: 1.25 !important;
+      }
+
+      /* Contenido Central */
+      .content-cell {
+        padding: 20px 14px 18px 14px !important;
+      }
+      .content-cell h1 {
+        font-size: 18px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 8px !important;
+      }
+      .content-cell p {
+        font-size: 13px !important;
+        line-height: 1.55 !important;
+      }
+
+      /* Tarjetas de Datos */
+      .detail-card-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 14px !important;
+      }
+      .detail-card-header {
+        padding: 10px 14px !important;
+      }
+      .detail-card-header-text {
+        font-size: 11.5px !important;
+      }
+      .detail-card-body {
+        padding: 8px 6px !important;
+      }
+      .detail-inner-table {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .detail-label-td {
+        width: 44% !important;
+        font-size: 11.5px !important;
+        padding: 5px 4px !important;
+      }
+      .detail-value-td {
+        width: 56% !important;
+        font-size: 12px !important;
+        padding: 5px 4px !important;
+      }
+
+      /* Cajas de llamada (Callout) */
+      .callout-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 14px !important;
+      }
+      .callout-cell {
+        padding: 10px 12px !important;
+      }
+      .callout-title {
+        font-size: 10.5px !important;
+      }
+      .callout-text {
+        font-size: 12px !important;
+      }
+
+      /* Acciones Rápidas Internas con el Cliente */
+      .internal-contact-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 18px auto 6px auto !important;
+      }
+      .internal-contact-pill {
+        padding: 5px 12px !important;
+        margin-bottom: 10px !important;
+      }
+      .internal-contact-pill-text {
+        font-size: 10px !important;
+      }
+      .internal-contact-left {
+        padding: 4px 8px 4px 0 !important;
+      }
+      .internal-contact-right {
+        padding: 4px 0 4px 8px !important;
+      }
+      .internal-contact-label {
+        font-size: 9.5px !important;
+      }
+      .internal-contact-value {
+        font-size: 12px !important;
+      }
+
+      /* Bloque de Métricas (24/7, 500+, ISO) */
+      .metrics-container {
+        margin-top: 14px !important;
+        margin-bottom: 16px !important;
+      }
+      .metrics-title {
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
+      }
+      .metric-cell {
+        padding: 6px 2px !important;
+      }
+      .metric-icon {
+        width: 30px !important;
+        height: 30px !important;
+        margin-bottom: 4px !important;
+      }
+      .metric-num {
+        font-size: 15px !important;
+      }
+      .metric-label {
+        font-size: 8.5px !important;
+        letter-spacing: 0px !important;
+      }
+      .metrics-footer-text {
+        font-size: 11px !important;
+        margin-bottom: 16px !important;
+      }
+
+      /* Tarjeta de Descarga Brochure */
+      .brochure-card-cell {
+        padding: 14px 10px !important;
+      }
+      .brochure-card-title {
+        font-size: 12.5px !important;
+        margin-bottom: 10px !important;
+      }
+
+      /* Servicios Especializados */
+      .services-card-cell {
+        padding: 14px 12px !important;
+      }
+
+      /* Acciones Rápidas Asesor Comercial */
+      .sales-btn-col {
+        padding: 4px !important;
+      }
+      .sales-btn-a {
+        padding: 9px 8px !important;
+        font-size: 11.5px !important;
+      }
+
+      /* Centro de Contacto */
+      .contact-center-cell {
+        padding: 16px 12px 14px 12px !important;
+      }
+      .contact-center-pill {
+        padding: 5px 12px !important;
+        margin-bottom: 12px !important;
+      }
+      .contact-center-pill-text {
+        font-size: 11px !important;
+      }
+      .contact-center-left {
+        padding: 4px 10px 4px 0 !important;
+      }
+      .contact-center-right {
+        padding: 4px 0 4px 10px !important;
+      }
+      .contact-center-label {
+        font-size: 11.5px !important;
+      }
+      .contact-center-value {
+        font-size: 11.5px !important;
+      }
+
+      /* Pie de página */
+      .footer-cell {
+        padding: 16px 12px 20px 12px !important;
+      }
+    }
+  </style>
 </head>
 <body style="margin: 0; padding: 0; background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
   ${preheaderText ? `
@@ -104,15 +361,15 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
     ${preheaderText}
   </div>` : ""}
   
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; padding: 24px 10px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="outer-wrapper" style="background-color: #ffffff; padding: 24px 10px;">
     <tr>
       <td align="center">
         <!-- CONTENEDOR PRINCIPAL BLANCO 700PX (SIN BORDE EXTERIOR) -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 700px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 700px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden;">
           
           <!-- 1. CABECERA -->
           <tr>
-            <td align="left" style="background-color: ${BRAND.NAVY}; padding: 22px 36px;">
+            <td align="left" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 22px 36px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   ${heroBannerUrl ? `
@@ -122,6 +379,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                         src="${EMAIL_ASSETS.LOGO_WHITE}" 
                         alt="SERVIMAFED S.A.C." 
                         width="130" 
+                        class="header-logo"
                         style="display: block; max-width: 130px; height: auto; border: 0;"
                       />
                     </a>
@@ -135,7 +393,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                           🔔
                         </td>
                         <td valign="middle">
-                          <span style="font-size: 15px; font-weight: 800; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+                          <span class="header-title-text" style="font-size: 15px; font-weight: 800; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
                             NOTIFICACIÓN
                           </span>
                         </td>
@@ -145,7 +403,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                   <td align="right" valign="middle">
                     <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
                       <tr>
-                        <td style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <td class="header-badge-td" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
                           ${badgeHtml}
                         </td>
                       </tr>
@@ -166,13 +424,13 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
               <v:fill type="frame" src="${heroBannerUrl}" color="${BRAND.NAVY}" />
               <v:textbox inset="0,0,0,0">
               <![endif]-->
-              <table width="100%" height="315" cellpadding="0" cellspacing="0" border="0" background="${heroBannerUrl}" style="width: 100%; max-width: 700px; height: 315px; background-image: url('${heroBannerUrl}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: ${BRAND.NAVY};">
+              <table width="100%" height="315" cellpadding="0" cellspacing="0" border="0" background="${heroBannerUrl}" class="hero-banner-table" style="width: 100%; max-width: 700px; height: 315px; background-image: url('${heroBannerUrl}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: ${BRAND.NAVY};">
                 <tr>
-                  <td align="${heroAlign}" valign="${heroValign}" style="padding: 24px 34px;">
+                  <td align="${heroAlign}" valign="${heroValign}" class="hero-banner-cell" style="padding: 24px 34px;">
                     <!-- BADGE AMARILLO CORPORATIVO FLOTANTE -->
-                    <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 8px; box-shadow: ${badgeShadow}; border-collapse: separate;">
+                    <table cellpadding="0" cellspacing="0" border="0" class="hero-badge-table" style="background-color: ${BRAND.YELLOW}; border-radius: 8px; box-shadow: ${badgeShadow}; border-collapse: separate;">
                       <tr>
-                        <td style="padding: ${badgePadding}; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: ${badgeFontSize}; font-weight: 800; color: #111c30; line-height: 1.25; border-radius: 8px; text-align: left; letter-spacing: -0.2px;">
+                        <td class="hero-badge-td" style="padding: ${badgePadding}; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: ${badgeFontSize}; font-weight: 800; color: #111c30; line-height: 1.25; border-radius: 8px; text-align: left; letter-spacing: -0.2px;">
                           ${badgeHtml}
                         </td>
                       </tr>
@@ -190,7 +448,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
 
           <!-- 3. CUERPO PRINCIPAL DEL CORREO -->
           <tr>
-            <td style="padding: 32px 36px 24px 36px; background-color: #ffffff;">
+            <td class="content-cell" style="padding: 32px 36px 24px 36px; background-color: #ffffff;">
               ${contentHtml}
             </td>
           </tr>
@@ -203,10 +461,10 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
 
           <!-- 4. CENTRO DE CONTACTO OFICIAL -->
           <tr>
-            <td style="padding: 26px 36px 22px 36px; background-color: #ffffff;">
+            <td class="contact-center-cell" style="padding: 26px 36px 22px 36px; background-color: #ffffff;">
               
               <!-- PÍLDORA CENTRO DE CONTACTO -->
-              <table align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid ${BRAND.BORDER}; border-radius: 50px; padding: 8px 24px; margin: 0 auto 20px auto; background-color: #ffffff;">
+              <table align="center" cellpadding="0" cellspacing="0" border="0" class="contact-center-pill" style="border: 1px solid ${BRAND.BORDER}; border-radius: 50px; padding: 8px 24px; margin: 0 auto 20px auto; background-color: #ffffff;">
                 <tr>
                   <td style="vertical-align: middle; padding-right: 12px;">
                     <img 
@@ -217,7 +475,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                       style="display: block; border-radius: 50%;"
                     />
                   </td>
-                  <td style="vertical-align: middle; font-size: 12.5px; color: #334155;">
+                  <td class="contact-center-pill-text" style="vertical-align: middle; font-size: 12.5px; color: #334155;">
                     Estamos aquí para ayudarte a través de nuestro <strong>Centro de Contacto</strong>
                   </td>
                 </tr>
@@ -227,16 +485,16 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 6px;">
                 <tr>
                   <!-- TELÉFONO -->
-                  <td width="50%" align="right" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 32px 6px 12px; text-align: right;">
-                    <p style="margin: 0; font-size: 13px; font-weight: 700; color: #0f172a;">Teléfono</p>
-                    <p style="margin: 3px 0 0 0; font-size: 13px;">
+                  <td width="50%" align="right" class="contact-center-left" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 32px 6px 12px; text-align: right;">
+                    <p class="contact-center-label" style="margin: 0; font-size: 13px; font-weight: 700; color: #0f172a;">Teléfono</p>
+                    <p class="contact-center-value" style="margin: 3px 0 0 0; font-size: 13px;">
                       <a href="tel:${phoneTel}" style="color: #475569; text-decoration: none; font-weight: 600;">${contactCenterPhone}</a>
                     </p>
                   </td>
                   <!-- EMAIL -->
-                  <td width="50%" align="left" style="vertical-align: middle; padding: 6px 12px 6px 32px; text-align: left;">
-                    <p style="margin: 0; font-size: 13px; font-weight: 700; color: #0f172a;">Email</p>
-                    <p style="margin: 3px 0 0 0; font-size: 13px;">
+                  <td width="50%" align="left" class="contact-center-right" style="vertical-align: middle; padding: 6px 12px 6px 32px; text-align: left;">
+                    <p class="contact-center-label" style="margin: 0; font-size: 13px; font-weight: 700; color: #0f172a;">Email</p>
+                    <p class="contact-center-value" style="margin: 3px 0 0 0; font-size: 13px;">
                       <a href="mailto:${contactCenterEmail}" style="color: #475569; text-decoration: none; font-weight: 600;">${contactCenterEmail}</a>
                     </p>
                   </td>
@@ -254,7 +512,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
 
           <!-- 5. FOOTER INSTITUCIONAL -->
           <tr>
-            <td align="center" style="background-color: #ffffff; padding: 22px 24px 28px 24px; text-align: center;">
+            <td align="center" class="footer-cell" style="background-color: #ffffff; padding: 22px 24px 28px 24px; text-align: center;">
               <p style="margin: 0 0 4px 0; font-size: 11px; color: #64748b; line-height: 1.5;">
                 ${customFooterText || `Este mensaje fue enviado por <strong>SERVIMAFED S.A.C.</strong>`}
               </p>
@@ -282,60 +540,63 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
  */
 export function renderMetricsSection(customTitle = "¿Sabías que en SERVIMAFED?"): string {
   return `
-  <div style="text-align: center; margin-top: 20px; margin-bottom: 24px;">
-    <p style="margin: 0 0 18px 0; font-size: 15px; font-weight: 700; color: #0f172a; text-transform: none; letter-spacing: 0.2px;">
+  <div class="metrics-container" style="text-align: center; margin-top: 20px; margin-bottom: 24px;">
+    <p class="metrics-title" style="margin: 0 0 18px 0; font-size: 15px; font-weight: 700; color: #0f172a; text-transform: none; letter-spacing: 0.2px;">
       ${customTitle}
     </p>
 
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; margin: 0 auto;">
       <tr>
         <!-- 24/7 SOPORTE -->
-        <td width="33.33%" align="center" style="vertical-align: top; padding: 10px 12px; border-right: 1px solid #e2e8f0;">
+        <td width="33.33%" align="center" class="metric-cell" style="vertical-align: top; padding: 10px 12px; border-right: 1px solid #e2e8f0;">
           <img 
             src="${EMAIL_ASSETS.METRIC_SOPORTE}" 
             alt="24/7 Soporte en Campo" 
             width="42" 
             height="42" 
+            class="metric-icon"
             style="display: block; margin: 0 auto 8px auto; width: 42px; height: 42px; object-fit: contain;"
           />
-          <p style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
+          <p class="metric-num" style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
             24/7
           </p>
-          <p style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
+          <p class="metric-label" style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
             Soporte en Campo
           </p>
         </td>
 
         <!-- 500+ EQUIPOS -->
-        <td width="33.33%" align="center" style="vertical-align: top; padding: 10px 12px; border-right: 1px solid #e2e8f0;">
+        <td width="33.33%" align="center" class="metric-cell" style="vertical-align: top; padding: 10px 12px; border-right: 1px solid #e2e8f0;">
           <img 
             src="${EMAIL_ASSETS.METRIC_EQUIPOS}" 
             alt="500+ Equipos Atendidos" 
             width="46" 
             height="42" 
+            class="metric-icon"
             style="display: block; margin: 0 auto 8px auto; width: 46px; height: 42px; object-fit: contain;"
           />
-          <p style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
+          <p class="metric-num" style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
             500+
           </p>
-          <p style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
+          <p class="metric-label" style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
             Equipos Atendidos
           </p>
         </td>
 
         <!-- ISO ESTÁNDARES -->
-        <td width="33.33%" align="center" style="vertical-align: top; padding: 10px 12px;">
+        <td width="33.33%" align="center" class="metric-cell" style="vertical-align: top; padding: 10px 12px;">
           <img 
             src="${EMAIL_ASSETS.METRIC_ISO}" 
             alt="ISO Estándares Globales" 
             width="38" 
             height="42" 
+            class="metric-icon"
             style="display: block; margin: 0 auto 8px auto; width: 38px; height: 42px; object-fit: contain;"
           />
-          <p style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
+          <p class="metric-num" style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
             ISO
           </p>
-          <p style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
+          <p class="metric-label" style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
             Estándares Globales
           </p>
         </td>
@@ -343,7 +604,7 @@ export function renderMetricsSection(customTitle = "¿Sabías que en SERVIMAFED?
     </table>
   </div>
   
-  <p style="margin: 0 0 24px 0; font-size: 12.5px; color: #64748b; text-align: center; line-height: 1.6;">
+  <p class="metrics-footer-text" style="margin: 0 0 24px 0; font-size: 12.5px; color: #64748b; text-align: center; line-height: 1.6;">
     Contamos con infraestructura propia en Lurín, personal homologado y cobertura nacional para atender sus operaciones mineras, industriales y de construcción.
   </p>`;
 }
@@ -353,9 +614,9 @@ export function renderMetricsSection(customTitle = "¿Sabías que en SERVIMAFED?
  */
 export function renderServicesSection(): string {
   return `
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 24px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="services-card" style="width: 100%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 24px;">
     <tr>
-      <td style="padding: 22px 24px;">
+      <td class="services-card-cell" style="padding: 22px 24px;">
         <!-- TÍTULO CON ÍCONO -->
         <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 14px;">
           <tr>
@@ -424,9 +685,9 @@ export function renderServicesSection(): string {
  */
 export function renderBrochureDownloadCard(title = "¿Deseas revisar el detalle completo<br/>y descargar tu brochure?"): string {
   return `
-  <table align="center" cellpadding="0" cellspacing="0" border="0" style="max-width: 500px; width: 100%; margin: 0 auto 26px auto; border-radius: 12px; border: 1px solid #e2e8f0; background-color: #f8fafc;">
+  <table align="center" cellpadding="0" cellspacing="0" border="0" class="brochure-card-table" style="max-width: 500px; width: 100%; margin: 0 auto 26px auto; border-radius: 12px; border: 1px solid #e2e8f0; background-color: #f8fafc;">
     <tr>
-      <td align="center" style="padding: 20px 22px;">
+      <td align="center" class="brochure-card-cell" style="padding: 20px 22px;">
         <img 
           src="${EMAIL_ASSETS.BROCHURE_ICON}" 
           alt="Brochure PDF" 
@@ -434,7 +695,7 @@ export function renderBrochureDownloadCard(title = "¿Deseas revisar el detalle 
           height="40" 
           style="display: block; margin: 0 auto 10px auto; width: 40px; height: 40px; object-fit: contain;"
         />
-        <p style="margin: 0 0 14px 0; font-size: 14.5px; font-weight: 700; color: #0f172a; line-height: 1.45; text-align: center;">
+        <p class="brochure-card-title" style="margin: 0 0 14px 0; font-size: 14.5px; font-weight: 700; color: #0f172a; line-height: 1.45; text-align: center;">
           ${title}
         </p>
         
@@ -470,7 +731,7 @@ export function renderSalesQuickActions(phone: string, clientName: string, conte
   const telUrl = `tel:${cleanDigits}`;
 
   return `
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 24px; overflow: hidden;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="sales-actions-table" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 24px; overflow: hidden;">
     <tr>
       <td style="padding: 16px 20px;">
         <p style="margin: 0 0 12px 0; font-size: 11.5px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.6px; text-align: center;">
@@ -479,11 +740,11 @@ export function renderSalesQuickActions(phone: string, clientName: string, conte
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
             <!-- BOTÓN LLAMAR -->
-            <td width="48%" align="center" style="padding-right: 6px;">
+            <td width="48%" align="center" class="sales-btn-col" style="padding-right: 6px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td align="center" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; box-shadow: 0 2px 6px rgba(252, 179, 38, 0.3);">
-                    <a href="${telUrl}" style="display: block; padding: 11px 16px; font-size: 13px; font-weight: 800; color: #0f172a; text-decoration: none; text-align: center;">
+                    <a href="${telUrl}" class="sales-btn-a" style="display: block; padding: 11px 16px; font-size: 13px; font-weight: 800; color: #0f172a; text-decoration: none; text-align: center;">
                       📞 Llamar al Cliente
                     </a>
                   </td>
@@ -491,11 +752,11 @@ export function renderSalesQuickActions(phone: string, clientName: string, conte
               </table>
             </td>
             <!-- BOTÓN WHATSAPP -->
-            <td width="48%" align="center" style="padding-left: 6px;">
+            <td width="48%" align="center" class="sales-btn-col" style="padding-left: 6px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td align="center" style="background-color: #25D366; border-radius: 6px; box-shadow: 0 2px 6px rgba(37, 211, 102, 0.3);">
-                    <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" style="display: block; padding: 11px 16px; font-size: 13px; font-weight: 800; color: #ffffff; text-decoration: none; text-align: center;">
+                    <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="sales-btn-a" style="display: block; padding: 11px 16px; font-size: 13px; font-weight: 800; color: #ffffff; text-decoration: none; text-align: center;">
                       💬 Chatear por WhatsApp
                     </a>
                   </td>
@@ -530,14 +791,14 @@ export function renderInternalContactActions(
   const telUrl = `tel:${cleanDigits}`;
 
   return `
-  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 520px; width: 100%; margin: 26px auto 10px auto;">
+  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="internal-contact-table" style="max-width: 520px; width: 100%; margin: 26px auto 10px auto;">
     <tr>
       <td align="center">
         <!-- PÍLDORA SUPERIOR -->
-        <table align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #e2e8f0; border-radius: 50px; padding: 7px 22px; margin: 0 auto 16px auto; background-color: #ffffff;">
+        <table align="center" cellpadding="0" cellspacing="0" border="0" class="internal-contact-pill" style="border: 1px solid #e2e8f0; border-radius: 50px; padding: 7px 22px; margin: 0 auto 16px auto; background-color: #ffffff;">
           <tr>
             <td style="vertical-align: middle; padding-right: 8px; font-size: 14px; line-height: 1;">⚡</td>
-            <td style="vertical-align: middle; font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.4px;">
+            <td class="internal-contact-pill-text" style="vertical-align: middle; font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.4px;">
               Acciones de Contacto Rápido con el Cliente
             </td>
           </tr>
@@ -547,22 +808,22 @@ export function renderInternalContactActions(
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
             <!-- COLUMNA IZQUIERDA: LLAMADA -->
-            <td width="50%" align="right" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 28px 6px 12px; text-align: right;">
-              <p style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px;">
+            <td width="50%" align="right" class="internal-contact-left" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 28px 6px 12px; text-align: right;">
+              <p class="internal-contact-label" style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px;">
                 Llamar al Cliente
               </p>
-              <p style="margin: 4px 0 0 0; font-size: 13.5px;">
+              <p class="internal-contact-value" style="margin: 4px 0 0 0; font-size: 13.5px;">
                 <a href="${telUrl}" style="color: #0f172a; text-decoration: none; font-weight: 800;">
                   📞 ${phone}
                 </a>
               </p>
             </td>
             <!-- COLUMNA DERECHA: WHATSAPP -->
-            <td width="50%" align="left" style="vertical-align: middle; padding: 6px 12px 6px 28px; text-align: left;">
-              <p style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px;">
+            <td width="50%" align="left" class="internal-contact-right" style="vertical-align: middle; padding: 6px 12px 6px 28px; text-align: left;">
+              <p class="internal-contact-label" style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px;">
                 WhatsApp Directo
               </p>
-              <p style="margin: 4px 0 0 0; font-size: 13.5px;">
+              <p class="internal-contact-value" style="margin: 4px 0 0 0; font-size: 13.5px;">
                 <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" style="color: #16a34a; text-decoration: none; font-weight: 800;">
                   💬 Iniciar Chat
                 </a>
@@ -584,7 +845,7 @@ export interface DetailCardOptions {
 }
 
 /**
- * Renderiza una tarjeta de detalles con tabla clave-valor estructurada.
+ * Renderiza una tarjeta de detalles con tabla clave-valor estructurada y adaptada a celulares.
  */
 export function renderDetailCard(
   title: string,
@@ -606,10 +867,10 @@ export function renderDetailCard(
     .map(
       (r) => `
       <tr>
-        <td width="42%" align="left" style="${rowPadding} color: #64748b; font-weight: 600; font-size: 13px; text-align: left; ${rowBorderStyle} vertical-align: top;">
+        <td width="42%" align="left" class="detail-label-td" style="${rowPadding} color: #64748b; font-weight: 600; font-size: 13px; text-align: left; ${rowBorderStyle} vertical-align: top;">
           ${r.label}:
         </td>
-        <td width="58%" align="left" style="${rowPadding} color: #0f172a; font-weight: 700; font-size: 13.5px; text-align: left; ${rowBorderStyle} vertical-align: top;">
+        <td width="58%" align="left" class="detail-value-td" style="${rowPadding} color: #0f172a; font-weight: 700; font-size: 13.5px; text-align: left; ${rowBorderStyle} vertical-align: top;">
           ${r.isLink && r.href ? `<a href="${r.href}" style="color: ${BRAND.NAVY}; text-decoration: none; font-weight: 700;">${r.value}</a>` : r.value}
         </td>
       </tr>`
@@ -625,17 +886,17 @@ export function renderDetailCard(
   const bodyCellPadding = innerTableMaxWidth ? "padding: 16px 20px 18px 20px;" : "padding: 12px 16px 14px 16px;";
 
   return `
-  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: ${maxWidth}; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; ${marginStyle} overflow: hidden;">
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="detail-card-table" style="max-width: ${maxWidth}; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; ${marginStyle} overflow: hidden;">
     <tr>
-      <td align="left" style="background-color: #f8fafc; padding: 14px 22px; text-align: left; ${headerBorder}">
-        <span style="font-size: 13.5px; font-weight: 800; color: ${BRAND.NAVY}; text-transform: uppercase; letter-spacing: 0.5px;">
+      <td align="left" class="detail-card-header" style="background-color: #f8fafc; padding: 14px 22px; text-align: left; ${headerBorder}">
+        <span class="detail-card-header-text" style="font-size: 13.5px; font-weight: 800; color: ${BRAND.NAVY}; text-transform: uppercase; letter-spacing: 0.5px;">
           ${title}
         </span>
       </td>
     </tr>
     <tr>
-      <td align="center" style="${bodyCellPadding}">
-        <table align="center" cellpadding="0" cellspacing="0" border="0" style="${innerTableStyle}">
+      <td align="center" class="detail-card-body" style="${bodyCellPadding}">
+        <table align="center" cellpadding="0" cellspacing="0" border="0" class="detail-inner-table" style="${innerTableStyle}">
           ${rowsHtml}
         </table>
       </td>
@@ -664,14 +925,14 @@ export function renderCalloutBox(
   const alignAttr = centered ? `align="center"` : "";
 
   return `
-  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: ${maxWidth}; width: 100%; background-color: ${config.bg}; border-left: 4px solid ${config.border}; border-radius: 4px; ${marginStyle}">
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: ${maxWidth}; width: 100%; background-color: ${config.bg}; border-left: 4px solid ${config.border}; border-radius: 4px; ${marginStyle}">
     <tr>
-      <td style="padding: 14px 18px;">
+      <td class="callout-cell" style="padding: 14px 18px;">
         ${title ? `
-        <span style="color: ${config.label}; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
+        <span class="callout-title" style="color: ${config.label}; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
           ${title}
         </span>` : ""}
-        <div style="color: ${config.text}; font-size: 13.5px; line-height: 1.6; white-space: pre-wrap;">
+        <div class="callout-text" style="color: ${config.text}; font-size: 13.5px; line-height: 1.6; white-space: pre-wrap;">
           ${content}
         </div>
       </td>
