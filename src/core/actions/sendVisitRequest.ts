@@ -13,9 +13,9 @@ import {
   renderMasterEmail,
   renderMetricsSection,
   renderBrochureDownloadCard,
-  renderSalesQuickActions,
   renderDetailCard,
   renderCalloutBox,
+  renderInternalContactActions,
   EMAIL_ASSETS,
 } from "@/core/lib/emailLayout";
 
@@ -140,32 +140,12 @@ export async function sendVisitRequest(formData: FormData) {
       ? `🚨 Visita Técnica: ${cleanSubjectEquipment} - ${cleanSubjectName}`
       : `🚨 Nueva Solicitud de Visita Técnica - ${cleanSubjectName}`;
 
-    // Formateo de acciones inline para teléfono (Llamada y WhatsApp directos)
     const cleanDigits = phone.replace(/\D/g, "");
-    const whatsappNumber = cleanDigits.length === 9 ? `51${cleanDigits}` : cleanDigits;
-    const waGreeting = encodeURIComponent(
-      `Hola ${fullName}, le saludamos del equipo técnico de SERVIMAFED S.A.C. Recibimos su solicitud de visita técnica para su equipo ${equipment}. ¿Podemos coordinar la inspección?`
-    );
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${waGreeting}`;
-    const telUrl = `tel:${cleanDigits}`;
-
-    const phoneValueWithIcons = `
-      <span style="font-size: 14px; font-weight: 700; color: #0f172a;">${safePhone}</span>
-      &nbsp;&nbsp;
-      <a href="${telUrl}" title="Llamar al cliente" style="display: inline-block; background-color: #FCB326; color: #0f172a; text-decoration: none; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; font-size: 12px; vertical-align: middle; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
-        📞
-      </a>
-      &nbsp;
-      <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" title="Chatear por WhatsApp" style="display: inline-block; background-color: #25D366; color: #ffffff; text-decoration: none; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; font-size: 12px; vertical-align: middle; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
-        💬
-      </a>
-    `.trim();
-
     const hasRealComments = comments && comments !== "Sin comentarios adicionales" && comments.trim().length > 0;
 
     // 1. Correo interno para el equipo comercial / técnico
     const companyContentHtml = `
-      <div style="text-align: center; margin-bottom: 24px;">
+      <div style="text-align: left; margin-bottom: 22px;">
         <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
           Requerimiento de Servicio &amp; Visita Técnica
         </h1>
@@ -176,11 +156,12 @@ export async function sendVisitRequest(formData: FormData) {
 
       ${renderDetailCard("Datos de Contacto del Cliente", [
         { label: "Nombre / Razón Social", value: safeFullName },
-        { label: "Teléfono", value: phoneValueWithIcons },
+        { label: "Teléfono", value: safePhone, isLink: true, href: `tel:${cleanDigits}` },
         { label: "Correo Electrónico", value: safeEmail, isLink: email !== "No proporcionado", href: `mailto:${safeEmail}` },
       ], {
         maxWidth: "520px",
         centered: true,
+        innerTableMaxWidth: "440px",
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -194,6 +175,7 @@ export async function sendVisitRequest(formData: FormData) {
       ], {
         maxWidth: "520px",
         centered: true,
+        innerTableMaxWidth: "440px",
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -213,12 +195,15 @@ export async function sendVisitRequest(formData: FormData) {
           </td>
         </tr>
       </table>` : ""}
+
+      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO CENTRO DE CONTACTO) -->
+      ${renderInternalContactActions(phone, safeFullName, `su requerimiento técnico para ${safeEquipment}`)}
     `;
 
     const emailToCompanyHtml = renderMasterEmail({
       pageTitle: `Nueva Solicitud de Visita Técnica - ${cleanSubjectName}`,
       preheaderText: `Solicitud de visita para ${safeEquipment} de ${safeFullName}.`,
-      badgeHtml: "NOTIFICACIÓN DE VISITA TÉCNICA",
+      badgeHtml: "VISITA TÉCNICA",
       contentHtml: companyContentHtml,
       showContactCenter: false,
     });

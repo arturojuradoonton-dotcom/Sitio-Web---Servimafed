@@ -112,7 +112,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
           
           <!-- 1. CABECERA -->
           <tr>
-            <td align="left" style="background-color: ${BRAND.NAVY}; padding: ${heroBannerUrl ? '18px 36px' : '14px 28px'};">
+            <td align="left" style="background-color: ${BRAND.NAVY}; padding: 22px 36px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   ${heroBannerUrl ? `
@@ -127,27 +127,26 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                     </a>
                   </td>
                   ` : `
-                  <!-- CABECERA SOBRIA DE NOTIFICACIÓN INTERNA -->
+                  <!-- CABECERA NOTIFICACIÓN INTERNA: ALERTA + NOTIFICACIÓN A LA IZQ, BADGE A LA DER -->
                   <td align="left" valign="middle">
                     <table cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td valign="middle" style="padding-right: 10px;">
-                          <img 
-                            src="https://www.servimafed.com/images/Isotipo-sin-fondo.png" 
-                            alt="S" 
-                            width="24" 
-                            height="24" 
-                            style="display: block; width: 24px; height: 24px; object-fit: contain;"
-                          />
+                        <td valign="middle" style="padding-right: 10px; font-size: 20px; line-height: 1;">
+                          🔔
                         </td>
                         <td valign="middle">
-                          <span style="font-size: 13px; font-weight: 800; color: #ffffff; letter-spacing: 0.8px; text-transform: uppercase;">
-                            SERVIMAFED
+                          <span style="font-size: 15px; font-weight: 800; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+                            NOTIFICACIÓN
                           </span>
-                          <span style="font-size: 12px; color: #64748b; margin: 0 6px;">&bull;</span>
-                          <span style="font-size: 11.5px; color: ${BRAND.YELLOW}; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;">
-                            ${badgeHtml}
-                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td align="right" valign="middle">
+                    <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
+                      <tr>
+                        <td style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
+                          ${badgeHtml}
                         </td>
                       </tr>
                     </table>
@@ -509,6 +508,68 @@ export function renderSalesQuickActions(phone: string, clientName: string, conte
         <p style="margin: 12px 0 0 0; font-size: 11.5px; line-height: 1.45; color: #64748b; text-align: center;">
           💡 <strong>Tip Comercial:</strong> Contactar al prospecto dentro de los primeros <strong>15 minutos</strong> incrementa la conversión en más del <strong>70%</strong>.
         </p>
+      </td>
+    </tr>
+  </table>`;
+}
+
+/**
+ * Renderiza la barra de acciones de contacto con el cliente al final del correo interno (estilo Centro de Contacto de la Imagen 1).
+ */
+export function renderInternalContactActions(
+  phone: string,
+  clientName: string,
+  contextSummary = "su solicitud de visita técnica"
+): string {
+  const cleanDigits = phone.replace(/\D/g, "");
+  const whatsappNumber = cleanDigits.length === 9 ? `51${cleanDigits}` : cleanDigits;
+  const greeting = encodeURIComponent(
+    `Hola ${clientName}, le saludamos del equipo técnico de SERVIMAFED S.A.C. Recibimos ${contextSummary}. ¿Podemos coordinar los detalles?`
+  );
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${greeting}`;
+  const telUrl = `tel:${cleanDigits}`;
+
+  return `
+  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 520px; width: 100%; margin: 26px auto 10px auto;">
+    <tr>
+      <td align="center">
+        <!-- PÍLDORA SUPERIOR -->
+        <table align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #e2e8f0; border-radius: 50px; padding: 7px 22px; margin: 0 auto 16px auto; background-color: #ffffff;">
+          <tr>
+            <td style="vertical-align: middle; padding-right: 8px; font-size: 14px; line-height: 1;">⚡</td>
+            <td style="vertical-align: middle; font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.4px;">
+              Acciones de Contacto Rápido con el Cliente
+            </td>
+          </tr>
+        </table>
+
+        <!-- DOS COLUMNAS DE ACCIÓN CON DIVISOR VERTICAL CENTRAL -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <!-- COLUMNA IZQUIERDA: LLAMADA -->
+            <td width="50%" align="right" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 28px 6px 12px; text-align: right;">
+              <p style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px;">
+                Llamar al Cliente
+              </p>
+              <p style="margin: 4px 0 0 0; font-size: 13.5px;">
+                <a href="${telUrl}" style="color: #0f172a; text-decoration: none; font-weight: 800;">
+                  📞 ${phone}
+                </a>
+              </p>
+            </td>
+            <!-- COLUMNA DERECHA: WHATSAPP -->
+            <td width="50%" align="left" style="vertical-align: middle; padding: 6px 12px 6px 28px; text-align: left;">
+              <p style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px;">
+                WhatsApp Directo
+              </p>
+              <p style="margin: 4px 0 0 0; font-size: 13.5px;">
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" style="color: #16a34a; text-decoration: none; font-weight: 800;">
+                  💬 Iniciar Chat
+                </a>
+              </p>
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   </table>`;
