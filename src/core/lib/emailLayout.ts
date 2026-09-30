@@ -800,7 +800,13 @@ export function renderInternalContactActions(
   const telUrl = `tel:${cleanDigits}`;
 
   return `
-  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="internal-contact-table" style="max-width: 520px; width: 100%; margin: 36px auto 10px auto;">
+  <!-- SPACER FIABLE PARA EMAIL (32px de separación vertical) -->
+  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 520px; width: 100%;">
+    <tr>
+      <td style="height: 32px; line-height: 32px; font-size: 1px;">&nbsp;</td>
+    </tr>
+  </table>
+  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="internal-contact-table" style="max-width: 520px; width: 100%; margin: 0 auto;">
     <tr>
       <td align="center">
         <!-- PÍLDORA SUPERIOR (DISEÑO CÁPSULA PRÉMIUM) -->
