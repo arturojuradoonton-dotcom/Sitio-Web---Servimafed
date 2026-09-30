@@ -131,12 +131,14 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
 
     // 1. Notificación interna para RRHH / Selección
     const hrContentHtml = `
-      <h1 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
-        Nueva Postulación - Bolsa de Trabajo
-      </h1>
-      <p style="margin: 0 0 20px 0; font-size: 13.5px; color: #64748b; line-height: 1.6;">
-        Se ha recibido un nuevo currículum para el área de <strong>${safeArea}</strong> desde el portal de convocatorias.
-      </p>
+      <div style="text-align: left; margin-bottom: 22px;">
+        <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
+          Nueva Postulación - Bolsa de Trabajo
+        </h1>
+        <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+          Se ha recibido un nuevo currículum para el área de <strong>${safeArea}</strong> desde el portal de convocatorias.
+        </p>
+      </div>
 
       ${renderDetailCard("Datos del Postulante", [
         { label: "Fecha y Hora", value: fechaHora },

@@ -99,12 +99,14 @@ export async function sendBrochureLead(formData: FormData) {
 
     // 1. Notificación al equipo comercial de SERVIMAFED (Plantilla Estandarizada)
     const companyContentHtml = `
-      <h1 style="margin: 0 0 10px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
-        Nuevo Prospecto Interesado en Brochure
-      </h1>
-      <p style="margin: 0 0 20px 0; font-size: 13.5px; color: #64748b; line-height: 1.6;">
-        Un nuevo contacto corporativo ha solicitado el <strong>Dossier Técnico 2026</strong> desde la web oficial.
-      </p>
+      <div style="text-align: left; margin-bottom: 22px;">
+        <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
+          Nuevo Prospecto Interesado en Brochure
+        </h1>
+        <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+          Un nuevo contacto corporativo ha solicitado el <strong>Dossier Técnico 2026</strong> desde la web oficial.
+        </p>
+      </div>
 
       ${renderDetailCard("Datos del Prospecto", [
         { label: "Fecha y Hora", value: fechaHora },

@@ -81,12 +81,14 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
 
     // 1. Notificación interna para el equipo comercial de SERVIMAFED
     const companyContentHtml = `
-      <h1 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
-        Nueva Solicitud de Contacto Corporativo
-      </h1>
-      <p style="margin: 0 0 20px 0; font-size: 13.5px; color: #64748b; line-height: 1.6;">
-        Un cliente potencial se ha comunicado a través del formulario de contacto de la web oficial.
-      </p>
+      <div style="text-align: left; margin-bottom: 22px;">
+        <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
+          Nueva Solicitud de Contacto Corporativo
+        </h1>
+        <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+          Un cliente potencial se ha comunicado a través del formulario de contacto de la web oficial.
+        </p>
+      </div>
 
       ${renderDetailCard("Datos del Cliente", [
         { label: "Fecha y Hora", value: fechaHora },
