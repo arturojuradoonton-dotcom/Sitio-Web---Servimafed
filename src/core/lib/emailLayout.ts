@@ -375,7 +375,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
           
           <!-- 1. CABECERA -->
           <tr>
-            <td align="left" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 24px 18px;">
+            <td align="left" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 22px 10px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   ${heroBannerUrl ? `
@@ -392,7 +392,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                   </td>
                   ` : `
                   <!-- CABECERA NOTIFICACIÓN INTERNA: ICONO TÉCNICO + VISITA TÉCNICA A LA IZQ, BADGE A LA DER -->
-                  <td width="65%" align="left" valign="middle">
+                  <td width="70%" align="left" valign="middle">
                     <table cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td valign="middle" style="padding-right: 14px; line-height: 0;">
@@ -406,7 +406,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                       </tr>
                     </table>
                   </td>
-                  <td width="35%" align="right" valign="middle">
+                  <td width="30%" align="right" valign="middle">
                     <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
                       <tr>
                         <td class="header-badge-td" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
@@ -803,12 +803,6 @@ export function renderInternalContactActions(
   const telUrl = `tel:${cleanDigits}`;
 
   return `
-  <!-- SPACER FIABLE PARA EMAIL (32px de separación vertical) -->
-  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 520px; width: 100%;">
-    <tr>
-      <td style="height: 32px; line-height: 32px; font-size: 1px;">&nbsp;</td>
-    </tr>
-  </table>
   <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="internal-contact-table" style="max-width: 520px; width: 100%; margin: 0 auto;">
     <tr>
       <td align="center">
