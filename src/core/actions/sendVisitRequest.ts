@@ -191,7 +191,7 @@ export async function sendVisitRequest(formData: FormData) {
       <table align="center" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 auto 6px auto;">
         <tr>
           <td class="callout-cell" style="padding: 12px 16px; font-size: 13px; color: #475569;">
-            📎 <strong>Archivo adjunto por el cliente:</strong> ${safeAttachmentName} <em>(Descárguelo en los adjuntos de este correo)</em>
+            <img src="${EMAIL_ASSETS.PAPERCLIP_ICON}" alt="Adjunto" width="14" height="14" style="display: inline-block; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px; border: 0;" /><strong>Archivo adjunto por el cliente:</strong> ${safeAttachmentName} <em>(Descárguelo en los adjuntos de este correo)</em>
           </td>
         </tr>
       </table>` : ""}

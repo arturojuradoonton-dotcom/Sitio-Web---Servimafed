@@ -19,6 +19,7 @@ export const EMAIL_ASSETS = {
   HEADSET_ICON: "https://www.servimafed.com/images/headset-contact.png",
   WORKER_ICON: "https://www.servimafed.com/images/icon-trabajador.png",
   BROCHURE_ICON: "https://www.servimafed.com/images/icon-brochure-download.png",
+  PAPERCLIP_ICON: "https://www.servimafed.com/images/icon-paperclip.png",
   PHONE_ICON: "https://www.servimafed.com/images/icon-phone-gold.png",
   WHATSAPP_ICON: "https://www.servimafed.com/images/icon-whatsapp-green.png",
   METRIC_SOPORTE: "https://www.servimafed.com/images/metric-soporte.png",
