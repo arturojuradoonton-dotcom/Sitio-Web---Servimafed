@@ -392,7 +392,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                   </td>
                   ` : `
                   <!-- CABECERA NOTIFICACIÓN INTERNA: ICONO TÉCNICO + VISITA TÉCNICA A LA IZQ, BADGE A LA DER -->
-                  <td align="left" valign="middle">
+                  <td width="65%" align="left" valign="middle">
                     <table cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td valign="middle" style="padding-right: 14px; line-height: 0;">
@@ -406,7 +406,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                       </tr>
                     </table>
                   </td>
-                  <td align="right" valign="middle">
+                  <td width="35%" align="right" valign="middle">
                     <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
                       <tr>
                         <td class="header-badge-td" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
@@ -903,7 +903,7 @@ export function renderDetailCard(
     )
     .join("");
 
-  const marginStyle = centered ? "margin: 0 auto 22px auto;" : "margin-bottom: 22px;";
+  const marginStyle = centered ? "margin: 0 auto 0 auto;" : "margin-bottom: 0;";
   const alignAttr = centered ? `align="center"` : "";
   const headerBorder = hideDivider ? "" : `border-bottom: 2px solid ${BRAND.YELLOW};`;
   const innerTableStyle = innerTableMaxWidth 
@@ -927,6 +927,12 @@ export function renderDetailCard(
         </table>
       </td>
     </tr>
+  </table>
+  <!-- SPACER TABLE CROSS-PLATFORM (OUTLOOK WIN 10 & WIN 11) -->
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: ${maxWidth}; width: 100%;">
+    <tr>
+      <td style="height: 16px; line-height: 16px; font-size: 1px;">&nbsp;</td>
+    </tr>
   </table>`;
 }
 
@@ -947,7 +953,7 @@ export function renderCalloutBox(
     neutral: { border: "#94a3b8", bg: "#f8fafc", text: "#334155", label: "#475569" },
   }[variant];
 
-  const marginStyle = centered ? "margin: 0 auto 20px auto;" : "margin-bottom: 22px;";
+  const marginStyle = centered ? "margin: 0 auto 0 auto;" : "margin-bottom: 0;";
   const alignAttr = centered ? `align="center"` : "";
 
   return `
@@ -962,6 +968,12 @@ export function renderCalloutBox(
           ${content}
         </div>
       </td>
+    </tr>
+  </table>
+  <!-- SPACER TABLE CROSS-PLATFORM (OUTLOOK WIN 10 & WIN 11) -->
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: ${maxWidth}; width: 100%;">
+    <tr>
+      <td style="height: 16px; line-height: 16px; font-size: 1px;">&nbsp;</td>
     </tr>
   </table>`;
 }
