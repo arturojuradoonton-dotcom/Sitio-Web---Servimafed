@@ -375,11 +375,11 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
           
           <!-- 1. CABECERA -->
           <tr>
-            <td align="left" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 22px 10px;">
+            <td align="center" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 0;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   ${heroBannerUrl ? `
-                  <td align="left" valign="middle">
+                  <td align="left" valign="middle" style="padding: 22px 18px;">
                     <a href="https://www.servimafed.com" target="_blank" style="text-decoration: none; display: inline-block;">
                       <img 
                         src="${EMAIL_ASSETS.LOGO_WHITE}" 
@@ -391,14 +391,14 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                     </a>
                   </td>
                   ` : `
-                  <!-- CABECERA NOTIFICACIÓN INTERNA: ICONO TÉCNICO + VISITA TÉCNICA A LA IZQ, BADGE A LA DER -->
-                  <td width="70%" align="left" valign="middle">
-                    <table cellpadding="0" cellspacing="0" border="0">
+                  <!-- CABECERA NOTIFICACIÓN INTERNA: PUGNA PURA HTML ALINEADA A LOS EXTREMOS -->
+                  <td align="left" valign="middle" style="padding: 20px 0 20px 14px;">
+                    <table cellpadding="0" cellspacing="0" border="0" align="left">
                       <tr>
-                        <td valign="middle" style="padding-right: 14px; line-height: 0;">
-                          <img src="${EMAIL_ASSETS.TECHNICAL_VISIT_ICON}" alt="Visita Técnica" width="54" height="54" style="display: block; width: 54px; height: 54px; border: 0;" />
+                        <td valign="middle" align="left" style="padding-right: 14px; line-height: 0;">
+                          <img src="${EMAIL_ASSETS.TECHNICAL_VISIT_ICON}" alt="Visita Técnica" width="54" height="54" border="0" style="display: block; width: 54px; height: 54px;" />
                         </td>
-                        <td valign="middle">
+                        <td valign="middle" align="left">
                           <span class="header-title-text" style="font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: 0.8px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
                             VISITA TÉCNICA
                           </span>
@@ -406,10 +406,10 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                       </tr>
                     </table>
                   </td>
-                  <td width="30%" align="right" valign="middle">
-                    <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
+                  <td align="right" valign="middle" style="padding: 20px 14px 20px 0;">
+                    <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
                       <tr>
-                        <td class="header-badge-td" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <td class="header-badge-td" align="center" valign="middle" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
                           ${badgeHtml}
                         </td>
                       </tr>
