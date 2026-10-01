@@ -20,6 +20,7 @@ export const EMAIL_ASSETS = {
   WORKER_ICON: "https://www.servimafed.com/images/icon-trabajador.png",
   BROCHURE_ICON: "https://www.servimafed.com/images/icon-brochure-download.png",
   PAPERCLIP_ICON: "https://www.servimafed.com/images/icon-paperclip.png",
+  LIGHTNING_ICON: "https://www.servimafed.com/images/icon-lightning-pill.png",
   PHONE_ICON: "https://www.servimafed.com/images/icon-phone-gold.png",
   WHATSAPP_ICON: "https://www.servimafed.com/images/icon-whatsapp-green.png",
   METRIC_SOPORTE: "https://www.servimafed.com/images/metric-soporte.png",
@@ -816,8 +817,8 @@ export function renderInternalContactActions(
             <td style="vertical-align: middle; padding: 4px 18px 4px 5px; border-radius: 50px; background-color: #f1f5f9;">
               <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate !important;">
                 <tr>
-                  <td valign="middle" align="center" style="width: 30px; height: 30px; background-color: #1d3961; border-radius: 50%; text-align: center; font-size: 14px; line-height: 30px; color: #ffffff;">
-                    ⚡
+                  <td valign="middle" align="center" style="width: 30px; height: 30px; padding: 0; line-height: 0;">
+                    <img src="${EMAIL_ASSETS.LIGHTNING_ICON}" alt="Acción" width="30" height="30" style="display: block; width: 30px; height: 30px; border-radius: 50%; border: 0;" />
                   </td>
                   <td class="internal-contact-pill-text" valign="middle" style="padding-left: 10px; font-size: 12px; font-weight: 700; color: #334155; letter-spacing: 0.3px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; white-space: nowrap;">
                     Acciones de Contacto Rápido con el Cliente
@@ -837,7 +838,7 @@ export function renderInternalContactActions(
                 Llamar al Cliente
               </p>
               <p class="internal-contact-value" style="margin: 4px 0 0 0; font-size: 13.5px;">
-                <a href="${telUrl}" style="color: #0f172a; text-decoration: none; font-weight: 800;">
+                <a href="${telUrl}" style="color: ${BRAND.YELLOW}; text-decoration: none; font-weight: 800;">
                   <img src="${EMAIL_ASSETS.PHONE_ICON}" alt="Llamar" width="14" height="14" style="display: inline-block; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px; border: 0;" />${phone}
                 </a>
               </p>
