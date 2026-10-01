@@ -21,6 +21,7 @@ export const EMAIL_ASSETS = {
   BROCHURE_ICON: "https://www.servimafed.com/images/icon-brochure-download.png",
   PAPERCLIP_ICON: "https://www.servimafed.com/images/icon-paperclip.png",
   LIGHTNING_ICON: "https://www.servimafed.com/images/icon-lightning-pill.png",
+  TECHNICAL_VISIT_ICON: "https://www.servimafed.com/images/icon-technical-visit.png",
   PHONE_ICON: "https://www.servimafed.com/images/icon-phone-gold.png",
   WHATSAPP_ICON: "https://www.servimafed.com/images/icon-whatsapp-green.png",
   METRIC_SOPORTE: "https://www.servimafed.com/images/metric-soporte.png",
@@ -374,7 +375,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
           
           <!-- 1. CABECERA -->
           <tr>
-            <td align="left" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 22px 36px;">
+            <td align="left" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 30px 36px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   ${heroBannerUrl ? `
@@ -390,16 +391,16 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                     </a>
                   </td>
                   ` : `
-                  <!-- CABECERA NOTIFICACIÓN INTERNA: ALERTA + NOTIFICACIÓN A LA IZQ, BADGE A LA DER -->
+                  <!-- CABECERA NOTIFICACIÓN INTERNA: ICONO TÉCNICO + VISITA TÉCNICA A LA IZQ, BADGE A LA DER -->
                   <td align="left" valign="middle">
                     <table cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td valign="middle" style="padding-right: 10px; font-size: 20px; line-height: 1;">
-                          🔔
+                        <td valign="middle" style="padding-right: 12px; line-height: 0;">
+                          <img src="${EMAIL_ASSETS.TECHNICAL_VISIT_ICON}" alt="Visita Técnica" width="36" height="36" style="display: block; width: 36px; height: 36px; border: 0;" />
                         </td>
                         <td valign="middle">
-                          <span class="header-title-text" style="font-size: 15px; font-weight: 800; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
-                            NOTIFICACIÓN
+                          <span class="header-title-text" style="font-size: 17.5px; font-weight: 800; color: #ffffff; letter-spacing: 0.8px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+                            VISITA TÉCNICA
                           </span>
                         </td>
                       </tr>
@@ -408,7 +409,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                   <td align="right" valign="middle">
                     <table cellpadding="0" cellspacing="0" border="0" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
                       <tr>
-                        <td class="header-badge-td" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <td class="header-badge-td" style="padding: 7px 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
                           ${badgeHtml}
                         </td>
                       </tr>

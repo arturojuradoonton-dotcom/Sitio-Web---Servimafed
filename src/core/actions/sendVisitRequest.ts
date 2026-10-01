@@ -203,7 +203,7 @@ export async function sendVisitRequest(formData: FormData) {
     const emailToCompanyHtml = renderMasterEmail({
       pageTitle: `Nueva Solicitud de Visita Técnica - ${cleanSubjectName}`,
       preheaderText: `Solicitud de visita para ${safeEquipment} de ${safeFullName}.`,
-      badgeHtml: "VISITA TÉCNICA",
+      badgeHtml: "SOLICITUD",
       contentHtml: companyContentHtml,
       showContactCenter: false,
     });
