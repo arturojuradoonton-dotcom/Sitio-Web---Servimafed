@@ -769,6 +769,12 @@ export function renderBrochureDownloadCard(title = "¿Deseas revisar el detalle 
         </table>
       </td>
     </tr>
+  </table>
+  <!-- ESPACIADOR ENTRE TARJETAS RESILIENTE PARA EMAILS (OUTLOOK, GMAIL, MÓVILES) -->
+  <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 500px; width: 100%;">
+    <tr>
+      <td height="22" style="height: 22px; line-height: 22px; font-size: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+    </tr>
   </table>`;
 }
 

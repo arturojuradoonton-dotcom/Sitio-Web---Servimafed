@@ -104,7 +104,7 @@ export async function sendBrochureLead(formData: FormData) {
           Nuevo Prospecto Interesado en Brochure
         </h1>
         <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
-          Un nuevo contacto corporativo ha solicitado el <strong>Dossier Técnico 2026</strong> desde la web oficial.
+          Un nuevo contacto corporativo ha solicitado el <strong>Brochure Técnico 2026</strong> desde la web oficial.
         </p>
       </div>
 
@@ -152,7 +152,7 @@ export async function sendBrochureLead(formData: FormData) {
       </h1>
       
       <p style="margin: 0 0 24px 0; font-size: 13.5px; line-height: 1.65; color: #475569;">
-        Es un placer saludarle de parte de <strong>SERVIMAFED S.A.C.</strong> De acuerdo a su solicitud, le hacemos entrega de nuestro <strong>Dossier Corporativo &amp; Brochure Técnico 2026</strong> para su evaluación comercial y operativa.
+        Es un placer saludarle de parte de <strong>SERVIMAFED S.A.C.</strong> De acuerdo a su solicitud, le hacemos entrega de nuestro <strong>Brochure Técnico 2026</strong> para su evaluación comercial y operativa.
       </p>
 
       ${renderMetricsSection("¿Sabías que en SERVIMAFED?")}
@@ -164,8 +164,10 @@ export async function sendBrochureLead(formData: FormData) {
 
     const emailToCustomerHtml = renderMasterEmail({
       pageTitle: "Brochure Corporativo - SERVIMAFED S.A.C.",
-      preheaderText: `Hola ${safeNombre}, aquí tienes disponible el Dossier Técnico Corporativo 2026 de SERVIMAFED S.A.C.`,
+      preheaderText: `Hola ${safeNombre}, aquí tienes disponible el Brochure Corporativo 2026 de SERVIMAFED S.A.C.`,
       badgeHtml: "¡Tu Brochure<br/>está Listo!",
+      badgePosition: "bottom-right",
+      badgeSize: "large",
       heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
       contentHtml: customerContentHtml,
       showContactCenter: true,
