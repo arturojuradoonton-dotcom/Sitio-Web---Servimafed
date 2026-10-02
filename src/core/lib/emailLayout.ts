@@ -19,7 +19,7 @@ export const EMAIL_ASSETS = {
   HEADSET_ICON: "https://www.servimafed.com/images/headset-contact.png",
   WORKER_ICON: "https://www.servimafed.com/images/icon-trabajador.png",
   BROCHURE_ICON: "https://www.servimafed.com/images/icon-brochure-download.png",
-  PAPERCLIP_ICON: "https://www.servimafed.com/images/icon-paperclip.png",
+  PAPERCLIP_ICON: "https://www.servimafed.com/images/icon-clip-adjunto.png",
   LIGHTNING_ICON: "https://www.servimafed.com/images/icon-lightning-pill.png",
   TECHNICAL_VISIT_ICON: "https://www.servimafed.com/images/icon-technical-visit.png",
   PHONE_ICON: "https://www.servimafed.com/images/icon-phone-gold.png",
@@ -159,25 +159,23 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
       
       /* Cabecera */
       .header-cell {
-        padding: 14px 14px !important;
+        padding: 0 !important;
+      }
+      .header-inner-left {
+        padding: 14px 0 14px 14px !important;
+      }
+      .header-inner-right {
+        padding: 14px 14px 14px 0 !important;
       }
       .header-logo {
         max-width: 105px !important;
         width: 105px !important;
         height: auto !important;
       }
-      .header-icon-img {
-        width: 44px !important;
-        height: 44px !important;
-      }
-      .header-icon-td {
-        padding-right: 10px !important;
-      }
       .header-title-text {
-        font-size: 16px !important;
+        font-size: 13.5px !important;
         letter-spacing: 0.4px !important;
         white-space: nowrap !important;
-        display: inline-block !important;
       }
       .header-badge-td {
         padding: 6px 11px !important;
@@ -385,11 +383,11 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
           
           <!-- 1. CABECERA -->
           <tr>
-            <td align="left" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 22px 28px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <td align="center" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; min-width: 100%;">
                 <tr>
                   ${heroBannerUrl ? `
-                  <td align="left" valign="middle">
+                  <td align="left" valign="middle" class="header-inner-left" style="padding: 22px 24px;">
                     <a href="https://www.servimafed.com" target="_blank" style="text-decoration: none; display: inline-block;">
                       <img 
                         src="${EMAIL_ASSETS.LOGO_WHITE}" 
@@ -401,14 +399,14 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                     </a>
                   </td>
                   ` : `
-                  <!-- CABECERA NOTIFICACIÓN INTERNA: ALINEACIÓN PERFECTA CON LAS TARJERAS -->
-                  <td align="left" valign="middle" nowrap="nowrap" style="white-space: nowrap;">
+                  <!-- CABECERA NOTIFICACIÓN INTERNA: ALINEADA A LOS EXTREMOS -->
+                  <td align="left" valign="middle" class="header-inner-left" style="padding: 20px 0 20px 24px;">
                     <table cellpadding="0" cellspacing="0" border="0" align="left">
                       <tr>
-                        <td valign="middle" align="left" class="header-icon-td" style="padding-right: 14px; line-height: 0;">
-                          <img src="${EMAIL_ASSETS.TECHNICAL_VISIT_ICON}" alt="Visita Técnica" width="54" height="54" border="0" class="header-icon-img" style="display: block; width: 54px; height: 54px;" />
+                        <td valign="middle" align="left" style="padding-right: 12px; line-height: 0;">
+                          <img src="${EMAIL_ASSETS.TECHNICAL_VISIT_ICON}" alt="Visita Técnica" width="54" height="54" border="0" style="display: block; width: 54px; height: 54px;" />
                         </td>
-                        <td valign="middle" align="left" nowrap="nowrap" style="white-space: nowrap;">
+                        <td valign="middle" align="left" style="white-space: nowrap;">
                           <span class="header-title-text" style="font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: 0.8px; text-transform: uppercase; white-space: nowrap; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
                             VISITA TÉCNICA
                           </span>
@@ -416,10 +414,10 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                       </tr>
                     </table>
                   </td>
-                  <td align="right" valign="middle" nowrap="nowrap" style="white-space: nowrap;">
+                  <td align="right" valign="middle" class="header-inner-right" style="padding: 20px 24px 20px 0;">
                     <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
                       <tr>
-                        <td class="header-badge-td" align="center" valign="middle" nowrap="nowrap" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
+                        <td class="header-badge-td" align="center" valign="middle" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
                           ${badgeHtml}
                         </td>
                       </tr>
