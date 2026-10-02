@@ -111,13 +111,17 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
       )}
 
       <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${renderInternalContactActions(phone, safeCompanyName, "su mensaje de contacto")}
+      ${renderInternalContactActions(phone, safeCompanyName, "su mensaje de contacto", {
+        teamName: "equipo comercial",
+      })}
     `;
 
     const emailToCompanyHtml = renderMasterEmail({
       pageTitle: `Contacto Corporativo - ${cleanSubjectCompany}`,
       preheaderText: `Nuevo mensaje de ${safeCompanyName} (${safePhone}).`,
-      badgeHtml: "💼 CONTACTO CORPORATIVO",
+      headerTitle: "CONTACTO CORPORATIVO",
+      headerIconUrl: EMAIL_ASSETS.CLIENT_ICON,
+      badgeHtml: "CONTACTO",
       contentHtml: companyContentHtml,
       showContactCenter: false,
     });

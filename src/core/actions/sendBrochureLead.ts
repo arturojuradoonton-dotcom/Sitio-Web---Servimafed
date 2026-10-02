@@ -130,13 +130,17 @@ export async function sendBrochureLead(formData: FormData) {
       )}
 
       <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "la descarga del Brochure Técnico 2026") : ""}
+      ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "la descarga del Brochure Técnico 2026", {
+        teamName: "equipo comercial",
+      }) : ""}
     `;
 
     const emailToCompanyHtml = renderMasterEmail({
       pageTitle: `Nuevo Prospecto Brochure - ${cleanSubjectNombre}`,
       preheaderText: `Prospecto de ${safeEmpresa}: ${safeNombre} ha descargado el Brochure 2026.`,
-      badgeHtml: "📥 PROSPECTO BROCHURE",
+      headerTitle: "BROCHURE TÉCNICO",
+      headerIconUrl: EMAIL_ASSETS.CLIENT_ICON,
+      badgeHtml: "PROSPECTO",
       contentHtml: companyContentHtml,
       showContactCenter: false,
     });

@@ -22,6 +22,9 @@ export const EMAIL_ASSETS = {
   PAPERCLIP_ICON: "https://www.servimafed.com/images/icon-clip-adjunto.png",
   LIGHTNING_ICON: "https://www.servimafed.com/images/icon-lightning-pill.png",
   TECHNICAL_VISIT_ICON: "https://www.servimafed.com/images/icon-technical-visit.png",
+  CLIENT_ICON: "https://www.servimafed.com/images/icon-email-client.png",
+  JOB_ICON: "https://www.servimafed.com/images/icon-email-job.png",
+  CLAIMS_ICON: "https://www.servimafed.com/images/icon-email-claims.png",
   PHONE_ICON: "https://www.servimafed.com/images/icon-phone-gold.png",
   WHATSAPP_ICON: "https://www.servimafed.com/images/icon-whatsapp-green.png",
   METRIC_SOPORTE: "https://www.servimafed.com/images/metric-soporte.png",
@@ -51,6 +54,8 @@ export const BRAND = {
 export interface MasterEmailOptions {
   pageTitle: string;
   preheaderText?: string;
+  headerTitle?: string;
+  headerIconUrl?: string;
   badgeHtml: string;
   badgePosition?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
   badgeSize?: "normal" | "large";
@@ -70,6 +75,8 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
   const {
     pageTitle,
     preheaderText = "",
+    headerTitle = "VISITA TÉCNICA",
+    headerIconUrl = EMAIL_ASSETS.TECHNICAL_VISIT_ICON,
     badgeHtml,
     badgePosition = "top-left",
     badgeSize = "normal",
@@ -418,11 +425,11 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                     <table cellpadding="0" cellspacing="0" border="0" align="left">
                       <tr>
                         <td valign="middle" align="left" style="padding-right: 12px; line-height: 0;">
-                          <img src="${EMAIL_ASSETS.TECHNICAL_VISIT_ICON}" alt="Visita Técnica" width="54" height="54" border="0" style="display: block; width: 54px; height: 54px;" />
+                          <img src="${headerIconUrl}" alt="${headerTitle}" width="54" height="54" border="0" style="display: block; width: 54px; height: 54px;" />
                         </td>
                         <td valign="middle" align="left" style="white-space: nowrap;">
                           <span class="header-title-text" style="font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: 0.8px; text-transform: uppercase; white-space: nowrap; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
-                            VISITA TÉCNICA
+                            ${headerTitle}
                           </span>
                         </td>
                       </tr>
@@ -808,19 +815,36 @@ export function renderSalesQuickActions(phone: string, clientName: string, conte
   </table>`;
 }
 
+export interface InternalContactActionOptions {
+  pillTitle?: string;
+  callLabel?: string;
+  teamName?: string;
+  customGreeting?: string;
+}
+
 /**
  * Renderiza la barra de acciones de contacto con el cliente al final del correo interno (estilo Centro de Contacto de la Imagen 1).
  */
 export function renderInternalContactActions(
   phone: string,
   clientName: string,
-  contextSummary = "su solicitud de visita técnica"
+  contextSummary = "su solicitud de visita técnica",
+  options: InternalContactActionOptions = {}
 ): string {
+  const {
+    pillTitle = "Acciones de Contacto Rápido con el Cliente",
+    callLabel = "Llamar al Cliente",
+    teamName = "equipo técnico",
+    customGreeting,
+  } = options;
+
   const cleanDigits = phone.replace(/\D/g, "");
   const whatsappNumber = cleanDigits.length === 9 ? `51${cleanDigits}` : cleanDigits;
-  const greeting = encodeURIComponent(
-    `Hola ${clientName}, le saludamos del equipo técnico de SERVIMAFED S.A.C. Recibimos ${contextSummary}. ¿Podemos coordinar los detalles?`
-  );
+  const greeting = customGreeting
+    ? encodeURIComponent(customGreeting)
+    : encodeURIComponent(
+        `Hola ${clientName}, le saludamos del ${teamName} de SERVIMAFED S.A.C. Recibimos ${contextSummary}. ¿Podemos coordinar los detalles?`
+      );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${greeting}`;
   const telUrl = `tel:${cleanDigits}`;
 
@@ -838,7 +862,7 @@ export function renderInternalContactActions(
                     <img src="${EMAIL_ASSETS.LIGHTNING_ICON}" alt="Acción" width="30" height="30" style="display: block; width: 30px; height: 30px; border-radius: 50%; border: 0;" />
                   </td>
                   <td class="internal-contact-pill-text" valign="middle" style="padding-left: 10px; font-size: 12px; font-weight: 700; color: #334155; letter-spacing: 0.3px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; white-space: nowrap;">
-                    Acciones de Contacto Rápido con el Cliente
+                    ${pillTitle}
                   </td>
                 </tr>
               </table>
@@ -852,7 +876,7 @@ export function renderInternalContactActions(
             <!-- COLUMNA IZQUIERDA: LLAMADA -->
             <td width="50%" align="right" class="internal-contact-left" style="vertical-align: middle; border-right: 1px solid #cbd5e1; padding: 6px 28px 6px 12px; text-align: right;">
               <p class="internal-contact-label" style="margin: 0; font-size: 11.5px; font-weight: 700; color: #64748b; letter-spacing: 0.3px;">
-                Llamar al Cliente
+                ${callLabel}
               </p>
               <p class="internal-contact-value" style="margin: 4px 0 0 0; font-size: 13.5px;">
                 <a href="${telUrl}" style="color: ${BRAND.YELLOW}; text-decoration: none; font-weight: 800;">

@@ -163,7 +163,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
       )}
 
       ${attachedCvName ? `
-      <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 6px; margin: 0 auto 6px auto;">
+      <table align="center" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 auto 0 auto;">
         <tr>
           <td class="callout-cell" style="padding: 12px 16px;">
             <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -172,22 +172,33 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
                   <img src="${EMAIL_ASSETS.PAPERCLIP_ICON}" alt="Adjunto" width="16" height="16" border="0" style="display: block; width: 16px; height: 16px;" />
                 </td>
                 <td valign="middle" align="left" style="font-size: 13px; color: #475569; line-height: 1.4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
-                  <strong style="color: #1e293b;">Archivo de CV adjunto:</strong> ${attachedCvName} <em style="color: #64748b;">(Descárguelo en los adjuntos de este correo)</em>
+                  <strong style="color: #1e293b;">Archivo adjunto por el postulante:</strong> ${attachedCvName} <em style="color: #64748b;">(Descárguelo en los adjuntos de este correo)</em>
                 </td>
               </tr>
             </table>
           </td>
         </tr>
+      </table>
+      <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 520px; width: 100%;">
+        <tr>
+          <td style="height: 16px; line-height: 16px; font-size: 1px;">&nbsp;</td>
+        </tr>
       </table>` : ""}
 
-      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${renderInternalContactActions(telefono, safeNombre, `su postulación para ${safeArea}`)}
+      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL POSTULANTE (AL FINAL, ESTILO IMAGEN 1) -->
+      ${renderInternalContactActions(telefono, safeNombre, `su postulación para ${safeArea}`, {
+        pillTitle: "Acciones de Contacto Rápido con el Postulante",
+        callLabel: "Llamar al Postulante",
+        teamName: "equipo de Gestión del Talento Humano",
+      })}
     `;
 
     const emailToHrHtml = renderMasterEmail({
       pageTitle: `Nueva Postulación: ${cleanSubjectNombre} - ${cleanSubjectArea}`,
       preheaderText: `Postulación para ${safeArea}: ${safeNombre} (${safeTelefono}).`,
-      badgeHtml: "📄 NUEVA POSTULACIÓN",
+      headerTitle: "BOLSA DE TRABAJO",
+      headerIconUrl: EMAIL_ASSETS.JOB_ICON,
+      badgeHtml: "POSTULACIÓN",
       contentHtml: hrContentHtml,
       showContactCenter: false,
       customFooterText: "SERVIMAFED S.A.C. | Departamento de Gestión del Talento Humano",
