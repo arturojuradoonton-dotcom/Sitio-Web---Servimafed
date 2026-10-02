@@ -333,8 +333,9 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
         font-size: 15px !important;
       }
       .metric-label {
-        font-size: 8.5px !important;
+        font-size: 9px !important;
         letter-spacing: 0px !important;
+        text-transform: none !important;
       }
       .metrics-footer-text {
         font-size: 11px !important;
@@ -626,8 +627,8 @@ export function renderMetricsSection(customTitle = "¿Sabías que en SERVIMAFED?
           <p class="metric-num" style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
             24/7
           </p>
-          <p class="metric-label" style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
-            Soporte en Campo
+          <p class="metric-label" style="margin: 0; font-size: 11px; font-weight: 600; color: #64748b; line-height: 1.3; text-transform: none; letter-spacing: 0.1px;">
+            Soporte en campo
           </p>
         </td>
 
@@ -644,8 +645,8 @@ export function renderMetricsSection(customTitle = "¿Sabías que en SERVIMAFED?
           <p class="metric-num" style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
             500+
           </p>
-          <p class="metric-label" style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
-            Equipos Atendidos
+          <p class="metric-label" style="margin: 0; font-size: 11px; font-weight: 600; color: #64748b; line-height: 1.3; text-transform: none; letter-spacing: 0.1px;">
+            Equipos atendidos
           </p>
         </td>
 
@@ -662,8 +663,8 @@ export function renderMetricsSection(customTitle = "¿Sabías que en SERVIMAFED?
           <p class="metric-num" style="margin: 0 0 2px 0; font-size: 18px; font-weight: 800; color: #0f172a; line-height: 1.2;">
             ISO
           </p>
-          <p class="metric-label" style="margin: 0; font-size: 10.5px; font-weight: 700; color: #64748b; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.4px;">
-            Estándares Globales
+          <p class="metric-label" style="margin: 0; font-size: 11px; font-weight: 600; color: #64748b; line-height: 1.3; text-transform: none; letter-spacing: 0.1px;">
+            Estándares globales
           </p>
         </td>
       </tr>
