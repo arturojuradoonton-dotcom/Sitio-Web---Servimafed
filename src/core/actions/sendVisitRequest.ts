@@ -132,7 +132,8 @@ export async function sendVisitRequest(formData: FormData) {
     const safeServiceType = escapeHtml(serviceTypeReadable);
     const safePreferredDate = escapeHtml(preferredDate);
     const safePreferredTime = escapeHtml(preferredTime);
-    const safeComments = escapeHtml(comments);
+    const cleanComments = (comments || "").trim().replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n");
+    const safeComments = escapeHtml(cleanComments);
     const safeAttachmentName = escapeHtml(attachedFileName);
     const cleanSubjectName = fullName.replace(/[\r\n]+/g, " ").trim().slice(0, 100);
     const cleanSubjectEquipment = equipment !== "No especificado" ? equipment.replace(/[\r\n]+/g, " ").trim().slice(0, 50) : "";
@@ -141,7 +142,7 @@ export async function sendVisitRequest(formData: FormData) {
       : `🚨 Nueva Solicitud de Visita Técnica - ${cleanSubjectName}`;
 
     const cleanDigits = phone.replace(/\D/g, "");
-    const hasRealComments = comments && comments !== "Sin comentarios adicionales" && comments.trim().length > 0;
+    const hasRealComments = cleanComments.length > 0 && cleanComments !== "Sin comentarios adicionales";
 
     // 1. Correo interno para el equipo comercial / técnico
     const companyContentHtml = `

@@ -161,11 +161,17 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
       .header-cell {
         padding: 0 !important;
       }
+      .header-inner-logo {
+        padding: 14px 16px !important;
+        text-align: left !important;
+      }
       .header-inner-left {
+        width: 70% !important;
         padding: 14px 0 14px 14px !important;
         text-align: left !important;
       }
       .header-inner-right {
+        width: 30% !important;
         padding: 14px 14px 14px 0 !important;
         text-align: right !important;
         white-space: nowrap !important;
@@ -254,15 +260,17 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
         margin-bottom: 14px !important;
       }
       .callout-cell {
-        padding: 12px 14px !important;
+        padding: 10px 12px !important;
         text-align: left !important;
       }
       .callout-title {
-        font-size: 11px !important;
+        font-size: 10.5px !important;
+        margin-bottom: 4px !important;
         text-align: left !important;
       }
       .callout-text {
-        font-size: 12.5px !important;
+        font-size: 12px !important;
+        line-height: 1.4 !important;
         text-align: left !important;
       }
 
@@ -393,7 +401,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; min-width: 100%;">
                 <tr>
                   ${heroBannerUrl ? `
-                  <td align="left" valign="middle" class="header-inner-left" style="padding: 22px 24px;">
+                  <td align="left" valign="middle" class="header-inner-logo" style="padding: 22px 24px;">
                     <a href="https://www.servimafed.com" target="_blank" style="text-decoration: none; display: inline-block;">
                       <img 
                         src="${EMAIL_ASSETS.LOGO_WHITE}" 
@@ -405,8 +413,8 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                     </a>
                   </td>
                   ` : `
-                  <!-- CABECERA NOTIFICACIÓN INTERNA: ALINEADA A LOS EXTREMOS -->
-                  <td width="100%" align="left" valign="middle" class="header-inner-left" style="padding: 20px 0 20px 24px; text-align: left;">
+                  <!-- CABECERA NOTIFICACIÓN INTERNA: ALINEADA A LOS EXTREMOS (70% / 30%) -->
+                  <td width="70%" align="left" valign="middle" class="header-inner-left" style="width: 70%; padding: 20px 0 20px 24px; text-align: left;">
                     <table cellpadding="0" cellspacing="0" border="0" align="left">
                       <tr>
                         <td valign="middle" align="left" style="padding-right: 12px; line-height: 0;">
@@ -420,8 +428,8 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                       </tr>
                     </table>
                   </td>
-                  <td align="right" valign="middle" class="header-inner-right" style="padding: 20px 24px 20px 0; text-align: right; white-space: nowrap;">
-                    <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate; margin-left: auto;">
+                  <td width="30%" align="right" valign="middle" class="header-inner-right" style="width: 30%; padding: 20px 24px 20px 0; text-align: right; white-space: nowrap;">
+                    <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate; margin: 0 0 0 auto;">
                       <tr>
                         <td class="header-badge-td" align="center" valign="middle" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
                           ${badgeHtml}
@@ -963,25 +971,20 @@ export function renderCalloutBox(
 
   const marginStyle = centered ? "margin: 0 auto 0 auto;" : "margin-bottom: 0;";
   const alignAttr = centered ? `align="center"` : "";
+  const cleanContent = (content || "").trim();
 
   return `
   <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: ${maxWidth}; width: 100%; background-color: ${config.bg}; border: 1px solid ${config.cardBorder}; border-left: 4px solid ${config.border}; border-radius: 8px; box-sizing: border-box; ${marginStyle}">
     <tr>
-      <td class="callout-cell" align="left" style="padding: 12px 16px; text-align: left;">
-        ${title ? `
-        <span class="callout-title" style="color: ${config.label}; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px; text-align: left;">
-          ${title}
-        </span>` : ""}
-        <div class="callout-text" style="color: ${config.text}; font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word; text-align: left;">
-          ${content}
-        </div>
+      <td class="callout-cell" align="left" style="padding: 10px 14px; text-align: left;">
+        ${title ? `<span class="callout-title" style="color: ${config.label}; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; text-align: left;">${title}</span>` : ""}<div class="callout-text" style="color: ${config.text}; font-size: 13px; line-height: 1.45; word-break: break-word; overflow-wrap: break-word; text-align: left; margin: 0; padding: 0;">${cleanContent.replace(/\r\n/g, "\n").replace(/\n/g, "<br />")}</div>
       </td>
     </tr>
   </table>
   <!-- SPACER TABLE CROSS-PLATFORM (OUTLOOK WIN 10 & WIN 11) -->
   <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: ${maxWidth}; width: 100%;">
     <tr>
-      <td style="height: 16px; line-height: 16px; font-size: 1px;">&nbsp;</td>
+      <td style="height: 12px; line-height: 12px; font-size: 1px;">&nbsp;</td>
     </tr>
   </table>`;
 }
