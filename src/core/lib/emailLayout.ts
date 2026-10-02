@@ -352,7 +352,19 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
 
       /* Servicios Especializados */
       .services-card-cell {
-        padding: 14px 12px !important;
+        padding: 16px 14px !important;
+      }
+      .services-icon-col {
+        width: 40px !important;
+        padding-right: 10px !important;
+      }
+      .services-worker-img {
+        width: 36px !important;
+        height: 36px !important;
+      }
+      .services-title-text {
+        font-size: 14.5px !important;
+        margin-bottom: 10px !important;
       }
 
       /* Acciones Rápidas Asesor Comercial */
@@ -664,63 +676,61 @@ export function renderMetricsSection(customTitle = "¿Sabías que en SERVIMAFED?
 }
 
 /**
- * Renderiza el bloque corporativo "Algunos servicios:" con el ícono del trabajador y viñetas con sangría.
+ * Renderiza el bloque corporativo "Algunos servicios:" con el ícono a la izquierda y título alineado al cuerpo.
  */
 export function renderServicesSection(): string {
   return `
   <table width="100%" cellpadding="0" cellspacing="0" border="0" class="services-card" style="width: 100%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 24px;">
     <tr>
       <td class="services-card-cell" style="padding: 22px 24px;">
-        <!-- TÍTULO CON ÍCONO -->
-        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 14px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr>
-            <td valign="middle" style="padding-right: 12px;">
+            <!-- COLUMNA IZQUIERDA: ÍCONO DEL TRABAJADOR -->
+            <td width="52" valign="top" class="services-icon-col" style="width: 52px; padding-right: 16px; vertical-align: top; line-height: 0;">
               <img 
                 src="${EMAIL_ASSETS.WORKER_ICON}" 
                 alt="Servicios" 
-                width="44" 
-                height="44" 
-                style="display: block; width: 44px; height: 44px; object-fit: contain;"
+                width="48" 
+                height="48" 
+                class="services-worker-img"
+                style="display: block; width: 48px; height: 48px; object-fit: contain; border: 0;"
               />
             </td>
-            <td valign="middle" style="font-size: 16.5px; color: ${BRAND.NAVY}; font-weight: 700; line-height: 1.2;">
-              Algunos de nuestros servicios especializados:
-            </td>
-          </tr>
-        </table>
-        
-        <!-- LISTA CON SANGRÍA -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td style="padding-left: 20px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 13px; color: #475569; line-height: 1.65;">
+            <!-- COLUMNA DERECHA: TÍTULO Y CUERPO ALINEADOS EN EL MISMO MARGEN -->
+            <td valign="top" style="vertical-align: top; text-align: left;">
+              <p class="services-title-text" style="margin: 0 0 14px 0; font-size: 16px; color: ${BRAND.NAVY}; font-weight: 700; line-height: 1.3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; text-align: left;">
+                Algunos de nuestros servicios especializados:
+              </p>
+              
+              <!-- LISTA DE VIÑETAS ALINEADA CON EL TÍTULO -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 13px; color: #475569; line-height: 1.65; margin: 0; text-align: left;">
                 <tr>
-                  <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">&bull;</td>
-                  <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65;">
+                  <td valign="top" style="padding: 2px 8px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 12px; vertical-align: top;">&bull;</td>
+                  <td valign="top" style="padding: 2px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; vertical-align: top; text-align: left;">
                     Gestión y control de flotas, orientado a optimizar la disponibilidad, operación y mantenimiento de los equipos.
                   </td>
                 </tr>
                 <tr>
-                  <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">&bull;</td>
-                  <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65;">
+                  <td valign="top" style="padding: 2px 8px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 12px; vertical-align: top;">&bull;</td>
+                  <td valign="top" style="padding: 2px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; vertical-align: top; text-align: left;">
                     Mantenimiento preventivo y correctivo para conservar el rendimiento y prolongar la vida útil de los equipos.
                   </td>
                 </tr>
                 <tr>
-                  <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">&bull;</td>
-                  <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65;">
+                  <td valign="top" style="padding: 2px 8px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 12px; vertical-align: top;">&bull;</td>
+                  <td valign="top" style="padding: 2px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; vertical-align: top; text-align: left;">
                     Inspección, evaluación y diagnóstico técnico para identificar fallas y determinar las acciones correctivas.
                   </td>
                 </tr>
                 <tr>
-                  <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">&bull;</td>
-                  <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65;">
+                  <td valign="top" style="padding: 2px 8px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 12px; vertical-align: top;">&bull;</td>
+                  <td valign="top" style="padding: 2px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; vertical-align: top; text-align: left;">
                     Mecanizado, fabricación, reparación y soldadura de componentes y estructuras para maquinaria.
                   </td>
                 </tr>
                 <tr>
-                  <td valign="top" style="padding: 4px 10px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 14px;">&bull;</td>
-                  <td valign="top" style="padding: 4px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65;">
+                  <td valign="top" style="padding: 2px 8px 8px 0; color: #64748b; font-size: 14px; line-height: 1.5; width: 12px; vertical-align: top;">&bull;</td>
+                  <td valign="top" style="padding: 2px 0 8px 0; font-size: 13px; color: #475569; line-height: 1.65; vertical-align: top; text-align: left;">
                     Suministro de repuestos y componentes para atender las necesidades de mantenimiento y reparación.
                   </td>
                 </tr>
@@ -728,7 +738,6 @@ export function renderServicesSection(): string {
             </td>
           </tr>
         </table>
-
       </td>
     </tr>
   </table>`;
