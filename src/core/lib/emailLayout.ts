@@ -163,9 +163,12 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
       }
       .header-inner-left {
         padding: 14px 0 14px 14px !important;
+        text-align: left !important;
       }
       .header-inner-right {
         padding: 14px 14px 14px 0 !important;
+        text-align: right !important;
+        white-space: nowrap !important;
       }
       .header-logo {
         max-width: 105px !important;
@@ -251,13 +254,16 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
         margin-bottom: 14px !important;
       }
       .callout-cell {
-        padding: 10px 12px !important;
+        padding: 12px 14px !important;
+        text-align: left !important;
       }
       .callout-title {
-        font-size: 10.5px !important;
+        font-size: 11px !important;
+        text-align: left !important;
       }
       .callout-text {
-        font-size: 12px !important;
+        font-size: 12.5px !important;
+        text-align: left !important;
       }
 
       /* Acciones Rápidas Internas con el Cliente */
@@ -400,7 +406,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                   </td>
                   ` : `
                   <!-- CABECERA NOTIFICACIÓN INTERNA: ALINEADA A LOS EXTREMOS -->
-                  <td align="left" valign="middle" class="header-inner-left" style="padding: 20px 0 20px 24px;">
+                  <td width="100%" align="left" valign="middle" class="header-inner-left" style="padding: 20px 0 20px 24px; text-align: left;">
                     <table cellpadding="0" cellspacing="0" border="0" align="left">
                       <tr>
                         <td valign="middle" align="left" style="padding-right: 12px; line-height: 0;">
@@ -414,8 +420,8 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                       </tr>
                     </table>
                   </td>
-                  <td align="right" valign="middle" class="header-inner-right" style="padding: 20px 24px 20px 0;">
-                    <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
+                  <td align="right" valign="middle" class="header-inner-right" style="padding: 20px 24px 20px 0; text-align: right; white-space: nowrap;">
+                    <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate; margin-left: auto;">
                       <tr>
                         <td class="header-badge-td" align="center" valign="middle" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
                           ${badgeHtml}
@@ -949,24 +955,24 @@ export function renderCalloutBox(
 ): string {
   const { maxWidth = "100%", centered = false } = options;
   const config = {
-    gold: { border: BRAND.YELLOW, bg: "#fffbeb", text: "#92400e", label: "#b45309" },
-    green: { border: "#10b981", bg: "#ecfdf5", text: "#065f46", label: "#047857" },
-    blue: { border: BRAND.NAVY, bg: "#eff6ff", text: "#1e3a8a", label: "#1e40af" },
-    neutral: { border: "#94a3b8", bg: "#f8fafc", text: "#334155", label: "#475569" },
+    gold: { border: BRAND.YELLOW, bg: "#fffbeb", text: "#92400e", label: "#b45309", cardBorder: "#fde68a" },
+    green: { border: "#10b981", bg: "#ecfdf5", text: "#065f46", label: "#047857", cardBorder: "#a7f3d0" },
+    blue: { border: BRAND.NAVY, bg: "#eff6ff", text: "#1e3a8a", label: "#1e40af", cardBorder: "#bfdbfe" },
+    neutral: { border: "#94a3b8", bg: "#f8fafc", text: "#334155", label: "#475569", cardBorder: "#e2e8f0" },
   }[variant];
 
   const marginStyle = centered ? "margin: 0 auto 0 auto;" : "margin-bottom: 0;";
   const alignAttr = centered ? `align="center"` : "";
 
   return `
-  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: ${maxWidth}; width: 100%; background-color: ${config.bg}; border-left: 4px solid ${config.border}; border-radius: 4px; ${marginStyle}">
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: ${maxWidth}; width: 100%; background-color: ${config.bg}; border: 1px solid ${config.cardBorder}; border-left: 4px solid ${config.border}; border-radius: 8px; box-sizing: border-box; ${marginStyle}">
     <tr>
-      <td class="callout-cell" style="padding: 14px 18px;">
+      <td class="callout-cell" align="left" style="padding: 12px 16px; text-align: left;">
         ${title ? `
-        <span class="callout-title" style="color: ${config.label}; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
+        <span class="callout-title" style="color: ${config.label}; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px; text-align: left;">
           ${title}
         </span>` : ""}
-        <div class="callout-text" style="color: ${config.text}; font-size: 13.5px; line-height: 1.6; white-space: pre-wrap;">
+        <div class="callout-text" style="color: ${config.text}; font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word; text-align: left;">
           ${content}
         </div>
       </td>
