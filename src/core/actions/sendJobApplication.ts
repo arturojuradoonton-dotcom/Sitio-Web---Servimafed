@@ -258,6 +258,8 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
       pageTitle: "Hemos recibido tu postulación - SERVIMAFED S.A.C.",
       preheaderText: `Hola ${safeNombre}, confirmamos la recepción de tu postulación para ${safeArea} en SERVIMAFED S.A.C.`,
       badgeHtml: "¡Postulación<br/>Recibida!",
+      badgePosition: "bottom-right",
+      badgeSize: "large",
       heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
       contentHtml: candidateContentHtml,
       showContactCenter: true,

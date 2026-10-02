@@ -97,6 +97,9 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
   const isRight = badgePosition.endsWith("right");
   const heroAlign = isRight ? "right" : "left";
   const heroValign = isBottom ? "bottom" : "top";
+  const badgeMarginStyle = isRight
+    ? "margin: 0 0 0 auto !important; margin-left: auto !important; margin-right: 0 !important;"
+    : "margin: 0 auto 0 0 !important; margin-left: 0 !important; margin-right: auto !important;";
   
   // Tamaño del badge
   const isLarge = badgeSize === "large";
@@ -209,6 +212,8 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
       }
       .hero-badge-table {
         border-radius: 6px !important;
+        margin-left: auto !important;
+        margin-right: 0 !important;
       }
       .hero-badge-td {
         padding: 6px 12px !important;
@@ -364,11 +369,19 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
         padding: 16px 12px 14px 12px !important;
       }
       .contact-center-pill {
-        padding: 5px 12px !important;
-        margin-bottom: 12px !important;
+        width: 100% !important;
+        max-width: 360px !important;
+        margin-bottom: 14px !important;
+      }
+      .contact-center-pill-td {
+        padding: 6px 14px 6px 6px !important;
+        border-radius: 25px !important;
       }
       .contact-center-pill-text {
         font-size: 11px !important;
+        line-height: 1.35 !important;
+        white-space: normal !important;
+        word-break: normal !important;
       }
       .contact-center-left {
         padding: 4px 10px 4px 0 !important;
@@ -463,7 +476,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                 <tr>
                   <td align="${heroAlign}" valign="${heroValign}" class="hero-banner-cell" style="padding: 24px 34px;">
                     <!-- BADGE AMARILLO CORPORATIVO FLOTANTE -->
-                    <table cellpadding="0" cellspacing="0" border="0" class="hero-badge-table" style="background-color: ${BRAND.YELLOW}; border-radius: 8px; box-shadow: ${badgeShadow}; border-collapse: separate;">
+                    <table align="${heroAlign}" cellpadding="0" cellspacing="0" border="0" class="hero-badge-table" style="background-color: ${BRAND.YELLOW}; border-radius: 8px; box-shadow: ${badgeShadow}; border-collapse: separate; ${badgeMarginStyle}">
                       <tr>
                         <td class="hero-badge-td" style="padding: ${badgePadding}; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: ${badgeFontSize}; font-weight: 800; color: #111c30; line-height: 1.25; border-radius: 8px; text-align: left; letter-spacing: -0.2px;">
                           ${badgeHtml}
@@ -499,12 +512,12 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
             <td class="contact-center-cell" style="padding: 26px 36px 22px 36px; background-color: #ffffff;">
               
               <!-- PÍLDORA CENTRO DE CONTACTO (DISEÑO CÁPSULA PRÉMIUM) -->
-              <table align="center" cellpadding="0" cellspacing="0" border="0" class="contact-center-pill" style="border-collapse: separate !important; border-radius: 50px; background-color: #f1f5f9; margin: 0 auto 20px auto;">
+              <table align="center" cellpadding="0" cellspacing="0" border="0" class="contact-center-pill" style="border-collapse: separate !important; border-radius: 50px; background-color: #f1f5f9; margin: 0 auto 20px auto; max-width: 100%;">
                 <tr>
-                  <td style="vertical-align: middle; padding: 4px 18px 4px 5px; border-radius: 50px; background-color: #f1f5f9;">
-                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate !important;">
+                  <td class="contact-center-pill-td" style="vertical-align: middle; padding: 4px 18px 4px 5px; border-radius: 50px; background-color: #f1f5f9;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate !important; max-width: 100%;">
                       <tr>
-                        <td valign="middle" style="padding: 0; line-height: 0;">
+                        <td width="30" valign="middle" align="center" style="width: 30px; height: 30px; padding: 0; line-height: 0;">
                           <img 
                             src="${EMAIL_ASSETS.HEADSET_ICON}" 
                             alt="Contacto" 
@@ -513,7 +526,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                             style="display: block; width: 30px; height: 30px; border-radius: 50%; border: 0;"
                           />
                         </td>
-                        <td class="contact-center-pill-text" valign="middle" style="padding-left: 10px; font-size: 12.5px; color: #334155; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; white-space: nowrap;">
+                        <td class="contact-center-pill-text" valign="middle" style="padding-left: 10px; font-size: 12.5px; color: #334155; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.35; text-align: left;">
                           Estamos aquí para ayudarte a través de nuestro <strong>Centro de Contacto</strong>
                         </td>
                       </tr>
