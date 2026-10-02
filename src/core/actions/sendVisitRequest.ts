@@ -190,8 +190,17 @@ export async function sendVisitRequest(formData: FormData) {
       ${safeAttachmentName ? `
       <table align="center" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 auto 0 auto;">
         <tr>
-          <td class="callout-cell" style="padding: 12px 16px; font-size: 13px; color: #475569;">
-            <img src="${EMAIL_ASSETS.PAPERCLIP_ICON}" alt="Adjunto" width="16" height="16" border="0" align="middle" style="display: inline-block; width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;" /><strong>Archivo adjunto por el cliente:</strong> ${safeAttachmentName} <em>(Descárguelo en los adjuntos de este correo)</em>
+          <td class="callout-cell" style="padding: 12px 16px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td width="20" valign="middle" align="left" style="width: 20px; padding-right: 8px; line-height: 0;">
+                  <img src="${EMAIL_ASSETS.PAPERCLIP_ICON}" alt="Adjunto" width="16" height="16" border="0" style="display: block; width: 16px; height: 16px;" />
+                </td>
+                <td valign="middle" align="left" style="font-size: 13px; color: #475569; line-height: 1.4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+                  <strong style="color: #1e293b;">Archivo adjunto por el cliente:</strong> ${safeAttachmentName} <em style="color: #64748b;">(Descárguelo en los adjuntos de este correo)</em>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
       </table>

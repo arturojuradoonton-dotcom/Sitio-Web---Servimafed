@@ -167,16 +167,22 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
         height: auto !important;
       }
       .header-icon-img {
-        width: 36px !important;
-        height: 36px !important;
+        width: 44px !important;
+        height: 44px !important;
+      }
+      .header-icon-td {
+        padding-right: 10px !important;
       }
       .header-title-text {
-        font-size: 15px !important;
-        letter-spacing: 0.5px !important;
+        font-size: 16px !important;
+        letter-spacing: 0.4px !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
       }
       .header-badge-td {
-        padding: 5px 10px !important;
-        font-size: 10px !important;
+        padding: 6px 11px !important;
+        font-size: 10.5px !important;
+        white-space: nowrap !important;
       }
 
       /* Hero Banner en Celulares: Altura proporcionada ~170px para mantener estética panorámica */
@@ -396,24 +402,24 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                   </td>
                   ` : `
                   <!-- CABECERA NOTIFICACIÓN INTERNA: ALINEACIÓN PERFECTA CON LAS TARJERAS -->
-                  <td align="left" valign="middle">
+                  <td align="left" valign="middle" nowrap="nowrap" style="white-space: nowrap;">
                     <table cellpadding="0" cellspacing="0" border="0" align="left">
                       <tr>
-                        <td valign="middle" align="left" style="padding-right: 14px; line-height: 0;">
+                        <td valign="middle" align="left" class="header-icon-td" style="padding-right: 14px; line-height: 0;">
                           <img src="${EMAIL_ASSETS.TECHNICAL_VISIT_ICON}" alt="Visita Técnica" width="54" height="54" border="0" class="header-icon-img" style="display: block; width: 54px; height: 54px;" />
                         </td>
-                        <td valign="middle" align="left">
-                          <span class="header-title-text" style="font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: 0.8px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+                        <td valign="middle" align="left" nowrap="nowrap" style="white-space: nowrap;">
+                          <span class="header-title-text" style="font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: 0.8px; text-transform: uppercase; white-space: nowrap; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
                             VISITA TÉCNICA
                           </span>
                         </td>
                       </tr>
                     </table>
                   </td>
-                  <td align="right" valign="middle">
+                  <td align="right" valign="middle" nowrap="nowrap" style="white-space: nowrap;">
                     <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate;">
                       <tr>
-                        <td class="header-badge-td" align="center" valign="middle" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <td class="header-badge-td" align="center" valign="middle" nowrap="nowrap" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
                           ${badgeHtml}
                         </td>
                       </tr>
