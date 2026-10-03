@@ -121,7 +121,7 @@ export async function sendClaimRequest(formData: FormData) {
 
     // 1. Plantilla para la Empresa (SERVIMAFED - Atención Legal)
     const companyContentHtml = `
-      <div style="text-align: left; margin-bottom: 22px;">
+      <div style="text-align: left; margin-bottom: 22px; padding: 0 24px;">
         <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
           Libro de Reclamaciones Virtual - Registro N° ${claimCode}
         </h1>
@@ -134,7 +134,7 @@ export async function sendClaimRequest(formData: FormData) {
         "ALERTA LEGAL OBLIGATORIA (INDECOPI - LEY N° 31435):",
         "Conforme a la normativa vigente del Código de Protección y Defensa del Consumidor, se cuenta con un plazo legal perentorio de <strong>15 días hábiles improrrogables</strong> para dar respuesta formal y motivada al reclamante a través del correo registrado.",
         "gold",
-        { maxWidth: "100%" }
+        { maxWidth: "100%", fullBleed: true }
       )}
 
       ${renderDetailCard("Datos del Reclamante", [
@@ -150,20 +150,23 @@ export async function sendClaimRequest(formData: FormData) {
         maxWidth: "100%",
         innerTableMaxWidth: "480px",
         innerAlign: "left",
+        fullBleed: true,
         hideDivider: true,
         hideRowBorders: true,
       })}
 
-      ${renderCalloutBox(`Detalle de la Reclamación (${tipoLabel}):`, safeDetalle, "neutral", { maxWidth: "100%" })}
+      ${renderCalloutBox(`Detalle de la Reclamación (${tipoLabel}):`, safeDetalle, "neutral", { maxWidth: "100%", fullBleed: true })}
 
-      ${renderCalloutBox("Pedido Concreto del Consumidor:", safePedido, "blue", { maxWidth: "100%" })}
+      ${renderCalloutBox("Pedido Concreto del Consumidor:", safePedido, "blue", { maxWidth: "100%", fullBleed: true })}
 
-      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL RECLAMANTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${renderInternalContactActions(telefono, safeNombre, `su ${tipoLabel.toLowerCase()} registrada con código ${claimCode}`, {
-        pillTitle: "Acciones de Contacto Rápido con el Reclamante",
-        callLabel: "Llamar al Reclamante",
-        teamName: "área de Atención al Cliente y Reclamaciones",
-      })}
+      <div style="padding: 0 24px;">
+        <!-- ACCIONES DE CONTACTO RÁPIDO CON EL RECLAMANTE (AL FINAL, ESTILO IMAGEN 1) -->
+        ${renderInternalContactActions(telefono, safeNombre, `su ${tipoLabel.toLowerCase()} registrada con código ${claimCode}`, {
+          pillTitle: "Acciones de Contacto Rápido con el Reclamante",
+          callLabel: "Llamar al Reclamante",
+          teamName: "área de Atención al Cliente y Reclamaciones",
+        })}
+      </div>
     `;
 
     const emailToCompanyHtml = renderMasterEmail({
@@ -173,6 +176,7 @@ export async function sendClaimRequest(formData: FormData) {
       headerIconUrl: EMAIL_ASSETS.CLAIMS_ICON,
       badgeHtml: tipoLabel,
       contentHtml: companyContentHtml,
+      contentPadding: "32px 0 24px 0",
       showContactCenter: false,
       customFooterText: "SERVIMAFED S.A.C. | Sistema Automatizado de Libro de Reclamaciones Virtual",
     });

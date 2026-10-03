@@ -81,7 +81,7 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
 
     // 1. Notificación interna para el equipo comercial de SERVIMAFED
     const companyContentHtml = `
-      <div style="text-align: left; margin-bottom: 22px;">
+      <div style="text-align: left; margin-bottom: 22px; padding: 0 24px;">
         <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
           Nueva Solicitud de Contacto Corporativo
         </h1>
@@ -99,6 +99,7 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
         maxWidth: "100%",
         innerTableMaxWidth: "480px",
         innerAlign: "left",
+        fullBleed: true,
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -107,11 +108,13 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
         "Requerimiento Técnico / Consulta Comercial:",
         safeRequirement,
         "gold",
-        { maxWidth: "100%" }
+        { maxWidth: "100%", fullBleed: true }
       )}
 
-      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${renderInternalContactActions(phone, safeCompanyName, "su mensaje de contacto")}
+      <div style="padding: 0 24px;">
+        <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
+        ${renderInternalContactActions(phone, safeCompanyName, "su mensaje de contacto")}
+      </div>
     `;
 
     const emailToCompanyHtml = renderMasterEmail({
@@ -121,6 +124,7 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
       headerIconUrl: EMAIL_ASSETS.CLIENT_ICON,
       badgeHtml: "CONTACTO",
       contentHtml: companyContentHtml,
+      contentPadding: "32px 0 24px 0",
       showContactCenter: false,
     });
 

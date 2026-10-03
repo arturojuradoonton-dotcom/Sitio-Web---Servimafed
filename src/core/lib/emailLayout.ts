@@ -61,6 +61,7 @@ export interface MasterEmailOptions {
   badgeSize?: "normal" | "large";
   heroBannerUrl?: string; // Si se omite, se usa cabecera compacta azul con logo
   contentHtml: string;
+  contentPadding?: string;
   showContactCenter?: boolean;
   contactCenterEmail?: string;
   contactCenterPhone?: string;
@@ -224,6 +225,9 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
       /* Contenido Central */
       .content-cell {
         padding: 20px 14px 18px 14px !important;
+      }
+      .content-cell-flush {
+        padding: 20px 0 18px 0 !important;
       }
       .content-cell h1 {
         font-size: 18px !important;
@@ -509,7 +513,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
 
           <!-- 3. CUERPO PRINCIPAL DEL CORREO -->
           <tr>
-            <td class="content-cell" style="padding: 32px 36px 24px 36px; background-color: #ffffff;">
+            <td class="content-cell ${options.contentPadding && options.contentPadding.includes(' 0 ') ? 'content-cell-flush' : ''}" style="padding: ${options.contentPadding || "32px 36px 24px 36px"}; background-color: #ffffff;">
               ${contentHtml}
             </td>
           </tr>
@@ -939,6 +943,7 @@ export interface DetailCardOptions {
   hideRowBorders?: boolean;
   innerTableMaxWidth?: string;
   innerAlign?: "left" | "center";
+  fullBleed?: boolean;
 }
 
 /**
@@ -956,6 +961,7 @@ export function renderDetailCard(
     hideRowBorders = false,
     innerTableMaxWidth,
     innerAlign = "left",
+    fullBleed = false,
   } = options;
 
   const rowBorderStyle = hideRowBorders ? "" : "border-bottom: 1px solid #f1f5f9;";
@@ -981,18 +987,22 @@ export function renderDetailCard(
 
   const isLeft = innerAlign === "left";
   const bodyCellAlign = isLeft ? "left" : "center";
-  const bodyCellPadding = isLeft 
-    ? "padding: 16px 20px 18px 38px;" 
-    : (innerTableMaxWidth ? "padding: 16px 20px 18px 20px;" : "padding: 12px 16px 14px 16px;");
+  const bodyCellPadding = fullBleed
+    ? (isLeft ? "padding: 16px 24px 18px 40px;" : "padding: 16px 24px 18px 24px;")
+    : (isLeft 
+        ? "padding: 16px 20px 18px 38px;" 
+        : (innerTableMaxWidth ? "padding: 16px 20px 18px 20px;" : "padding: 12px 16px 14px 16px;"));
+  const headerPadding = fullBleed ? "padding: 14px 24px;" : "padding: 14px 22px;";
+  const cardBorder = fullBleed ? "border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" : "border: 1px solid #e2e8f0; border-radius: 12px;";
   const innerTableAlign = isLeft ? "left" : "center";
   const innerTableStyle = isLeft
     ? `max-width: ${innerTableMaxWidth || "480px"}; width: 100%; margin: 0;`
     : (innerTableMaxWidth ? `max-width: ${innerTableMaxWidth}; width: 100%; margin: 0 auto;` : "width: 100%;");
 
   return `
-  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="detail-card-table" style="max-width: ${maxWidth}; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; ${marginStyle} overflow: hidden;">
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="detail-card-table" style="max-width: ${maxWidth}; width: 100%; background-color: #ffffff; ${cardBorder} ${marginStyle} overflow: hidden;">
     <tr>
-      <td align="left" class="detail-card-header" style="background-color: #f8fafc; padding: 14px 22px; text-align: left; ${headerBorder}">
+      <td align="left" class="detail-card-header" style="background-color: #f8fafc; ${headerPadding} text-align: left; ${headerBorder}">
         <span class="detail-card-header-text" style="font-size: 13.5px; font-weight: 800; color: ${BRAND.NAVY}; text-transform: uppercase; letter-spacing: 0.5px;">
           ${title}
         </span>
@@ -1021,9 +1031,9 @@ export function renderCalloutBox(
   title: string,
   content: string,
   variant: "gold" | "green" | "blue" | "neutral" = "gold",
-  options: { maxWidth?: string; centered?: boolean } = {}
+  options: { maxWidth?: string; centered?: boolean; fullBleed?: boolean } = {}
 ): string {
-  const { maxWidth = "100%", centered = false } = options;
+  const { maxWidth = "100%", centered = false, fullBleed = false } = options;
   const config = {
     gold: { border: BRAND.YELLOW, bg: "#fffbeb", text: "#92400e", label: "#b45309", cardBorder: "#fde68a" },
     green: { border: "#10b981", bg: "#ecfdf5", text: "#065f46", label: "#047857", cardBorder: "#a7f3d0" },
@@ -1035,10 +1045,15 @@ export function renderCalloutBox(
   const alignAttr = centered ? `align="center"` : "";
   const cleanContent = (content || "").trim();
 
+  const cardBorder = fullBleed
+    ? `border-top: 1px solid ${config.cardBorder}; border-bottom: 1px solid ${config.cardBorder}; border-left: 4px solid ${config.border};`
+    : `border: 1px solid ${config.cardBorder}; border-left: 4px solid ${config.border}; border-radius: 8px;`;
+  const cellPadding = fullBleed ? "padding: 12px 24px; text-align: left;" : "padding: 10px 14px; text-align: left;";
+
   return `
-  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: ${maxWidth}; width: 100%; background-color: ${config.bg}; border: 1px solid ${config.cardBorder}; border-left: 4px solid ${config.border}; border-radius: 8px; box-sizing: border-box; ${marginStyle}">
+  <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: ${maxWidth}; width: 100%; background-color: ${config.bg}; ${cardBorder} box-sizing: border-box; ${marginStyle}">
     <tr>
-      <td class="callout-cell" align="left" style="padding: 10px 14px; text-align: left;">
+      <td class="callout-cell" align="left" style="${cellPadding}">
         ${title ? `<span class="callout-title" style="color: ${config.label}; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; text-align: left;">${title}</span>` : ""}<div class="callout-text" style="color: ${config.text}; font-size: 13px; line-height: 1.45; word-break: break-word; overflow-wrap: break-word; text-align: left; margin: 0; padding: 0;">${cleanContent.replace(/\r\n/g, "\n").replace(/\n/g, "<br />")}</div>
       </td>
     </tr>

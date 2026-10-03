@@ -99,7 +99,7 @@ export async function sendBrochureLead(formData: FormData) {
 
     // 1. Notificación al equipo comercial de SERVIMAFED (Plantilla Estandarizada)
     const companyContentHtml = `
-      <div style="text-align: left; margin-bottom: 22px;">
+      <div style="text-align: left; margin-bottom: 22px; padding: 0 24px;">
         <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
           Nuevo Prospecto Interesado en Brochure
         </h1>
@@ -118,6 +118,7 @@ export async function sendBrochureLead(formData: FormData) {
         maxWidth: "100%",
         innerTableMaxWidth: "480px",
         innerAlign: "left",
+        fullBleed: true,
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -126,11 +127,13 @@ export async function sendBrochureLead(formData: FormData) {
         "Acción Comercial Sugerida:",
         "El prospecto ya cuenta con el brochure digital en su bandeja de entrada. Contactarlo en los próximos minutos para calificar su necesidad operativa (flota, tipo de maquinaria o repuestos requeridos) multiplica las oportunidades de cotización.",
         "gold",
-        { maxWidth: "100%" }
+        { maxWidth: "100%", fullBleed: true }
       )}
 
-      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "su solicitud del Brochure Técnico 2026") : ""}
+      <div style="padding: 0 24px;">
+        <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
+        ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "su solicitud del Brochure Técnico 2026") : ""}
+      </div>
     `;
 
     const emailToCompanyHtml = renderMasterEmail({
@@ -140,6 +143,7 @@ export async function sendBrochureLead(formData: FormData) {
       headerIconUrl: EMAIL_ASSETS.CLIENT_ICON,
       badgeHtml: "PROSPECTO",
       contentHtml: companyContentHtml,
+      contentPadding: "32px 0 24px 0",
       showContactCenter: false,
     });
 

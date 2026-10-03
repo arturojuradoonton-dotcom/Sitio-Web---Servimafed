@@ -131,7 +131,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
 
     // 1. Notificación interna para RRHH / Selección
     const hrContentHtml = `
-      <div style="text-align: left; margin-bottom: 22px;">
+      <div style="text-align: left; margin-bottom: 22px; padding: 0 24px;">
         <h1 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.3;">
           Nueva Postulación - Bolsa de Trabajo
         </h1>
@@ -151,6 +151,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
         maxWidth: "100%",
         innerTableMaxWidth: "480px",
         innerAlign: "left",
+        fullBleed: true,
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -159,13 +160,13 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
         "Mensaje / Resumen de Experiencia:",
         safeMensaje,
         "blue",
-        { maxWidth: "100%" }
+        { maxWidth: "100%", fullBleed: true }
       )}
 
       ${attachedCvName ? `
-      <table width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 100%; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 0 0 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 100%; width: 100%; background-color: #f1f5f9; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; border-radius: 0; margin: 0 0 0 0;">
         <tr>
-          <td class="callout-cell" style="padding: 12px 16px;">
+          <td class="callout-cell" style="padding: 12px 24px;">
             <table cellpadding="0" cellspacing="0" border="0" width="100%">
               <tr>
                 <td width="20" valign="middle" align="left" style="width: 20px; padding-right: 8px; line-height: 0;">
@@ -185,12 +186,14 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
         </tr>
       </table>` : ""}
 
-      <!-- ACCIONES DE CONTACTO RÁPIDO CON EL POSTULANTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${renderInternalContactActions(telefono, safeNombre, `su postulación para ${safeArea}`, {
-        pillTitle: "Acciones de Contacto Rápido con el Postulante",
-        callLabel: "Llamar al Postulante",
-        teamName: "equipo de Gestión del Talento Humano",
-      })}
+      <div style="padding: 0 24px;">
+        <!-- ACCIONES DE CONTACTO RÁPIDO CON EL POSTULANTE (AL FINAL, ESTILO IMAGEN 1) -->
+        ${renderInternalContactActions(telefono, safeNombre, `su postulación para ${safeArea}`, {
+          pillTitle: "Acciones de Contacto Rápido con el Postulante",
+          callLabel: "Llamar al Postulante",
+          teamName: "equipo de Gestión del Talento Humano",
+        })}
+      </div>
     `;
 
     const emailToHrHtml = renderMasterEmail({
@@ -200,6 +203,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
       headerIconUrl: EMAIL_ASSETS.JOB_ICON,
       badgeHtml: "POSTULACIÓN",
       contentHtml: hrContentHtml,
+      contentPadding: "32px 0 24px 0",
       showContactCenter: false,
       customFooterText: "SERVIMAFED S.A.C. | Departamento de Gestión del Talento Humano",
     });
