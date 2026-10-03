@@ -104,7 +104,7 @@ export async function sendBrochureLead(formData: FormData) {
           Nuevo Prospecto Interesado en Brochure
         </h1>
         <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
-          Un contacto corporativo ha descargado el <strong>Brochure Técnico 2026</strong> y está interesado en conocer nuestros servicios.
+          Un contacto corporativo ha descargado el <strong>Brochure Técnico Corporativo</strong> y está interesado en conocer nuestros servicios.
         </p>
       </div>
 
@@ -140,7 +140,7 @@ export async function sendBrochureLead(formData: FormData) {
 
     const emailToCompanyHtml = renderMasterEmail({
       pageTitle: `Nuevo Prospecto Brochure - ${cleanSubjectNombre}`,
-      preheaderText: `Prospecto de ${safeEmpresa}: ${safeNombre} ha descargado el Brochure 2026.`,
+      preheaderText: `Prospecto de ${safeEmpresa}: ${safeNombre} ha descargado el Brochure Corporativo.`,
       headerTitle: "BROCHURE TÉCNICO",
       headerIconUrl: EMAIL_ASSETS.CLIENT_ICON,
       badgeHtml: "PROSPECTO",
@@ -156,7 +156,7 @@ export async function sendBrochureLead(formData: FormData) {
       </h1>
       
       <p style="margin: 0 0 24px 0; font-size: 13.5px; line-height: 1.65; color: #475569;">
-        Es un placer saludarle de parte de <strong>SERVIMAFED S.A.C.</strong> De acuerdo a su solicitud, le hacemos entrega de nuestro <strong>Brochure Técnico 2026</strong> para su evaluación comercial y operativa.
+        Es un placer saludarle de parte de <strong>SERVIMAFED S.A.C.</strong> De acuerdo a su solicitud, le hacemos entrega de nuestro <strong>Brochure Técnico Corporativo</strong> para su evaluación comercial y operativa.
       </p>
 
       ${renderMetricsSection("¿Sabías que en SERVIMAFED?")}
@@ -168,11 +168,11 @@ export async function sendBrochureLead(formData: FormData) {
 
     const emailToCustomerHtml = renderMasterEmail({
       pageTitle: "Brochure Corporativo - SERVIMAFED S.A.C.",
-      preheaderText: `Hola ${safeNombre}, aquí tienes disponible el Brochure Corporativo 2026 de SERVIMAFED S.A.C.`,
+      preheaderText: `Hola ${safeNombre}, aquí tienes disponible el Brochure Corporativo de SERVIMAFED S.A.C.`,
       badgeHtml: "¡Tu Brochure<br/>está Listo!",
       badgePosition: "bottom-right",
       badgeSize: "large",
-      heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
+      heroBannerUrl: EMAIL_ASSETS.HERO_BANNER_BROCHURE,
       contentHtml: customerContentHtml,
       showContactCenter: true,
     });

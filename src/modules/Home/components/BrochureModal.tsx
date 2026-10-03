@@ -105,7 +105,7 @@ export default function BrochureModal({ isOpen, onClose, onSuccess }: BrochureMo
             Descargar Brochure Corporativo
           </h3>
           <p className="text-xs text-gray-500 font-light mt-1.5 leading-relaxed max-w-sm mx-auto">
-            Complete sus datos para iniciar la descarga inmediata de nuestro dossier técnico y recibir una copia de respaldo.
+            Complete sus datos para iniciar la descarga inmediata de nuestro brochure técnico y recibir una copia de respaldo.
           </p>
         </div>
 

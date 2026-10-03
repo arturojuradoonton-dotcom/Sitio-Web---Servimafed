@@ -139,7 +139,7 @@ export default function HomeFAQ() {
         title="¡Brochure Descargado con Éxito!"
         description={
           <>
-            Estimado/a <strong className="text-dark">{successLead?.nombre}</strong> ({successLead?.empresa}), la descarga de nuestro dossier técnico ha iniciado en su navegador.
+            Estimado/a <strong className="text-dark">{successLead?.nombre}</strong> ({successLead?.empresa}), la descarga de nuestro brochure técnico ha iniciado en su navegador.
           </>
         }
         details={
