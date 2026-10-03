@@ -164,7 +164,7 @@ export async function sendClaimRequest(formData: FormData) {
         ${renderInternalContactActions(telefono, safeNombre, `su ${tipoLabel.toLowerCase()} registrada con código ${claimCode}`, {
           pillTitle: "Acciones de Contacto Rápido con el Reclamante",
           callLabel: "Llamar al Reclamante",
-          teamName: "área de Atención al Cliente y Reclamaciones",
+          customGreeting: `👋 Hola ${safeNombre}, le saludamos de la empresa SERVIMAFED S.A.C. Nos comunicamos respecto a su ${tipoLabel.toLowerCase()} registrada con código ${claimCode}. Deseamos revisar lo sucedido y dar pronta solución a su caso. ¿En qué horario le resultaría más conveniente que le llamemos?`,
         })}
       </div>
     `;

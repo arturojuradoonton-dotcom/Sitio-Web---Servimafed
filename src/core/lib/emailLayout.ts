@@ -877,7 +877,7 @@ export function renderInternalContactActions(
   const greeting = customGreeting
     ? encodeURIComponent(customGreeting)
     : encodeURIComponent(
-        `👋 Hola ${clientName}, le saludamos ${senderEntity}. Recibimos ${contextSummary}. ¿Podemos coordinar los detalles?`
+        `👋 Hola ${clientName}, le saludamos ${senderEntity} Recibimos ${contextSummary}. ¿Podemos coordinar los detalles?`
       );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${greeting}`;
   const telUrl = `tel:${cleanDigits}`;

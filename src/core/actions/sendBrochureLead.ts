@@ -104,7 +104,7 @@ export async function sendBrochureLead(formData: FormData) {
           Nuevo Prospecto Interesado en Brochure
         </h1>
         <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
-          Un nuevo contacto corporativo ha solicitado el <strong>Brochure Técnico 2026</strong> desde la web oficial.
+          Un contacto corporativo ha descargado el <strong>Brochure Técnico 2026</strong> y está interesado en conocer nuestros servicios.
         </p>
       </div>
 
@@ -132,7 +132,9 @@ export async function sendBrochureLead(formData: FormData) {
 
       <div style="padding: 0 24px;">
         <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
-        ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "su solicitud del Brochure Técnico 2026") : ""}
+        ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "", {
+          customGreeting: `👋 Hola ${safeNombre}, le saludamos de la empresa SERVIMAFED S.A.C. Vimos que descargó nuestro brochure corporativo y está interesado en conocer nuestros servicios. ¿En qué maquinaria o proyecto le podemos brindar asesoría técnica?`,
+        }) : ""}
       </div>
     `;
 
