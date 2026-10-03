@@ -111,9 +111,7 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
       )}
 
       <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${renderInternalContactActions(phone, safeCompanyName, "su mensaje de contacto", {
-        teamName: "equipo comercial",
-      })}
+      ${renderInternalContactActions(phone, safeCompanyName, "su mensaje de contacto")}
     `;
 
     const emailToCompanyHtml = renderMasterEmail({

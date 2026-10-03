@@ -795,7 +795,7 @@ export function renderSalesQuickActions(phone: string, clientName: string, conte
   const cleanDigits = phone.replace(/\D/g, "");
   const whatsappNumber = cleanDigits.length === 9 ? `51${cleanDigits}` : cleanDigits;
   const greeting = encodeURIComponent(
-    `Hola ${clientName}, le saludamos del equipo comercial de SERVIMAFED S.A.C. Recibimos su comunicación sobre ${contextSummary}. ¿En qué podemos apoyarle hoy?`
+    `👋 Hola ${clientName}, le saludamos de la empresa SERVIMAFED S.A.C. Recibimos su comunicación sobre ${contextSummary}. ¿En qué podemos apoyarle hoy?`
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${greeting}`;
   const telUrl = `tel:${cleanDigits}`;
@@ -863,16 +863,17 @@ export function renderInternalContactActions(
   const {
     pillTitle = "Acciones de Contacto Rápido con el Cliente",
     callLabel = "Llamar al Cliente",
-    teamName = "equipo técnico",
+    teamName,
     customGreeting,
   } = options;
 
   const cleanDigits = phone.replace(/\D/g, "");
   const whatsappNumber = cleanDigits.length === 9 ? `51${cleanDigits}` : cleanDigits;
+  const senderEntity = teamName ? `del ${teamName} de SERVIMAFED S.A.C.` : "de la empresa SERVIMAFED S.A.C.";
   const greeting = customGreeting
     ? encodeURIComponent(customGreeting)
     : encodeURIComponent(
-        `Hola ${clientName}, le saludamos del ${teamName} de SERVIMAFED S.A.C. Recibimos ${contextSummary}. ¿Podemos coordinar los detalles?`
+        `👋 Hola ${clientName}, le saludamos ${senderEntity}. Recibimos ${contextSummary}. ¿Podemos coordinar los detalles?`
       );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${greeting}`;
   const telUrl = `tel:${cleanDigits}`;

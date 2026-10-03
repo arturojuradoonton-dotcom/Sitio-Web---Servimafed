@@ -130,9 +130,7 @@ export async function sendBrochureLead(formData: FormData) {
       )}
 
       <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
-      ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "la descarga del Brochure Técnico 2026", {
-        teamName: "equipo comercial",
-      }) : ""}
+      ${telefono !== "No especificado" ? renderInternalContactActions(telefono, safeNombre, "su solicitud del Brochure Técnico 2026") : ""}
     `;
 
     const emailToCompanyHtml = renderMasterEmail({
