@@ -96,9 +96,9 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
         { label: "Teléfono de Contacto", value: safePhone, isLink: true, href: `tel:${phone.replace(/\D/g, "")}` },
         { label: "Correo Electrónico", value: safeEmail || "No proporcionado", isLink: Boolean(cleanEmail), href: cleanEmail ? `mailto:${safeEmail}` : undefined },
       ], {
-        maxWidth: "520px",
-        centered: true,
-        innerTableMaxWidth: "440px",
+        maxWidth: "100%",
+        innerTableMaxWidth: "480px",
+        innerAlign: "left",
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -107,7 +107,7 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
         "Requerimiento Técnico / Consulta Comercial:",
         safeRequirement,
         "gold",
-        { maxWidth: "520px", centered: true }
+        { maxWidth: "100%" }
       )}
 
       <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
@@ -163,7 +163,8 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
           ],
           {
             maxWidth: "100%",
-            innerTableMaxWidth: "460px",
+            innerTableMaxWidth: "480px",
+            innerAlign: "left",
             hideDivider: true,
             hideRowBorders: true,
           }

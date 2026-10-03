@@ -134,7 +134,7 @@ export async function sendClaimRequest(formData: FormData) {
         "ALERTA LEGAL OBLIGATORIA (INDECOPI - LEY N° 31435):",
         "Conforme a la normativa vigente del Código de Protección y Defensa del Consumidor, se cuenta con un plazo legal perentorio de <strong>15 días hábiles improrrogables</strong> para dar respuesta formal y motivada al reclamante a través del correo registrado.",
         "gold",
-        { maxWidth: "520px", centered: true }
+        { maxWidth: "100%" }
       )}
 
       ${renderDetailCard("Datos del Reclamante", [
@@ -147,16 +147,16 @@ export async function sendClaimRequest(formData: FormData) {
         { label: "Correo Electrónico", value: safeCorreo, isLink: true, href: `mailto:${safeCorreo}` },
         { label: "Dirección", value: safeDireccion },
       ], {
-        maxWidth: "520px",
-        centered: true,
-        innerTableMaxWidth: "440px",
+        maxWidth: "100%",
+        innerTableMaxWidth: "480px",
+        innerAlign: "left",
         hideDivider: true,
         hideRowBorders: true,
       })}
 
-      ${renderCalloutBox(`Detalle de la Reclamación (${tipoLabel}):`, safeDetalle, "neutral", { maxWidth: "520px", centered: true })}
+      ${renderCalloutBox(`Detalle de la Reclamación (${tipoLabel}):`, safeDetalle, "neutral", { maxWidth: "100%" })}
 
-      ${renderCalloutBox("Pedido Concreto del Consumidor:", safePedido, "blue", { maxWidth: "520px", centered: true })}
+      ${renderCalloutBox("Pedido Concreto del Consumidor:", safePedido, "blue", { maxWidth: "100%" })}
 
       <!-- ACCIONES DE CONTACTO RÁPIDO CON EL RECLAMANTE (AL FINAL, ESTILO IMAGEN 1) -->
       ${renderInternalContactActions(telefono, safeNombre, `su ${tipoLabel.toLowerCase()} registrada con código ${claimCode}`, {
@@ -195,22 +195,22 @@ export async function sendClaimRequest(formData: FormData) {
         { label: "Dirección Legal", value: BRAND.ADDRESS },
         { label: "Fecha y Hora de Registro", value: fechaHora },
       ], {
-        maxWidth: "520px",
-        centered: true,
-        innerTableMaxWidth: "440px",
+        maxWidth: "100%",
+        innerTableMaxWidth: "480px",
+        innerAlign: "left",
         hideDivider: true,
         hideRowBorders: true,
       })}
 
-      ${renderCalloutBox(`Detalle de su ${tipoLabel} Registrado:`, safeDetalle, "neutral", { maxWidth: "520px", centered: true })}
+      ${renderCalloutBox(`Detalle de su ${tipoLabel} Registrado:`, safeDetalle, "neutral", { maxWidth: "100%" })}
 
-      ${renderCalloutBox("Su Pedido Concreto:", safePedido, "neutral", { maxWidth: "520px", centered: true })}
+      ${renderCalloutBox("Su Pedido Concreto:", safePedido, "neutral", { maxWidth: "100%" })}
 
       ${renderCalloutBox(
         "Plazo de Respuesta Legal (Ley N° 31435 - INDECOPI):",
         "SERVIMAFED S.A.C. dará respuesta formal y motivada a su reclamación en un plazo no mayor a quince (15) días hábiles improrrogables a través de este correo electrónico.",
         "green",
-        { maxWidth: "520px", centered: true }
+        { maxWidth: "100%" }
       )}
     `;
 

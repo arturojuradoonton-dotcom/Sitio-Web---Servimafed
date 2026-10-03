@@ -160,9 +160,9 @@ export async function sendVisitRequest(formData: FormData) {
         { label: "Teléfono", value: safePhone, isLink: true, href: `tel:${cleanDigits}` },
         { label: "Correo Electrónico", value: safeEmail, isLink: email !== "No proporcionado", href: `mailto:${safeEmail}` },
       ], {
-        maxWidth: "520px",
-        centered: true,
-        innerTableMaxWidth: "440px",
+        maxWidth: "100%",
+        innerTableMaxWidth: "480px",
+        innerAlign: "left",
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -174,9 +174,9 @@ export async function sendVisitRequest(formData: FormData) {
         { label: "Fecha Sugerida", value: safePreferredDate },
         { label: "Horario Preferido", value: safePreferredTime },
       ], {
-        maxWidth: "520px",
-        centered: true,
-        innerTableMaxWidth: "440px",
+        maxWidth: "100%",
+        innerTableMaxWidth: "480px",
+        innerAlign: "left",
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -185,11 +185,11 @@ export async function sendVisitRequest(formData: FormData) {
         "Síntoma o Detalle Reportado por el Cliente:",
         safeComments,
         "gold",
-        { maxWidth: "520px", centered: true }
+        { maxWidth: "100%" }
       ) : ""}
 
       ${safeAttachmentName ? `
-      <table align="center" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 520px; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 auto 0 auto;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" class="callout-table" style="max-width: 100%; width: 100%; background-color: #f1f5f9; border-radius: 8px; margin: 0 0 0 0;">
         <tr>
           <td class="callout-cell" style="padding: 12px 16px;">
             <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -205,7 +205,7 @@ export async function sendVisitRequest(formData: FormData) {
           </td>
         </tr>
       </table>
-      <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 520px; width: 100%;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 100%; width: 100%;">
         <tr>
           <td style="height: 16px; line-height: 16px; font-size: 1px;">&nbsp;</td>
         </tr>
@@ -260,7 +260,8 @@ export async function sendVisitRequest(formData: FormData) {
           ],
           {
             maxWidth: "100%",
-            innerTableMaxWidth: "460px",
+            innerTableMaxWidth: "480px",
+            innerAlign: "left",
             hideDivider: true,
             hideRowBorders: true,
           }

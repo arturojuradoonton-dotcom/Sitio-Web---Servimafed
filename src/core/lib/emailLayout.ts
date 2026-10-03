@@ -937,6 +937,7 @@ export interface DetailCardOptions {
   hideDivider?: boolean;
   hideRowBorders?: boolean;
   innerTableMaxWidth?: string;
+  innerAlign?: "left" | "center";
 }
 
 /**
@@ -953,6 +954,7 @@ export function renderDetailCard(
     hideDivider = false,
     hideRowBorders = false,
     innerTableMaxWidth,
+    innerAlign = "left",
   } = options;
 
   const rowBorderStyle = hideRowBorders ? "" : "border-bottom: 1px solid #f1f5f9;";
@@ -975,10 +977,16 @@ export function renderDetailCard(
   const marginStyle = centered ? "margin: 0 auto 0 auto;" : "margin-bottom: 0;";
   const alignAttr = centered ? `align="center"` : "";
   const headerBorder = hideDivider ? "" : `border-bottom: 2px solid ${BRAND.YELLOW};`;
-  const innerTableStyle = innerTableMaxWidth 
-    ? `max-width: ${innerTableMaxWidth}; width: 100%; margin: 0 auto;` 
-    : "width: 100%;";
-  const bodyCellPadding = innerTableMaxWidth ? "padding: 16px 20px 18px 20px;" : "padding: 12px 16px 14px 16px;";
+
+  const isLeft = innerAlign === "left";
+  const bodyCellAlign = isLeft ? "left" : "center";
+  const bodyCellPadding = isLeft 
+    ? "padding: 16px 20px 18px 38px;" 
+    : (innerTableMaxWidth ? "padding: 16px 20px 18px 20px;" : "padding: 12px 16px 14px 16px;");
+  const innerTableAlign = isLeft ? "left" : "center";
+  const innerTableStyle = isLeft
+    ? `max-width: ${innerTableMaxWidth || "480px"}; width: 100%; margin: 0;`
+    : (innerTableMaxWidth ? `max-width: ${innerTableMaxWidth}; width: 100%; margin: 0 auto;` : "width: 100%;");
 
   return `
   <table ${alignAttr} width="100%" cellpadding="0" cellspacing="0" border="0" class="detail-card-table" style="max-width: ${maxWidth}; width: 100%; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; ${marginStyle} overflow: hidden;">
@@ -990,8 +998,8 @@ export function renderDetailCard(
       </td>
     </tr>
     <tr>
-      <td align="center" class="detail-card-body" style="${bodyCellPadding}">
-        <table align="center" cellpadding="0" cellspacing="0" border="0" class="detail-inner-table" style="${innerTableStyle}">
+      <td align="${bodyCellAlign}" class="detail-card-body" style="${bodyCellPadding}">
+        <table align="${innerTableAlign}" cellpadding="0" cellspacing="0" border="0" class="detail-inner-table" style="${innerTableStyle}">
           ${rowsHtml}
         </table>
       </td>

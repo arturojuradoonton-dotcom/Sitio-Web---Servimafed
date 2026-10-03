@@ -115,9 +115,9 @@ export async function sendBrochureLead(formData: FormData) {
         { label: "Correo Corporativo", value: safeCorreo, isLink: true, href: `mailto:${safeCorreo}` },
         { label: "Teléfono", value: safeTelefono, isLink: telefono !== "No especificado", href: `tel:${telefono.replace(/\D/g, "")}` },
       ], {
-        maxWidth: "520px",
-        centered: true,
-        innerTableMaxWidth: "440px",
+        maxWidth: "100%",
+        innerTableMaxWidth: "480px",
+        innerAlign: "left",
         hideDivider: true,
         hideRowBorders: true,
       })}
@@ -126,7 +126,7 @@ export async function sendBrochureLead(formData: FormData) {
         "Acción Comercial Sugerida:",
         "El prospecto ya cuenta con el brochure digital en su bandeja de entrada. Contactarlo en los próximos minutos para calificar su necesidad operativa (flota, tipo de maquinaria o repuestos requeridos) multiplica las oportunidades de cotización.",
         "gold",
-        { maxWidth: "520px", centered: true }
+        { maxWidth: "100%" }
       )}
 
       <!-- ACCIONES DE CONTACTO RÁPIDO CON EL CLIENTE (AL FINAL, ESTILO IMAGEN 1) -->
