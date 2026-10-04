@@ -63,6 +63,7 @@ export interface MasterEmailOptions {
   badgePosition?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
   badgeSize?: "normal" | "large";
   heroBannerUrl?: string; // Si se omite, se usa cabecera compacta azul con logo
+  showCorporateLogoHeader?: boolean; // Muestra cabecera azul con logo corporativo superior sin hero banner
   contentHtml: string;
   contentPadding?: string;
   showContactCenter?: boolean;
@@ -85,6 +86,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
     badgePosition = "top-left",
     badgeSize = "normal",
     heroBannerUrl,
+    showCorporateLogoHeader = false,
     contentHtml,
     showContactCenter = true,
     contactCenterEmail = BRAND.EMAIL_SALES,
@@ -203,6 +205,25 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
       .header-badge-td {
         padding: 6px 11px !important;
         font-size: 10.5px !important;
+        white-space: nowrap !important;
+      }
+      .subheader-cell {
+        padding: 16px 14px 2px 14px !important;
+      }
+      .subheader-inner-left {
+        width: 70% !important;
+        text-align: left !important;
+        padding: 0 !important;
+      }
+      .subheader-inner-right {
+        width: 30% !important;
+        text-align: right !important;
+        padding: 0 !important;
+        white-space: nowrap !important;
+      }
+      .subheader-title-text {
+        font-size: 13.5px !important;
+        letter-spacing: 0.4px !important;
         white-space: nowrap !important;
       }
 
@@ -440,7 +461,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
             <td align="center" class="header-cell" style="background-color: ${BRAND.NAVY}; padding: 0;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; min-width: 100%;">
                 <tr>
-                  ${heroBannerUrl ? `
+                  ${heroBannerUrl || showCorporateLogoHeader ? `
                   <td align="left" valign="middle" class="header-inner-logo" style="padding: 22px 24px;">
                     <a href="https://www.servimafed.com" target="_blank" style="text-decoration: none; display: inline-block;">
                       <img 
@@ -483,6 +504,41 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
             </td>
           </tr>
 
+          ${!heroBannerUrl && showCorporateLogoHeader ? `
+          <!-- 2. SUB-ENCABEZADO DOCUMENTAL SIN RELLENO NI BORDE -->
+          <tr>
+            <td align="center" class="subheader-cell" style="background-color: #ffffff; padding: 28px 36px 4px 36px; border: 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; min-width: 100%;">
+                <tr>
+                  <td width="70%" align="left" valign="middle" class="subheader-inner-left" style="width: 70%; text-align: left; padding: 0;">
+                    <table cellpadding="0" cellspacing="0" border="0" align="left">
+                      <tr>
+                        <td valign="middle" align="left" style="padding-right: 12px; line-height: 0;">
+                          <img src="${headerIconUrl}" alt="${headerTitle}" width="50" height="50" border="0" style="display: block; width: 50px; height: 50px;" />
+                        </td>
+                        <td valign="middle" align="left" style="white-space: nowrap;">
+                          <span class="subheader-title-text" style="font-size: 22px; font-weight: 800; color: #0f172a; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+                            ${headerTitle}
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width="30%" align="right" valign="middle" class="subheader-inner-right" style="width: 30%; text-align: right; white-space: nowrap; padding: 0;">
+                    <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate; margin: 0 0 0 auto;">
+                      <tr>
+                        <td class="header-badge-td" align="center" valign="middle" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
+                          ${badgeHtml}
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          ` : ""}
+
           ${heroBannerUrl ? `
           <!-- 2. HERO BANNER CON IMAGEN Y BADGE FLOTANTE -->
           <tr>
@@ -516,7 +572,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
 
           <!-- 3. CUERPO PRINCIPAL DEL CORREO -->
           <tr>
-            <td class="content-cell ${options.contentPadding && options.contentPadding.includes(' 0 ') ? 'content-cell-flush' : ''}" style="padding: ${options.contentPadding || "32px 36px 24px 36px"}; background-color: #ffffff;">
+            <td class="content-cell ${options.contentPadding && options.contentPadding.includes(' 0 ') ? 'content-cell-flush' : ''}" style="padding: ${options.contentPadding || (!heroBannerUrl && showCorporateLogoHeader ? "18px 36px 24px 36px" : "32px 36px 24px 36px")}; background-color: #ffffff;">
               ${contentHtml}
             </td>
           </tr>

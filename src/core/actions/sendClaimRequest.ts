@@ -224,6 +224,7 @@ export async function sendClaimRequest(formData: FormData) {
       headerTitle: "LIBRO DE RECLAMACIONES",
       headerIconUrl: EMAIL_ASSETS.CLAIMS_ICON,
       badgeHtml: `REGISTRO N°<br/>${claimCode}`,
+      showCorporateLogoHeader: true,
       contentHtml: customerContentHtml,
       showContactCenter: true,
       contactCenterEmail: BRAND.EMAIL_CLAIMS,
