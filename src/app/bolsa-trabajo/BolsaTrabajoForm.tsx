@@ -145,7 +145,7 @@ export default function BolsaTrabajoForm() {
         isOpen={status === "success"}
         onClose={() => setStatus("idle")}
         title="¡Postulación Enviada con Éxito!"
-        description="Hemos recibido sus datos y su currículum vitae correctamente. Nuestro equipo de Recursos Humanos revisará su perfil y se pondrá en contacto si hay una vacante disponible."
+        description="Hemos recibido sus datos y su currículum vitae correctamente. Nuestro equipo de Talento Humano revisará su perfil y se pondrá en contacto si hay una vacante disponible."
         closeButtonText="Entendido"
       />
     </form>

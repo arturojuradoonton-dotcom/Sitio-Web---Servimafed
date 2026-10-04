@@ -136,7 +136,7 @@ export default function ScheduleVisitModal() {
           close();
         }}
         title="¡Visita Técnica Agendada!"
-        description="Su cita técnica ha sido registrada con éxito. Un ingeniero especialista se comunicará a la brevedad para coordinar la inspección de sus equipos."
+        description="Su cita técnica ha sido registrada con éxito. Alguien de nuestro equipo técnico o comercial se comunicará a la brevedad para coordinar la inspección de sus equipos."
         closeButtonText="Entendido"
       />
     );
