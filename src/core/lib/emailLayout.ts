@@ -208,23 +208,29 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
         white-space: nowrap !important;
       }
       .subheader-cell {
-        padding: 16px 14px 2px 14px !important;
+        padding: 20px 14px 4px 14px !important;
       }
       .subheader-inner-left {
-        width: 70% !important;
+        display: block !important;
+        width: 100% !important;
+        text-align: left !important;
+        padding: 0 0 10px 0 !important;
+      }
+      .subheader-inner-right {
+        display: block !important;
+        width: 100% !important;
         text-align: left !important;
         padding: 0 !important;
       }
-      .subheader-inner-right {
-        width: 30% !important;
-        text-align: right !important;
-        padding: 0 !important;
-        white-space: nowrap !important;
+      .subheader-badge-table {
+        margin: 0 !important;
+        display: inline-block !important;
       }
       .subheader-title-text {
-        font-size: 13.5px !important;
+        font-size: 16px !important;
         letter-spacing: 0.4px !important;
-        white-space: nowrap !important;
+        white-space: normal !important;
+        line-height: 1.25 !important;
       }
 
       /* Hero Banner en Celulares: Altura proporcionada ~170px para mantener estética panorámica */
@@ -507,17 +513,17 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
           ${!heroBannerUrl && showCorporateLogoHeader ? `
           <!-- 2. SUB-ENCABEZADO DOCUMENTAL SIN RELLENO NI BORDE -->
           <tr>
-            <td align="center" class="subheader-cell" style="background-color: #ffffff; padding: 28px 36px 4px 36px; border: 0;">
+            <td align="center" class="subheader-cell" style="background-color: #ffffff; padding: 26px 36px 4px 36px; border: 0;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; min-width: 100%;">
                 <tr>
                   <td width="70%" align="left" valign="middle" class="subheader-inner-left" style="width: 70%; text-align: left; padding: 0;">
                     <table cellpadding="0" cellspacing="0" border="0" align="left">
                       <tr>
                         <td valign="middle" align="left" style="padding-right: 12px; line-height: 0;">
-                          <img src="${headerIconUrl}" alt="${headerTitle}" width="50" height="50" border="0" style="display: block; width: 50px; height: 50px;" />
+                          <img src="${headerIconUrl}" alt="${headerTitle}" width="44" height="44" border="0" style="display: block; width: 44px; height: 44px;" />
                         </td>
-                        <td valign="middle" align="left" style="white-space: nowrap;">
-                          <span class="subheader-title-text" style="font-size: 22px; font-weight: 800; color: #0f172a; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+                        <td valign="middle" align="left">
+                          <span class="subheader-title-text" style="font-size: 20px; font-weight: 800; color: #0f172a; letter-spacing: 0.5px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
                             ${headerTitle}
                           </span>
                         </td>
@@ -525,7 +531,7 @@ export function renderMasterEmail(options: MasterEmailOptions): string {
                     </table>
                   </td>
                   <td width="30%" align="right" valign="middle" class="subheader-inner-right" style="width: 30%; text-align: right; white-space: nowrap; padding: 0;">
-                    <table cellpadding="0" cellspacing="0" border="0" align="right" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate; margin: 0 0 0 auto;">
+                    <table cellpadding="0" cellspacing="0" border="0" align="right" class="subheader-badge-table" style="background-color: ${BRAND.YELLOW}; border-radius: 6px; border-collapse: separate; margin: 0 0 0 auto;">
                       <tr>
                         <td class="header-badge-td" align="center" valign="middle" style="padding: 7px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-size: 11.5px; font-weight: 800; color: #111c30; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
                           ${badgeHtml}
