@@ -265,7 +265,7 @@ export async function sendJobApplication(formData: FormData): Promise<JobApplica
       badgeHtml: "¡Postulación<br/>Recibida!",
       badgePosition: "bottom-right",
       badgeSize: "large",
-      heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
+      heroBannerUrl: EMAIL_ASSETS.HERO_BANNER_JOBS,
       contentHtml: candidateContentHtml,
       showContactCenter: true,
       contactCenterEmail: BRAND.EMAIL_HR,

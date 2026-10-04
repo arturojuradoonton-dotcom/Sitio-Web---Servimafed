@@ -17,6 +17,8 @@ export const EMAIL_ASSETS = {
   LOGO_WHITE: "https://www.servimafed.com/images/logo-vertical-blanco.png",
   HERO_BANNER: "https://www.servimafed.com/images/email-brochure-banner.jpg",
   HERO_BANNER_BROCHURE: "https://www.servimafed.com/images/email-hero-banner-brochure.jpg",
+  HERO_BANNER_CONTACT: "https://www.servimafed.com/images/email-hero-banner-contact.jpg",
+  HERO_BANNER_JOBS: "https://www.servimafed.com/images/email-hero-banner-jobs.png",
   HEADSET_ICON: "https://www.servimafed.com/images/headset-contact.png",
   WORKER_ICON: "https://www.servimafed.com/images/icon-trabajador.png",
   BROCHURE_ICON: "https://www.servimafed.com/images/icon-brochure-download.png",

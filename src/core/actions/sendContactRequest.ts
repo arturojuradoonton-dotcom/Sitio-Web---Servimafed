@@ -183,7 +183,7 @@ export async function sendContactRequest(data: ContactFormData): Promise<Contact
         badgeHtml: "¡Mensaje Recibido<br/>con Éxito!",
         badgePosition: "bottom-right",
         badgeSize: "large",
-        heroBannerUrl: EMAIL_ASSETS.HERO_BANNER,
+        heroBannerUrl: EMAIL_ASSETS.HERO_BANNER_CONTACT,
         contentHtml: customerContentHtml,
         showContactCenter: true,
       });
