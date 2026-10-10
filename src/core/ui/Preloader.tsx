@@ -29,7 +29,7 @@ export default function Preloader() {
       <div className="relative w-[100px] h-[100px] md:w-[120px] md:h-[120px]">
         {/* Usamos unoptimized={true} para que Next.js no congele la animación del GIF */}
         <Image 
-          src="/images/loader-yellow.gif" 
+          src="/images/icons/ui-preloader.svg" 
           alt="Cargando Servimafed..." 
           fill
           unoptimized={true}
